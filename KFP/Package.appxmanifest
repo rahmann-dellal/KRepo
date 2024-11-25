@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
+
+  <Identity
+    Name="com.kiober.kfp"
+    Publisher="CN=rahma"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="12b8dab7-0cb4-4fdc-aa99-39646b800878" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>Kiober Food POS</DisplayName>
+    <PublisherDisplayName>rahmann.dellal@gmail.com</PublisherDisplayName>
+    <Logo>Assets\Images\Logo\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="Kiober Food POS"
+        Description="Kiober Food Point of Sale and Dashboard gives small and medium-sized food service companies all the tools they need to manage and conduct audits."
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Images\Logo\Square150x150Logo.png"
+        Square44x44Logo="Assets\Images\Logo\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Images\Logo\Wide310x150Logo.png"  Square71x71Logo="Assets\Images\Logo\SmallTile.png" Square310x310Logo="Assets\Images\Logo\LargeTile.png"/>
+        <uap:SplashScreen Image="Assets\Images\Logo\SplashScreen.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

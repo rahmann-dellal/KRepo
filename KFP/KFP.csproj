@@ -1,0 +1,147 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>KFP</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\Images\Logo\LargeTile.scale-100.png" />
+    <None Remove="Assets\Images\Logo\LargeTile.scale-125.png" />
+    <None Remove="Assets\Images\Logo\LargeTile.scale-150.png" />
+    <None Remove="Assets\Images\Logo\LargeTile.scale-200.png" />
+    <None Remove="Assets\Images\Logo\LargeTile.scale-400.png" />
+    <None Remove="Assets\Images\Logo\logo-64.ico" />
+    <None Remove="Assets\Images\Logo\SmallTile.scale-100.png" />
+    <None Remove="Assets\Images\Logo\SmallTile.scale-125.png" />
+    <None Remove="Assets\Images\Logo\SmallTile.scale-150.png" />
+    <None Remove="Assets\Images\Logo\SmallTile.scale-200.png" />
+    <None Remove="Assets\Images\Logo\SmallTile.scale-400.png" />
+    <None Remove="Assets\Images\Logo\SplashScreen.scale-100.png" />
+    <None Remove="Assets\Images\Logo\SplashScreen.scale-125.png" />
+    <None Remove="Assets\Images\Logo\SplashScreen.scale-150.png" />
+    <None Remove="Assets\Images\Logo\SplashScreen.scale-200.png" />
+    <None Remove="Assets\Images\Logo\SplashScreen.scale-400.png" />
+    <None Remove="Assets\Images\Logo\Square150x150Logo.scale-100.png" />
+    <None Remove="Assets\Images\Logo\Square150x150Logo.scale-125.png" />
+    <None Remove="Assets\Images\Logo\Square150x150Logo.scale-150.png" />
+    <None Remove="Assets\Images\Logo\Square150x150Logo.scale-200.png" />
+    <None Remove="Assets\Images\Logo\Square150x150Logo.scale-400.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-unplated_targetsize-24.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.scale-100.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.scale-125.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.scale-150.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.scale-200.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.scale-400.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.targetsize-16.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.targetsize-24.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.targetsize-256.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.targetsize-32.png" />
+    <None Remove="Assets\Images\Logo\Square44x44Logo.targetsize-48.png" />
+    <None Remove="Assets\Images\Logo\StoreLogo.scale-100.png" />
+    <None Remove="Assets\Images\Logo\StoreLogo.scale-125.png" />
+    <None Remove="Assets\Images\Logo\StoreLogo.scale-150.png" />
+    <None Remove="Assets\Images\Logo\StoreLogo.scale-200.png" />
+    <None Remove="Assets\Images\Logo\StoreLogo.scale-400.png" />
+    <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-100.png" />
+    <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-125.png" />
+    <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-150.png" />
+    <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-200.png" />
+    <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-400.png" />
+    <None Remove="Ui\ClockInFrame.xaml" />
+    <None Remove="Ui\Components\PINInput.xaml" />
+    <None Remove="Ui\MainFrame.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo-256.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Ui\ClockInFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Ui\MainFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Ui\Components\PINInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <!-- Publish Properties -->
+  <PropertyGroup>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+    <ApplicationIcon>logo-256.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <WarningLevel>8</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <WarningLevel>8</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <WarningLevel>8</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <WarningLevel>8</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <WarningLevel>8</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <WarningLevel>8</WarningLevel>
+  </PropertyGroup>
+</Project>
