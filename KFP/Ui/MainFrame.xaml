@@ -13,7 +13,8 @@
                 Loaded="NavView_Loaded"
                 ItemInvoked="NavView_ItemInvoked"
                 IsBackEnabled="False"
-                IsBackButtonVisible="Collapsed">
+                IsBackButtonVisible="Collapsed"
+                x:FieldModifier="public">
 
         <!--TODO:Create a png logo with photoshop and place it as paneheader-->
         <!--<NavigationView.PaneHeader>
@@ -77,7 +78,7 @@
             </NavigationViewItem>
         </NavigationView.FooterMenuItems>
 
-        <Frame x:Name="ContentFrame" IsTabStop="True"/>
+        <Frame x:Name="ContentFrame" IsTabStop="True" x:FieldModifier="public"/>
 
 
     </NavigationView>

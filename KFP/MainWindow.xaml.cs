@@ -28,8 +28,10 @@ namespace KFP
     {
 
         private SessionManager _sessionManager;
-        public MainWindow(SessionManager sessionManager)
+        private MainFrame _mainFrame;
+        public MainWindow(MainFrame mainFrame, SessionManager sessionManager)
         {
+            _mainFrame = mainFrame;
             _sessionManager = sessionManager;
             this.Title = "Kiober Food POS";
             //Icon to display on titlebar
@@ -46,7 +48,7 @@ namespace KFP
         {
             if (_sessionManager.isSessionActive)
             {
-                this.Content = new MainFrame();
+                this.Content = _mainFrame;
             }
             else
             {

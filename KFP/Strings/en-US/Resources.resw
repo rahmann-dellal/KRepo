@@ -123,6 +123,9 @@
   <data name="AboutTextBlock.Text" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="ActionsTextBlock.Text" xml:space="preserve">
+    <value>Actions</value>
+  </data>
   <data name="activeForTextBlock.Text" xml:space="preserve">
     <value>Active For</value>
   </data>
@@ -132,6 +135,15 @@
   <data name="Add_User" xml:space="preserve">
     <value>Add User</value>
   </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="AvatarTextBlock.Text" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="Cashier" xml:space="preserve">
+    <value>Cashier</value>
+  </data>
   <data name="CurrentUserTextBlock.Text" xml:space="preserve">
     <value>Current User</value>
   </data>
@@ -140,6 +152,9 @@
   </data>
   <data name="logoutButton.Content" xml:space="preserve">
     <value>Sign out</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Manager</value>
   </data>
   <data name="please_enter_pin" xml:space="preserve">
     <value>Please Enter PIN</value>
@@ -165,6 +180,12 @@
   </data>
   <data name="startedAtTextBlock.Text" xml:space="preserve">
     <value>Started At</value>
+  </data>
+  <data name="UsernameTextBlock.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UserRoleTextBlock.Text" xml:space="preserve">
+    <value>Role</value>
   </data>
   <data name="UsersTextBlock.Text" xml:space="preserve">
     <value>Users</value>
