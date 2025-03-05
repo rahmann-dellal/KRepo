@@ -8,7 +8,78 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    
-        <TextBlock>Main Frame</TextBlock>
-    
+
+    <NavigationView x:Name="NavView"
+                Loaded="NavView_Loaded"
+                ItemInvoked="NavView_ItemInvoked"
+                IsBackEnabled="False"
+                IsBackButtonVisible="Collapsed">
+
+        <!--TODO:Create a png logo with photoshop and place it as paneheader-->
+        <!--<NavigationView.PaneHeader>
+            <Image Source="ms-appx:///Assets/StoreLogo.png" Width="26"/>
+        </NavigationView.PaneHeader>-->
+        <NavigationView.MenuItems>
+            <NavigationViewItem x:Name="POSNVI">
+                <NavigationViewItem.Content>
+                    <TextBlock x:Uid="POSTextBlock"/>
+                </NavigationViewItem.Content>
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xEC59;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+
+            <NavigationViewItem x:Name="UsersNVI">
+                <NavigationViewItem.Content>
+                    <TextBlock x:Uid="UsersTextBlock"/>
+                </NavigationViewItem.Content>
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE716;"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.MenuItems>
+                    <NavigationViewItem x:Name="ListUsersNVI">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="ListUsersTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xEA37;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="AddUserNVI">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="AddUserTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE8FA;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </NavigationViewItem.MenuItems>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+
+
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem x:Name="SessionNVI">
+                <NavigationViewItem.Content>
+                    <TextBlock x:Uid="SessionTextBlock"/>
+                </NavigationViewItem.Content>
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE916;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem x:Name="AboutNVI">
+                <NavigationViewItem.Content>
+                    <TextBlock x:Uid="AboutTextBlock"/>
+                </NavigationViewItem.Content>
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE946;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+        </NavigationView.FooterMenuItems>
+
+        <Frame x:Name="ContentFrame" IsTabStop="True"/>
+
+
+    </NavigationView>
+
 </UserControl>

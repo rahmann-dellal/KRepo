@@ -13,10 +13,7 @@ namespace KFP.Services
         private static AppDataService appDataService;
 
         private static ResourceContext resourceContext;
-        //represents the ressource map of the Kiober POS library (Kiober POS/Resources)
-        private static ResourceMap rootResourceMap;
-        //represents the ressource map of project using the library (Resources)
-        private static ResourceMap callerResourceMap;
+        private static ResourceMap resourceMap;
 
         static StringLocalisationService()
         {
@@ -24,9 +21,7 @@ namespace KFP.Services
 
             resourceContext = new ResourceContext();
             resourceContext.QualifierValues["Language"] = appDataService.AppLanguage;
-            callerResourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
-            rootResourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Kiober POS/Resources");
-
+            resourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
         }
 
         public static string getStringWithKey(string key)
@@ -34,13 +29,9 @@ namespace KFP.Services
             ResourceCandidate value = null;
             try
             {
-                if (callerResourceMap != null)
+                if (resourceMap != null)
                 {
-                    value = callerResourceMap.GetValue(key, resourceContext);
-                }
-                if (value == null && rootResourceMap != null)
-                {
-                    value = rootResourceMap.GetValue(key, resourceContext);
+                    value = resourceMap.GetValue(key, resourceContext);
                 }
             }
             catch (Exception ex)

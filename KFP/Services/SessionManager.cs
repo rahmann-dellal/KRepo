@@ -83,6 +83,7 @@ namespace KFP.Services
         private void StartSession(AppUser user)
         {
             CurrentSession = new Session(user);
+            //changes on the current session must be propagated to the session manager
             CurrentSession.PropertyChanged += (o, e) =>
             {
                 this.OnPropertyChanged(nameof(CurrentSession));

@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,14 +31,44 @@ namespace KFP.Ui
         private SessionManager _sessionManager;
 
         public List<AppUser> AppUsers { get; private set; }
-        public AppUser selectedUser { get; set; }
+
+        private AppUser? _selectedUser;
+
+
+        public AppUser? selectedUser { 
+            get
+            {
+                return _selectedUser;
+            }
+            set
+            {
+                _selectedUser = value;
+                userContentControl.DataContext = selectedUser;
+                if (value != null)
+                {
+                    selectUserPanel.Visibility = Visibility.Collapsed;
+                    SelectedUserPanelFadeIn();
+                }
+                else
+                {
+                    SelectedUserPanelFadeOut();
+                    selectUserPanel.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        public bool isUserSelected { 
+            get
+            {
+                return selectedUser != null;
+            }
+        }
         public ClockInFrame()
         {
             _context = Ioc.Default.GetService<KFPContext>();
             _sessionManager = Ioc.Default.GetService<SessionManager>();
             AppUsers = _context.AppUsers.ToList();
             this.InitializeComponent();
-
             cancelAndExitButton.Content = StringLocalisationService.getStringWithKey("cancelAndExit");
             pinInput.PromptText = StringLocalisationService.getStringWithKey("please_enter_pin");
             pinInput.PinIsValidText = StringLocalisationService.getStringWithKey("");
@@ -49,12 +80,35 @@ namespace KFP.Ui
             if (pinInput.isPinValid && selectedUser != null)
             {
                 var Logintask = _sessionManager.tryLogin(selectedUser, pinInput.PIN);
+                Logintask.Wait();
+                if(Logintask.Result == false)
+                {
+                    pinInput.PromptText = StringLocalisationService.getStringWithKey("Wrong_PIN_Try_again");
+                    pinInput.resetPin();
+                }
             }
         }
 
         private void cancelAndExitButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void UselectUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            selectedUser = null;
+        }
+
+        private void SelectedUserPanelFadeIn()
+        {
+            selectedUserPanel.Visibility = Visibility.Visible;
+            ShowSelectedUserStoryboard.Begin();
+        }
+
+        private void SelectedUserPanelFadeOut()
+        {
+            selectedUserPanel.Visibility = Visibility.Collapsed;
+            HideSelectedUserStoryboard.Begin();
         }
     }
 }

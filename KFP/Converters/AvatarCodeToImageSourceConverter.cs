@@ -15,11 +15,12 @@ namespace KFP.Converters
             var avatarCode = (int)value;
             if (avatarCode >= 1 && avatarCode <= 10)
             {
-                return new BitmapImage(new Uri("ms-appx:///Kiober POS/Assets/Images/Toons/toon_" + avatarCode + ".png"));
+                var imgSource = new BitmapImage(new Uri("ms-appx:///Assets/Images/Toons/toon_" + avatarCode + ".png"));
+                return imgSource;
             }
             else
             {
-                return new BitmapImage(new Uri("ms-appx:///Kiober POS/Assets/Images/Toons/boringAvatar.png"));
+                return new BitmapImage(new Uri("ms-appx:///Assets/Images/Toons/boringAvatar.png"));
             }
         }
 

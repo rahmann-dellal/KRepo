@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -34,9 +35,13 @@ namespace KFP
             //Icon to display on titlebar
             this.AppWindow.SetIcon("Assets/Images/Logo/logo-64.ico");
             this.InitializeComponent();
+            _sessionManager.PropertyChanged += onCurrentSessionChange;
             populateWindow();
         }
-
+        private void onCurrentSessionChange(object? sender, PropertyChangedEventArgs e)
+        {
+            populateWindow();
+        }
         private void populateWindow()
         {
             if (_sessionManager.isSessionActive)
