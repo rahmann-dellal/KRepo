@@ -147,6 +147,9 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="App_Window_Display.Text" xml:space="preserve">
+    <value>Window's Display</value>
+  </data>
   <data name="AvatarTextBlock.Text" xml:space="preserve">
     <value>Avatar</value>
   </data>
@@ -156,8 +159,17 @@
   <data name="Cashier" xml:space="preserve">
     <value>Cashier</value>
   </data>
+  <data name="choose_an_avatar.Text" xml:space="preserve">
+    <value>Choose an avatar</value>
+  </data>
   <data name="Choose_a_six_digits_PIN_code" xml:space="preserve">
     <value>Choose a six digits PIN code</value>
+  </data>
+  <data name="Choose_Role.Text" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Choose_Username.Text" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="CurrentUserTextBlock.Text" xml:space="preserve">
     <value>Current User</value>
@@ -168,8 +180,17 @@
   <data name="Edit_user_Button.Content" xml:space="preserve">
     <value>Edit user</value>
   </data>
+  <data name="FullScreen.Content" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="GeneralSettings.Text" xml:space="preserve">
+    <value>General Settings</value>
+  </data>
   <data name="ListUsersTextBlock.Text" xml:space="preserve">
     <value>List Users</value>
+  </data>
+  <data name="LoginTextBlock.Text" xml:space="preserve">
+    <value>Log in</value>
   </data>
   <data name="logoutButton.Content" xml:space="preserve">
     <value>Sign out</value>
@@ -177,8 +198,8 @@
   <data name="Manager" xml:space="preserve">
     <value>Manager</value>
   </data>
-  <data name="please_enter_pin" xml:space="preserve">
-    <value>Please Enter PIN</value>
+  <data name="Overlapped.Content" xml:space="preserve">
+    <value>Overlapped</value>
   </data>
   <data name="POS" xml:space="preserve">
     <value>POS</value>

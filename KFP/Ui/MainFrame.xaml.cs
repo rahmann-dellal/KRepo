@@ -62,7 +62,7 @@ namespace KFP.Ui
                 else if (InvokedNVI == AddUserNVI)
                 {
                     selectedNVI = AddUserNVI;
-                    ContentFrame.Navigate(typeof(AddUserPage));
+                    ContentFrame.Navigate(typeof(EditUserPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("Add_User");
                 }
                 else if (InvokedNVI == SessionNVI)
@@ -95,6 +95,7 @@ namespace KFP.Ui
         }
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
+            NavView.PaneTitle = StringLocalisationService.getStringWithKey("Menu");
         }
     }
 }

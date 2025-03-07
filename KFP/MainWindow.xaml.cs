@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices.WindowsRuntime;
 using KFP.Services;
 using KFP.Ui;
@@ -29,17 +30,32 @@ namespace KFP
 
         private SessionManager _sessionManager;
         private MainFrame _mainFrame;
-        public MainWindow(MainFrame mainFrame, SessionManager sessionManager)
+        private AppState _appState;
+
+        public MainWindow(MainFrame mainFrame, SessionManager sessionManager, AppState appState)
         {
             _mainFrame = mainFrame;
             _sessionManager = sessionManager;
+            _appState = appState;
+            this.InitializeComponent();
+
             this.Title = "Kiober Food POS";
             //Icon to display on titlebar
             this.AppWindow.SetIcon("Assets/Images/Logo/logo-64.ico");
-            this.InitializeComponent();
+            this.AppWindow.SetPresenter(_appState.WindowPresenterKind);
             _sessionManager.PropertyChanged += onCurrentSessionChange;
+            appState.PropertyChanged += AppState_PropertyChanged;
+
             populateWindow();
         }
+        private void AppState_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(AppState.WindowPresenterKind))
+            {
+                this.AppWindow.SetPresenter(_appState.WindowPresenterKind);
+            }
+        }
+
         private void onCurrentSessionChange(object? sender, PropertyChangedEventArgs e)
         {
             populateWindow();

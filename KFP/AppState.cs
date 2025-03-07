@@ -1,14 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using KFP.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.UI.Windowing;
 
 namespace KFP
 {
-    public class AppState : ObservableObject
+    public partial class AppState : ObservableObject
     {
         private SessionManager _sessionManager;
         public bool isSessionActive
@@ -18,10 +14,12 @@ namespace KFP
                 return _sessionManager.isSessionActive;
             }
         }
-
-        public AppState(SessionManager sessionManager)
+        [ObservableProperty]
+        private AppWindowPresenterKind windowPresenterKind;
+        public AppState(SessionManager sessionManager, AppDataService appDataService)
         {
             _sessionManager = sessionManager;
+            windowPresenterKind = appDataService.WindowPresenterKind;
         }
     }
 }

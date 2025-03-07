@@ -68,7 +68,6 @@
     <None Remove="Ui\Components\PINInput.xaml" />
     <None Remove="Ui\MainFrame.xaml" />
     <None Remove="Ui\pages\AboutPage.xaml" />
-    <None Remove="Ui\pages\AddUserPage.xaml" />
     <None Remove="Ui\pages\DisplayUserPage.xaml" />
     <None Remove="Ui\pages\EditUserPage.xaml" />
     <None Remove="Ui\pages\POSPage.xaml" />
@@ -155,11 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Ui\pages\AboutPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Ui\pages\AddUserPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

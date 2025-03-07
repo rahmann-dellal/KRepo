@@ -52,7 +52,7 @@ namespace KFP.ViewModels
         {
             if (_user != null)
             {
-                _navigationService.navigateTo(typeof(EditUserVM), new List<Object> { User.AppUserID });
+                _navigationService.navigateTo(typeof(EditUserPage), new List<Object> { User.AppUserID });
             }
         }
 

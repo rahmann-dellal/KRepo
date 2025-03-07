@@ -39,7 +39,7 @@
                 </ComboBox>
                 <TextBlock x:Name="RoleErrorBlock" Foreground="OrangeRed" FontSize="12"/>
 
-                <TextBlock Margin="0,22,0,0">Choose an avatar</TextBlock>
+                <TextBlock Margin="0,22,0,0" x:Uid="choose_an_avatar"/>
 
                 <ListBox MaxHeight="250" MaxWidth="150" Margin="0,20,0,0" ScrollViewer.VerticalScrollMode="Enabled"
                  x:Name="avatarListBox" SelectionChanged="avatarListBox_SelectionChanged">

@@ -32,7 +32,6 @@
             <TextBlock Text="{x:Bind viewModel.User.Role, Converter={StaticResource roleConverter}}" Margin="15,10,0,0" FontSize="22"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-            <TextBlock x:Uid="Avatar_text_Block" FontSize="16"/>
             <Image Source="{x:Bind viewModel.User.avatarCode, Converter={StaticResource avatarConverter}}"
                Margin="15,20,0,0" Width="120" Height="120" HorizontalAlignment="Left"/>
         </StackPanel>
