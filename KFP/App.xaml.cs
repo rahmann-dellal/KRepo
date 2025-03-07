@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using KFP.DATA_Access;
 using KFP.Services;
 using KFP.Ui;
+using KFP.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 
@@ -41,6 +42,10 @@ namespace KFP
 
             //DB
             services.AddDbContext<KFPContext>();
+
+            //VMs
+            services.AddTransient<DisplayUserVM>();
+            services.AddTransient<EditUserVM>();
 
             //Services
             services.AddSingleton<AppDataService>();

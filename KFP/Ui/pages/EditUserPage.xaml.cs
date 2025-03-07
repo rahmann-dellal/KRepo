@@ -1,17 +1,17 @@
+using CommunityToolkit.Mvvm.DependencyInjection;
+using KFP.DATA;
+using KFP.Services;
+using KFP.ViewModels;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,9 +23,202 @@ namespace KFP.Ui.pages
     /// </summary>
     public sealed partial class EditUserPage : Page
     {
+        private EditUserVM viewModel;
+        private Regex usernameRegex = new Regex(@"^(?=.{3,16}$)(?![-_])[\p{L}\p{N}](?:[\p{L}\p{N}_-]*[\p{L}\p{N}])?(?<![-_])$");
         public EditUserPage()
         {
             this.InitializeComponent();
+            viewModel = Ioc.Default.GetService<EditUserVM>();
+            pinPad.PinChanged += pinPad_PinChanged;
+            pinPad.PromptText = StringLocalisationService.getStringWithKey("Choose_a_six_digits_PIN_code");
+            pinPad.PinIsValidText = StringLocalisationService.getStringWithKey("Thank_you");
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                var parameters = e.Parameter as List<Object>;
+                if (parameters != null && parameters.Count > 0)
+                {
+                    viewModel._pageMode = EditUserVM.UserPageMode.Edition;
+                    int userID = (int)parameters.FirstOrDefault();
+                    viewModel.userID = userID;
+                }
+            }
+            else
+            {
+                viewModel._pageMode = EditUserVM.UserPageMode.Addtition;
+                viewModel.User = new AppUser();
+                viewModel._pageMode = EditUserVM.UserPageMode.Addtition;
+            }
+            ResetForm();
+        }
+
+        private void ResetForm()
+        {
+
+            if (viewModel._pageMode == EditUserVM.UserPageMode.Addtition)
+            {
+                RoleComboBox.SelectedIndex = -1;
+                avatarListBox.SelectedIndex = -1;
+                userNameTextBox.Text = "";
+                pinPad.resetPin();
+            }
+            else
+            {
+                RoleComboBox.SelectedIndex = (int)viewModel.OldRole;
+                avatarListBox.SelectedIndex = viewModel.OldAvatarCode;
+                userNameTextBox.Text = viewModel.OldUserName;
+                pinPad.sleep();
+            }
+            formChanged();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            formChanged();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            formChanged();
+        }
+
+        private void validateUsername()
+        {
+            if (userNameTextBox.Text.Length > 0 && !usernameRegex.IsMatch(userNameTextBox.Text))
+            {
+                usernameErrorBlock.Visibility = Visibility.Visible;
+
+                if (userNameTextBox.Text.StartsWith("-") || userNameTextBox.Text.StartsWith("_") ||
+                    userNameTextBox.Text.EndsWith("-") || userNameTextBox.Text.EndsWith("_"))
+                {
+                    usernameErrorBlock.Text = StringLocalisationService.getStringWithKey("Username_cannot_start_with_letter_underscore");
+                }
+
+                else if (userNameTextBox.Text.Length < 4 || userNameTextBox.Text.Length > 16)
+                {
+                    usernameErrorBlock.Text = StringLocalisationService.getStringWithKey("Username_between_4_16");
+                }
+                else
+                {
+                    usernameErrorBlock.Text = StringLocalisationService.getStringWithKey("please_enter_a_valid_username");
+                }
+            }
+            else
+            {
+                usernameErrorBlock.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void validateRole()
+        {
+            if (userNameTextBox.Text.Length > 0 && RoleComboBox.SelectedIndex < 0 && usernameRegex.IsMatch(userNameTextBox.Text))
+            {
+                RoleErrorBlock.Visibility = Visibility.Visible;
+                RoleErrorBlock.Text = StringLocalisationService.getStringWithKey("Please_choose_user_role");
+            }
+            else
+            {
+                RoleErrorBlock.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.User.UserName = userNameTextBox.Text;
+            viewModel.User.Role = (UserRole)((ComboBoxItem)RoleComboBox.SelectedItem).DataContext;
+            if (pinPad.IsSleeping)
+            {
+                viewModel.User.PINHash = viewModel.OldPINHash;
+            }
+            else
+            {
+                viewModel.User.PINHash = pinPad.PinHash;
+            }
+
+            viewModel.User.avatarCode = this.avatarListBox.SelectedIndex;
+
+            Task<int> savingUser = viewModel.saveUserToDBAsync();
+            DisplayProgressRing();
+        }
+
+        public void DisplayProgressRing()
+        {
+            this.Content = new ProgressRing()
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Width = 50,
+                Height = 50,
+            };
+        }
+        private void resetButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetForm();
+        }
+
+        private void avatarListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            formChanged();
+        }
+
+
+        private void pinPad_PinChanged(object sender, System.EventArgs e)
+        {
+            formChanged();
+        }
+
+        private void formChanged()
+        {
+            validateUsername();
+            validateRole();
+
+            if (usernameRegex.IsMatch(userNameTextBox.Text) &&
+                RoleComboBox.SelectedIndex >= 0)
+            {
+                if (viewModel._pageMode == EditUserVM.UserPageMode.Addtition)
+                {
+                    pinPad.FadeIn();
+                }
+                if (pinPad.isPinValid || pinPad.IsSleeping)
+                {
+                    //checking if any changes were made to activate the save button
+                    if (pinPad.IsSleeping && userNameTextBox.Text == viewModel.OldUserName
+                        && (UserRole)RoleComboBox.SelectedIndex == viewModel.OldRole
+                        && avatarListBox.SelectedIndex == viewModel.OldAvatarCode)
+                    {
+                        saveButton.IsEnabled = false;
+                        saveButton.Background = null;
+                    }
+                    else
+                    {
+                        saveButton.IsEnabled = true;
+                        saveButton.Background = new SolidColorBrush(Colors.LightGreen);
+                    }
+                }
+                else
+                {
+                    saveButton.IsEnabled = false;
+                    saveButton.Background = null;
+                }
+            }
+            else
+            {
+                if (viewModel._pageMode == EditUserVM.UserPageMode.Addtition)
+                {
+                    pinPad.FadeOut();
+                }
+                saveButton.IsEnabled = false;
+            }
+            if (userNameTextBox.Text.Length == 0 && RoleComboBox.SelectedIndex < 0 && avatarListBox.SelectedIndex < 0 && pinPad.isPinEmpty)
+            {
+                resetButton.IsEnabled = false;
+            }
+            else
+            {
+                resetButton.IsEnabled = true;
+            }
         }
     }
 }

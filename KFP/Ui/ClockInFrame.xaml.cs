@@ -71,7 +71,7 @@ namespace KFP.Ui
             this.InitializeComponent();
             cancelAndExitButton.Content = StringLocalisationService.getStringWithKey("cancelAndExit");
             pinInput.PromptText = StringLocalisationService.getStringWithKey("please_enter_pin");
-            pinInput.PinIsValidText = StringLocalisationService.getStringWithKey("");
+            pinInput.PinIsValidText = StringLocalisationService.getStringWithKey("WaitingForLoggin");
             pinInput.PinChanged += onPinChange;
         }
 

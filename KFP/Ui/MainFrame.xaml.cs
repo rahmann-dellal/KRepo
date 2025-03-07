@@ -1,3 +1,5 @@
+using CommunityToolkit.Mvvm.Messaging;
+using KFP.Messages;
 using KFP.Services;
 using KFP.Ui.pages;
 using Microsoft.UI.Xaml;
@@ -22,10 +24,21 @@ namespace KFP.Ui
 {
     public sealed partial class MainFrame : UserControl
     {
-        NavigationViewItem? selectedNVI = null;
+        private NavigationViewItem? _selectedNVI;
+        public NavigationViewItem? selectedNVI {
+            private get{
+                return _selectedNVI;
+            }
+            set
+            {
+                _selectedNVI = value;
+                NavView.SelectedItem = _selectedNVI;
+            }
+        }
         public MainFrame()
         {
             this.InitializeComponent();
+            WeakReferenceMessenger.Default.Register<UserAddedMessage>(this, (r, m) => OnUserAdded(m.UserId));
         }
 
         private void NavView_ItemInvoked(NavigationView sender,
@@ -73,6 +86,13 @@ namespace KFP.Ui
             }
         }
 
+        private void OnUserAdded(int userId)
+        {
+            ContentFrame.Navigate(typeof(DisplayUserPage), new List<object>
+                    {
+                       userId
+                    });
+        }
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
         }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using Windows.ApplicationModel.Resources.Core;
 
 namespace KFP.Services
@@ -14,7 +15,7 @@ namespace KFP.Services
 
         private static ResourceContext resourceContext;
         private static ResourceMap resourceMap;
-
+        private static ResourceMap ErrorsResourceMap;
         static StringLocalisationService()
         {
             appDataService = Ioc.Default.GetService<AppDataService>();
@@ -22,6 +23,7 @@ namespace KFP.Services
             resourceContext = new ResourceContext();
             resourceContext.QualifierValues["Language"] = appDataService.AppLanguage;
             resourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
+            ErrorsResourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("ErrorMessages");
         }
 
         public static string getStringWithKey(string key)
@@ -32,6 +34,10 @@ namespace KFP.Services
                 if (resourceMap != null)
                 {
                     value = resourceMap.GetValue(key, resourceContext);
+                }
+                if (value == null && ErrorsResourceMap != null)
+                {
+                    value = ErrorsResourceMap.GetValue(key, resourceContext);
                 }
             }
             catch (Exception ex)

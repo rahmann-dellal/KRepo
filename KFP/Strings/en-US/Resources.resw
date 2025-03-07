@@ -129,6 +129,15 @@
   <data name="activeForTextBlock.Text" xml:space="preserve">
     <value>Active For</value>
   </data>
+  <data name="AddUserAdmin.Content" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="AddUserCashier.Content" xml:space="preserve">
+    <value>Cashier</value>
+  </data>
+  <data name="AddUserManager.Content" xml:space="preserve">
+    <value>Manager</value>
+  </data>
   <data name="AddUserTextBlock.Text" xml:space="preserve">
     <value>Add a User</value>
   </data>
@@ -141,11 +150,23 @@
   <data name="AvatarTextBlock.Text" xml:space="preserve">
     <value>Avatar</value>
   </data>
+  <data name="cancelAndExit" xml:space="preserve">
+    <value>Cancel And Exit</value>
+  </data>
   <data name="Cashier" xml:space="preserve">
     <value>Cashier</value>
   </data>
+  <data name="Choose_a_six_digits_PIN_code" xml:space="preserve">
+    <value>Choose a six digits PIN code</value>
+  </data>
   <data name="CurrentUserTextBlock.Text" xml:space="preserve">
     <value>Current User</value>
+  </data>
+  <data name="Delete_user_Button.Content" xml:space="preserve">
+    <value>Delete User</value>
+  </data>
+  <data name="Edit_user_Button.Content" xml:space="preserve">
+    <value>Edit user</value>
   </data>
   <data name="ListUsersTextBlock.Text" xml:space="preserve">
     <value>List Users</value>
@@ -181,17 +202,39 @@
   <data name="startedAtTextBlock.Text" xml:space="preserve">
     <value>Started At</value>
   </data>
+  <data name="Thank_you" xml:space="preserve">
+    <value>Thank you</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
   <data name="UsernameTextBlock.Text" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="UserResetButton.Label" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="UserRole.Text" xml:space="preserve">
+    <value>Role</value>
+  </data>
   <data name="UserRoleTextBlock.Text" xml:space="preserve">
     <value>Role</value>
+  </data>
+  <data name="UserSaveButton.Label" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="UsersTextBlock.Text" xml:space="preserve">
     <value>Users</value>
   </data>
   <data name="User_List" xml:space="preserve">
     <value>User List</value>
+  </data>
+  <data name="WaitingForLoggin" xml:space="preserve">
+    <value>Login ...</value>
+    <comment>Currently doesn't show (not enough time before login)</comment>
+  </data>
+  <data name="Welcom" xml:space="preserve">
+    <value>Welcome</value>
   </data>
   <data name="Wrong_PIN_Try_again" xml:space="preserve">
     <value>Wrong PIN, Please try again</value>

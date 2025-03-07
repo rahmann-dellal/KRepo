@@ -15,6 +15,7 @@ namespace KFP.Services
         }
         public void navigateTo(Type pageType, List<Object> parameters = null){
             _mainFrame.ContentFrame.Navigate(pageType, parameters);
+            _mainFrame.selectedNVI = null;
         }
 
         public void SetNewHeader(string newHeader)

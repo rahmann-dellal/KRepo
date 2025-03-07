@@ -69,6 +69,7 @@
     <None Remove="Ui\MainFrame.xaml" />
     <None Remove="Ui\pages\AboutPage.xaml" />
     <None Remove="Ui\pages\AddUserPage.xaml" />
+    <None Remove="Ui\pages\DisplayUserPage.xaml" />
     <None Remove="Ui\pages\EditUserPage.xaml" />
     <None Remove="Ui\pages\POSPage.xaml" />
     <None Remove="Ui\pages\SessionPage.xaml" />
@@ -136,6 +137,11 @@
     <Content Update="Assets\Images\Toons\toon_9.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Ui\pages\DisplayUserPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Ui\pages\EditUserPage.xaml">

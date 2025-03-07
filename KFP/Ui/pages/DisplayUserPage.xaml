@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="KFP.Ui.pages.DisplayUserPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KFP.Ui.pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:converters="using:KFP.Converters">
+
+    <Page.Resources>
+        <converters:RoleConverter x:Key="roleConverter"/>
+        <converters:AvatarCodeToImageSourceConverter x:Key="avatarConverter"/>
+    </Page.Resources>
+
+    <Grid Margin="100,50,30,30">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+            <TextBlock x:Uid="Username" FontSize="16"/>
+            <TextBlock Text="{x:Bind viewModel.User.UserName}" Margin="15,10,0,0" FontSize="22"/>
+            <TextBlock x:Uid="UserRole" FontSize="16" Margin="0,20,0,0" />
+            <TextBlock Text="{x:Bind viewModel.User.Role, Converter={StaticResource roleConverter}}" Margin="15,10,0,0" FontSize="22"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
+            <TextBlock x:Uid="Avatar_text_Block" FontSize="16"/>
+            <Image Source="{x:Bind viewModel.User.avatarCode, Converter={StaticResource avatarConverter}}"
+               Margin="15,20,0,0" Width="120" Height="120" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0">
+            <Button x:Uid="Edit_user_Button" Width="200" HorizontalContentAlignment="Center"
+            Foreground="{ThemeResource TextOnAccentFillColorPrimary}" Background="{ThemeResource AccentFillColorDefaultBrush}" BorderBrush="{ThemeResource ProgressBarBorderThemeBrush}"
+            Command="{x:Bind viewModel.goToEditUserCommand}"/>
+            <Button x:Uid="Delete_user_Button" Width="200" HorizontalContentAlignment="Center"
+                Margin="20,0,0,0" 
+                Foreground="{ThemeResource SystemFillColorCaution}" BorderBrush="{ThemeResource SystemFillColorCaution}" Background="{ThemeResource SystemFillColorCautionBackground}"
+                Command="{x:Bind viewModel.DeleteUserCommand}"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
