@@ -5,8 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices.WindowsRuntime;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using KFP.DATA_Access;
 using KFP.Services;
 using KFP.Ui;
+using KFP.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -29,22 +33,22 @@ namespace KFP
     {
 
         private SessionManager _sessionManager;
-        private MainFrame _mainFrame;
         private AppState _appState;
 
-        public MainWindow(MainFrame mainFrame, SessionManager sessionManager, AppState appState)
+        public MainWindow()
         {
-            _mainFrame = mainFrame;
-            _sessionManager = sessionManager;
-            _appState = appState;
+            _sessionManager = Ioc.Default.GetService<SessionManager>();
+            _appState = Ioc.Default.GetService<AppState>();
+
             this.InitializeComponent();
 
             this.Title = "Kiober Food POS";
             //Icon to display on titlebar
             this.AppWindow.SetIcon("Assets/Images/Logo/logo-64.ico");
             this.AppWindow.SetPresenter(_appState.WindowPresenterKind);
+
             _sessionManager.PropertyChanged += onCurrentSessionChange;
-            appState.PropertyChanged += AppState_PropertyChanged;
+            _appState.PropertyChanged += AppState_PropertyChanged;
 
             populateWindow();
         }
@@ -64,7 +68,10 @@ namespace KFP
         {
             if (_sessionManager.isSessionActive)
             {
-                this.Content = _mainFrame;
+                var mainframe = new MainFrame();
+                var ns = Ioc.Default.GetService<NavigationService>();
+                ns.MainFrame = mainframe;
+                this.Content = mainframe;
             }
             else
             {

@@ -1,4 +1,6 @@
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
+using KFP.DATA;
 using KFP.Messages;
 using KFP.Services;
 using KFP.Ui.pages;
@@ -25,6 +27,7 @@ namespace KFP.Ui
     public sealed partial class MainFrame : UserControl
     {
         private NavigationViewItem? _selectedNVI;
+        private SessionManager _sessionManager;
         public NavigationViewItem? selectedNVI {
             private get{
                 return _selectedNVI;
@@ -39,6 +42,7 @@ namespace KFP.Ui
         {
             this.InitializeComponent();
             WeakReferenceMessenger.Default.Register<UserAddedMessage>(this, (r, m) => OnUserAdded(m.UserId));
+            _sessionManager = Ioc.Default.GetService<SessionManager>();
         }
 
         private void NavView_ItemInvoked(NavigationView sender,
@@ -53,13 +57,13 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(POSPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("POS");
                 }
-                else if (InvokedNVI == ListUsersNVI)
+                else if (InvokedNVI == ListUsersNVI && isAllowedRole(UserRole.Manager))
                 {
                     selectedNVI = ListUsersNVI;
                     ContentFrame.Navigate(typeof(UserListPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("User_List");
                 }
-                else if (InvokedNVI == AddUserNVI)
+                else if (InvokedNVI == AddUserNVI && isAllowedRole(UserRole.Manager))
                 {
                     selectedNVI = AddUserNVI;
                     ContentFrame.Navigate(typeof(EditUserPage));
@@ -77,12 +81,29 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(AboutPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("About");
                 }
-                else if(args.IsSettingsInvoked)
+                else if(args.IsSettingsInvoked && isAllowedRole(UserRole.Manager))
                 {
                     selectedNVI = null;
                     ContentFrame.Navigate(typeof(SettingsPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("Settings");
                 }
+            }
+        }
+
+
+        private bool isAllowedRole(UserRole role)
+        {
+            return _sessionManager.LoggedInUser.IsAllowedRole(role);
+        }
+        private Visibility isVisibleForRole(UserRole role)
+        {
+            if (isAllowedRole(role))
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
             }
         }
 
@@ -92,6 +113,8 @@ namespace KFP.Ui
                     {
                        userId
                     });
+            NavView.SelectedItem = null;
+            selectedNVI = null;
         }
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {

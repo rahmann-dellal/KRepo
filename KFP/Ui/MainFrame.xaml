@@ -6,15 +6,21 @@
     xmlns:local="using:KFP.Ui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:data="using:KFP.DATA"
+    xmlns:converters="using:KFP.Converters">
 
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="boolToVisibiltyConverter"/>
+    </UserControl.Resources>
 
     <NavigationView x:Name="NavView"
                 Loaded="NavView_Loaded"
                 ItemInvoked="NavView_ItemInvoked"
                 IsBackEnabled="False"
                 IsBackButtonVisible="Collapsed"
-                x:FieldModifier="public">
+                x:FieldModifier="public"
+                IsSettingsVisible="{x:Bind isAllowedRole(data:UserRole.Manager)}">
 
         <!--TODO:Create a png logo with photoshop and place it as paneheader-->
         <!--<NavigationView.PaneHeader>
@@ -30,7 +36,7 @@
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
 
-            <NavigationViewItem x:Name="UsersNVI">
+            <NavigationViewItem x:Name="UsersNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                 <NavigationViewItem.Content>
                     <TextBlock x:Uid="UsersTextBlock"/>
                 </NavigationViewItem.Content>
@@ -38,7 +44,7 @@
                     <FontIcon Glyph="&#xE716;"/>
                 </NavigationViewItem.Icon>
                 <NavigationViewItem.MenuItems>
-                    <NavigationViewItem x:Name="ListUsersNVI">
+                    <NavigationViewItem x:Name="ListUsersNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
                             <TextBlock x:Uid="ListUsersTextBlock"/>
                         </NavigationViewItem.Content>
@@ -46,7 +52,7 @@
                             <FontIcon Glyph="&#xEA37;"/>
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
-                    <NavigationViewItem x:Name="AddUserNVI">
+                    <NavigationViewItem x:Name="AddUserNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
                             <TextBlock x:Uid="AddUserTextBlock"/>
                         </NavigationViewItem.Content>

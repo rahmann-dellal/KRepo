@@ -35,9 +35,10 @@ namespace KFP
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             using (var db = new KFPContext())
-            { 
+            {
                 db.Database.EnsureCreated();
             }
+
             var services = new ServiceCollection();
 
             //DB
@@ -53,19 +54,12 @@ namespace KFP
             services.AddSingleton<AppState>();
             services.AddSingleton<NavigationService>();
 
-            //Ui
-            services.AddSingleton<MainWindow>();
-            services.AddSingleton<MainFrame>();
 
             var serviceProvider = services.BuildServiceProvider();
             Ioc.Default.ConfigureServices(serviceProvider);
 
-            m_window = Ioc.Default.GetService<MainWindow>();
-            if (m_window is not null)
-                m_window.Activate();
-            else
-                throw new Exception("App Failed to Launch");
+            m_window = new MainWindow();
+            m_window.Activate();
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace KFP.DATA
 {
@@ -18,6 +19,12 @@ namespace KFP.DATA
         public UserRole Role { get; set; }
 
         public int avatarCode { get; set; }
+
+        public Boolean IsAllowedRole(UserRole role)
+        {
+            if (this.Role >= role) return true;
+            else return false;
+        }
 
     }
 
