@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -124,25 +125,44 @@ namespace KFP.Ui.pages
                 RoleErrorBlock.Visibility = Visibility.Collapsed;
             }
         }
-        private void saveButton_Click(object sender, RoutedEventArgs e)
+        private async void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.User.UserName = userNameTextBox.Text;
-            viewModel.User.Role = (UserRole)((ComboBoxItem)RoleComboBox.SelectedItem).DataContext;
-            if (pinPad.IsSleeping)
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("save_changes");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Confirm");
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.XamlRoot = this.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
             {
-                viewModel.User.PINHash = viewModel.OldPINHash;
-            }
-            else
-            {
-                viewModel.User.PINHash = pinPad.PinHash;
-            }
 
-            viewModel.User.avatarCode = this.avatarListBox.SelectedIndex;
+                viewModel.User.UserName = userNameTextBox.Text;
+                viewModel.User.Role = (UserRole)((ComboBoxItem)RoleComboBox.SelectedItem).DataContext;
+                if (pinPad.IsSleeping)
+                {
+                    viewModel.User.PINHash = viewModel.OldPINHash;
+                }
+                else
+                {
+                    viewModel.User.PINHash = pinPad.PinHash;
+                }
 
-            Task<int> savingUser = viewModel.saveUserToDBAsync();
-            DisplayProgressRing();
+                viewModel.User.avatarCode = this.avatarListBox.SelectedIndex;
+                DisplayProgressRing();
+                var savingUser = viewModel.saveUserToDBAsync();
+            }
         }
-
+        public void DisplaySuccessMessage()
+        {
+            this.Content = new TextBlock()
+            {
+                Text = StringLocalisationService.getStringWithKey("Operation_was_seccessfull"),
+                Margin = new Thickness(0, 40, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Foreground = new SolidColorBrush(Color.FromArgb(255, 50, 200, 50))
+            };
+        }
         public void DisplayProgressRing()
         {
             this.Content = new ProgressRing()
@@ -219,6 +239,25 @@ namespace KFP.Ui.pages
             {
                 resetButton.IsEnabled = true;
             }
+        }
+
+        private Visibility UserHasPrivelegesOf(UserRole role)
+        {
+            if (viewModel.UserhasPrivilegesOf(role))
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
+            }
+        }
+
+        //User cannot change his own role
+        private Visibility isNotLoggedUser()
+        {
+            if (viewModel.isNotLoggedUser()) return Visibility.Visible;
+            else return Visibility.Collapsed;
         }
     }
 }

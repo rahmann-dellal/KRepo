@@ -71,10 +71,10 @@
                 </StackPanel>
                 <StackPanel Margin="0,25,0,0">
                     <custom:PINInput x:Name="pinInput" ShowPin="False"/>
-                    <HyperlinkButton x:Name="cancelAndExitButton" Margin="0,25,0,0" HorizontalAlignment="Center" Click="cancelAndExitButton_Click"/>
                 </StackPanel>
             </StackPanel>
 
+            <HyperlinkButton x:Name="cancelAndExitButton" Margin="0,25,0,0" HorizontalAlignment="Center" Click="cancelAndExitButton_Click"/>
 
 
 

@@ -4,6 +4,7 @@ using KFP.DATA;
 using KFP.DATA_Access;
 using KFP.Services;
 using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -30,7 +31,7 @@ namespace KFP.Ui.pages
 
             foreach (var user in _dbContext.AppUsers)
             {
-                UserListElements.Add(new UserListElement(user, UserListElements, _dbContext, _sessionManager, _navigationService));
+                UserListElements.Add(new UserListElement(user, UserListElements, _dbContext, _sessionManager, _navigationService, this));
             }
             this.InitializeComponent();
         }
@@ -42,13 +43,15 @@ namespace KFP.Ui.pages
         private KFPContext _dbContext;
         private SessionManager _sessionService;
         private ObservableCollection<UserListElement> _userListElements;
-        public UserListElement(AppUser user, ObservableCollection<UserListElement> userListElements, KFPContext dbContext, SessionManager sessionService, NavigationService navigationService)
+        private Page parentPage;
+        public UserListElement(AppUser user, ObservableCollection<UserListElement> userListElements, KFPContext dbContext, SessionManager sessionService, NavigationService navigationService, Page parentPage)
         {
             _dbContext = dbContext;
             _sessionService = sessionService;
             User = user;
             _userListElements = userListElements;
             _navigationService = navigationService;
+            this.parentPage = parentPage;
         }
 
         public bool IsConnected
@@ -61,11 +64,21 @@ namespace KFP.Ui.pages
 
         public AppUser User { get; set; }
         [RelayCommand(CanExecute = nameof(DeleteUserCanExcute))]
-        public void DeleteUser()
+        public async void DeleteUser()
         {
-            _dbContext.AppUsers.Remove(User);
-            _dbContext.SaveChanges();
-            _userListElements.Remove(this);
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Are_you_sure_to_continue ");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Deleting") + User.UserName;
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Delete");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.XamlRoot = parentPage.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                _dbContext.AppUsers.Remove(User);
+                _dbContext.SaveChanges();
+                _userListElements.Remove(this);
+            }
         }
 
         public bool DeleteUserCanExcute()

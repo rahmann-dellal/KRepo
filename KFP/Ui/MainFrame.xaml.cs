@@ -41,8 +41,12 @@ namespace KFP.Ui
         public MainFrame()
         {
             this.InitializeComponent();
-            WeakReferenceMessenger.Default.Register<UserAddedMessage>(this, (r, m) => OnUserAdded(m.UserId));
+            StrongReferenceMessenger.Default.Register<UserAddedMessage>(this, (r, m) => OnUserAdded(m.UserId));
             _sessionManager = Ioc.Default.GetService<SessionManager>();
+        }
+        ~MainFrame()
+        {
+            StrongReferenceMessenger.Default.Unregister<UserAddedMessage>(this);
         }
 
         private void NavView_ItemInvoked(NavigationView sender,
@@ -57,13 +61,13 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(POSPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("POS");
                 }
-                else if (InvokedNVI == ListUsersNVI && isAllowedRole(UserRole.Manager))
+                else if (InvokedNVI == ListUsersNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = ListUsersNVI;
                     ContentFrame.Navigate(typeof(UserListPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("User_List");
                 }
-                else if (InvokedNVI == AddUserNVI && isAllowedRole(UserRole.Manager))
+                else if (InvokedNVI == AddUserNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = AddUserNVI;
                     ContentFrame.Navigate(typeof(EditUserPage));
@@ -81,7 +85,7 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(AboutPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("About");
                 }
-                else if(args.IsSettingsInvoked && isAllowedRole(UserRole.Manager))
+                else if(args.IsSettingsInvoked && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = null;
                     ContentFrame.Navigate(typeof(SettingsPage));
@@ -91,13 +95,13 @@ namespace KFP.Ui
         }
 
 
-        private bool isAllowedRole(UserRole role)
+        private bool UserHasPrivelegesOf(UserRole role)
         {
-            return _sessionManager.LoggedInUser.IsAllowedRole(role);
+            return _sessionManager.LoggedInUser.HasPrivelegesOf(role);
         }
         private Visibility isVisibleForRole(UserRole role)
         {
-            if (isAllowedRole(role))
+            if (UserHasPrivelegesOf(role))
             {
                 return Visibility.Visible;
             }

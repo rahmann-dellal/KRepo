@@ -6,6 +6,7 @@ using KFP.Services;
 using KFP.Ui.pages;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KFP.ViewModels
 {
@@ -15,6 +16,7 @@ namespace KFP.ViewModels
         private NavigationService _navigationService;
         private KFPContext _dbContext;
         private SessionManager _sessionService;
+        public Func<Task<Boolean>> DisplayConfirmDialog {  get; set; }
         public AppUser User { 
             get
             {
@@ -75,11 +77,14 @@ namespace KFP.ViewModels
         }
 
         [RelayCommand(CanExecute = nameof(canDeleteUser))]
-        public void DeleteUser()
+        public async Task DeleteUser()
         {
-            _dbContext.AppUsers.Remove(User);
-            _dbContext.SaveChanges();
-            _navigationService.navigateTo(typeof(UserListPage), null); //UserListPage should not be accessible from the view model but we will let this one slide ;)
+            var result = await DisplayConfirmDialog();
+            if (result) { 
+                _dbContext.AppUsers.Remove(User);
+                _dbContext.SaveChanges();
+                _navigationService.navigateTo(typeof(UserListPage), null); //UserListPage should not be accessible from the view model but we will let this one slide ;)
+            }
         }
 
         public bool canDeleteUser()

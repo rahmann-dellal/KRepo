@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.DependencyInjection;
+using KFP.Services;
 using KFP.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -12,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -30,6 +32,7 @@ namespace KFP.Ui.pages
         {
             this.InitializeComponent();
             viewModel = Ioc.Default.GetService<DisplayUserVM>();
+            viewModel.DisplayConfirmDialog = DisplayConfirmDialog;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -44,6 +47,22 @@ namespace KFP.Ui.pages
                 }
                 catch { }
             }
+        }
+
+        public async Task<Boolean> DisplayConfirmDialog()
+        {
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Are_you_sure_to_continue ");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Deleting") + viewModel.User.UserName ;
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Delete");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.XamlRoot = this.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                return true;
+            }
+            else return false;
         }
 
     }

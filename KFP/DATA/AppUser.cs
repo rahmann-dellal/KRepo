@@ -20,7 +20,7 @@ namespace KFP.DATA
 
         public int avatarCode { get; set; }
 
-        public Boolean IsAllowedRole(UserRole role)
+        public Boolean HasPrivelegesOf(UserRole role)
         {
             if (this.Role >= role) return true;
             else return false;

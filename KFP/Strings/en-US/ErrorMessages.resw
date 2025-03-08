@@ -117,8 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Are_you_sure_to_continue" xml:space="preserve">
+    <value>This is permanant ! Are you sure to contitnue ?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Deleting" xml:space="preserve">
+    <value>Deleting : </value>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Editing : </value>
+    <comment>Displayed on EditUserPage header</comment>
+  </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
+  </data>
+  <data name="Operation_was_seccessfull" xml:space="preserve">
+    <value>Operation was successful !</value>
   </data>
   <data name="Please_choose_user_role" xml:space="preserve">
     <value>Please choose a user role</value>
@@ -129,10 +151,16 @@
   <data name="please_enter_pin" xml:space="preserve">
     <value>Enter PIN</value>
   </data>
+  <data name="save_changes" xml:space="preserve">
+    <value>Save Changes ?</value>
+  </data>
   <data name="Username_between_4_16" xml:space="preserve">
     <value>Username length must be between 4 and 16</value>
   </data>
   <data name="Username_cannot_start_with_letter_underscore" xml:space="preserve">
     <value>Username cannot start or end with a hyphen or underscore.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

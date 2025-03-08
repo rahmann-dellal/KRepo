@@ -19,6 +19,7 @@ namespace KFP.ViewModels
         private AppUser _user;
         private NavigationService _navigationService;
         private KFPContext _dbContext;
+        private SessionManager _sessionManager;
 
         //used in case the reset button is clicked and the previous value will be retreived
         public string OldUserName = "";
@@ -38,7 +39,7 @@ namespace KFP.ViewModels
                 SetProperty(ref _user, value);
                 if(_pageMode == UserPageMode.Edition)
                 { 
-                    _navigationService.SetNewHeader(_user.UserName);
+                    _navigationService.SetNewHeader(StringLocalisationService.getStringWithKey("Editing") + _user.UserName);
                 }
             }
         }
@@ -59,10 +60,21 @@ namespace KFP.ViewModels
             }
         }
 
-        public EditUserVM(KFPContext dbcontext, NavigationService ns)
+        public EditUserVM(KFPContext dbcontext, NavigationService ns, SessionManager sessionManager)
         {
             _dbContext = dbcontext;
             _navigationService = ns;
+            _sessionManager = sessionManager;
+        }
+
+        public bool UserhasPrivilegesOf(UserRole role)
+        {
+            return _sessionManager.LoggedInUser.HasPrivelegesOf(role);
+        }
+
+        public bool isNotLoggedUser() //user isn't editing it self
+        {
+            return userID != _sessionManager.LoggedInUser.AppUserID;
         }
 
         public async Task<int> saveUserToDBAsync()
@@ -78,7 +90,7 @@ namespace KFP.ViewModels
             var result = await _dbContext.SaveChangesAsync();
             if (result > 0)
             {
-                WeakReferenceMessenger.Default.Send(new UserAddedMessage(User.AppUserID));
+                StrongReferenceMessenger.Default.Send(new UserAddedMessage(User.AppUserID));
             }
             return result;
         }

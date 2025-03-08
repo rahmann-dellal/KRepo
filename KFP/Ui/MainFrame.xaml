@@ -20,7 +20,7 @@
                 IsBackEnabled="False"
                 IsBackButtonVisible="Collapsed"
                 x:FieldModifier="public"
-                IsSettingsVisible="{x:Bind isAllowedRole(data:UserRole.Manager)}">
+                IsSettingsVisible="{x:Bind UserHasPrivelegesOf(data:UserRole.Manager)}">
 
         <!--TODO:Create a png logo with photoshop and place it as paneheader-->
         <!--<NavigationView.PaneHeader>
@@ -84,7 +84,9 @@
             </NavigationViewItem>
         </NavigationView.FooterMenuItems>
 
-        <Frame x:Name="ContentFrame" IsTabStop="True" x:FieldModifier="public"/>
+        <ScrollViewer>
+            <Frame x:Name="ContentFrame" IsTabStop="True" x:FieldModifier="public"/>
+        </ScrollViewer>
 
 
     </NavigationView>
