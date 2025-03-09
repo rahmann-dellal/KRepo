@@ -1,8 +1,6 @@
-﻿using System;
-using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using KFP.DATA_Access;
 using KFP.Services;
-using KFP.Ui;
 using KFP.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
