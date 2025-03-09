@@ -6,6 +6,7 @@ using KFP.Messages;
 using KFP.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KFP.ViewModels
@@ -77,6 +78,18 @@ namespace KFP.ViewModels
             return userID != _sessionManager.LoggedInUser.AppUserID;
         }
 
+        public Boolean UserNameAlreadyExists(string username)
+        {
+            if(this._pageMode== UserPageMode.Addtition &&
+                _dbContext.AppUsers.Where(u => u.UserName == username).Any())
+            {
+                return true;
+            } else if (this._pageMode == UserPageMode.Edition)
+            {
+                return _dbContext.AppUsers.Where(u => u.UserName == username && u.AppUserID != this.userID).Any();
+            }
+            return false;
+        }
         public async Task<int> saveUserToDBAsync()
         {
             if (_pageMode == UserPageMode.Edition)

@@ -150,8 +150,14 @@
   <data name="App_Window_Display.Text" xml:space="preserve">
     <value>Window's Display</value>
   </data>
+  <data name="Are_you_sure_to_continue" xml:space="preserve">
+    <value>This is permanant ! Are you sure to contitnue ?</value>
+  </data>
   <data name="AvatarTextBlock.Text" xml:space="preserve">
     <value>Avatar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="cancelAndExit" xml:space="preserve">
     <value>Cancel And Exit</value>
@@ -171,11 +177,24 @@
   <data name="Choose_Username.Text" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="CurrentUserTextBlock.Text" xml:space="preserve">
     <value>Current User</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Delete_user_Button.Content" xml:space="preserve">
     <value>Delete User</value>
+  </data>
+  <data name="Deleting" xml:space="preserve">
+    <value>Deleting : </value>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Editing : </value>
+    <comment>Displayed on EditUserPage header</comment>
   </data>
   <data name="Edit_user_Button.Content" xml:space="preserve">
     <value>Edit user</value>
@@ -198,6 +217,12 @@
   <data name="Manager" xml:space="preserve">
     <value>Manager</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Operation_was_seccessfull" xml:space="preserve">
+    <value>Operation was successful !</value>
+  </data>
   <data name="Overlapped.Content" xml:space="preserve">
     <value>Overlapped</value>
   </data>
@@ -206,6 +231,9 @@
   </data>
   <data name="POSTextBlock.Text" xml:space="preserve">
     <value>POS</value>
+  </data>
+  <data name="save_changes" xml:space="preserve">
+    <value>Save Changes ?</value>
   </data>
   <data name="select_user.Text" xml:space="preserve">
     <value>Select user</value>
@@ -259,5 +287,8 @@
   </data>
   <data name="Wrong_PIN_Try_again" xml:space="preserve">
     <value>Wrong PIN, Please try again</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

@@ -107,6 +107,11 @@ namespace KFP.Ui.pages
                     usernameErrorBlock.Text = StringLocalisationService.getStringWithKey("please_enter_a_valid_username");
                 }
             }
+            else if (viewModel.UserNameAlreadyExists(userNameTextBox.Text))
+            {
+                usernameErrorBlock.Visibility = Visibility.Visible;
+                usernameErrorBlock.Text = StringLocalisationService.getStringWithKey("User_with_same_name_exists");
+            }
             else
             {
                 usernameErrorBlock.Visibility = Visibility.Collapsed;
@@ -195,7 +200,8 @@ namespace KFP.Ui.pages
             validateRole();
 
             if (usernameRegex.IsMatch(userNameTextBox.Text) &&
-                RoleComboBox.SelectedIndex >= 0)
+                RoleComboBox.SelectedIndex >= 0 &&
+                !viewModel.UserNameAlreadyExists(userNameTextBox.Text))
             {
                 if (viewModel._pageMode == EditUserVM.UserPageMode.Addtition)
                 {
