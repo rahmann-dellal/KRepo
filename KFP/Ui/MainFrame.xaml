@@ -36,6 +36,33 @@
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
 
+            <NavigationViewItem x:Name="MenuItemsNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                <NavigationViewItem.Content>
+                    <TextBlock x:Uid="MenuItemsTextBlock"/>
+                </NavigationViewItem.Content>
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xED56;"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.MenuItems>
+                    <NavigationViewItem x:Name="ListMenuItemsNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="ListMenuItemsTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xEA37;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="AddMenuItemNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="AddMenuItemTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE710;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </NavigationViewItem.MenuItems>
+            </NavigationViewItem>
+            
             <NavigationViewItem x:Name="UsersNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                 <NavigationViewItem.Content>
                     <TextBlock x:Uid="UsersTextBlock"/>

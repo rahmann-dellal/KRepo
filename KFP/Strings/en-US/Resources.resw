@@ -129,6 +129,9 @@
   <data name="activeForTextBlock.Text" xml:space="preserve">
     <value>Active For</value>
   </data>
+  <data name="AddMenuItemTextBlock.Text" xml:space="preserve">
+    <value>Add a menu item</value>
+  </data>
   <data name="AddUserAdmin.Content" xml:space="preserve">
     <value>Admin</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="AddUserTextBlock.Text" xml:space="preserve">
     <value>Add a User</value>
+  </data>
+  <data name="Add_menu_item" xml:space="preserve">
+    <value>Add menu item</value>
   </data>
   <data name="Add_User" xml:space="preserve">
     <value>Add User</value>
@@ -205,6 +211,9 @@
   <data name="GeneralSettings.Text" xml:space="preserve">
     <value>General Settings</value>
   </data>
+  <data name="ListMenuItemsTextBlock.Text" xml:space="preserve">
+    <value>List menu items</value>
+  </data>
   <data name="ListUsersTextBlock.Text" xml:space="preserve">
     <value>List Users</value>
   </data>
@@ -219,6 +228,12 @@
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
+  </data>
+  <data name="MenuItemsTextBlock.Text" xml:space="preserve">
+    <value>Menu Items</value>
+  </data>
+  <data name="Menu_items_list" xml:space="preserve">
+    <value>Menu items</value>
   </data>
   <data name="Operation_was_seccessfull" xml:space="preserve">
     <value>Operation was successful !</value>

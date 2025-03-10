@@ -6,18 +6,7 @@ using KFP.Services;
 using KFP.Ui.pages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -60,6 +49,18 @@ namespace KFP.Ui
                     selectedNVI = POSNVI;
                     ContentFrame.Navigate(typeof(POSPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("POS");
+                }
+                else if (InvokedNVI == ListMenuItemsNVI && UserHasPrivelegesOf(UserRole.Manager))
+                {
+                    selectedNVI = ListMenuItemsNVI;
+                    ContentFrame.Navigate(typeof(MenuItemListPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Menu_items_list");
+                }
+                else if (InvokedNVI == AddMenuItemNVI && UserHasPrivelegesOf(UserRole.Manager))
+                {
+                    selectedNVI = AddMenuItemNVI;
+                    ContentFrame.Navigate(typeof(EditMenuItemPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Add_menu_item");
                 }
                 else if (InvokedNVI == ListUsersNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {

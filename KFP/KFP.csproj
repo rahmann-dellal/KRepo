@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
@@ -67,8 +67,10 @@
     <None Remove="Ui\Components\PINInput.xaml" />
     <None Remove="Ui\MainFrame.xaml" />
     <None Remove="Ui\pages\AboutPage.xaml" />
+    <None Remove="Ui\pages\DisplayMenuItemPage.xaml" />
     <None Remove="Ui\pages\DisplayUserPage.xaml" />
     <None Remove="Ui\pages\EditUserPage.xaml" />
+    <None Remove="Ui\pages\MenuItemListPage.xaml" />
     <None Remove="Ui\pages\POSPage.xaml" />
     <None Remove="Ui\pages\SessionPage.xaml" />
     <None Remove="Ui\pages\SettingsPage.xaml" />
@@ -145,6 +147,15 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Ui\pages\DisplayMenuItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Ui\pages\MenuItemListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Ui\pages\EditMenuItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Ui\pages\DisplayUserPage.xaml">
@@ -195,6 +206,10 @@
     <Page Update="Ui\pages\SessionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ui\pages\MenuItems\" />
+    <Folder Include="Ui\pages\Users\" />
   </ItemGroup>
 
   <!--
