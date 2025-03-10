@@ -2,8 +2,10 @@
 using KFP.DATA_Access;
 using KFP.Services;
 using KFP.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using System.Linq;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,7 +36,17 @@ namespace KFP
         {
             using (var db = new KFPContext())
             {
-                db.Database.EnsureCreated();
+                db.Database.Migrate();
+                if (!db.AppUsers.Any()) {
+                    db.AppUsers.Add(new DATA.AppUser()
+                    {
+                        UserName = "Admin",
+                        Role = DATA.UserRole.Admin,
+                        PINHash = "kbTRQoI/fSDF8I32kSLeQ/NfBXqYjZYZ9tMThIXJogM=",
+                        avatarCode = 0
+                    });
+                    db.SaveChanges();
+                }
             }
 
             var services = new ServiceCollection();

@@ -68,7 +68,15 @@ namespace KFP.Ui
             _context = Ioc.Default.GetService<KFPContext>();
             _sessionManager = Ioc.Default.GetService<SessionManager>();
             AppUsers = _context.AppUsers.ToList();
+            
             this.InitializeComponent();
+
+            if (AppUsers.Count == 1)
+            {
+                selectedUser = AppUsers[0];
+                UselectUserButton.Visibility = Visibility.Collapsed;
+            }
+
             cancelAndExitButton.Content = StringLocalisationService.getStringWithKey("cancelAndExit");
             pinInput.PromptText = StringLocalisationService.getStringWithKey("please_enter_pin");
             pinInput.PinIsValidText = StringLocalisationService.getStringWithKey("WaitingForLoggin");
@@ -96,7 +104,9 @@ namespace KFP.Ui
 
         private void UselectUserButton_Click(object sender, RoutedEventArgs e)
         {
-            selectedUser = null;
+            if(AppUsers.Count > 1) { 
+                selectedUser = null;
+            }
         }
 
         private void SelectedUserPanelFadeIn()
