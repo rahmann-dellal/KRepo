@@ -5,11 +5,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:KFP.Ui.pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:custom="using:KFP.Ui.Components"
+    mc:Ignorable="d">
 
-    <Grid>
-        <TextBlock>Edit Menu Item Page</TextBlock>
-    </Grid>
+    <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
+        <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
+            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" />
+            <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" />
+        </CommandBar>
+        <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
+       Foreground="OrangeRed" FontSize="12"/>
+        <Grid Margin="40,0,30,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <TextBox  Width="230" HorizontalAlignment="Left"  x:Name="itemNameTextBox">
+                    <TextBox.Header>
+                        <TextBlock x:Uid="Items_name"/>
+                    </TextBox.Header>
+                </TextBox>
+                <TextBlock x:Name="itemNameErrorBlock" Foreground="OrangeRed" FontSize="12"/>
+                <NumberBox HorizontalAlignment="Left"  x:Name="itemPriceTextBox"
+                           SmallChange="1" LargeChange="10" Value="0" Minimum="0"
+                           SpinButtonPlacementMode="Inline">
+                    <NumberBox.Header>
+                        <TextBlock x:Uid="Items_price"/>
+                    </NumberBox.Header>
+                </NumberBox>
+                <TextBlock x:Name="itemPriceErrorBlock" Foreground="OrangeRed" FontSize="12"/>
+
+            </StackPanel>
+
+            <custom:PINInput Grid.Column="1" 
+             HorizontalAlignment="Center" Height="auto" x:Name="pinPad"/>
+        </Grid>
+    </StackPanel>
+
 </Page>

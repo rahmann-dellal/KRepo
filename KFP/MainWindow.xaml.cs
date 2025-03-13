@@ -11,6 +11,7 @@ using KFP.Services;
 using KFP.Ui;
 using KFP.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -46,6 +47,11 @@ namespace KFP
             //Icon to display on titlebar
             this.AppWindow.SetIcon("Assets/Images/Logo/logo-64.ico");
             this.AppWindow.SetPresenter(_appState.WindowPresenterKind);
+
+            if (this.AppWindow.Presenter is OverlappedPresenter presenter)
+            {
+                presenter.Maximize();
+            }
 
             _sessionManager.PropertyChanged += onCurrentSessionChange;
             _appState.PropertyChanged += AppState_PropertyChanged;

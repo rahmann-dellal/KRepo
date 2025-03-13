@@ -129,6 +129,9 @@
   <data name="activeForTextBlock.Text" xml:space="preserve">
     <value>Active For</value>
   </data>
+  <data name="AddButton.Label" xml:space="preserve">
+    <value>Add New</value>
+  </data>
   <data name="AddMenuItemTextBlock.Text" xml:space="preserve">
     <value>Add a menu item</value>
   </data>
@@ -168,8 +171,14 @@
   <data name="cancelAndExit" xml:space="preserve">
     <value>Cancel And Exit</value>
   </data>
+  <data name="CancelButton.Label" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Cashier" xml:space="preserve">
     <value>Cashier</value>
+  </data>
+  <data name="CategoriesTextBlock.Text" xml:space="preserve">
+    <value>Categories</value>
   </data>
   <data name="choose_an_avatar.Text" xml:space="preserve">
     <value>Choose an avatar</value>
@@ -192,11 +201,17 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteButton.Label" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Delete_user_Button.Content" xml:space="preserve">
     <value>Delete User</value>
   </data>
   <data name="Deleting" xml:space="preserve">
     <value>Deleting : </value>
+  </data>
+  <data name="EditButton.Label" xml:space="preserve">
+    <value>Edit Name</value>
   </data>
   <data name="Editing" xml:space="preserve">
     <value>Editing : </value>
@@ -210,6 +225,12 @@
   </data>
   <data name="GeneralSettings.Text" xml:space="preserve">
     <value>General Settings</value>
+  </data>
+  <data name="Items_name.Text" xml:space="preserve">
+    <value>Item's Name</value>
+  </data>
+  <data name="Items_price.Text" xml:space="preserve">
+    <value>Item's price</value>
   </data>
   <data name="ListMenuItemsTextBlock.Text" xml:space="preserve">
     <value>List menu items</value>
@@ -235,6 +256,24 @@
   <data name="Menu_items_list" xml:space="preserve">
     <value>Menu items</value>
   </data>
+  <data name="Menu_Item_Categories" xml:space="preserve">
+    <value>Menu Item Categories</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewName" xml:space="preserve">
+    <value>New Name</value>
+  </data>
+  <data name="New_Category" xml:space="preserve">
+    <value>New Category</value>
+  </data>
+  <data name="new_name.Header" xml:space="preserve">
+    <value>New Name</value>
+  </data>
+  <data name="NothingTextBlock.Text" xml:space="preserve">
+    <value>Nothing Yet !</value>
+  </data>
   <data name="Operation_was_seccessfull" xml:space="preserve">
     <value>Operation was successful !</value>
   </data>
@@ -246,6 +285,9 @@
   </data>
   <data name="POSTextBlock.Text" xml:space="preserve">
     <value>POS</value>
+  </data>
+  <data name="SaveButton.Label" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="save_changes" xml:space="preserve">
     <value>Save Changes ?</value>

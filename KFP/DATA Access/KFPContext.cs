@@ -27,5 +27,6 @@ namespace KFP.DATA_Access
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

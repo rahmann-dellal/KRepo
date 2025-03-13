@@ -60,6 +60,14 @@
                             <FontIcon Glyph="&#xE710;"/>
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
+                    <NavigationViewItem x:Name="CategoriesNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="CategoriesTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xF0E2;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
                 </NavigationViewItem.MenuItems>
             </NavigationViewItem>
             

@@ -71,6 +71,7 @@
     <None Remove="Ui\pages\DisplayUserPage.xaml" />
     <None Remove="Ui\pages\EditUserPage.xaml" />
     <None Remove="Ui\pages\MenuItemListPage.xaml" />
+    <None Remove="Ui\pages\MenuItems\CategoriesPage.xaml" />
     <None Remove="Ui\pages\POSPage.xaml" />
     <None Remove="Ui\pages\SessionPage.xaml" />
     <None Remove="Ui\pages\SettingsPage.xaml" />
@@ -147,6 +148,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Ui\pages\MenuItems\CategoriesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Ui\pages\DisplayMenuItemPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,7 +212,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Ui\pages\MenuItems\" />
     <Folder Include="Ui\pages\Users\" />
   </ItemGroup>
 

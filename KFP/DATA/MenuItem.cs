@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KFP.DATA
 {
@@ -29,5 +26,10 @@ namespace KFP.DATA
         public int SalePrice { get; set; }
 
         public byte[]? picture { get; set; }
+
+        public MenuItemType MenuItemType { get; set; }
+        public List<Category> Categories { get; set; }
     }
+
+    public enum MenuItemType { Main, Supliment, CanBeBoth }
 }

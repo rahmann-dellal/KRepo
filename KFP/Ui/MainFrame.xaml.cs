@@ -62,6 +62,12 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(EditMenuItemPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("Add_menu_item");
                 }
+                else if (InvokedNVI == CategoriesNVI && UserHasPrivelegesOf(UserRole.Manager))
+                {
+                    selectedNVI = CategoriesNVI;
+                    ContentFrame.Navigate(typeof(CategoriesPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Menu_Item_Categories");
+                }
                 else if (InvokedNVI == ListUsersNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = ListUsersNVI;
