@@ -50,7 +50,8 @@
 
             <StackPanel  Margin="0,20,0,0"  Orientation="Vertical" x:Name="selectUserPanel">
                 <TextBlock Margin="0,0,0,10" x:Uid="select_user" FontSize="20"  HorizontalAlignment="Center"/>
-                <ListView ItemsSource="{x:Bind Path=AppUsers}" SelectedItem="{x:Bind Path=selectedUser, Mode=TwoWay}" HorizontalContentAlignment="Center"
+                <ListView x:Name="UsersListView" ItemsSource="{x:Bind Path=AppUsers}" SelectedItem="{x:Bind Path=selectedUser, Mode=TwoWay}"
+                          HorizontalContentAlignment="Center"
                           ItemTemplate="{StaticResource userTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

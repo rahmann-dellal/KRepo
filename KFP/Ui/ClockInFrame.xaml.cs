@@ -106,6 +106,7 @@ namespace KFP.Ui
         {
             if(AppUsers.Count > 1) { 
                 selectedUser = null;
+                UsersListView.SelectedItem = null;
             }
         }
 
