@@ -20,8 +20,8 @@
         </Style>
         <converters:AvatarCodeToImageSourceConverter x:Key="avatarConverter"/>
         <DataTemplate x:DataType="data:AppUser" x:Key="userTemplate">
-            <Border BorderBrush="AliceBlue" BorderThickness="1">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="250">
+            <Border BorderBrush="AliceBlue" BorderThickness="2" Margin="0,2,0,2" CornerRadius="4">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
                     <Image Width="55" Height="60"  Margin="3,3,30,3" Source="{x:Bind avatarCode, Converter={StaticResource avatarConverter}}"/>
                     <TextBlock Text="{x:Bind UserName}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
@@ -55,7 +55,7 @@
                           ItemTemplate="{StaticResource userTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <controls:WrapPanel HorizontalAlignment="Center" />
+                            <controls:WrapPanel HorizontalAlignment="Center" Padding="0" Margin="0"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ListView>
