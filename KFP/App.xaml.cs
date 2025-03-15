@@ -17,7 +17,7 @@ namespace KFP
     /// </summary>
     public partial class App : Application
     {
-        private MainWindow? m_window;
+        public static MainWindow? MainWindow;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -68,8 +68,8 @@ namespace KFP
             var serviceProvider = services.BuildServiceProvider();
             Ioc.Default.ConfigureServices(serviceProvider);
 
-            m_window = new MainWindow();
-            m_window.Activate();
+            MainWindow = new MainWindow();
+            MainWindow.Activate();
         }
     }
 }

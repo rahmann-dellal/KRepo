@@ -13,6 +13,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Images\Food.png" />
     <None Remove="Assets\Images\Logo\LargeTile.scale-100.png" />
     <None Remove="Assets\Images\Logo\LargeTile.scale-125.png" />
     <None Remove="Assets\Images\Logo\LargeTile.scale-150.png" />
@@ -64,6 +65,7 @@
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-400.png" />
     <None Remove="Ui\ClockInFrame.xaml" />
+    <None Remove="Ui\Components\ImageGraber.xaml" />
     <None Remove="Ui\Components\PINInput.xaml" />
     <None Remove="Ui\MainFrame.xaml" />
     <None Remove="Ui\pages\AboutPage.xaml" />
@@ -148,6 +150,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Ui\Components\ImageGraber.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Ui\pages\MenuItems\CategoriesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

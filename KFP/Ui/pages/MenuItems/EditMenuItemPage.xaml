@@ -38,8 +38,11 @@
 
             </StackPanel>
 
-            <custom:PINInput Grid.Column="1" 
-             HorizontalAlignment="Center" Height="auto" x:Name="pinPad"/>
+            <StackPanel  Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="picture_text_block"/>
+                <custom:ImageGraber
+              Height="auto" x:Name="imageGraber" Margin="0,20,0,0"/>
+            </StackPanel>
         </Grid>
     </StackPanel>
 

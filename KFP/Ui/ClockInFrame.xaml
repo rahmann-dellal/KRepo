@@ -55,7 +55,7 @@
                           ItemTemplate="{StaticResource userTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <controls:WrapPanel HorizontalAlignment="Center" Padding="0" Margin="0"/>
+                            <controls:WrapPanel HorizontalAlignment="Center" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ListView>

@@ -31,5 +31,5 @@ namespace KFP.DATA
         public List<Category> Categories { get; set; }
     }
 
-    public enum MenuItemType { Main, Supliment, CanBeBoth }
+    public enum MenuItemType { Main, Addon, Universal }
 }

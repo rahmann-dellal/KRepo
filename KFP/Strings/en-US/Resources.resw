@@ -174,6 +174,9 @@
   <data name="CancelButton.Label" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Cancel_Picture_Button.Label" xml:space="preserve">
+    <value>Romove</value>
+  </data>
   <data name="Cashier" xml:space="preserve">
     <value>Cashier</value>
   </data>
@@ -280,6 +283,9 @@
   <data name="Overlapped.Content" xml:space="preserve">
     <value>Overlapped</value>
   </data>
+  <data name="picture_text_block.Text" xml:space="preserve">
+    <value>Picture</value>
+  </data>
   <data name="POS" xml:space="preserve">
     <value>POS</value>
   </data>
@@ -310,6 +316,9 @@
   </data>
   <data name="Thank_you" xml:space="preserve">
     <value>Thank you</value>
+  </data>
+  <data name="upload_from_files_link.Text" xml:space="preserve">
+    <value>Click here to upload</value>
   </data>
   <data name="Username.Text" xml:space="preserve">
     <value>Username</value>
