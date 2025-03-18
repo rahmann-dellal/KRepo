@@ -17,6 +17,15 @@
                 <RadioButton x:Name="OverlappedRadio" x:Uid="Overlapped" Checked="RadioButton_CheckedOverlapped"/>
             </RadioButtons>
         </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
+            <TextBlock x:Uid="Currency" FontSize="18"/>
+            <ComboBox x:Name="CurrencyComboBox"
+                      ItemsSource="{x:Bind Currencies, Mode=OneWay}"
+                      SelectedItem="{x:Bind Currency, Mode=TwoWay}"
+                      Width="200"
+                      Margin="10"/>
+        </StackPanel>
+
     </StackPanel>
 
 </Page>

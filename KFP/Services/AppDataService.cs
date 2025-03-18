@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using KFP.DATA;
 using Microsoft.UI.Windowing;
 using System;
 using System.ComponentModel;
@@ -9,6 +10,31 @@ namespace KFP.Services
     {
         Windows.Storage.ApplicationDataContainer localSettings = 
         Windows.Storage.ApplicationData.Current.LocalSettings;
+        public Currency Currency {
+            get
+            {
+                var value = (string) localSettings.Values["Currency"];
+                if (value != null && value != "")
+                {
+                    try 
+                    { 
+                        Currency currrency =  (Currency)Enum.Parse(typeof(Currency), value);
+                        return currrency;
+                    } catch
+                    {
+                        return Currency.USD;
+                    }
+                }
+                else
+                {
+                    return Currency.USD;
+                }
+            }
+            set
+            {
+                localSettings.Values["Currency"] = value.ToString();
+            }
+        }
 
         public string AppLanguage
         {

@@ -132,6 +132,9 @@
   <data name="AddButton.Label" xml:space="preserve">
     <value>Add New</value>
   </data>
+  <data name="AddButton2" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AddMenuItemTextBlock.Text" xml:space="preserve">
     <value>Add a menu item</value>
   </data>
@@ -156,11 +159,17 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="allCategoriesCombo.PlaceholderText" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
   <data name="App_Window_Display.Text" xml:space="preserve">
     <value>Window's Display</value>
   </data>
   <data name="Are_you_sure_to_continue" xml:space="preserve">
     <value>This is permanant ! Are you sure to contitnue ?</value>
+  </data>
+  <data name="AssignedCategories.Text" xml:space="preserve">
+    <value>Assigned Categories :</value>
   </data>
   <data name="AvatarTextBlock.Text" xml:space="preserve">
     <value>Avatar</value>
@@ -197,6 +206,9 @@
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="Currency.Text" xml:space="preserve">
+    <value>Currency</value>
   </data>
   <data name="CurrentUserTextBlock.Text" xml:space="preserve">
     <value>Current User</value>
@@ -256,6 +268,11 @@
   <data name="MenuItemsTextBlock.Text" xml:space="preserve">
     <value>Menu Items</value>
   </data>
+  <data name="MenuItemTypeToolTip.Content" xml:space="preserve">
+    <value>Main : (Like pizzas or dishes) This will appear in the Main tab in the POS page.
+Add-on : (Like sauces or toppings) This will appear in the Add-on tab in the POS page.
+Universal (Not recommended) : This will appear in both tabs in the POS page.</value>
+  </data>
   <data name="Menu_items_list" xml:space="preserve">
     <value>Menu items</value>
   </data>
@@ -291,6 +308,9 @@
   </data>
   <data name="POSTextBlock.Text" xml:space="preserve">
     <value>POS</value>
+  </data>
+  <data name="RemoveButton.Label" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="SaveButton.Label" xml:space="preserve">
     <value>Save</value>

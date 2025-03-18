@@ -1,5 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Windows.Graphics.Imaging;
+using Windows.Storage.Streams;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KFP.Helpers
 {
@@ -9,17 +15,17 @@ namespace KFP.Helpers
         {
             try
             {
-                // Create a BitmapImage and set the source
-                //BitmapImage bitmapImage = new BitmapImage(new Uri($"ms-appx:///Assets/{fileName}"));
                 BitmapImage bitmapImage = new BitmapImage(new Uri(uri));
                 return bitmapImage;
             }
             catch (Exception ex)
             {
-                // Handle errors (e.g., file not found)
                 Console.WriteLine($"Error loading image: {ex.Message}");
                 return null;
             }
         }
+
+        // Convert byte[] to BitmapImage
+       
     }
 }

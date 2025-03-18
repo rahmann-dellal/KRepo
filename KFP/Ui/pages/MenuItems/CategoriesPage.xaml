@@ -17,7 +17,7 @@
             <CommandBar Margin="0,20,0,30" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
                 <AppBarButton Icon="Add" x:Uid="AddButton" x:Name="addButton" Command="{x:Bind ShowAddCategoryPanelCommand}"/>
                 <AppBarButton Icon="Edit" x:Uid="EditButton" x:Name="editButton" Command="{x:Bind ShowEditiCategoryPanelCommand}"/>
-                <AppBarButton Icon="Delete" x:Uid="DeleteButton" x:Name="deleteButton" Command="{x:Bind DeleteCategoryCommand}"/>
+                <AppBarButton Icon="Delete" x:Uid="DeleteButton" x:Name="deleteButton" Command="{x:Bind DeleteCategoryCommand}" Background="LightCoral"/>
             </CommandBar>
 
             <StackPanel x:Name="EditingPanel" Orientation="Vertical" Margin="0,0,0,20" HorizontalAlignment="Center">

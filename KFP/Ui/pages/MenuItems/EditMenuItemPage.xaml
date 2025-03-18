@@ -11,7 +11,7 @@
     <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
         <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
             <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" />
-            <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" />
+            <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" Command="{x:Bind ResetFormCommand}" />
         </CommandBar>
         <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
        Foreground="OrangeRed" FontSize="12"/>
@@ -21,20 +21,66 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0">
-                <TextBox  Width="230" HorizontalAlignment="Left"  x:Name="itemNameTextBox">
+                <TextBox Text="{x:Bind ItemName, Mode=TwoWay}" Width="230" HorizontalAlignment="Left"  x:Name="itemNameTextBox">
                     <TextBox.Header>
                         <TextBlock x:Uid="Items_name"/>
                     </TextBox.Header>
                 </TextBox>
                 <TextBlock x:Name="itemNameErrorBlock" Foreground="OrangeRed" FontSize="12"/>
-                <NumberBox HorizontalAlignment="Left"  x:Name="itemPriceTextBox"
-                           SmallChange="1" LargeChange="10" Value="0" Minimum="0"
+
+
+                <RadioButtons x:Name="MenuItemTypeRadioButtons"
+                              ItemsSource="{x:Bind getTypeEnumValues()}"
+                              SelectedItem="{x:Bind SelectedMenuItemType, Mode=TwoWay}"
+                              MaxColumns="3"   Margin="0,20,0,0">
+                    <RadioButtons.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Item's type" Margin="0,0,10,0"/>
+                            <InfoBadge Background="LightGreen" Foreground="Black"  HorizontalAlignment="Right" VerticalAlignment="Top"
+                                       ToolTipService.Placement="Right">
+                                <ToolTipService.ToolTip>
+                                    <ToolTip x:Uid="MenuItemTypeToolTip"/>
+                                </ToolTipService.ToolTip>
+                                <InfoBadge.IconSource>
+                                    <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF142;" />
+                                </InfoBadge.IconSource>
+                            </InfoBadge>
+                        </StackPanel>
+                    </RadioButtons.Header>
+                </RadioButtons>
+
+                <RelativePanel Margin="0,30,0,0">
+                    <NumberBox Value="{x:Bind ItemPrice, Mode=TwoWay}"
+                           HorizontalAlignment="Left"  x:Name="itemPriceTextBox"  
+                           SmallChange="1" LargeChange="10" Minimum="0"
                            SpinButtonPlacementMode="Inline">
-                    <NumberBox.Header>
-                        <TextBlock x:Uid="Items_price"/>
-                    </NumberBox.Header>
-                </NumberBox>
+                        <NumberBox.Header>
+                            <TextBlock x:Uid="Items_price"/>
+                        </NumberBox.Header>
+                    </NumberBox>
+                    <TextBlock Text="{x:Bind Currency}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="itemPriceTextBox" Margin="20,0,0,5"/>
+                </RelativePanel>
                 <TextBlock x:Name="itemPriceErrorBlock" Foreground="OrangeRed" FontSize="12"/>
+
+                <TextBlock x:Uid="AssignedCategories"  Margin="0,30,0,10"/>
+                <RelativePanel>
+                    <ComboBox x:Name="allCategoriesCombo" x:Uid="allCategoriesCombo" ItemsSource="{x:Bind AllCategories}" DisplayMemberPath="CategoryName" Margin="10,8,10,0"
+                              HorizontalAlignment="Center" SelectedItem="{x:Bind selectedCategoryToAdd, Mode=TwoWay}">
+                    </ComboBox>
+                    <CommandBar DefaultLabelPosition="Right" RelativePanel.RightOf="allCategoriesCombo">
+                        <AppBarButton x:Uid="AddButton2" Icon="Add" Label="Add" LabelPosition="Default"  Background="LightGreen" Command="{x:Bind AddCategoryCommand}"/>
+                    </CommandBar>
+                </RelativePanel>
+                <RelativePanel>
+                    <Border x:Uid="categoriesBordrer" x:Name="categoriesBordrer" Margin="0,10,0,0" MinHeight="100" MinWidth="300" BorderThickness="2" BorderBrush="LightGray" CornerRadius="5">
+                        <StackPanel>
+                            <TextBlock x:Uid="NothingTextBlock" x:Name="NothingTextBlock" Foreground="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>
+                            <ListView x:Name="AssignedCotegoriesListView" ItemsSource="{x:Bind AssignedCategories}" SelectedItem="{x:Bind selectedCategoryToRemove, Mode=TwoWay}" DisplayMemberPath="CategoryName"/>
+                        </StackPanel>
+                    </Border>
+                        <AppBarButton x:Uid="RemoveButton" Icon="Remove"  LabelPosition="Default" RelativePanel.RightOf="categoriesBordrer" Margin="10,10,0,0"
+                                      Background="LightCoral" Command="{x:Bind RemoveCategoryCommand}"/>
+                </RelativePanel>
 
             </StackPanel>
 

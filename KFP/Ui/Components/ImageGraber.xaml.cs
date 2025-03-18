@@ -13,6 +13,9 @@ using Windows.UI;
 using System;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Windows.Media.Capture;
+using Microsoft.UI.Xaml;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.IO;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -22,7 +25,20 @@ namespace KFP.Ui.Components
     public sealed partial class ImageGraber : UserControl
     {
         ImageBrush? DefaultBackGround = null;
-        public BitmapImage MenuItemBitmapImage { get; private set; }
+        public BitmapImage DisplayedBitmapImage { get; private set; }
+
+        public static readonly DependencyProperty LoadedImageProperty =
+            DependencyProperty.Register(
+                nameof(LoadedImage),
+                typeof(byte[]),
+                typeof(ImageGraber),
+                new PropertyMetadata(null, OnLoadedImageChanged));
+
+        public byte[]? LoadedImage
+        {
+            get => (byte[]?)GetValue(LoadedImageProperty);
+            set => SetValue(LoadedImageProperty, value);
+        }
 
         public ImageGraber()
         {
@@ -30,8 +46,29 @@ namespace KFP.Ui.Components
             DefaultBackGround = new ImageBrush() { ImageSource = ImageConverter.LoadBitmapImage("ms-appx:///Assets/Images/Food.png") };
             ImageGrid.Background = DefaultBackGround;
         }
+        private static async void OnLoadedImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (ImageGraber)d;
+            var newValue = (byte[]?)e.NewValue;
 
-        public async Task OpenFileDialogAndStoreImageAsync()
+            if (newValue != null)
+            {
+                //var bitmapImage = await ImageConverter.ByteArrayToBitmapImageAsync(newValue);
+                //control.DisplayedBitmapImage = bitmapImage;
+                //control.ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
+                control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                control.cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+            }
+            else
+            {
+                control.DisplayedBitmapImage = null;
+                control.ImageGrid.Background = control.DefaultBackGround;
+                control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+                control.cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+            }
+        }
+
+        public async Task OpenFileDialogAndUploadImageAsync()
         {
             var picker = new FileOpenPicker();
 
@@ -57,10 +94,13 @@ namespace KFP.Ui.Components
             }
 
             // Store the selected image in the property
-            MenuItemBitmapImage = bitmapImage;
+            DisplayedBitmapImage = bitmapImage;
             ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
             picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+
+            // Update the LoadedImage property
+            //LoadedImage = await ImageConverter.BitmapImageToByteArrayAsync(bitmapImage);
         }
 
         private void Border_MouseLeave(object sender, PointerRoutedEventArgs e)
@@ -72,7 +112,7 @@ namespace KFP.Ui.Components
 
         private void Border_MouseEnter(object sender, PointerRoutedEventArgs e)
         {
-            if (MenuItemBitmapImage == null)
+            if (DisplayedBitmapImage == null)
             {
                 this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
                 bordurePhoto.Background = new SolidColorBrush(Color.FromArgb(255, 165, 247, 182));
@@ -82,16 +122,19 @@ namespace KFP.Ui.Components
 
         private async void bordurePhoto_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            if (MenuItemBitmapImage == null)
-                await OpenFileDialogAndStoreImageAsync();
+            if (DisplayedBitmapImage == null)
+                await OpenFileDialogAndUploadImageAsync();
         }
 
         private void cancel_picture_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            MenuItemBitmapImage = null;
+            DisplayedBitmapImage = null;
             ImageGrid.Background = DefaultBackGround;
             picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
             cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+
+            // Reset the LoadedImage property
+            LoadedImage = null;
         }
     }
 }

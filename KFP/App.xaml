@@ -11,6 +11,13 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <Color x:Key="SystemAccentColor">#008000</Color>
+            <Color x:Key="SystemAccentColorLight1">#33A533</Color>
+            <Color x:Key="SystemAccentColorLight2">#66B266</Color>
+            <Color x:Key="SystemAccentColorLight3">#99CC99</Color>
+            <Color x:Key="SystemAccentColorDark1">#006600</Color>
+            <Color x:Key="SystemAccentColorDark2">#004C00</Color>
+            <Color x:Key="SystemAccentColorDark3">#003300</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.DependencyInjection;
+using KFP.DATA;
 using KFP.Services;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -29,6 +30,8 @@ namespace KFP.Ui.pages
     {
         private AppDataService _appDataService;
         private AppState _appState;
+        public List<Currency> Currencies { get; set; }
+
         public SettingsPage()
         {
             _appDataService = Ioc.Default.GetService<AppDataService>();
@@ -36,6 +39,7 @@ namespace KFP.Ui.pages
             this.InitializeComponent();
             FullScreenRadio.IsChecked = WindowPresenterKind == AppWindowPresenterKind.FullScreen;
             OverlappedRadio.IsChecked = WindowPresenterKind == AppWindowPresenterKind.Overlapped;
+            Currencies = Enum.GetValues(typeof(Currency)).Cast<Currency>().ToList();
         }
 
         private void RadioButtonFullScreen_Checked(object sender, RoutedEventArgs e)
@@ -51,6 +55,17 @@ namespace KFP.Ui.pages
             if (WindowPresenterKind != AppWindowPresenterKind.Overlapped)
             {
                 WindowPresenterKind = AppWindowPresenterKind.Overlapped;
+            }
+        }
+
+        public Currency Currency {
+            get
+            {
+                return _appDataService.Currency;
+            }
+            set
+            {
+                _appDataService.Currency = value;
             }
         }
 
