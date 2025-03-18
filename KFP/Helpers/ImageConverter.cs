@@ -25,7 +25,30 @@ namespace KFP.Helpers
             }
         }
 
-        // Convert byte[] to BitmapImage
-       
+        public static async Task<BitmapImage> ConvertToBitmapImage(byte[]? imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+            {
+                return null;
+            }
+
+            try
+            {
+                using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
+                {
+                    await stream.WriteAsync(imageData.AsBuffer());
+                    stream.Seek(0);
+
+                    BitmapImage bitmapImage = new BitmapImage();
+                    await bitmapImage.SetSourceAsync(stream);
+                    return bitmapImage;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error converting image: {ex.Message}");
+                return null;
+            }
+        }
     }
 }

@@ -184,7 +184,7 @@
     <value>Cancel</value>
   </data>
   <data name="Cancel_Picture_Button.Label" xml:space="preserve">
-    <value>Romove</value>
+    <value>Remove</value>
   </data>
   <data name="Cashier" xml:space="preserve">
     <value>Cashier</value>

@@ -10,10 +10,11 @@ namespace KFP.DATA
         {
 
         }
-        public MenuItem(string name, int price)
+        public MenuItem(string name, double price, MenuItemType? type)
         {
             ItemName = name;
             SalePrice = price;
+            MenuItemType = type;
         }
 
         public int Id { get; set; }
@@ -23,12 +24,12 @@ namespace KFP.DATA
 
         [Required]
         [Range(0, int.MaxValue)]
-        public int SalePrice { get; set; }
+        public double SalePrice { get; set; }
 
         public byte[]? picture { get; set; }
 
-        public MenuItemType MenuItemType { get; set; }
-        public List<Category> Categories { get; set; }
+        public MenuItemType? MenuItemType { get; set; }
+        public List<Category>? Categories { get; set; }
     }
 
     public enum MenuItemType { Main, Addon, Universal }

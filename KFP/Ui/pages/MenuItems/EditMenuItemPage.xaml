@@ -10,7 +10,7 @@
 
     <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
         <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" />
+            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Command="{x:Bind SaveCommand}"/>
             <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" Command="{x:Bind ResetFormCommand}" />
         </CommandBar>
         <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0">
-                <TextBox Text="{x:Bind ItemName, Mode=TwoWay}" Width="230" HorizontalAlignment="Left"  x:Name="itemNameTextBox">
+                <TextBox Text="{x:Bind ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="230" HorizontalAlignment="Left"  x:Name="itemNameTextBox">
                     <TextBox.Header>
                         <TextBlock x:Uid="Items_name"/>
                     </TextBox.Header>
@@ -50,15 +50,15 @@
                 </RadioButtons>
 
                 <RelativePanel Margin="0,30,0,0">
-                    <NumberBox Value="{x:Bind ItemPrice, Mode=TwoWay}"
-                           HorizontalAlignment="Left"  x:Name="itemPriceTextBox"  
+                    <NumberBox Value="{x:Bind ItemPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           HorizontalAlignment="Left"  x:Name="itemPriceNumberBox"  
                            SmallChange="1" LargeChange="10" Minimum="0"
                            SpinButtonPlacementMode="Inline">
                         <NumberBox.Header>
                             <TextBlock x:Uid="Items_price"/>
                         </NumberBox.Header>
                     </NumberBox>
-                    <TextBlock Text="{x:Bind Currency}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="itemPriceTextBox" Margin="20,0,0,5"/>
+                    <TextBlock Text="{x:Bind Currency}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="itemPriceNumberBox"  Margin="20,0,0,5"/>
                 </RelativePanel>
                 <TextBlock x:Name="itemPriceErrorBlock" Foreground="OrangeRed" FontSize="12"/>
 

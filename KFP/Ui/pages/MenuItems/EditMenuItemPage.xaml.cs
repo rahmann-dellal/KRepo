@@ -55,7 +55,7 @@ namespace KFP.Ui.pages
             set
             {
                 _selectedMenuItemType = value;
-                ResetFormCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(SelectedMenuItemType));
             }
         }
 
@@ -99,13 +99,28 @@ namespace KFP.Ui.pages
             this.InitializeComponent();
         }
 
+        [RelayCommand(CanExecute = nameof(CanSave))]
+        public void Save()
+        {
+            var menuItem = new MenuItem(ItemName, ItemPrice, SelectedMenuItemType);
+            menuItem.Categories = AssignedCategories.ToList();
+            menuItem.picture = imageGraber.LoadedImage;
+            _dbContext.MenuItems.Add(menuItem);
+            _dbContext.SaveChanges();
+        }
+
+        public bool CanSave() {
+            return !string.IsNullOrEmpty(itemNameTextBox.Text) &&
+                !Double.IsNaN(itemPriceNumberBox.Value);
+        }
+
         [RelayCommand(CanExecute = nameof(CanReset))]
         public void ResetForm()
         {
             // Reset all fields to their default values
             itemNameTextBox.Text = string.Empty;
             MenuItemTypeRadioButtons.SelectedIndex = -1;
-            itemPriceTextBox.Value = double.NaN;
+            itemPriceNumberBox.Value = double.NaN;
             AllCategories.Clear();
             AssignedCategories.Clear();
             var categories = _dbContext.Categories.ToList();
@@ -126,11 +141,11 @@ namespace KFP.Ui.pages
         {
             return !string.IsNullOrEmpty(itemNameTextBox.Text) ||
                    MenuItemTypeRadioButtons.SelectedIndex != -1 ||
-                   itemPriceTextBox.Value != double.NaN ||
+                   !Double.IsNaN(itemPriceNumberBox.Value) ||
                    AssignedCategories.Count > 0;
         }
 
-        [RelayCommand (CanExecute = nameof(canAdd))]
+        [RelayCommand (CanExecute = nameof(canAddCategory))]
         public void AddCategory()
         {
             AssignedCategories.Add((Category)allCategoriesCombo.SelectedItem);
@@ -139,7 +154,7 @@ namespace KFP.Ui.pages
             ResetFormCommand.NotifyCanExecuteChanged();
 
         }
-        public bool canAdd()
+        public bool canAddCategory()
         {
             return allCategoriesCombo.SelectedItem != null;
         }
@@ -170,6 +185,7 @@ namespace KFP.Ui.pages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             resetFormCommand.NotifyCanExecuteChanged();
+            saveCommand.NotifyCanExecuteChanged();
         }
     }
 }

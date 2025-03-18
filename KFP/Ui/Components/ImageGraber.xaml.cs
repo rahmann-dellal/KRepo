@@ -53,9 +53,9 @@ namespace KFP.Ui.Components
 
             if (newValue != null)
             {
-                //var bitmapImage = await ImageConverter.ByteArrayToBitmapImageAsync(newValue);
-                //control.DisplayedBitmapImage = bitmapImage;
-                //control.ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
+                BitmapImage bitmapImage = await ImageConverter.ConvertToBitmapImage(newValue);
+                control.DisplayedBitmapImage = bitmapImage;
+                control.ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
                 control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
                 control.cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
             }
@@ -84,23 +84,9 @@ namespace KFP.Ui.Components
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file == null)
-                return; // No file selected
+                return;
 
-            // Load into BitmapImage
-            var bitmapImage = new BitmapImage();
-            using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
-            {
-                await bitmapImage.SetSourceAsync(fileStream);
-            }
-
-            // Store the selected image in the property
-            DisplayedBitmapImage = bitmapImage;
-            ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
-            picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-            cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-
-            // Update the LoadedImage property
-            //LoadedImage = await ImageConverter.BitmapImageToByteArrayAsync(bitmapImage);
+            LoadedImage = File.ReadAllBytes(file.Path);
         }
 
         private void Border_MouseLeave(object sender, PointerRoutedEventArgs e)
@@ -128,11 +114,6 @@ namespace KFP.Ui.Components
 
         private void cancel_picture_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            DisplayedBitmapImage = null;
-            ImageGrid.Background = DefaultBackGround;
-            picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-            cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-
             // Reset the LoadedImage property
             LoadedImage = null;
         }
