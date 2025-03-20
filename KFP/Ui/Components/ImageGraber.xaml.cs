@@ -16,6 +16,7 @@ using Windows.Media.Capture;
 using Microsoft.UI.Xaml;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -49,11 +50,13 @@ namespace KFP.Ui.Components
         private static async void OnLoadedImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = (ImageGraber)d;
-            var newValue = (byte[]?)e.NewValue;
+            var imgData = (byte[]?)e.NewValue;
 
-            if (newValue != null)
+            if (imgData != null)
             {
-                BitmapImage bitmapImage = await ImageConverter.ConvertToBitmapImage(newValue);
+                imgData = await ImageConverter.ResizeImageIfNeeded(imgData);
+                control.LoadedImage = imgData;
+                BitmapImage bitmapImage = await ImageConverter.ConvertToBitmapImage(imgData);
                 control.DisplayedBitmapImage = bitmapImage;
                 control.ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
                 control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;

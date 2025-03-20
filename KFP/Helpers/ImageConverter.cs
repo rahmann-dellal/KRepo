@@ -50,5 +50,55 @@ namespace KFP.Helpers
                 return null;
             }
         }
+
+        public static async Task<byte[]?> ResizeImageIfNeeded(byte[]? imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+            {
+                return null;
+            }
+
+            try
+            {
+                using (InMemoryRandomAccessStream inputStream = new InMemoryRandomAccessStream())
+                {
+                    await inputStream.WriteAsync(imageData.AsBuffer());
+                    inputStream.Seek(0);
+
+                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(inputStream);
+                    uint originalWidth = decoder.PixelWidth;
+                    uint originalHeight = decoder.PixelHeight;
+
+                    if (originalWidth <= 400 && originalHeight <= 400)
+                    {
+                        return imageData; // No resizing needed
+                    }
+
+                    double scale = Math.Min(400.0 / originalWidth, 400.0 / originalHeight);
+                    uint newWidth = (uint)(originalWidth * scale);
+                    uint newHeight = (uint)(originalHeight * scale);
+
+                    using (InMemoryRandomAccessStream outputStream = new InMemoryRandomAccessStream())
+                    {
+                        BitmapEncoder encoder = await BitmapEncoder.CreateForTranscodingAsync(outputStream, decoder);
+                        encoder.BitmapTransform.ScaledWidth = newWidth;
+                        encoder.BitmapTransform.ScaledHeight = newHeight;
+                        encoder.BitmapTransform.InterpolationMode = BitmapInterpolationMode.Fant;
+
+                        await encoder.FlushAsync();
+
+                        byte[] resizedImageData = new byte[outputStream.Size];
+                        await outputStream.ReadAsync(resizedImageData.AsBuffer(), (uint)outputStream.Size, InputStreamOptions.None);
+                        return resizedImageData;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error resizing image: {ex.Message}");
+                return null;
+            }
+        }
+
     }
 }
