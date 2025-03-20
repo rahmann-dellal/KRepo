@@ -120,6 +120,9 @@
   <data name="category_with_same_name_exists" xml:space="preserve">
     <value>A category with the same name already exists</value>
   </data>
+  <data name="Invalid_entry" xml:space="preserve">
+    <value>Invalid entry</value>
+  </data>
   <data name="Please_choose_user_role" xml:space="preserve">
     <value>Please choose a user role</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="please_enter_pin" xml:space="preserve">
     <value>Enter PIN</value>
+  </data>
+  <data name="please_provide_name_for_item" xml:space="preserve">
+    <value>Please provide a name for the menu item</value>
   </data>
   <data name="Please_provide_new_name" xml:space="preserve">
     <value>Please provide a new name</value>
@@ -140,5 +146,8 @@
   </data>
   <data name="User_with_same_name_exists" xml:space="preserve">
     <value>A user with the same username already exists !</value>
+  </data>
+  <data name="You_already_have_an_item_with_the_same_name" xml:space="preserve">
+    <value>You already have an item with the same name</value>
   </data>
 </root>

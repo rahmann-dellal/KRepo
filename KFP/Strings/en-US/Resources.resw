@@ -242,10 +242,10 @@
     <value>General Settings</value>
   </data>
   <data name="Items_name.Text" xml:space="preserve">
-    <value>Item's Name</value>
+    <value>Item's Name *</value>
   </data>
   <data name="Items_price.Text" xml:space="preserve">
-    <value>Item's price</value>
+    <value>Item's price *</value>
   </data>
   <data name="ListMenuItemsTextBlock.Text" xml:space="preserve">
     <value>List menu items</value>

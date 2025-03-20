@@ -10,7 +10,7 @@
 
     <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
         <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Command="{x:Bind SaveCommand}"/>
+            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Command="{x:Bind SaveCommand}" Background="LightGreen"/>
             <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" Command="{x:Bind ResetFormCommand}" />
         </CommandBar>
         <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
@@ -50,14 +50,12 @@
                 </RadioButtons>
 
                 <RelativePanel Margin="0,30,0,0">
-                    <NumberBox Value="{x:Bind ItemPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                           HorizontalAlignment="Left"  x:Name="itemPriceNumberBox"  
-                           SmallChange="1" LargeChange="10" Minimum="0"
-                           SpinButtonPlacementMode="Inline">
-                        <NumberBox.Header>
+                    <TextBox Text="{x:Bind ItemPriceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           HorizontalAlignment="Left"  x:Name="itemPriceNumberBox">
+                        <TextBox.Header>
                             <TextBlock x:Uid="Items_price"/>
-                        </NumberBox.Header>
-                    </NumberBox>
+                        </TextBox.Header>
+                    </TextBox>
                     <TextBlock Text="{x:Bind Currency}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="itemPriceNumberBox"  Margin="20,0,0,5"/>
                 </RelativePanel>
                 <TextBlock x:Name="itemPriceErrorBlock" Foreground="OrangeRed" FontSize="12"/>
@@ -86,7 +84,7 @@
 
             <StackPanel  Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0">
                 <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="picture_text_block"/>
-                <custom:ImageGraber
+                <custom:ImageGraber LoadedImage="{x:Bind Picture, Mode=TwoWay}"
               Height="auto" x:Name="imageGraber" Margin="0,20,0,0"/>
             </StackPanel>
         </Grid>

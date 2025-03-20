@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.ComponentModel.Design;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,21 +24,79 @@ namespace KFP.Ui.pages
     {
         private ObservableCollection<Category> AllCategories = new ObservableCollection<Category>();
         private ObservableCollection<Category> AssignedCategories = new ObservableCollection<Category>();
+
         private string Currency;
+
         private AppDataService _appDataService;
         private KFPContext _dbContext;
+
+        private byte[]? _picture;
+
+        public byte[]? Picture
+        {
+            get => _picture;
+            set
+            {
+                _picture = value;
+                OnPropertyChanged(nameof(Picture));
+            }
+        }
+
         private string _itemName;
         public string ItemName
         {
             get { return _itemName; }
             set
             {
+                if (string.IsNullOrEmpty(value))
+                {
+                    itemNameErrorBlock.Text = StringLocalisationService.getStringWithKey("please_provide_name_for_item");
+                    itemNameErrorBlock.Visibility = Visibility.Visible;
+                }
+                else if(_dbContext.MenuItems.Any(x => x.ItemName == value))
+                {
+                    itemNameErrorBlock.Text = StringLocalisationService.getStringWithKey("You_already_have_an_item_with_the_same_name");
+                    itemNameErrorBlock.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    itemNameErrorBlock.Visibility = Visibility.Collapsed;
+                }
                 _itemName = value;
                 OnPropertyChanged(nameof(ItemName));
             }
         }
 
         private double _itemPrice = double.NaN;
+
+        public string _itemPriceString;
+
+        public string ItemPriceString
+        {
+            get { return _itemPriceString; }
+            set
+            {
+                _itemPriceString = value;
+                try {
+                    if (value.Contains(','))
+                    {
+                        value = value.Replace(',', '.');
+                    }
+                    var val = double.Parse(value);
+                    if(val != ItemPrice && val >= 0)
+                    {
+                        ItemPrice = val;
+                        itemPriceErrorBlock.Visibility = Visibility.Collapsed;
+                    }
+                }
+                catch {
+                    ItemPrice = double.NaN;
+                    itemPriceErrorBlock.Text = StringLocalisationService.getStringWithKey("Invalid_entry");
+                    itemPriceErrorBlock.Visibility = Visibility.Visible;
+                }
+                OnPropertyChanged(nameof(ItemPriceString));
+            }
+        }
         public double ItemPrice
         {
             get { return _itemPrice; }
@@ -104,14 +163,14 @@ namespace KFP.Ui.pages
         {
             var menuItem = new MenuItem(ItemName, ItemPrice, SelectedMenuItemType);
             menuItem.Categories = AssignedCategories.ToList();
-            menuItem.picture = imageGraber.LoadedImage;
+            menuItem.picture = Picture;
             _dbContext.MenuItems.Add(menuItem);
             _dbContext.SaveChanges();
         }
 
         public bool CanSave() {
-            return !string.IsNullOrEmpty(itemNameTextBox.Text) &&
-                !Double.IsNaN(itemPriceNumberBox.Value);
+                return !string.IsNullOrEmpty(itemNameTextBox.Text) &&
+                    !Double.IsNaN(ItemPrice);
         }
 
         [RelayCommand(CanExecute = nameof(CanReset))]
@@ -120,7 +179,9 @@ namespace KFP.Ui.pages
             // Reset all fields to their default values
             itemNameTextBox.Text = string.Empty;
             MenuItemTypeRadioButtons.SelectedIndex = -1;
-            itemPriceNumberBox.Value = double.NaN;
+            ItemPriceString = "";
+            itemPriceNumberBox.Text = string.Empty;
+            imageGraber.LoadedImage = null;
             AllCategories.Clear();
             AssignedCategories.Clear();
             var categories = _dbContext.Categories.ToList();
@@ -139,10 +200,10 @@ namespace KFP.Ui.pages
 
         public bool CanReset()
         {
-            return !string.IsNullOrEmpty(itemNameTextBox.Text) ||
+            return !string.IsNullOrEmpty(ItemName) ||
                    MenuItemTypeRadioButtons.SelectedIndex != -1 ||
-                   !Double.IsNaN(itemPriceNumberBox.Value) ||
-                   AssignedCategories.Count > 0;
+                   !Double.IsNaN(ItemPrice) ||
+                   AssignedCategories.Count > 0 || Picture != null;
         }
 
         [RelayCommand (CanExecute = nameof(canAddCategory))]
