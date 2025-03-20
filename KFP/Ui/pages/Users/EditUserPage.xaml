@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:custom="using:KFP.Ui.Components"
     xmlns:users="using:KFP.DATA">
 
@@ -41,7 +42,7 @@
 
                 <TextBlock Margin="0,22,0,0" x:Uid="choose_an_avatar"/>
 
-                <ListBox MaxHeight="250" MaxWidth="150" Margin="0,20,0,0" ScrollViewer.VerticalScrollMode="Enabled"
+                <ListBox MaxHeight="450" MaxWidth="450" Margin="40,30,0,0" ScrollViewer.VerticalScrollMode="Enabled" HorizontalAlignment="Left"
                  x:Name="avatarListBox" SelectionChanged="avatarListBox_SelectionChanged">
                     <ListBox.Resources>
                         <Style TargetType="Image">
@@ -50,6 +51,11 @@
                             <Setter Property="Margin" Value="5,5,5,5"/>
                         </Style>
                     </ListBox.Resources>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:WrapPanel HorizontalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
                     <Image Source="ms-appx://KFP/Assets/Images/Toons/boringAvatar.png"/>
                     <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_1.png"/>
                     <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_2.png"/>

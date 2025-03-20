@@ -16,11 +16,11 @@
             <Setter Property="Width" Value="70"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FocusVisualPrimaryBrush" Value="DarkBlue"/>
+            <Setter Property="FocusVisualPrimaryBrush" Value="{StaticResource SystemAccentColorLight3}"/>
         </Style>
         <converters:AvatarCodeToImageSourceConverter x:Key="avatarConverter"/>
         <DataTemplate x:DataType="data:AppUser" x:Key="userTemplate">
-            <Border BorderBrush="AliceBlue" BorderThickness="2" Margin="0,2,0,2" CornerRadius="4">
+            <Border BorderBrush="{StaticResource SystemAccentColorLight3}" BorderThickness="1" Margin="0,2,0,2" CornerRadius="4">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
                     <Image Width="55" Height="60"  Margin="3,3,30,3" Source="{x:Bind avatarCode, Converter={StaticResource avatarConverter}}"/>
                     <TextBlock Text="{x:Bind UserName}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
@@ -66,7 +66,7 @@
                 <StackPanel Orientation="Horizontal">
                     <ContentControl x:Name="userContentControl"  ContentTemplate="{StaticResource ResourceKey=userTemplate}" DataContext="{x:Bind selectedUser}"
                                 Margin="0,0,20,0"/>
-                    <Button x:Name="UselectUserButton" Click="UselectUserButton_Click" Height="70" Width="70" Background="AliceBlue" CornerRadius="20">
+                    <Button x:Name="UselectUserButton" Click="UselectUserButton_Click" Height="70" Width="70" BorderBrush="{StaticResource SystemAccentColorLight3}" BorderThickness="1"  CornerRadius="20">
                         <SymbolIcon Symbol="Clear"/>
                     </Button>
                 </StackPanel>
