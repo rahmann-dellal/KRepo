@@ -11,6 +11,8 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.Design;
+using KFP.Helpers;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -159,11 +161,11 @@ namespace KFP.Ui.pages
         }
 
         [RelayCommand(CanExecute = nameof(CanSave))]
-        public void Save()
+        public async Task Save()
         {
             var menuItem = new MenuItem(ItemName, ItemPrice, SelectedMenuItemType);
             menuItem.Categories = AssignedCategories.ToList();
-            menuItem.picture = Picture;
+            menuItem.picture = await ImageConverter.ResizeImageIfNeeded(Picture);
             _dbContext.MenuItems.Add(menuItem);
             _dbContext.SaveChanges();
         }

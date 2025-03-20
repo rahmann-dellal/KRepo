@@ -54,8 +54,6 @@ namespace KFP.Ui.Components
 
             if (imgData != null)
             {
-                imgData = await ImageConverter.ResizeImageIfNeeded(imgData);
-                control.LoadedImage = imgData;
                 BitmapImage bitmapImage = await ImageConverter.ConvertToBitmapImage(imgData);
                 control.DisplayedBitmapImage = bitmapImage;
                 control.ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
