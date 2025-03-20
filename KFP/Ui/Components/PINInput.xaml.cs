@@ -213,9 +213,13 @@ namespace KFP.Ui.Components
                 int number = (int)e.Key - (int)Windows.System.VirtualKey.Number0;
                 AddToPin(number);
             }
+            else if (e.Key >= Windows.System.VirtualKey.NumberPad0 && e.Key <= Windows.System.VirtualKey.NumberPad9)
+            {
+                int number = (int)e.Key - (int)Windows.System.VirtualKey.NumberPad0;
+                AddToPin(number);
+            }
+
         }
-
-
 
         private void UserControl_LostFocus(object sender, RoutedEventArgs e)
         {
