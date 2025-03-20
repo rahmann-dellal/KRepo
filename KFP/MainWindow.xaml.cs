@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using KFP.DATA_Access;
 using KFP.Services;
@@ -83,6 +84,14 @@ namespace KFP
             {
                 this.Content = new ClockInFrame();
             }
+        }
+
+        private void Window_Closed_1(object sender, WindowEventArgs args)
+        {
+            if (_sessionManager.isSessionActive)
+                _sessionManager.EndSession().Wait();
+
+            return;
         }
     }
 }
