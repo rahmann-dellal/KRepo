@@ -13,6 +13,10 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel.Design;
 using KFP.Helpers;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Messaging;
+using KFP.Messages;
+using Windows.System;
+using System.Collections.Generic;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,6 +35,7 @@ namespace KFP.Ui.pages
 
         private AppDataService _appDataService;
         private KFPContext _dbContext;
+        private NavigationService _navigationService;
 
         private byte[]? _picture;
 
@@ -151,6 +156,7 @@ namespace KFP.Ui.pages
         {
             _appDataService = Ioc.Default.GetService<AppDataService>();
             _dbContext = Ioc.Default.GetService<KFPContext>();
+            _navigationService = Ioc.Default.GetService<NavigationService>();
             var categories = _dbContext.Categories.ToList();
             foreach (var cat in categories)
             {
@@ -163,11 +169,26 @@ namespace KFP.Ui.pages
         [RelayCommand(CanExecute = nameof(CanSave))]
         public async Task Save()
         {
-            var menuItem = new MenuItem(ItemName, ItemPrice, SelectedMenuItemType);
-            menuItem.Categories = AssignedCategories.ToList();
-            menuItem.picture = await ImageConverter.ResizeImageIfNeeded(Picture);
-            _dbContext.MenuItems.Add(menuItem);
-            _dbContext.SaveChanges();
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("save_changes");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Confirm");
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.XamlRoot = this.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                var menuItem = new MenuItem(ItemName, ItemPrice, SelectedMenuItemType);
+                menuItem.Categories = AssignedCategories.ToList();
+                menuItem.picture = await ImageConverter.ResizeImageIfNeeded(Picture);
+                _dbContext.MenuItems.Add(menuItem);
+                var res = _dbContext.SaveChanges();
+
+                if (res > 0)
+                {
+                    _navigationService.navigateTo(typeof(DisplayMenuItemPage), new List<object>() { menuItem.Id});
+                }
+            }
         }
 
         public bool CanSave() {

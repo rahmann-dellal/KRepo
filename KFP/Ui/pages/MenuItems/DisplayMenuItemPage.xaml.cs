@@ -1,3 +1,7 @@
+using CommunityToolkit.Mvvm.DependencyInjection;
+using KFP.DATA;
+using KFP.DATA_Access;
+using KFP.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,9 +27,31 @@ namespace KFP.Ui.pages
     /// </summary>
     public sealed partial class DisplayMenuItemPage : Page
     {
+
+        private MenuItem _menuItem;
+        private NavigationService _navigationService;
+        private KFPContext _dbContext;
         public DisplayMenuItemPage()
         {
+            _navigationService = Ioc.Default.GetService<NavigationService>();
+            _dbContext = Ioc.Default.GetService<KFPContext>();
             this.InitializeComponent();
         }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                try
+                {
+                    var parameters = e.Parameter as List<Object>;
+                    int ItemID = (int)parameters.FirstOrDefault();
+                    _menuItem = _dbContext.MenuItems.Find(ItemID);   
+                }
+                catch { }
+            }
+        }
+
+
     }
 }
