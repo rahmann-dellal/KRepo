@@ -138,6 +138,9 @@
   <data name="AddMenuItemTextBlock.Text" xml:space="preserve">
     <value>Add a menu item</value>
   </data>
+  <data name="Addon" xml:space="preserve">
+    <value>Add-on</value>
+  </data>
   <data name="AddUserAdmin.Content" xml:space="preserve">
     <value>Admin</value>
   </data>
@@ -199,10 +202,10 @@
     <value>Choose a six digits PIN code</value>
   </data>
   <data name="Choose_Role.Text" xml:space="preserve">
-    <value>Role</value>
+    <value>Role *</value>
   </data>
   <data name="Choose_Username.Text" xml:space="preserve">
-    <value>Username</value>
+    <value>Username *</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
@@ -219,6 +222,9 @@
   <data name="DeleteButton.Label" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Delete_Menu_Item_Button.Content" xml:space="preserve">
+    <value>Delete Menu Item</value>
+  </data>
   <data name="Delete_user_Button.Content" xml:space="preserve">
     <value>Delete User</value>
   </data>
@@ -232,8 +238,14 @@
     <value>Editing : </value>
     <comment>Displayed on EditUserPage header</comment>
   </data>
+  <data name="Edit_Menu_Item_Button.Content" xml:space="preserve">
+    <value>Edit Menu Item</value>
+  </data>
   <data name="Edit_user_Button.Content" xml:space="preserve">
     <value>Edit user</value>
+  </data>
+  <data name="Empty.Text" xml:space="preserve">
+    <value>Empty !</value>
   </data>
   <data name="FullScreen.Content" xml:space="preserve">
     <value>Full Screen</value>
@@ -242,10 +254,19 @@
     <value>General Settings</value>
   </data>
   <data name="Items_name.Text" xml:space="preserve">
-    <value>Item's Name *</value>
+    <value>Item's name</value>
+  </data>
+  <data name="Items_name_Mandatory.Text" xml:space="preserve">
+    <value>Item's name *</value>
   </data>
   <data name="Items_price.Text" xml:space="preserve">
+    <value>Item's price</value>
+  </data>
+  <data name="Items_price_Mandatory.Text" xml:space="preserve">
     <value>Item's price *</value>
+  </data>
+  <data name="Item_Type_text_block.Text" xml:space="preserve">
+    <value>Item's type</value>
   </data>
   <data name="ListMenuItemsTextBlock.Text" xml:space="preserve">
     <value>List menu items</value>
@@ -258,6 +279,9 @@
   </data>
   <data name="logoutButton.Content" xml:space="preserve">
     <value>Sign out</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
   </data>
   <data name="Manager" xml:space="preserve">
     <value>Manager</value>
@@ -336,6 +360,9 @@ Universal (Not recommended) : This will appear in both tabs in the POS page.</va
   </data>
   <data name="Thank_you" xml:space="preserve">
     <value>Thank you</value>
+  </data>
+  <data name="Universal" xml:space="preserve">
+    <value>Universal</value>
   </data>
   <data name="upload_from_files_link.Text" xml:space="preserve">
     <value>Click here to upload</value>

@@ -26,6 +26,20 @@ namespace KFP.Ui.Components
     public sealed partial class ImageGraber : UserControl
     {
         ImageBrush? DefaultBackGround = null;
+
+        public static readonly DependencyProperty UserInteractionEnabledProperty =
+            DependencyProperty.Register(
+                nameof(UserInteractionEnabled),
+                typeof(bool),
+                typeof(ImageGraber),
+                new PropertyMetadata(true));
+
+        public bool UserInteractionEnabled
+        {
+            get => (bool)GetValue(UserInteractionEnabledProperty);
+            set => SetValue(UserInteractionEnabledProperty, value);
+        }
+
         public BitmapImage DisplayedBitmapImage { get; private set; }
 
         public static readonly DependencyProperty LoadedImageProperty =
@@ -46,7 +60,10 @@ namespace KFP.Ui.Components
             this.InitializeComponent();
             DefaultBackGround = new ImageBrush() { ImageSource = ImageConverter.LoadBitmapImage("ms-appx:///Assets/Images/Food.png") };
             ImageGrid.Background = DefaultBackGround;
+            
         }
+        
+        
         private static async void OnLoadedImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = (ImageGraber)d;
@@ -57,15 +74,20 @@ namespace KFP.Ui.Components
                 BitmapImage bitmapImage = await ImageConverter.ConvertToBitmapImage(imgData);
                 control.DisplayedBitmapImage = bitmapImage;
                 control.ImageGrid.Background = new ImageBrush { ImageSource = bitmapImage };
-                control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-                control.cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+                if (control.UserInteractionEnabled) { 
+                    control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                    control.cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+                }
             }
             else
             {
                 control.DisplayedBitmapImage = null;
                 control.ImageGrid.Background = control.DefaultBackGround;
-                control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-                control.cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                if (control.UserInteractionEnabled)
+                {
+                    control.picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+                    control.cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                }
             }
         }
 
@@ -92,14 +114,14 @@ namespace KFP.Ui.Components
 
         private void Border_MouseLeave(object sender, PointerRoutedEventArgs e)
         {
-                this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Arrow);
-                bordurePhoto.Background = null;
-                ImageGrid.Margin = new Microsoft.UI.Xaml.Thickness(0);
+            this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Arrow);
+            bordurePhoto.Background = null;
+            ImageGrid.Margin = new Microsoft.UI.Xaml.Thickness(0);
         }
 
         private void Border_MouseEnter(object sender, PointerRoutedEventArgs e)
         {
-            if (DisplayedBitmapImage == null)
+            if (DisplayedBitmapImage == null && UserInteractionEnabled)
             {
                 this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
                 bordurePhoto.Background = new SolidColorBrush(Color.FromArgb(255, 165, 247, 182));
@@ -109,7 +131,7 @@ namespace KFP.Ui.Components
 
         private async void bordurePhoto_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            if (DisplayedBitmapImage == null)
+            if (DisplayedBitmapImage == null && UserInteractionEnabled)
                 await OpenFileDialogAndUploadImageAsync();
         }
 
@@ -117,6 +139,15 @@ namespace KFP.Ui.Components
         {
             // Reset the LoadedImage property
             LoadedImage = null;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!UserInteractionEnabled)
+            {
+                picture_textbox.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                cancel_picture.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+            }
         }
     }
 }

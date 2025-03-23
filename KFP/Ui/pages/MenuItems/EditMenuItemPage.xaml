@@ -23,7 +23,7 @@
             <StackPanel Orientation="Vertical" Grid.Column="0">
                 <TextBox Text="{x:Bind ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="230" HorizontalAlignment="Left"  x:Name="itemNameTextBox">
                     <TextBox.Header>
-                        <TextBlock x:Uid="Items_name"/>
+                        <TextBlock x:Uid="Items_name_Mandatory"/>
                     </TextBox.Header>
                 </TextBox>
                 <TextBlock x:Name="itemNameErrorBlock" Foreground="OrangeRed" FontSize="12"/>
@@ -35,7 +35,7 @@
                               MaxColumns="3"   Margin="0,20,0,0">
                     <RadioButtons.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Item's type" Margin="0,0,10,0"/>
+                            <TextBlock x:Uid="Item_Type_text_block" Margin="0,0,10,0"/>
                             <InfoBadge Background="LightGreen" Foreground="Black"  HorizontalAlignment="Right" VerticalAlignment="Top"
                                        ToolTipService.Placement="Right">
                                 <ToolTipService.ToolTip>
@@ -53,7 +53,7 @@
                     <TextBox Text="{x:Bind ItemPriceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                            HorizontalAlignment="Left"  x:Name="itemPriceNumberBox">
                         <TextBox.Header>
-                            <TextBlock x:Uid="Items_price"/>
+                            <TextBlock x:Uid="Items_price_Mandatory"/>
                         </TextBox.Header>
                     </TextBox>
                     <TextBlock Text="{x:Bind Currency}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="itemPriceNumberBox"  Margin="20,0,0,5"/>
