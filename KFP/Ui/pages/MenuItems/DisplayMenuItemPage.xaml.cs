@@ -55,7 +55,7 @@ namespace KFP.Ui.pages
                     int ItemID = (int)parameters.FirstOrDefault();
                     _menuItem = _dbContext.MenuItems.Find(ItemID);
                     _navigationService.SetNewHeader(_menuItem.ItemName);
-                    if(_menuItem.Categories.Count == 0)
+                    if(_menuItem.Categories == null || _menuItem.Categories.Count == 0)
                     {
                         EmptyTextBlock.Visibility = Visibility.Visible;
                     }

@@ -69,12 +69,12 @@ namespace KFP.Helpers
                     uint originalWidth = decoder.PixelWidth;
                     uint originalHeight = decoder.PixelHeight;
 
-                    if (originalWidth <= 400 && originalHeight <= 400)
+                    if (originalWidth <= 300 && originalHeight <= 300)
                     {
                         return imageData; // No resizing needed
                     }
 
-                    double scale = Math.Min(400.0 / originalWidth, 400.0 / originalHeight);
+                    double scale = Math.Min(300.0 / originalWidth, 300.0 / originalHeight);
                     uint newWidth = (uint)(originalWidth * scale);
                     uint newHeight = (uint)(originalHeight * scale);
 
