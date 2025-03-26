@@ -180,7 +180,10 @@ namespace KFP.Ui.pages
             {
                 var menuItem = new MenuItem(ItemName, ItemPrice, SelectedMenuItemType);
                 menuItem.Categories = AssignedCategories.ToList();
-                menuItem.picture = await ImageConverter.ResizeImageIfNeeded(Picture);
+                var picture = await ImageConverter.ResizeImageIfNeeded(Picture);
+                var thumbnail = await ImageConverter.ResizeImageIfNeeded(Picture, true);
+                menuItem.pictureUri = await ImageConverter.SaveImageToFile(picture);
+                menuItem.thumbnailUri = await ImageConverter.SaveImageToFile(thumbnail);
                 _dbContext.MenuItems.Add(menuItem);
                 var res = _dbContext.SaveChanges();
 

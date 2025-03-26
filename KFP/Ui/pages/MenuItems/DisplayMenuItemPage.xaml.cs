@@ -2,7 +2,9 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using KFP.DATA;
 using KFP.DATA_Access;
+using KFP.Helpers;
 using KFP.Services;
+using KFP.Ui.Components;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -58,6 +60,15 @@ namespace KFP.Ui.pages
                     if(_menuItem.Categories == null || _menuItem.Categories.Count == 0)
                     {
                         EmptyTextBlock.Visibility = Visibility.Visible;
+                    }
+
+                    if (_menuItem.pictureUri != null)
+                    {
+                        picture.Source = ImageConverter.LoadBitmapImage(_menuItem.pictureUri);
+                    }
+                    else
+                    {
+                        picture.Source = ImageConverter.LoadBitmapImage("ms-appx:///Assets/Images/Food.png");
                     }
                 }
                 catch { }

@@ -18,65 +18,62 @@
         <converters:MenuItemTypeConverter x:Key="menuItemTypeConverter"/>
         <converters:ByteArrayToBitmapConverter x:Key="byteArrayToBitmapConverter"/>
     </Page.Resources>
-    <StackPanel>
-        <muxc:ProgressRing x:Name="progrssRing" IsActive="True" Visibility="Visible"/>
-        <Grid x:Name="PageContent" Margin="80,40,20, 0" Visibility="Collapsed">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="100"/>
-            </Grid.RowDefinitions>
 
-            <Grid HorizontalAlignment="Stretch" Grid.Row="0">
+    <Grid x:Name="PageContent" Margin="80,40,20, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="200" />
-                </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Stretch" Grid.Row="0">
 
-                <TextBlock Margin="25,0,0,0" x:Uid="picture_text_block" Grid.Column="0"  FontSize="18"  HorizontalAlignment="Center"/>
-                <TextBlock x:Uid="Items_name" Grid.Column="1"  FontSize="18" HorizontalAlignment="Center"/>
-                <TextBlock x:Uid="Items_price" Grid.Column="2"  FontSize="18" HorizontalAlignment="Center"/>
-                <TextBlock x:Uid="Item_Type_text_block" Grid.Column="3"  FontSize="18" HorizontalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Margin="0,0,30,0" x:Uid="ActionsTextBlock"  Grid.Column="4"  HorizontalAlignment="Center" FontSize="20"/>
-            </Grid>
-            <ListView x:Name="MenuItemslistView"  Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+            <TextBlock Margin="25,0,0,0" x:Uid="picture_text_block" Grid.Column="0"  FontSize="18"  HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="Items_name" Grid.Column="1"  FontSize="18" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="Items_price" Grid.Column="2"  FontSize="18" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="Item_Type_text_block" Grid.Column="3"  FontSize="18" HorizontalAlignment="Center"/>
+
+            <TextBlock Margin="0,0,30,0" x:Uid="ActionsTextBlock"  Grid.Column="4"  HorizontalAlignment="Center" FontSize="20"/>
+        </Grid>
+        <ListView x:Name="MenuItemslistView"  Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                       ScrollViewer.VerticalScrollMode="Auto" SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="local:MenuItemListElement">
-                        <Grid HorizontalAlignment="Stretch" Margin="0,0,0,10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="80"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-                            <Border CornerRadius="4" Grid.Column="0" BorderThickness="2" BorderBrush="LightGray" Width="80" Height="80">
-                                <Image Source="{x:Bind bitmapImage}"  Width="80" Height="80" Stretch="Fill"/>
-                            </Border>
-                            <TextBlock Text="{x:Bind menuItem.ItemName}" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{x:Bind menuItem.SalePrice}" Grid.Column="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{x:Bind menuItem.MenuItemType, Converter={StaticResource menuItemTypeConverter}}"
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:MenuItemListElement">
+                    <Grid HorizontalAlignment="Stretch" Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="4" Grid.Column="0" BorderThickness="2" BorderBrush="LightGray" Width="80" Height="80">
+                            <Image Source="{x:Bind bitmapImage}"  Width="80" Height="80" Stretch="Fill"/>
+                        </Border>
+                        <TextBlock Text="{x:Bind menuItem.ItemName}" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind menuItem.SalePrice}" Grid.Column="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind menuItem.MenuItemType, Converter={StaticResource menuItemTypeConverter}}"
                            Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                            <CommandBar Grid.Column="4" IsOpen="False" DefaultLabelPosition="Right"  VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <AppBarButton Icon="Find" Command="{x:Bind goToDisplayMenuItemCommand}"/>
-                                <AppBarButton Icon="Edit" Command="{x:Bind goToEditMenuItemCommand}" />
-                                <AppBarButton Icon="Delete" Command="{x:Bind DeleteMenuItemCommand}" />
-                            </CommandBar>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-    </StackPanel>
-
+                        <CommandBar Grid.Column="4" IsOpen="False" DefaultLabelPosition="Right"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <AppBarButton Icon="Find" Command="{x:Bind goToDisplayMenuItemCommand}"/>
+                            <AppBarButton Icon="Edit" Command="{x:Bind goToEditMenuItemCommand}" />
+                            <AppBarButton Icon="Delete" Command="{x:Bind DeleteMenuItemCommand}" />
+                        </CommandBar>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>

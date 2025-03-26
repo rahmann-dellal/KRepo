@@ -27,6 +27,7 @@ namespace KFP.Helpers
 
         public static async Task<BitmapImage> ConvertToBitmapImage(byte[]? imageData)
         {
+            
             if (imageData == null || imageData.Length == 0)
             {
                 return null;
@@ -51,8 +52,15 @@ namespace KFP.Helpers
             }
         }
 
-        public static async Task<byte[]?> ResizeImageIfNeeded(byte[]? imageData)
+        public static async Task<byte[]?> ResizeImageIfNeeded(byte[]? imageData, bool thumbnail = false)
         {
+            double resultHeight = 300.0;
+            double resultWidth = 300.0;
+            if (thumbnail)
+            {
+                resultHeight = 100.0; resultWidth = 100.0;
+            }
+
             if (imageData == null || imageData.Length == 0)
             {
                 return null;
@@ -69,12 +77,12 @@ namespace KFP.Helpers
                     uint originalWidth = decoder.PixelWidth;
                     uint originalHeight = decoder.PixelHeight;
 
-                    if (originalWidth <= 300 && originalHeight <= 300)
+                    if (originalWidth <= resultWidth && originalHeight <= resultHeight)
                     {
                         return imageData; // No resizing needed
                     }
 
-                    double scale = Math.Min(300.0 / originalWidth, 300.0 / originalHeight);
+                    double scale = Math.Min(resultWidth / originalWidth, resultHeight / originalHeight);
                     uint newWidth = (uint)(originalWidth * scale);
                     uint newHeight = (uint)(originalHeight * scale);
 
@@ -99,6 +107,28 @@ namespace KFP.Helpers
                 return null;
             }
         }
+        public static async Task<string?> SaveImageToFile(byte[]? imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+            {
+                return null;
+            }
 
+            try
+            {
+                string fileName = $"{Guid.NewGuid()}";
+                string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                string filePath = Path.Combine(appDataFolder, fileName);
+                await File.WriteAllBytesAsync(filePath, imageData);
+                return filePath;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving image to file: {ex.Message}");
+                return null;
+            }
+        }
+
+        
     }
 }

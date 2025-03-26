@@ -16,7 +16,7 @@ namespace KFP.DATA_Access
 
         public KFPContext()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var folder = Environment.SpecialFolder.ApplicationData;
             var path = Environment.GetFolderPath(folder);
             DbPath = System.IO.Path.Join(path, fileName);
         }

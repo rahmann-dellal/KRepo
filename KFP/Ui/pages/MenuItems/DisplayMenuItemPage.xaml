@@ -52,8 +52,11 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
             <TextBlock Text="Picture" x:Uid="picture_text_block"  HorizontalAlignment="Center" FontWeight="Bold"/>
-            <custom:ImageGraber LoadedImage="{x:Bind _menuItem.picture}" UserInteractionEnabled="False" HorizontalAlignment="Center"
-                                Margin="15,20,0,0" Width="300" Height="300"/>
+            <Border CornerRadius="4" BorderThickness="2" BorderBrush="LightGray" Width="300" Height="300" Margin="15,20,0,0">
+                <Image x:Name="picture" HorizontalAlignment="Center" Width="300" Height="300" Stretch="UniformToFill"/>
+            </Border>
+            <!--<custom:ImageGraber x:Name="myImageGraber"  UserInteractionEnabled="False" HorizontalAlignment="Center"
+                                Margin="15,20,0,0" Width="300" Height="300"/>-->
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0">

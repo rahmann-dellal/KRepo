@@ -43,7 +43,7 @@ namespace KFP.Ui.pages
         {
             _dbContext = Ioc.Default.GetService<KFPContext>();
             _navigationService = Ioc.Default.GetService<NavigationService>();
-            var MenuItems = _dbContext.MenuItems.ToList();
+            var MenuItems = _dbContext.MenuItems;
             foreach (var menuItem in MenuItems)
             {
                 var mile = new MenuItemListElement(menuItem, MenuItemlistElements, this, _dbContext, _navigationService);
@@ -56,10 +56,11 @@ namespace KFP.Ui.pages
         {
             foreach (var menuItemlistElement in MenuItemlistElements)
             {
-                menuItemlistElement.bitmapImage = await ImageConverter.ConvertToBitmapImage(menuItemlistElement.menuItem.picture);
+                //menuItemlistElement.bitmapImage = await ImageConverter.ConvertToBitmapImage(menuItemlistElement.menuItem.thumbnail);
+                menuItemlistElement.bitmapImage = ImageConverter.LoadBitmapImage(menuItemlistElement.menuItem.thumbnailUri);
                 if (menuItemlistElement.bitmapImage == null)
                 {
-                    menuItemlistElement.bitmapImage = ImageConverter.LoadBitmapImage("ms-appx:///Assets/Images/Food.png");
+                    menuItemlistElement.bitmapImage = ImageConverter.LoadBitmapImage("ms-appx:///Assets/Images/Food100.png");
                 }
             }
             MenuItemslistView.ItemsSource = MenuItemlistElements;

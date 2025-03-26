@@ -3,6 +3,7 @@ using System;
 using KFP.DATA_Access;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KFP.Migrations
 {
     [DbContext(typeof(KFPContext))]
-    partial class KFPContextModelSnapshot : ModelSnapshot
+    [Migration("20250326004218_addingPictureURIsToMenuItem")]
+    partial class addingPictureURIsToMenuItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
@@ -89,8 +92,14 @@ namespace KFP.Migrations
                     b.Property<double>("SalePrice")
                         .HasColumnType("REAL");
 
+                    b.Property<byte[]>("picture")
+                        .HasColumnType("BLOB");
+
                     b.Property<string>("pictureUri")
                         .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("thumbnail")
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("thumbnailUri")
                         .HasColumnType("TEXT");
