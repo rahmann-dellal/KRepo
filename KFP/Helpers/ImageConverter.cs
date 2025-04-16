@@ -11,7 +11,7 @@ namespace KFP.Helpers
 {
     public class ImageConverter
     {
-        public static BitmapImage LoadBitmapImage(string uri)
+        public BitmapImage LoadBitmapImage(string uri)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace KFP.Helpers
             }
         }
 
-        public static async Task<BitmapImage> ConvertToBitmapImage(byte[]? imageData)
+        public async Task<BitmapImage> ConvertToBitmapImage(byte[]? imageData)
         {
             
             if (imageData == null || imageData.Length == 0)
@@ -52,7 +52,7 @@ namespace KFP.Helpers
             }
         }
 
-        public static async Task<byte[]?> ResizeImageIfNeeded(byte[]? imageData, bool thumbnail = false)
+        public async Task<byte[]?> ResizeImageIfNeeded(byte[]? imageData, bool thumbnail = false)
         {
             double resultHeight = 300.0;
             double resultWidth = 300.0;
@@ -107,7 +107,7 @@ namespace KFP.Helpers
                 return null;
             }
         }
-        public static async Task<string?> SaveImageToFile(byte[]? imageData)
+        public async Task<string?> SaveImageToFile(byte[]? imageData, string filePath = null)
         {
             if (imageData == null || imageData.Length == 0)
             {
@@ -116,9 +116,13 @@ namespace KFP.Helpers
 
             try
             {
-                string fileName = $"{Guid.NewGuid()}";
-                string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                string filePath = Path.Combine(appDataFolder, fileName);
+                if(filePath == null)
+                {
+                    string fileName = Path.GetRandomFileName();
+                    string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                    filePath = Path.Combine(appDataFolder, fileName);
+                }
+                
                 await File.WriteAllBytesAsync(filePath, imageData);
                 return filePath;
             }
@@ -129,6 +133,20 @@ namespace KFP.Helpers
             }
         }
 
-        
+        public string? GetThumbUriFromPictureUri(string? pictureUri)
+        {
+            if (pictureUri == null)
+            {
+                return null;
+            }
+            string fileName = Path.GetFileName(pictureUri);
+            string? PictureFolder = Path.GetDirectoryName(pictureUri);
+            if (PictureFolder == null) {
+                return null;
+            }
+            string thumbFileName = "THUMB_" + fileName;
+            string thumbUri = Path.Combine(PictureFolder, thumbFileName);
+            return thumbUri;
+        }
     }
 }

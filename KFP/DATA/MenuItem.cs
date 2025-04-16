@@ -27,7 +27,6 @@ namespace KFP.DATA
         public double SalePrice { get; set; }
 
         public string? pictureUri { get; set; }
-        public string? thumbnailUri { get; set; }
 
         public MenuItemType? MenuItemType { get; set; }
         public List<Category>? Categories { get; set; }

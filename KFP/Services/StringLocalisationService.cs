@@ -9,7 +9,7 @@ namespace KFP.Services
     /// <summary>
     /// Provide string localisation
     /// </summary>
-    public static class StringLocalisationService
+    public class StringLocalisationService
     {
         private static AppDataService appDataService;
 

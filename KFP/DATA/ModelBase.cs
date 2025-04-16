@@ -22,14 +22,12 @@ namespace KFP.DATA
         {
             get
             {
-                //throw new NotImplementedException("get => MVVMHelper.ViewModel.Error");
                 return null;
             }
         }
 
-        //public event PropertyChangedEventHandler PropertyChanged;
 
-        public virtual string OnValidate(string propertyName)
+        public virtual string? OnValidate(string propertyName)
         {
             var context = new ValidationContext(this)
             {
@@ -38,9 +36,7 @@ namespace KFP.DATA
 
             var results = new Collection<ValidationResult>();
             var isValid = Validator.TryValidateProperty(this.GetType().GetProperty(propertyName).GetValue(this), context, results);
-            //Validator.TryValidateObject(this, context, results);
             return !isValid ? results[0].ErrorMessage : null;
-
         }
 
         public bool IsValid()
@@ -52,13 +48,5 @@ namespace KFP.DATA
 
             return isValid;
         }
-
-
-        // Create the OnPropertyChanged method to raise the event
-        // The calling member's name will be used as the parameter.
-        //protected void OnPropertyChanged([CallerMemberName] string name = null)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        //}
     }
 }

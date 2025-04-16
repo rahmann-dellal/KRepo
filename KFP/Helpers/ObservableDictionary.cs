@@ -48,7 +48,7 @@ namespace KFP.Helpers
         #endregion
     }
 
-    public class ObservableDictionary<TKey, TValue> : ObservableCollection<ObservableKeyValuePair<TKey, TValue>>, IDictionary<TKey, TValue>
+    public class ObservableDictionary<TKey, TValue> : ObservableCollection<ObservableKeyValuePair<TKey, TValue>>
     {
 
         #region IDictionary<TKey,TValue> Members
@@ -59,7 +59,10 @@ namespace KFP.Helpers
             {
                 throw new ArgumentException("The dictionary already contains the key");
             }
-            base.Add(new ObservableKeyValuePair<TKey, TValue>() { Key = key, Value = value });
+            var newPair = new ObservableKeyValuePair<TKey, TValue>();
+            newPair.Key = key;
+            newPair.Value = value;
+            base.Add(newPair);
         }
 
         public bool ContainsKey(TKey key)
@@ -95,15 +98,15 @@ namespace KFP.Helpers
             return remove.Count > 0;
         }
 
-        public bool TryGetValue(TKey key, out TValue value)
+        public bool TryGetValue(TKey key, out ObservableKeyValuePair<TKey,TValue> pair)
         {
-            value = default(TValue);
             var r = GetKvpByTheKey(key);
-            if (!Equals(r, default(ObservableKeyValuePair<TKey, TValue>)))
+            if (Equals(r, default(ObservableKeyValuePair<TKey, TValue>)))
             {
+                pair = null;
                 return false;
             }
-            value = r.Value;
+            pair = r;
             return true;
         }
 
@@ -117,33 +120,23 @@ namespace KFP.Helpers
             get { return (from i in ThisAsCollection() select i.Value).ToList(); }
         }
 
-        public TValue this[TKey key]
+        public ObservableKeyValuePair<TKey, TValue> this[TKey key]
         {
             get
             {
-                TValue result;
+                ObservableKeyValuePair<TKey, TValue> result;
                 if (!TryGetValue(key, out result))
                 {
-                    throw new ArgumentException("Key not found");
+                    return default(ObservableKeyValuePair<TKey, TValue>);
                 }
                 return result;
             }
-            set
-            {
-                if (ContainsKey(key))
-                {
-                    GetKvpByTheKey(key).Value = value;
-                }
-                else
-                {
-                    Add(key, value);
-                }
-            }
         }
+
 
         #endregion
 
-        #region ICollection<KeyValuePair<TKey,TValue>> Members
+            #region ICollection<KeyValuePair<TKey,TValue>> Members
 
         public void Add(KeyValuePair<TKey, TValue> item)
         {

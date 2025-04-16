@@ -36,6 +36,7 @@ namespace KFP.Ui.pages
         private NavigationService _navigationService;
         private AppDataService _appDataService;
         private KFPContext _dbContext;
+        private ImageConverter _imageConverter;
         private Currency _currency;
 
         public DisplayMenuItemPage()
@@ -43,6 +44,7 @@ namespace KFP.Ui.pages
             _navigationService = Ioc.Default.GetService<NavigationService>();
             _dbContext = Ioc.Default.GetService<KFPContext>();
             _appDataService = Ioc.Default.GetService<AppDataService>();
+            _imageConverter = Ioc.Default.GetService<ImageConverter>();
             _currency = _appDataService.Currency;
             this.InitializeComponent();
         }
@@ -64,11 +66,11 @@ namespace KFP.Ui.pages
 
                     if (_menuItem.pictureUri != null)
                     {
-                        picture.Source = ImageConverter.LoadBitmapImage(_menuItem.pictureUri);
+                        picture.Source = _imageConverter.LoadBitmapImage(_menuItem.pictureUri);
                     }
                     else
                     {
-                        picture.Source = ImageConverter.LoadBitmapImage("ms-appx:///Assets/Images/Food.png");
+                        picture.Source = _imageConverter.LoadBitmapImage("ms-appx:///Assets/Images/Food.png");
                     }
                 }
                 catch { }
@@ -87,6 +89,11 @@ namespace KFP.Ui.pages
             ContentDialogResult result = await confirmDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
+                var imageConverter = Ioc.Default.GetService<ImageConverter>();
+                var fileAccess = Ioc.Default.GetService<FileSystemAccess>();
+                fileAccess.DeleteFile(_menuItem.pictureUri);
+                string? thumbnailUri = imageConverter.GetThumbUriFromPictureUri(_menuItem.pictureUri);
+                fileAccess.DeleteFile(thumbnailUri);
                 _dbContext.Remove(_menuItem);
                 _dbContext.SaveChanges();
                 _navigationService.navigateTo(typeof(MenuItemListPage));

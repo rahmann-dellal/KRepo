@@ -12,14 +12,27 @@ namespace KFP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-                bool boolValue = (bool)value;
-                if (boolValue) return Visibility.Visible;
-                else return Visibility.Collapsed;
+            if (value == null)
+            {
+                return Visibility.Collapsed;
+            }
+
+            if (value is bool boolValue)
+            {
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            } else
+            {
+                return Visibility.Visible;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            if (value is Visibility visibility)
+            {
+                return visibility == Visibility.Visible;
+            }
+            return false;
         }
     }
 }

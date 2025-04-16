@@ -58,12 +58,17 @@ namespace KFP
             //VMs
             services.AddTransient<DisplayUserVM>();
             services.AddTransient<EditUserVM>();
+            services.AddTransient<EditMenuItemVM>();
+            services.AddTransient<AddMenuItemVM>();
+            services.AddTransient<ImageConverter>();
+            services.AddTransient<FileSystemAccess>();
 
             //Services
             services.AddSingleton<AppDataService>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<AppState>();
             services.AddSingleton<NavigationService>();
+            services.AddSingleton<INavigationService>(s => s.GetRequiredService<NavigationService>());
 
 
             var serviceProvider = services.BuildServiceProvider();
