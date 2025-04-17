@@ -16,8 +16,8 @@ namespace KFP.ViewModels
     public partial class EditMenuItemVM : MenuItemVM
     {
         private MenuItem oldValue;
+        private byte[]? oldImageData;
 
-        
         public EditMenuItemVM(FileSystemAccess fileSystemAccess, 
                  ImageConverter imageConverter,
                  AppDataService appDataService,
@@ -49,6 +49,10 @@ namespace KFP.ViewModels
                 MenuItemType = model.MenuItemType,
                 Categories = model.Categories != null ? new List<Category>(model.Categories) : new List<Category>(),
             };
+            if (model.pictureUri != null)
+            {
+                oldImageData = fileSystemAccess.ReadFile(model.pictureUri);
+            }
             if (model.Categories != null)
             {
                 foreach (var category in oldValue.Categories)
@@ -121,9 +125,16 @@ namespace KFP.ViewModels
             return modelHasChanged() && IsValid();
         }
 
-        public override void Reset()
+        public override async Task Reset()
         {
-            PictureUri = oldValue.pictureUri;
+            if(PictureUri != oldValue.pictureUri)
+            {
+                RemovePicture();
+                PictureUri = await imageConverter.SaveImageToFile(oldImageData);
+                string thumbUri = imageConverter.GetThumbUriFromPictureUri(PictureUri);
+                byte[]? thumbData = await imageConverter.ResizeImageIfNeeded(oldImageData, true);
+                await imageConverter.SaveImageToFile(thumbData, thumbUri);
+            }
             SalePrice = oldValue.SalePrice;
             ItemName = oldValue.ItemName;
             MenuItemType = oldValue.MenuItemType;
@@ -139,6 +150,12 @@ namespace KFP.ViewModels
                 {
                     choiseCategories.Add(category);
                 }
+            }
+            if(model != null)
+            {
+                model.pictureUri = PictureUri;
+                DbContext.Update(model);
+                DbContext.SaveChanges();
             }
         }
         public override bool canReset()

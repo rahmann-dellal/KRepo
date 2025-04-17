@@ -35,7 +35,7 @@ namespace KFP.ViewModels
             return IsValid();
         }
 
-        public override void Reset()
+        public override async Task Reset()
         {
             ItemName = string.Empty;
             MenuItemType = null;

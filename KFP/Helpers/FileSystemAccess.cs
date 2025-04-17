@@ -23,7 +23,13 @@ namespace KFP.Helpers
 
         public byte[]? ReadFile(string path)
         {
-            return File.ReadAllBytes(path);
+            if (string.IsNullOrEmpty(path) || !File.Exists(path))
+            {
+                return null;
+            }
+            else { 
+                return File.ReadAllBytes(path);
+            }
         }
     }
 }

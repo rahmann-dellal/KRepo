@@ -157,7 +157,7 @@ namespace KFP.ViewModels
         public abstract bool canSave();
 
         [RelayCommand(CanExecute = nameof(canReset))]
-        public abstract void Reset();
+        public abstract Task Reset();
         public abstract bool canReset();
 
         [RelayCommand(CanExecute = nameof(canAddCategory))]

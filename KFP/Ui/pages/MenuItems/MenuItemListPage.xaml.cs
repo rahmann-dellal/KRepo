@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -34,7 +35,7 @@ namespace KFP.Ui.pages
             _navigationService = Ioc.Default.GetService<NavigationService>();
             _imageConverter = Ioc.Default.GetService<ImageConverter>();
 
-            var MenuItems = _dbContext.MenuItems;
+            var MenuItems = _dbContext.MenuItems.ToList();
             foreach (var menuItem in MenuItems)
             {
                 var mile = new MenuItemListElement(menuItem, MenuItemlistElements, this, _dbContext, _navigationService);
