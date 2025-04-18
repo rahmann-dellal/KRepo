@@ -5,6 +5,8 @@ using KFP.DATA_Access;
 using KFP.Helpers;
 using KFP.Services;
 using KFP.Ui.Components;
+using KFP.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -57,7 +59,11 @@ namespace KFP.Ui.pages
                 {
                     var parameters = e.Parameter as List<Object>;
                     int ItemID = (int)parameters.FirstOrDefault();
-                    _menuItem = _dbContext.MenuItems.Find(ItemID);
+                    _menuItem = _dbContext.MenuItems.Include(m => m.Categories).FirstOrDefault(m => m.Id == ItemID);
+                    if (_menuItem == null)
+                    {
+                        throw new Exception("MenuItem not found");
+                    }
                     _navigationService.SetNewHeader(_menuItem.ItemName);
                     if(_menuItem.Categories == null || _menuItem.Categories.Count == 0)
                     {
