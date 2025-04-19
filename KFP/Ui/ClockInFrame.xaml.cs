@@ -36,6 +36,9 @@ namespace KFP.Ui
                 {
                     selectUserPanel.Visibility = Visibility.Collapsed;
                     SelectedUserPanelFadeIn();
+                    pinInput.resetPin();
+                    FocusPinInput();
+
                 }
                 else
                 {
@@ -108,6 +111,11 @@ namespace KFP.Ui
         {
             selectedUserPanel.Visibility = Visibility.Collapsed;
             HideSelectedUserStoryboard.Begin();
+        }
+        // Add this method to the ClockInFrame class to focus the pinInput control.
+        public void FocusPinInput()
+        {
+            pinInput.Focus(FocusState.Programmatic);
         }
     }
 }
