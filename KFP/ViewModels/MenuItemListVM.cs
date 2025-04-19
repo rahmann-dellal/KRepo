@@ -14,6 +14,7 @@ using KFP.DATA_Access;
 using KFP.Helpers;
 using KFP.Services;
 using KFP.Ui.pages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml.Controls;
 
 namespace KFP.ViewModels
@@ -36,8 +37,31 @@ namespace KFP.ViewModels
 
         private int _selectedPage = 0;
         public bool isPagesCommandsVisible { get { return PageCommands.Count > 1; } }
-        public bool isEmptyList { get { return MenuItemlistElements.Count == 0; } }
+        public bool isListEmpty { get { return MenuItemlistElements.Count == 0; } }
         public bool ListNotEmpty { get { return MenuItemlistElements.Count != 0; } }
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplaySortOnNameIcon))]
+        public bool? orderByNameAscend;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplaySortOnNameIcon))]
+        public bool? orderByNameDescend;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplaySortOnPriceIcon))]
+        public bool? orderByPriceAscend;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplaySortOnPriceIcon))]
+        public bool? orderByPriceDescend;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplaySortOnTypeIcon))]
+        public bool? orderByTypeAscend;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplaySortOnTypeIcon))]
+        public bool? orderByTypeDescend;
+
+        public bool DisplaySortOnNameIcon => OrderByNameAscend != true && OrderByNameDescend != true;
+        public bool DisplaySortOnPriceIcon => OrderByPriceAscend != true && OrderByPriceDescend != true;
+        public bool DisplaySortOnTypeIcon => OrderByTypeAscend != true && OrderByTypeDescend != true;
         public int SelectedPage
         {
             get => _selectedPage;
@@ -80,7 +104,76 @@ namespace KFP.ViewModels
             PageCommands.CollectionChanged += (s, e) => { OnPropertyChanged(nameof(isPagesCommandsVisible)); };
         }
 
+        [RelayCommand]
+        public void OrderByName()
+        {
+            if (OrderByNameAscend == true)
+            {
+                OrderByNameAscend = false;
+                OrderByNameDescend = true;
+                OrderByPriceAscend = null;
+                OrderByPriceDescend = null;
+                OrderByTypeAscend = null;
+                OrderByTypeDescend = null;
 
+            }
+            else
+            {
+                OrderByNameAscend = true;
+                OrderByNameDescend = false;
+                OrderByPriceAscend = null;
+                OrderByPriceDescend = null;
+                OrderByTypeAscend = null;
+                OrderByTypeDescend = null;
+            }
+            LoadPage(SelectedPage);
+        }
+        [RelayCommand]
+        public void OrderByPrice()
+        {
+            if (OrderByPriceAscend == true)
+            {
+                OrderByPriceAscend = false;
+                OrderByPriceDescend = true;
+                OrderByNameAscend = null;
+                OrderByNameDescend = null;
+                OrderByTypeAscend = null;
+                OrderByTypeDescend = null;
+            }
+            else
+            {
+                OrderByPriceAscend = true;
+                OrderByPriceDescend = false;
+                OrderByNameAscend = null;
+                OrderByNameDescend = null;
+                OrderByTypeAscend = null;
+                OrderByTypeDescend = null;
+            }
+            LoadPage(SelectedPage);
+        }
+        [RelayCommand]
+        public void OrderByType()
+        {
+            if (OrderByTypeAscend == true)
+            {
+                OrderByTypeAscend = false;
+                OrderByTypeDescend = true;
+                OrderByNameAscend = null;
+                OrderByNameDescend = null;
+                OrderByPriceAscend = null;
+                OrderByPriceDescend = null;
+            }
+            else
+            {
+                OrderByTypeAscend = true;
+                OrderByTypeDescend = false;
+                OrderByNameAscend = null;
+                OrderByNameDescend = null;
+                OrderByPriceAscend = null;
+                OrderByPriceDescend = null;
+            }
+            LoadPage(SelectedPage);
+        }
         public void LoadPage(int page = 0)
         {
             if (page < 0)
@@ -92,13 +185,42 @@ namespace KFP.ViewModels
                 page = PageCommands.Count - 1;
             }
             MenuItemlistElements.Clear();
-            var MenuItems = _dbContext.MenuItems.Skip(page * PageSize).Take(PageSize).ToList();
+            List<MenuItem> MenuItems;
+            if (OrderByNameAscend == true)
+            {
+                MenuItems = _dbContext.MenuItems.OrderBy(m => m.ItemName).Skip(page * PageSize).Take(PageSize).ToList();
+            }
+            else if (OrderByNameDescend == true)
+            {
+                MenuItems = _dbContext.MenuItems.OrderByDescending(m => m.ItemName).Skip(page * PageSize).Take(PageSize).ToList();
+            }
+            else if (OrderByPriceAscend == true)
+            {
+                MenuItems = _dbContext.MenuItems.OrderBy(m => m.SalePrice).Skip(page * PageSize).Take(PageSize).ToList();
+            }
+            else if (OrderByPriceDescend == true)
+            {
+                MenuItems = _dbContext.MenuItems.OrderByDescending(m => m.SalePrice).Skip(page * PageSize).Take(PageSize).ToList();
+            }
+            else if (OrderByTypeAscend == true)
+            {
+                MenuItems = _dbContext.MenuItems.OrderBy(m => m.MenuItemType).Skip(page * PageSize).Take(PageSize).ToList();
+            }
+            else if (OrderByTypeDescend == true)
+            {
+                MenuItems = _dbContext.MenuItems.OrderByDescending(m => m.MenuItemType).Skip(page * PageSize).Take(PageSize).ToList();
+            }
+            else
+            {
+                MenuItems = _dbContext.MenuItems.Skip(page * PageSize).Take(PageSize).ToList();
+            }
+            
             foreach (var menuItem in MenuItems)
             {
                 var mile = new MenuItemListElement(menuItem, this, showConfirmDeleteDialog, _dbContext, _navigationService, _imageConverter, _fileAccess);
                 MenuItemlistElements.Add(mile);
             }
-            OnPropertyChanged(nameof(isEmptyList));
+            OnPropertyChanged(nameof(isListEmpty));
             OnPropertyChanged(nameof(ListNotEmpty));
         }
 
