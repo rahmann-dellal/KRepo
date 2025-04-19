@@ -17,7 +17,7 @@ namespace KFP.Converters
             bool connected = (bool)value;
             if (targetType == typeof(Thickness))
             {
-                return connected ? new Thickness(3) : new Thickness(0);
+                return connected ? new Thickness(4) : new Thickness(0);
             }
             if (targetType == typeof(Brush))
             {
