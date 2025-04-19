@@ -75,6 +75,10 @@ namespace KFP.Ui.pages
             picker.FileTypeFilter.Add(".bmp");
 
             StorageFile file = await picker.PickSingleFileAsync();
+            if(file == null)
+            {
+                return null;
+            }
             return file.Path;
         }
 

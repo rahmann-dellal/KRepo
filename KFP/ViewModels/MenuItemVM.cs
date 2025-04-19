@@ -250,7 +250,7 @@ namespace KFP.ViewModels
 
         public bool IsValid()
         {
-            if (ItemNameErrorMessage != null)
+            if (ItemNameErrorMessage != null || ItemName == null || string.IsNullOrEmpty(ItemName))
             {
                 return false;
             }

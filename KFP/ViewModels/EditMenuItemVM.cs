@@ -7,12 +7,13 @@ using KFP.DATA_Access;
 using KFP.Helpers;
 using KFP.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.UI.Xaml.Controls;
 
 namespace KFP.ViewModels
 {
+
     public delegate Task<string> ShowFileDialogAndGetFileUri();
     public delegate Task<bool> ShowConfirmSaveDialog();
-
     public partial class EditMenuItemVM : MenuItemVM
     {
         private MenuItem oldValue;
@@ -70,6 +71,7 @@ namespace KFP.ViewModels
             }
             this.showFileDialogAndGetFileUri = showFileDialogAndGetFileUri;
             this.showConfirmSaveDialog = showConfirmSaveDialog;
+            navigationService.SetNewHeader(StringLocalisationService.getStringWithKey("Editing") + model.ItemName);
         }
 
         public bool modelHasChanged()
