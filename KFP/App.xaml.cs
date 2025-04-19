@@ -56,11 +56,13 @@ namespace KFP
             services.AddDbContext<KFPContext>();
 
             //VMs
-            services.AddTransient<DisplayUserVM>();
+            services.AddTransient<POSVM>();
+            services.AddTransient<DisplayUserVM>(); 
             services.AddTransient<EditUserVM>();
             services.AddTransient<EditMenuItemVM>();
             services.AddTransient<AddMenuItemVM>();
             services.AddTransient<MenuItemListVM>();
+
             services.AddTransient<ImageConverter>();
             services.AddTransient<FileSystemAccess>();
 
