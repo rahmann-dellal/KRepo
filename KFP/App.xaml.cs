@@ -60,6 +60,7 @@ namespace KFP
             services.AddTransient<EditUserVM>();
             services.AddTransient<EditMenuItemVM>();
             services.AddTransient<AddMenuItemVM>();
+            services.AddTransient<MenuItemListVM>();
             services.AddTransient<ImageConverter>();
             services.AddTransient<FileSystemAccess>();
 

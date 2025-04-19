@@ -144,6 +144,9 @@
   <data name="AddUserAdmin.Content" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="AddMenuItemButton.Content" xml:space="preserve">
+    <value>Add a menu item</value>
+  </data>
   <data name="AddUserCashier.Content" xml:space="preserve">
     <value>Cashier</value>
   </data>
@@ -318,11 +321,17 @@ Universal (Not recommended) : This will appear in both tabs in the POS page.</va
   <data name="NothingTextBlock.Text" xml:space="preserve">
     <value>Nothing Yet !</value>
   </data>
+  <data name="NothingToDisplayTxtBlk.Text" xml:space="preserve">
+    <value>Nothing to display ...</value>
+  </data>
   <data name="Operation_was_seccessfull" xml:space="preserve">
     <value>Operation was successful !</value>
   </data>
   <data name="Overlapped.Content" xml:space="preserve">
     <value>Overlapped</value>
+  </data>
+  <data name="PageTextBlock.Text" xml:space="preserve">
+    <value>Page :</value>
   </data>
   <data name="picture_text_block.Text" xml:space="preserve">
     <value>Picture</value>
