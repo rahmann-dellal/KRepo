@@ -60,13 +60,21 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0">
-            <Button x:Uid="Edit_Menu_Item_Button" Width="200" HorizontalContentAlignment="Center" Command="{x:Bind GoToEditPageCommand}"
-    Foreground="{ThemeResource TextOnAccentFillColorPrimary}" Background="{ThemeResource AccentFillColorDefaultBrush}" BorderBrush="{ThemeResource ProgressBarBorderThemeBrush}"
-    />
-            <Button x:Uid="Delete_Menu_Item_Button" Width="200" HorizontalContentAlignment="Center" Command="{x:Bind DeleteCommand}"
+            <Button  Width="200" HorizontalContentAlignment="Center" Command="{x:Bind GoToEditPageCommand}"
+    Foreground="{ThemeResource TextOnAccentFillColorPrimary}" Background="{ThemeResource AccentFillColorDefaultBrush}" BorderBrush="{ThemeResource ProgressBarBorderThemeBrush}">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xE70F;" />
+                    <TextBlock x:Uid="Edit_Menu_Item_Button" Margin="8,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button  Width="200" HorizontalContentAlignment="Center" Command="{x:Bind DeleteCommand}"
         Margin="20,0,0,0" 
-        Foreground="{ThemeResource SystemFillColorCaution}" BorderBrush="{ThemeResource SystemFillColorCaution}" Background="{ThemeResource SystemFillColorCautionBackground}"
-        />
+        Foreground="{ThemeResource SystemFillColorCaution}" BorderBrush="{ThemeResource SystemFillColorCaution}" Background="{ThemeResource SystemFillColorCautionBackground}">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xE74D;" />
+                    <TextBlock x:Uid="Delete_Menu_Item_Button" Margin="8,0,0,0"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

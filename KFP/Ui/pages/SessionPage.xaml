@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Grid HorizontalAlignment="Center"  Margin="0,40,0,0" Height="auto" VerticalAlignment="Top">
+        <Grid HorizontalAlignment="Center"  Margin="0,140,0,0" Height="auto" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -20,18 +20,23 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" x:Uid="startedAtTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Bind startedAt}" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" x:Uid="startedAtTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Bind startedAt}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="1" x:Uid="activeForTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="timerTextBlock" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" x:Uid="activeForTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="timerTextBlock" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="2" x:Uid="CurrentUserTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="{x:Bind LoggedInUser.UserName}" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" x:Uid="CurrentUserTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="{x:Bind LoggedInUser.UserName}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
 
-            <Button x:Uid="logoutButton" Width="200" Grid.ColumnSpan="2" Grid.Row="3"
+            <Button Width="200" Grid.ColumnSpan="2" Grid.Row="3"
             Background="{StaticResource AccentFillColorDefaultBrush}" Foreground="{StaticResource TextOnAccentFillColorPrimary}"
-            Click="LogOutButton_Click"/>
+            Click="LogOutButton_Click" Margin="0,40,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xF3B1;" Margin="0,0,30,0"/>
+                    <TextBlock x:Uid="logoutButton" Margin="8,0,0,0"/>
+                </StackPanel>
+            </Button>
         </Grid>
     </Grid>
 </Page>

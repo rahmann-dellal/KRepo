@@ -13,12 +13,12 @@
 
     <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
         <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Click="saveButton_Click"/>
-            <AppBarButton Icon="Refresh" x:Uid="UserResetButton" Click="resetButton_Click" x:Name="resetButton" />
+            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Click="saveButton_Click"  FontWeight="SemiBold"/>
+            <AppBarButton Icon="Refresh" x:Uid="UserResetButton" Click="resetButton_Click" x:Name="resetButton"  FontWeight="SemiBold"/>
         </CommandBar>
         <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
            Foreground="OrangeRed" FontSize="12"/>
-        <Grid Margin="40,0,30,30">
+        <Grid Margin="140,0,30,30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

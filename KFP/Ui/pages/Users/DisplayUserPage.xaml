@@ -37,13 +37,23 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0">
-            <Button x:Uid="Edit_user_Button" Width="200" HorizontalContentAlignment="Center"
+            <Button Width="200" HorizontalContentAlignment="Center"
             Foreground="{ThemeResource TextOnAccentFillColorPrimary}" Background="{ThemeResource AccentFillColorDefaultBrush}" BorderBrush="{ThemeResource ProgressBarBorderThemeBrush}"
-            Command="{x:Bind viewModel.goToEditUserCommand}"/>
-            <Button x:Uid="Delete_user_Button" Width="200" HorizontalContentAlignment="Center"
+            Command="{x:Bind viewModel.goToEditUserCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xE70F;" />
+                    <TextBlock x:Uid="Edit_user_Button" Margin="38,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button Width="200" HorizontalContentAlignment="Center"
                 Margin="20,0,0,0" 
                 Foreground="{ThemeResource SystemFillColorCaution}" BorderBrush="{ThemeResource SystemFillColorCaution}" Background="{ThemeResource SystemFillColorCautionBackground}"
-                Command="{x:Bind viewModel.DeleteUserCommand}"/>
+                Command="{x:Bind viewModel.DeleteUserCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xE74D;" />
+                    <TextBlock x:Uid="Delete_user_Button" Margin="38,0,0,0"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
 
     </Grid>

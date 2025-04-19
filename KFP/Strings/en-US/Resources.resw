@@ -225,10 +225,10 @@
   <data name="DeleteButton.Label" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="Delete_Menu_Item_Button.Content" xml:space="preserve">
+  <data name="Delete_Menu_Item_Button.Text" xml:space="preserve">
     <value>Delete Menu Item</value>
   </data>
-  <data name="Delete_user_Button.Content" xml:space="preserve">
+  <data name="Delete_user_Button.Text" xml:space="preserve">
     <value>Delete User</value>
   </data>
   <data name="Deleting" xml:space="preserve">
@@ -241,10 +241,10 @@
     <value>Editing : </value>
     <comment>Displayed on EditUserPage header</comment>
   </data>
-  <data name="Edit_Menu_Item_Button.Content" xml:space="preserve">
+  <data name="Edit_Menu_Item_Button.Text" xml:space="preserve">
     <value>Edit Menu Item</value>
   </data>
-  <data name="Edit_user_Button.Content" xml:space="preserve">
+  <data name="Edit_user_Button.Text" xml:space="preserve">
     <value>Edit user</value>
   </data>
   <data name="Empty.Text" xml:space="preserve">
@@ -280,7 +280,7 @@
   <data name="LoginTextBlock.Text" xml:space="preserve">
     <value>Log in</value>
   </data>
-  <data name="logoutButton.Content" xml:space="preserve">
+  <data name="logoutButton.Text" xml:space="preserve">
     <value>Sign out</value>
   </data>
   <data name="Main" xml:space="preserve">

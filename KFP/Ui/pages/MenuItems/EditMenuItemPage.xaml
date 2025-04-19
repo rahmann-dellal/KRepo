@@ -15,8 +15,8 @@
 
     <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
         <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Command="{x:Bind viewModel.SaveCommand}" Background="LightGreen"/>
-            <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" Command="{x:Bind viewModel.ResetCommand}" />
+            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Command="{x:Bind viewModel.SaveCommand}" Background="LightGreen" FontWeight="SemiBold"/>
+            <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" Command="{x:Bind viewModel.ResetCommand}" FontWeight="SemiBold" />
         </CommandBar>
         <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
        Foreground="OrangeRed" FontSize="12"/>
