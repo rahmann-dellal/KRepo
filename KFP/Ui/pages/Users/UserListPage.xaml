@@ -12,7 +12,7 @@
     <Page.Resources>
         <converters:RoleConverter x:Key="roleConverter"/>
         <converters:AvatarCodeToImageSourceConverter x:Key="avatarConverter"/>
-        <converters:avatarConnectedConverter x:Key="avatarConected"/>
+        <converters:BoolToBrushConverter x:Key="boolToBrushConverter"/>
     </Page.Resources>
 
     <Grid x:Name="PageContent" Margin="80,40,20, 0">
@@ -51,7 +51,9 @@
                             <ColumnDefinition Width="150"/>
                         </Grid.ColumnDefinitions>
                         <!--max CornerRadius for round image-->
-                        <Border CornerRadius="1000" Grid.Column="0" BorderThickness="{x:Bind IsConnected, Converter={StaticResource avatarConected}}" BorderBrush="{x:Bind IsConnected, Converter={StaticResource avatarConected}}">
+                        <Border CornerRadius="1000" Grid.Column="0"
+                                BorderThickness="{x:Bind IsConnected, Converter={StaticResource boolToBrushConverter}, ConverterParameter='4'}"
+                                BorderBrush="{x:Bind IsConnected, Converter={StaticResource boolToBrushConverter}}">
                             <Image Source="{x:Bind User.avatarCode, Converter={StaticResource avatarConverter}}"  Width="80" Height="80"/>
                         </Border>
                         <TextBlock Text="{x:Bind User.UserName}" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace KFP.DATA
@@ -25,7 +26,8 @@ namespace KFP.DATA
             if (this.Role >= role) return true;
             else return false;
         }
-
+        public List<Invoice> Invoices { get; set; } = new();
+        public List<Order> Orders { get; set; } = new();
     }
 
     public enum UserRole {  Cashier, Manager, Admin }

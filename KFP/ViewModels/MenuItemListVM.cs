@@ -76,7 +76,7 @@ namespace KFP.ViewModels
                     }
                     if (_selectedPage >= 0)
                     {
-                        LoadPage(_selectedPage);
+                        LoadPageAsync(_selectedPage);
                     }
                     OnPropertyChanged(nameof(SelectedPage));
                 }
@@ -105,7 +105,7 @@ namespace KFP.ViewModels
         }
 
         [RelayCommand]
-        public void OrderByName()
+        public async Task OrderByNameAsync()
         {
             if (OrderByNameAscend == true)
             {
@@ -126,10 +126,10 @@ namespace KFP.ViewModels
                 OrderByTypeAscend = null;
                 OrderByTypeDescend = null;
             }
-            LoadPage(SelectedPage);
+            await LoadPageAsync(SelectedPage);
         }
         [RelayCommand]
-        public void OrderByPrice()
+        public async Task OrderByPriceAsync()
         {
             if (OrderByPriceAscend == true)
             {
@@ -149,10 +149,10 @@ namespace KFP.ViewModels
                 OrderByTypeAscend = null;
                 OrderByTypeDescend = null;
             }
-            LoadPage(SelectedPage);
+            await LoadPageAsync(SelectedPage);
         }
         [RelayCommand]
-        public void OrderByType()
+        public async Task OrderByTypeAsync()
         {
             if (OrderByTypeAscend == true)
             {
@@ -172,9 +172,9 @@ namespace KFP.ViewModels
                 OrderByPriceAscend = null;
                 OrderByPriceDescend = null;
             }
-            LoadPage(SelectedPage);
+            await LoadPageAsync(SelectedPage);
         }
-        public void LoadPage(int page = 0)
+        public async Task LoadPageAsync(int page = 0)
         {
             if (page < 0)
             {
@@ -188,31 +188,31 @@ namespace KFP.ViewModels
             List<MenuItem> MenuItems;
             if (OrderByNameAscend == true)
             {
-                MenuItems = _dbContext.MenuItems.OrderBy(m => m.ItemName).Skip(page * PageSize).Take(PageSize).ToList();
+                MenuItems = await _dbContext.MenuItems.OrderBy(m => m.ItemName).Skip(page * PageSize).Take(PageSize).ToListAsync();
             }
             else if (OrderByNameDescend == true)
             {
-                MenuItems = _dbContext.MenuItems.OrderByDescending(m => m.ItemName).Skip(page * PageSize).Take(PageSize).ToList();
+                MenuItems = await _dbContext.MenuItems.OrderByDescending(m => m.ItemName).Skip(page * PageSize).Take(PageSize).ToListAsync();
             }
             else if (OrderByPriceAscend == true)
             {
-                MenuItems = _dbContext.MenuItems.OrderBy(m => m.SalePrice).Skip(page * PageSize).Take(PageSize).ToList();
+                MenuItems = await _dbContext.MenuItems.OrderBy(m => m.SalePrice).Skip(page * PageSize).Take(PageSize).ToListAsync();
             }
             else if (OrderByPriceDescend == true)
             {
-                MenuItems = _dbContext.MenuItems.OrderByDescending(m => m.SalePrice).Skip(page * PageSize).Take(PageSize).ToList();
+                MenuItems = await _dbContext.MenuItems.OrderByDescending(m => m.SalePrice).Skip(page * PageSize).Take(PageSize).ToListAsync();
             }
             else if (OrderByTypeAscend == true)
             {
-                MenuItems = _dbContext.MenuItems.OrderBy(m => m.MenuItemType).Skip(page * PageSize).Take(PageSize).ToList();
+                MenuItems = await _dbContext.MenuItems.OrderBy(m => m.MenuItemType).Skip(page * PageSize).Take(PageSize).ToListAsync();
             }
             else if (OrderByTypeDescend == true)
             {
-                MenuItems = _dbContext.MenuItems.OrderByDescending(m => m.MenuItemType).Skip(page * PageSize).Take(PageSize).ToList();
+                MenuItems = await _dbContext.MenuItems.OrderByDescending(m => m.MenuItemType).Skip(page * PageSize).Take(PageSize).ToListAsync();
             }
             else
             {
-                MenuItems = _dbContext.MenuItems.Skip(page * PageSize).Take(PageSize).ToList();
+                MenuItems = await _dbContext.MenuItems.Skip(page * PageSize).Take(PageSize).ToListAsync();
             }
             
             foreach (var menuItem in MenuItems)
@@ -305,7 +305,7 @@ namespace KFP.ViewModels
                         }
                         else
                         {
-                            parentVM.LoadPage(parentVM.SelectedPage);
+                            parentVM.LoadPageAsync(parentVM.SelectedPage);
                         }
 
                         parentVM.PageCommands.RemoveAt(parentVM.PageCommands.Count() - 1);
@@ -313,7 +313,7 @@ namespace KFP.ViewModels
                     }
                     else
                     {
-                        parentVM.LoadPage(parentVM.SelectedPage);
+                        parentVM.LoadPageAsync(parentVM.SelectedPage);
                     }
                 }
             }

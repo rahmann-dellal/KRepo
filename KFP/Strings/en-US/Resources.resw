@@ -296,9 +296,7 @@
     <value>Menu Items</value>
   </data>
   <data name="MenuItemTypeToolTip.Content" xml:space="preserve">
-    <value>Main : (Like pizzas or dishes) This will appear in the Main tab in the POS page.
-Add-on : (Like sauces or toppings) This will appear in the Add-on tab in the POS page.
-Universal (Not recommended) : This will appear in both tabs in the POS page.</value>
+    <value>Specify the Item's type for easy filtering in the Point of Sales Page</value>
   </data>
   <data name="Menu_items_list" xml:space="preserve">
     <value>Menu items</value>
@@ -337,10 +335,10 @@ Universal (Not recommended) : This will appear in both tabs in the POS page.</va
     <value>Picture</value>
   </data>
   <data name="POS" xml:space="preserve">
-    <value>POS</value>
+    <value>Point Of Sales</value>
   </data>
   <data name="POSTextBlock.Text" xml:space="preserve">
-    <value>POS</value>
+    <value>Point Of Sales</value>
   </data>
   <data name="RemoveButton.Label" xml:space="preserve">
     <value>Remove</value>
@@ -370,8 +368,8 @@ Universal (Not recommended) : This will appear in both tabs in the POS page.</va
   <data name="Thank_you" xml:space="preserve">
     <value>Thank you</value>
   </data>
-  <data name="Universal" xml:space="preserve">
-    <value>Universal</value>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
   </data>
   <data name="upload_from_files_link.Text" xml:space="preserve">
     <value>Click here to upload</value>
@@ -412,5 +410,8 @@ Universal (Not recommended) : This will appear in both tabs in the POS page.</va
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="Drink" xml:space="preserve">
+    <value>Drink</value>
   </data>
 </root>

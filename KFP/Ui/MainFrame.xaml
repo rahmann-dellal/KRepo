@@ -119,9 +119,7 @@
             </NavigationViewItem>
         </NavigationView.FooterMenuItems>
 
-        <ScrollViewer>
-            <Frame x:Name="ContentFrame" IsTabStop="True" x:FieldModifier="public"/>
-        </ScrollViewer>
+        <Frame x:Name="ContentFrame" IsTabStop="True" x:FieldModifier="public"/>
 
 
     </NavigationView>

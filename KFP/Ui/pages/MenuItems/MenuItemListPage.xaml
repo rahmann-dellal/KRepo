@@ -11,7 +11,7 @@
     xmlns:converters="using:KFP.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" xmlns:input="using:CommunityToolkit.Mvvm.Input"
-    x:Name="myPage">
+    x:Name="myPage" Loaded="myPage_LoadedAsync">
     
     <Page.Resources>
         <converters:MenuItemTypeConverter x:Key="menuItemTypeConverter"/>
@@ -23,9 +23,9 @@
 
     <Grid x:Name="PageContent" Margin="80,40,20, 0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" MaxHeight="50"/>
+            <RowDefinition Height="auto" MaxHeight="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>

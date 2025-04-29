@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="KFP.Ui.pages.OrderingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KFP.Ui.pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:views="using:KFP.Ui.pages"
+    xmlns:vm="using:KFP.ViewModels" DataContext="{x:Bind ViewModel}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" >
+            <Grid Margin="0,20,30,0">
+                <TextBlock Text="Point Of Sales" FontSize="24" FontWeight="SemiBold" Margin="60,0,0,0" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Background="#FFF4F4F4" CornerRadius="5">
+                    <TextBlock Text="Go to : " FontWeight="SemiBold" VerticalAlignment="Center" Margin="50,0,80,0"/>
+                    <HyperlinkButton Margin="0,0,50,0"  CornerRadius="2" BorderThickness="0" BorderBrush="{ThemeResource SystemAccentColor}" Width="200" Height="40">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tables" FontSize="16" Margin="0,0,20,0" VerticalAlignment="Center" />
+                            <PathIcon Data="{StaticResource TablesIconData}"/>
+                            <Line Stroke="Black" StrokeThickness="2"></Line>
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton Margin="0,0,20,0" CornerRadius="2"  BorderThickness="0"   BorderBrush="{ThemeResource SystemAccentColor}" Width="200" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Orders" FontSize="16" Margin="0,0,20,0"/>
+                            <PathIcon Data="{StaticResource OrdersIconData}"/>
+                        </StackPanel>
+                    </HyperlinkButton>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Grid Margin="20,10,0,0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+
+
+
+            <!-- Order section -->
+            <StackPanel Grid.Column="0 " Margin="0,10,10,10">
+                <TextBlock Text="Order For" HorizontalAlignment="Center" Margin="0,0,0,10" FontSize="12" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" >
+                    <Button Margin="0,0,10,0" Height="50" >
+                        <StackPanel Orientation="Horizontal">
+                            <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"/>
+                            <TextBlock Text="Counter" Margin="0,0,20,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="0,0,10,0" Height="50" BorderBrush="LawnGreen" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal">
+                            <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0"  Foreground="LawnGreen"/>
+                            <TextBlock Text="Table" Margin="0,0,10,0"/>
+                            <TextBlock Text="12" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="0,0,0,0" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"/>
+                            <TextBlock Text="Delivery" Margin="0,0,10,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <!--<Line X1="0" Y1="0" X2="300" Y2="0" Stroke="LightGray" StrokeThickness="1"
+                      Margin="0,10,0,10" HorizontalAlignment="Center"/>-->
+                <views:OrderView Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Center" />
+                <Button  Command="{Binding SendToKitchenCommand}" Width="300" Height="50" Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Take Order" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
+                        <FontIcon Glyph="&#xE70D;" FontSize="22" FontWeight="ExtraBold"/>
+                    </StackPanel>
+                </Button>
+
+                <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Content="Pay Cash" Command="{Binding ConfirmPaymentCashCommand}" />
+                    <Button Content="Pay Card" Command="{Binding ConfirmPaymentCardCommand}" Margin="5,0,0,0" />
+                    <Button Content="Clear" Command="{Binding ClearOrderCommand}" Margin="5,0,0,0" />
+                </StackPanel>-->
+            </StackPanel>
+
+            <!-- Menu Item Selector -->
+            <views:MenuItemSelector Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</Page>

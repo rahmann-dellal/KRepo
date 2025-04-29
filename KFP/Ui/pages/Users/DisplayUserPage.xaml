@@ -8,53 +8,54 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:converters="using:KFP.Converters">
-
     <Page.Resources>
         <converters:RoleConverter x:Key="roleConverter"/>
         <converters:AvatarCodeToImageSourceConverter x:Key="avatarConverter"/>
     </Page.Resources>
 
-    <Grid Margin="100,50,30,30">
+    <ScrollViewer>
+        <Grid Margin="100,50,30,30">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-            <TextBlock x:Uid="Username" FontSize="16"/>
-            <TextBlock Text="{x:Bind viewModel.User.UserName}" Margin="15,10,0,0" FontSize="22"/>
-            <TextBlock x:Uid="UserRole" FontSize="16" Margin="0,20,0,0" />
-            <TextBlock Text="{x:Bind viewModel.User.Role, Converter={StaticResource roleConverter}}" Margin="15,10,0,0" FontSize="22"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-            <Image Source="{x:Bind viewModel.User.avatarCode, Converter={StaticResource avatarConverter}}"
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                <TextBlock x:Uid="Username" FontSize="16"/>
+                <TextBlock Text="{x:Bind viewModel.User.UserName}" Margin="15,10,0,0" FontSize="22"/>
+                <TextBlock x:Uid="UserRole" FontSize="16" Margin="0,20,0,0" />
+                <TextBlock Text="{x:Bind viewModel.User.Role, Converter={StaticResource roleConverter}}" Margin="15,10,0,0" FontSize="22"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
+                <Image Source="{x:Bind viewModel.User.avatarCode, Converter={StaticResource avatarConverter}}"
                Margin="15,20,0,0" Width="120" Height="120" HorizontalAlignment="Left"/>
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0">
-            <Button Width="200" HorizontalContentAlignment="Center"
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0">
+                <Button Width="200" HorizontalContentAlignment="Center"
             Foreground="{ThemeResource TextOnAccentFillColorPrimary}" Background="{ThemeResource AccentFillColorDefaultBrush}" BorderBrush="{ThemeResource ProgressBarBorderThemeBrush}"
             Command="{x:Bind viewModel.goToEditUserCommand}">
-                <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE70F;" />
-                    <TextBlock x:Uid="Edit_user_Button" Margin="38,0,0,0"/>
-                </StackPanel>
-            </Button>
-            <Button Width="200" HorizontalContentAlignment="Center"
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE70F;" />
+                        <TextBlock x:Uid="Edit_user_Button" Margin="38,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button Width="200" HorizontalContentAlignment="Center"
                 Margin="20,0,0,0" 
                 Foreground="{ThemeResource SystemFillColorCaution}" BorderBrush="{ThemeResource SystemFillColorCaution}" Background="{ThemeResource SystemFillColorCautionBackground}"
                 Command="{x:Bind viewModel.DeleteUserCommand}">
-                <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE74D;" />
-                    <TextBlock x:Uid="Delete_user_Button" Margin="38,0,0,0"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE74D;" />
+                        <TextBlock x:Uid="Delete_user_Button" Margin="38,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

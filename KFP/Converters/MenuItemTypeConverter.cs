@@ -18,19 +18,23 @@ namespace KFP.Converters
             {
                 MenuItemType? type = (MenuItemType?)value;
                 if (type == MenuItemType.Main)
-                { 
+                {
                     return StringLocalisationService.getStringWithKey("Main");
                 }
                 else if (type == MenuItemType.Addon)
                 {
                     return StringLocalisationService.getStringWithKey("Addon");
                 }
-                else if (type == MenuItemType.Universal || type == null)
+                else if (type == MenuItemType.Drink)
                 {
-                    return StringLocalisationService.getStringWithKey("Universal");
+                    return StringLocalisationService.getStringWithKey("Drink");
+                }
+                else if (type == MenuItemType.Other || type == null)
+                {
+                    return StringLocalisationService.getStringWithKey("Other");
                 }
             }
-            throw new Exception();
+            throw new NotImplementedException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

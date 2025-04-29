@@ -32,10 +32,9 @@ namespace KFP.Ui.pages
         {
             viewModel = Ioc.Default.GetService<MenuItemListVM>();
             viewModel.showConfirmDeleteDialog = ShowConfirmDeleteDialog;
-            viewModel.LoadPage();
             this.InitializeComponent();
         }
-
+        
         public async Task<bool> ShowConfirmDeleteDialog(string itemName)
         {
             ContentDialog confirmDialog = new ContentDialog();
@@ -59,6 +58,11 @@ namespace KFP.Ui.pages
         {
             RelayCommand? command = e.AddedItems.FirstOrDefault() as RelayCommand;
             command?.Execute(null);
+        }
+
+        private async void myPage_LoadedAsync(object sender, RoutedEventArgs e)
+        {
+            await viewModel.LoadPageAsync();
         }
     }
 }

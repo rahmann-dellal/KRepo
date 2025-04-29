@@ -47,8 +47,8 @@ namespace KFP.Ui
                 if (InvokedNVI == POSNVI)
                 {
                     selectedNVI = POSNVI;
-                    ContentFrame.Navigate(typeof(POSPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("POS");
+                    ContentFrame.Navigate(typeof(OrderingPage));
+                    NavView.Header = null;//StringLocalisationService.getStringWithKey("POS");
                 }
                 else if (InvokedNVI == ListMenuItemsNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {

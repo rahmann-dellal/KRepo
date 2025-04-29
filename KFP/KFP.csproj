@@ -65,6 +65,7 @@
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-150.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-400.png" />
+    <None Remove="Assets\Images\TablesIcon.svg" />
     <None Remove="Ui\ClockInFrame.xaml" />
     <None Remove="Ui\Components\KioberNumberBox.xaml" />
     <None Remove="Ui\Components\PINInput.xaml" />
@@ -75,7 +76,9 @@
     <None Remove="Ui\pages\EditUserPage.xaml" />
     <None Remove="Ui\pages\MenuItemListPage.xaml" />
     <None Remove="Ui\pages\MenuItems\CategoriesPage.xaml" />
-    <None Remove="Ui\pages\POSPage.xaml" />
+    <None Remove="Ui\pages\Order\MenuItemSelector.xaml" />
+    <None Remove="Ui\pages\Order\OrderingPage.xaml" />
+    <None Remove="Ui\pages\Order\OrderView.xaml" />
     <None Remove="Ui\pages\SessionPage.xaml" />
     <None Remove="Ui\pages\SettingsPage.xaml" />
     <None Remove="Ui\pages\UserListPage.xaml" />
@@ -151,6 +154,15 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Ui\pages\Order\OrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Ui\pages\Order\OrderingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Ui\pages\Order\MenuItemSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Ui\Components\KioberNumberBox.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,11 +204,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Ui\pages\UserListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Ui\pages\POSPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

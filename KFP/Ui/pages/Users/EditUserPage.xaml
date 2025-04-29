@@ -11,67 +11,69 @@
     xmlns:custom="using:KFP.Ui.Components"
     xmlns:users="using:KFP.DATA">
 
-    <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
-        <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-            <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Click="saveButton_Click"  FontWeight="SemiBold"/>
-            <AppBarButton Icon="Refresh" x:Uid="UserResetButton" Click="resetButton_Click" x:Name="resetButton"  FontWeight="SemiBold"/>
-        </CommandBar>
-        <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
+    <ScrollViewer>
+        <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
+            <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
+                <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Click="saveButton_Click"  FontWeight="SemiBold"/>
+                <AppBarButton Icon="Refresh" x:Uid="UserResetButton" Click="resetButton_Click" x:Name="resetButton"  FontWeight="SemiBold"/>
+            </CommandBar>
+            <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
            Foreground="OrangeRed" FontSize="12"/>
-        <Grid Margin="140,0,30,30">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                <TextBox  Width="230" HorizontalAlignment="Left" TextChanged="TextBox_TextChanged" x:Name="userNameTextBox">
-                    <TextBox.Header>
-                        <TextBlock x:Uid="Choose_Username"/>
-                    </TextBox.Header>
-                </TextBox>
-                <TextBlock x:Name="usernameErrorBlock" Foreground="OrangeRed" FontSize="12"/>
-                <ComboBox  Width="230" HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged" x:Name="RoleComboBox" Visibility="{x:Bind isNotLoggedUser()}">
-                    <ComboBox.Header>
-                        <TextBlock x:Uid="Choose_Role" Margin="0,20,0,0"/>
-                    </ComboBox.Header>
-                    <ComboBoxItem x:Uid="AddUserCashier" DataContext="{x:Bind users:UserRole.Cashier}" Visibility="{x:Bind UserHasPrivelegesOf(users:UserRole.Manager)}"/>
-                    <ComboBoxItem x:Uid="AddUserManager" DataContext="{x:Bind users:UserRole.Manager}" Visibility="{x:Bind UserHasPrivelegesOf(users:UserRole.Admin)}"/>
-                    <ComboBoxItem x:Uid="AddUserAdmin" DataContext="{x:Bind users:UserRole.Admin}" Visibility="{x:Bind UserHasPrivelegesOf(users:UserRole.Admin)}"/>
-                </ComboBox>
-                <TextBlock x:Name="RoleErrorBlock" Foreground="OrangeRed" FontSize="12" Visibility="{x:Bind isNotLoggedUser()}"/>
+            <Grid Margin="140,0,30,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <TextBox  Width="230" HorizontalAlignment="Left" TextChanged="TextBox_TextChanged" x:Name="userNameTextBox">
+                        <TextBox.Header>
+                            <TextBlock x:Uid="Choose_Username"/>
+                        </TextBox.Header>
+                    </TextBox>
+                    <TextBlock x:Name="usernameErrorBlock" Foreground="OrangeRed" FontSize="12"/>
+                    <ComboBox  Width="230" HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged" x:Name="RoleComboBox" Visibility="{x:Bind isNotLoggedUser()}">
+                        <ComboBox.Header>
+                            <TextBlock x:Uid="Choose_Role" Margin="0,20,0,0"/>
+                        </ComboBox.Header>
+                        <ComboBoxItem x:Uid="AddUserCashier" DataContext="{x:Bind users:UserRole.Cashier}" Visibility="{x:Bind UserHasPrivelegesOf(users:UserRole.Manager)}"/>
+                        <ComboBoxItem x:Uid="AddUserManager" DataContext="{x:Bind users:UserRole.Manager}" Visibility="{x:Bind UserHasPrivelegesOf(users:UserRole.Admin)}"/>
+                        <ComboBoxItem x:Uid="AddUserAdmin" DataContext="{x:Bind users:UserRole.Admin}" Visibility="{x:Bind UserHasPrivelegesOf(users:UserRole.Admin)}"/>
+                    </ComboBox>
+                    <TextBlock x:Name="RoleErrorBlock" Foreground="OrangeRed" FontSize="12" Visibility="{x:Bind isNotLoggedUser()}"/>
 
-                <TextBlock Margin="0,22,0,0" x:Uid="choose_an_avatar"/>
+                    <TextBlock Margin="0,22,0,0" x:Uid="choose_an_avatar"/>
 
-                <ListBox MaxHeight="450" MaxWidth="450" Margin="40,30,0,0" ScrollViewer.VerticalScrollMode="Enabled" HorizontalAlignment="Left"
+                    <ListBox MaxHeight="450" MaxWidth="450" Margin="40,30,0,0" ScrollViewer.VerticalScrollMode="Enabled" HorizontalAlignment="Left"
                  x:Name="avatarListBox" SelectionChanged="avatarListBox_SelectionChanged">
-                    <ListBox.Resources>
-                        <Style TargetType="Image">
-                            <Setter Property="Width" Value="80"/>
-                            <Setter Property="Height" Value="70"/>
-                            <Setter Property="Margin" Value="5,5,5,5"/>
-                        </Style>
-                    </ListBox.Resources>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <controls:WrapPanel HorizontalAlignment="Center" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/boringAvatar.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_1.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_2.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_3.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_4.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_5.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_6.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_7.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_8.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_9.png"/>
-                    <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_10.png"/>
-                </ListBox>
-            </StackPanel>
+                        <ListBox.Resources>
+                            <Style TargetType="Image">
+                                <Setter Property="Width" Value="80"/>
+                                <Setter Property="Height" Value="70"/>
+                                <Setter Property="Margin" Value="5,5,5,5"/>
+                            </Style>
+                        </ListBox.Resources>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <controls:WrapPanel HorizontalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/boringAvatar.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_1.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_2.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_3.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_4.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_5.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_6.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_7.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_8.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_9.png"/>
+                        <Image Source="ms-appx://KFP/Assets/Images/Toons/toon_10.png"/>
+                    </ListBox>
+                </StackPanel>
 
-            <custom:PINInput Grid.Column="1" 
+                <custom:PINInput Grid.Column="1" 
                      HorizontalAlignment="Center" Height="auto" x:Name="pinPad" PinChanged="pinPad_PinChanged"/>
-        </Grid>
-    </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
