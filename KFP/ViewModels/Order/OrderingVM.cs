@@ -14,6 +14,9 @@ namespace KFP.ViewModels
 {
     public class OrderingVM : KioberViewModelBase
     {
+        public MenuItemSelectorVM menuItemSelectorVM;
+        public OrderVM orderVM;
+
         private KFPContext dbContext;
         public ObservableCollection<MenuItem> MenuItems { get; set; } = new();
         public ObservableCollection<Category> Categories { get; set; } = new();
@@ -32,48 +35,35 @@ namespace KFP.ViewModels
             set { _selectedOrderItem = value; OnPropertyChanged(); }
         }
 
-        public ICommand AddQuantityCommand { get; }
-        public ICommand ReduceQuantityCommand { get; }
-        public ICommand DeleteOrderItemCommand { get; }
         public ICommand SendToKitchenCommand { get; }
         public ICommand ConfirmPaymentCashCommand { get; }
         public ICommand ConfirmPaymentCardCommand { get; }
-        public ICommand ClearOrderCommand { get; }
 
-        public OrderingVM(KFPContext context)
+        public OrderingVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, OrderVM orderVM)
         {
             dbContext = context;
-            AddQuantityCommand = new RelayCommand(() => AddQuantity());
-            ReduceQuantityCommand = new RelayCommand(() => ReduceQuantity());
-            DeleteOrderItemCommand = new RelayCommand(() => DeleteOrderItem());
             SendToKitchenCommand = new RelayCommand(() => SendToKitchen());
             ConfirmPaymentCashCommand = new RelayCommand(() => ConfirmPayment("Cash"));
             ConfirmPaymentCardCommand = new RelayCommand(() => ConfirmPayment("Card"));
-            ClearOrderCommand = new RelayCommand(() => ClearOrder());
+            this.menuItemSelectorVM = menuItemSelectorVM;
+            this.orderVM = orderVM;
+
+            menuItemSelectorVM.PropertyChanged += MenuItemSelectorVM_PropertyChanged;
         }
 
-        private void AddQuantity()
+        private void MenuItemSelectorVM_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (SelectedOrderItem != null)
-                SelectedOrderItem.Quantity++;
+            if(e.PropertyName == nameof(menuItemSelectorVM.SelectedMenuItem))
+            {
+                orderVM.OnMenuItemSelected(menuItemSelectorVM.SelectedMenuItem);
+            } 
         }
 
-        private void ReduceQuantity()
-        {
-            if (SelectedOrderItem != null && SelectedOrderItem.Quantity > 1)
-                SelectedOrderItem.Quantity--;
-        }
-
-        private void DeleteOrderItem()
-        {
-            if (SelectedOrderItem != null)
-                CurrentOrder.OrderItems.Remove(SelectedOrderItem);
-        }
 
         private void SendToKitchen()
         {
             CurrentOrder.Status = OrderStatus.Preparing;
-            CurrentOrder.SendToKitchenAt = DateTime.Now;
+            CurrentOrder.isPreparing = DateTime.Now;
         }
 
         private void ConfirmPayment(string method)
@@ -81,11 +71,6 @@ namespace KFP.ViewModels
             // handle payment logic
             CurrentOrder.Status = OrderStatus.Completed;
             CurrentOrder.CompletedAt = DateTime.Now;
-        }
-
-        private void ClearOrder()
-        {
-            CurrentOrder = new KFP.DATA.Order();
         }
     }
 

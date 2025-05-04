@@ -26,58 +26,50 @@ namespace KFP.Ui.pages
 {
     public sealed partial class MenuItemSelector : UserControl
     {
-        public static readonly DependencyProperty SelectedMenuItemProperty = DependencyProperty.Register(
-            nameof(SelectedMenuItem),
-            typeof(MenuItem),
-            typeof(MenuItemSelector),
-            new PropertyMetadata(null, OnSelectedMenuItemChanged));
+        public static readonly DependencyProperty ViewModelProperty =
+            DependencyProperty.Register(
+                nameof(ViewModel),
+                typeof(MenuItemSelectorVM),
+                typeof(MenuItemSelector),
+                new PropertyMetadata(null));
 
-
-        public MenuItem? SelectedMenuItem
+        public MenuItemSelectorVM ViewModel
         {
-            get {
-                if (ViewModel != null)
-                    return ViewModel.SelectedMenuItem;
-                else
-                    return null;
-            } 
-            set {
-                if(ViewModel != null)
-                    ViewModel.SelectedMenuItem = value;
-            } 
+            get
+            {
+                return (MenuItemSelectorVM)GetValue(ViewModelProperty);
+            }
+            set
+            {
+                SetValue(ViewModelProperty, value);
+                ViewModelLoaded();
+            }
         }
-
-        
-        public MenuItemSelectorVM ViewModel { get; private set; }
         public MenuItemSelector()
         {
-            ViewModel = Ioc.Default.GetService<MenuItemSelectorVM>();
-
             var menuItemTypes = Enum.GetValues(typeof(MenuItemType)).Cast<MenuItemType>().ToList();
-
             this.InitializeComponent();
-
-            ViewModel.LoadAsync().ConfigureAwait(false);
-
-            if (ViewModel.MenuItemTypeFilter == MenuItemType.Main)
-                TypeSelectorBar.SelectedItem = Main;
-            else if (ViewModel.MenuItemTypeFilter == MenuItemType.Addon)
-                TypeSelectorBar.SelectedItem = AddOns;
-            else if (ViewModel.MenuItemTypeFilter == MenuItemType.Drink)
-                TypeSelectorBar.SelectedItem = Drink;
-            else if (ViewModel.MenuItemTypeFilter == MenuItemType.Other)
-                TypeSelectorBar.SelectedItem = Other;
-            else
-                TypeSelectorBar.SelectedItem = all;
-
-            ViewModel.PropertyChanged += (s, e) =>
-            {
-                if (e.PropertyName == nameof(ViewModel.SelectedMenuItem))
-                {
-                    SetValue(SelectedMenuItemProperty, ViewModel.SelectedMenuItem);
-                }
-            };  
         }
+
+        private void ViewModelLoaded()
+        {
+            if (ViewModel != null)
+            {
+                if (ViewModel.MenuItemTypeFilter == MenuItemType.Main)
+                    TypeSelectorBar.SelectedItem = Main;
+                else if (ViewModel.MenuItemTypeFilter == MenuItemType.Addon)
+                    TypeSelectorBar.SelectedItem = AddOns;
+                else if (ViewModel.MenuItemTypeFilter == MenuItemType.Drink)
+                    TypeSelectorBar.SelectedItem = Drink;
+                else if (ViewModel.MenuItemTypeFilter == MenuItemType.Other)
+                    TypeSelectorBar.SelectedItem = Other;
+                else
+                    TypeSelectorBar.SelectedItem = all;
+
+                ViewModel.LoadAsync().ConfigureAwait(false);
+            }
+        }
+
         private static void OnSelectedMenuItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is MenuItemSelector selector && selector.ViewModel != null)

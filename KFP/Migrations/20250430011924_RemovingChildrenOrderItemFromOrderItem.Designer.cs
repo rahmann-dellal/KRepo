@@ -3,6 +3,7 @@ using System;
 using KFP.DATA_Access;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KFP.Migrations
 {
     [DbContext(typeof(KFPContext))]
-    partial class KFPContextModelSnapshot : ModelSnapshot
+    [Migration("20250430011924_RemovingChildrenOrderItemFromOrderItem")]
+    partial class RemovingChildrenOrderItemFromOrderItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
@@ -182,6 +185,9 @@ namespace KFP.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("SendToKitchenAt")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("ServedAt")
                         .HasColumnType("TEXT");
 
@@ -193,9 +199,6 @@ namespace KFP.Migrations
 
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("isPreparing")
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

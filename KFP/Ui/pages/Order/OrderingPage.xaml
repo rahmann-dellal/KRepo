@@ -38,16 +38,23 @@
         </StackPanel>
         <Grid Margin="20,10,0,0" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
 
 
             <!-- Order section -->
-            <StackPanel Grid.Column="0 " Margin="0,10,10,10">
-                <TextBlock Text="Order For" HorizontalAlignment="Center" Margin="0,0,0,10" FontSize="12" FontWeight="Bold"/>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" >
+            <Grid Grid.Column="0 " Margin="0,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" MinHeight="100"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Order For" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,10" FontSize="12" FontWeight="Bold"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" >
                     <Button Margin="0,0,10,0" Height="50" >
                         <StackPanel Orientation="Horizontal">
                             <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"/>
@@ -68,12 +75,11 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <!--<Line X1="0" Y1="0" X2="300" Y2="0" Stroke="LightGray" StrokeThickness="1"
-                      Margin="0,10,0,10" HorizontalAlignment="Center"/>-->
-                <views:OrderView Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Center" />
-                <Button  Command="{Binding SendToKitchenCommand}" Width="300" Height="50" Margin="0,10,0,0" HorizontalAlignment="Center">
+                
+                <views:OrderView ViewModel="{x:Bind ViewModel.orderVM}" Grid.Row="2" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button Grid.Row="3" Command="{Binding SendToKitchenCommand}" Width="300" Height="50" Margin="0,10,0,20" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Take Order" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
+                        <TextBlock Text="Take Order" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/> 
                         <FontIcon Glyph="&#xE70D;" FontSize="22" FontWeight="ExtraBold"/>
                     </StackPanel>
                 </Button>
@@ -83,10 +89,10 @@
                     <Button Content="Pay Card" Command="{Binding ConfirmPaymentCardCommand}" Margin="5,0,0,0" />
                     <Button Content="Clear" Command="{Binding ClearOrderCommand}" Margin="5,0,0,0" />
                 </StackPanel>-->
-            </StackPanel>
+            </Grid>
 
             <!-- Menu Item Selector -->
-            <views:MenuItemSelector Grid.Column="1"/>
+            <views:MenuItemSelector Grid.Column="1" ViewModel="{x:Bind ViewModel.menuItemSelectorVM}"/>
         </Grid>
     </Grid>
 </Page>

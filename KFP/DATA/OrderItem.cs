@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,27 @@ namespace KFP.DATA
         public MenuItem? MenuItem { get; set; } = null!;
         public string MenuItemName { get; set; } = string.Empty;
 
-        public int Quantity { get; set; }
+        [NotMapped]
+        private int _quantity = 1;
+        public int Quantity { 
+            get
+            {
+                return _quantity;
+            } 
+            set
+            {
+                if (value < 1)
+                {
+                    _quantity = 1;
+                }
+                else
+                {
+                    _quantity = value;
+                }
+                OnPropertyChanged(nameof(Quantity));
+                OnPropertyChanged(nameof(TotalPrice));
+            } 
+        }
         public double UnitPrice { get; set; }
 
         [NotMapped]
@@ -31,8 +52,13 @@ namespace KFP.DATA
         public int? ParentOrderItemId { get; set; }
         public OrderItem? ParentOrderItem { get; set; }
 
-        public List<OrderItem> AddOns { get; set; }
-        public List<OrderItem> ChildrenOrderItems { get; set; } 
+        public List<OrderItem> AddOns { get; set; } = new();
+
+        [NotMapped]
+        public bool IsAddOn => ParentOrderItem != null;
+
+        [NotMapped]
+        public ObservableCollection<OrderItem> AddOnItems { get; set; } = new(); //Only used in UI
     }
 
 }

@@ -33,7 +33,7 @@ namespace KFP.DATA
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
-        public DateTime? SendToKitchenAt { get; set; }
+        public DateTime? isPreparing { get; set; }
         public DateTime? CompletedAt { get; set; }
         public DateTime? ServedAt { get; set; }
         public DateTime? CanceledAt { get; set; }

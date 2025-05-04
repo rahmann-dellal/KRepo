@@ -20,7 +20,7 @@
                 IsBackEnabled="False"
                 IsBackButtonVisible="Collapsed"
                 x:FieldModifier="public"
-                IsSettingsVisible="{x:Bind UserHasPrivelegesOf(data:UserRole.Manager)}">
+                IsSettingsVisible="{x:Bind UserHasPrivelegesOf(data:UserRole.Manager)}" IsPaneOpen="False">
 
         <!--TODO:Create a png logo with photoshop and place it as paneheader-->
         <!--<NavigationView.PaneHeader>
@@ -32,7 +32,7 @@
                     <TextBlock x:Uid="POSTextBlock"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xEC59;"/>
+                    <FontIcon Glyph="&#xE7F4;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
 

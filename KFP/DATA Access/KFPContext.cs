@@ -96,7 +96,7 @@ namespace KFP.DATA_Access
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.ParentOrderItem)
-                .WithMany(oi => oi.ChildrenOrderItems)
+                .WithMany(oi => oi.AddOns)
                 .HasForeignKey(oi => oi.ParentOrderItemId)
                 .OnDelete(DeleteBehavior.Cascade); 
 

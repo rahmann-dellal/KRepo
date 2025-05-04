@@ -1,0 +1,28 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace KFP.Migrations
+{
+    /// <inheritdoc />
+    public partial class RenamingSendTokitchenToPreparingInOrder : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameColumn(
+                name: "SendToKitchenAt",
+                table: "Orders",
+                newName: "isPreparing");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameColumn(
+                name: "isPreparing",
+                table: "Orders",
+                newName: "SendToKitchenAt");
+        }
+    }
+}
