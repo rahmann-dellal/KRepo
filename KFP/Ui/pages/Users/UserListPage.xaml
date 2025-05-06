@@ -19,7 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <Grid HorizontalAlignment="Stretch" Grid.Row="0">
