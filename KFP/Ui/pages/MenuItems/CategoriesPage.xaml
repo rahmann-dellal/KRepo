@@ -12,41 +12,47 @@
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Key="boolTovisibilityConverter"/>
     </Page.Resources>
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,40,0,0">
-        <StackPanel x:Name="ListPanel">
-            <CommandBar Margin="0,20,0,30" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-                <AppBarButton Icon="Add" x:Uid="AddButton" x:Name="addButton" Command="{x:Bind ShowAddCategoryPanelCommand}"/>
-                <AppBarButton Icon="Edit" x:Uid="EditButton" x:Name="editButton" Command="{x:Bind ShowEditiCategoryPanelCommand}"/>
-                <AppBarButton Icon="Delete" x:Uid="DeleteButton" x:Name="deleteButton" Command="{x:Bind DeleteCategoryCommand}" Background="LightCoral"/>
-            </CommandBar>
 
-            <StackPanel x:Name="EditingPanel" Orientation="Vertical" Margin="0,0,0,20" HorizontalAlignment="Center">
-                <TextBlock FontWeight="Bold" FontSize="18" x:Name="new_categoty_text_block" HorizontalAlignment="Left" Margin="0,0,0,10"/>
-                <RelativePanel>
-                    <TextBox x:Uid="new_name" x:Name="name_textbox" Width="200" TextChanged="name_textbox_TextChanged"/>
-                    <CommandBar DefaultLabelPosition="Right" RelativePanel.RightOf="name_textbox" Margin="0,15,0,0">
-                        <AppBarButton Icon="Save" x:Uid="SaveButton" Command="{x:Bind SaveCommand}" Background="LightGreen"/>
-                        <AppBarButton Icon="Cancel" x:Uid="CancelButton" Command="{x:Bind CancelCommand}"/>
-                    </CommandBar>
-                    <TextBlock x:Name="nameErrorBlock" Foreground="OrangeRed" FontSize="12" RelativePanel.Below="name_textbox" Margin="10,6,0,0"/>
-                </RelativePanel>
-            </StackPanel>
+    <Grid x:Name="ListPanel" HorizontalAlignment="Center" Margin="0,40,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <CommandBar Margin="0,20,0,30" DefaultLabelPosition="Right"  HorizontalAlignment="Center" Grid.Row="0">
+            <AppBarButton Icon="Add" x:Uid="AddButton" x:Name="addButton" Command="{x:Bind ShowAddCategoryPanelCommand}"/>
+            <AppBarButton Icon="Edit" x:Uid="EditButton" x:Name="editButton" Command="{x:Bind ShowEditiCategoryPanelCommand}"/>
+            <AppBarButton Icon="Delete" x:Uid="DeleteButton" x:Name="deleteButton" Command="{x:Bind DeleteCategoryCommand}" Background="LightCoral"/>
+        </CommandBar>
 
-            <Border BorderThickness="2" BorderBrush="LightGray" CornerRadius="6" Width="400" MinHeight="100" x:Name="listBorder">
-                <ListView x:Name="CategoriesListView" ItemsSource="{x:Bind _categories}" SelectedItem="{x:Bind selectedCategory, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="data:Category">
-                            <TextBlock Text="{x:Bind CategoryName}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Border>
-
-            <Border BorderThickness="2" BorderBrush="LightGray" CornerRadius="6" Width="400" MinHeight="100" x:Name="NothingBorder">
-                <TextBlock x:Name="NothingTextBlock" x:Uid="NothingTextBlock"
-                VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </Border>
+        <StackPanel x:Name="EditingPanel" Orientation="Vertical" Margin="0,0,0,20" HorizontalAlignment="Center" Grid.Row="1">
+            <TextBlock FontWeight="Bold" FontSize="18" x:Name="new_categoty_text_block" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+            <RelativePanel>
+                <TextBox x:Uid="new_name" x:Name="name_textbox" Width="200" TextChanged="name_textbox_TextChanged"/>
+                <CommandBar DefaultLabelPosition="Right" RelativePanel.RightOf="name_textbox" Margin="0,15,0,0">
+                    <AppBarButton Icon="Save" x:Uid="SaveButton" Command="{x:Bind SaveCommand}" Background="LightGreen"/>
+                    <AppBarButton Icon="Cancel" x:Uid="CancelButton" Command="{x:Bind CancelCommand}"/>
+                </CommandBar>
+                <TextBlock x:Name="nameErrorBlock" Foreground="OrangeRed" FontSize="12" RelativePanel.Below="name_textbox" Margin="10,6,0,0"/>
+            </RelativePanel>
         </StackPanel>
 
-    </StackPanel>
+        <Border BorderThickness="2" BorderBrush="LightGray" CornerRadius="6" Margin="0,0,0,150" VerticalAlignment="Center"
+                Width="400" MinHeight="100" x:Name="listBorder" Grid.Row="2">
+            <ListView x:Name="CategoriesListView" ItemsSource="{x:Bind _categories}" SelectedItem="{x:Bind selectedCategory, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Category">
+                        <TextBlock Text="{x:Bind CategoryName}" TextWrapping="Wrap"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
+        <Border BorderThickness="2" BorderBrush="LightGray"  Grid.Row="2" Margin="0,0,0,150"
+                        CornerRadius="6" Width="400" MinHeight="100" x:Name="NothingBorder">
+            <TextBlock x:Name="NothingTextBlock" x:Uid="NothingTextBlock"
+                VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+
 </Page>
