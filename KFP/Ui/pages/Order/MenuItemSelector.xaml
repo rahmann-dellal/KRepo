@@ -12,19 +12,19 @@
    xmlns:converters="using:KFP.Converters"  
    mc:Ignorable="d"  
    DataContext="{x:Bind ViewModel}"  
-   x:Name="selector">  
+   x:Name="selector">
 
-   <UserControl.Resources>  
-       <converters:BoolToBrushConverter x:Key="boolToBrushConverter" />
+    <UserControl.Resources>
+        <converters:BoolToBrushConverter x:Key="boolToBrushConverter" />
         <converters:MenuItemTypeConverter x:Key="menuItemTypeConverter" />
-    </UserControl.Resources>  
+    </UserControl.Resources>
 
-   <Grid>  
-       <Grid.RowDefinitions>  
-           <RowDefinition Height="auto"/>  
-           <RowDefinition Height="*"/>  
-       </Grid.RowDefinitions>  
-       <!-- Filters -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Filters -->
 
         <StackPanel Orientation="Vertical" Margin="0,10,30,0" Grid.Row="0" >
 
@@ -38,9 +38,7 @@
                 </ItemsControl.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:Category">
-                        <Border>
                             <TextBlock Text="{x:Bind Path=CategoryName }" />
-                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -52,51 +50,51 @@
                 <SelectorBarItem x:Name="Drink" Text="Drinks"/>
                 <SelectorBarItem x:Name="Other" Text="Other"/>
             </SelectorBar>
-        </StackPanel>  
+        </StackPanel>
 
-       <!-- Menu Items List -->  
-     <Border Grid.Row="1" Margin="0,2,30,20" BorderBrush="{ThemeResource SystemAccentColor}" BorderThickness="0" CornerRadius="10" Background="#FFF4F4F4">
+        <!-- Menu Items List -->
+        <Border Grid.Row="1" Margin="0,2,30,20" BorderBrush="{ThemeResource SystemAccentColor}" BorderThickness="0" CornerRadius="10" Background="#FFF4F4F4">
             <ListView ItemsSource="{x:Bind ViewModel.FilteredMenuItems}"   
                       Margin="0,10,0,10"  
-                 SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay}" SelectionMode="None">  
-               <ItemsControl.ItemsPanel>  
-                   <ItemsPanelTemplate>  
-                       <controls:WrapPanel HorizontalAlignment="Center" />  
-                   </ItemsPanelTemplate>  
-               </ItemsControl.ItemsPanel>  
-               <ListView.ItemTemplate>  
-                   <DataTemplate x:DataType="vm:MenuItemElement">  
-                       <Button Command="{Binding Path=ViewModel.SelectMenuItemCommand, ElementName=selector}" CommandParameter="{Binding}" Click="Button_Click">  
-                           <Button.Template>  
-                               <ControlTemplate TargetType="Button">  
-                                   <Border Margin="5" Padding="5" Background="{StaticResource CardBackgroundFillColorDefaultBrush}"  
-                                           BorderBrush="{Binding IsSelected, Converter={StaticResource boolToBrushConverter}}"  
-                                           BorderThickness="{Binding IsSelected, Converter={StaticResource boolToBrushConverter}, ConverterParameter='1'}" CornerRadius="2" Width="200">  
-                                       <Grid>  
-                                           <Grid.ColumnDefinitions>  
-                                               <ColumnDefinition Width="auto" />  
-                                               <ColumnDefinition Width="*" />  
-                                           </Grid.ColumnDefinitions>  
-                                           <Border CornerRadius="4" Grid.Column="0" BorderThickness="2" BorderBrush="LightGray" Width="60" Height="60">  
-                                               <Image Source="{Binding ThumbnailUri}" Width="60" Height="60" Stretch="Fill" />  
-                                           </Border>  
-                                           <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Margin="20,5,0,0">  
-                                               <TextBlock Text="{Binding MenuItem.ItemName}" FontSize="18" Margin="0,0,0,10" FontWeight="Bold" HorizontalAlignment="Center"  
+                 SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay}" SelectionMode="None">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <controls:WrapPanel HorizontalAlignment="Center" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:MenuItemElement">
+                        <Button Command="{Binding Path=ViewModel.SelectMenuItemCommand, ElementName=selector}" CommandParameter="{Binding}" Click="Button_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Margin="0,5,0,5" Padding="5" Background="{StaticResource CardBackgroundFillColorDefaultBrush}" 
+                                            BorderBrush="{Binding IsSelected, Converter={StaticResource boolToBrushConverter}}" 
+                                            BorderThickness="{Binding IsSelected, Converter={StaticResource boolToBrushConverter}, ConverterParameter='1'}" CornerRadius="5" Width="200" Height="85">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border CornerRadius="4" Grid.Column="0" BorderThickness="2" BorderBrush="LightGray" Width="60" Height="60">
+                                                <Image Source="{Binding ThumbnailUri}" Width="60" Height="60" Stretch="Fill" />
+                                            </Border>
+                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Margin="5,5,0,0">
+                                                <TextBlock Text="{Binding MenuItem.ItemName}" FontSize="17" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Center"  
                                               TextWrapping="Wrap" TextTrimming="WordEllipsis"  LineStackingStrategy="BlockLineHeight" LineHeight="20"  
-                                               MaxHeight="50"/>  
-                                               <TextBlock  HorizontalAlignment="Center">  
+                                               MaxHeight="50"/>
+                                                <TextBlock  HorizontalAlignment="Center">  
                                                    <Run Text="{Binding MenuItem.SalePrice}" />  
-                                                   <Run Text="{Binding Currency}" />  
-                                               </TextBlock>  
-                                           </StackPanel>  
-                                       </Grid>  
-                                   </Border>  
-                               </ControlTemplate>  
-                           </Button.Template>  
-                       </Button>  
-                   </DataTemplate>  
-               </ListView.ItemTemplate>  
-           </ListView>  
-       </Border>  
-   </Grid>  
+                                                   <Run Text="{Binding Currency}" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+    </Grid>
 </UserControl>

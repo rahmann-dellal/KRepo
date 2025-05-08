@@ -20,14 +20,13 @@
         <converters:IndexOfItemConverter x:Key="IndexConverter"
                                 SourceList="{x:Bind viewModel.PageCommands}" />
     </Page.Resources>
-
     <Grid x:Name="PageContent" Margin="80,40,20, 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MaxHeight="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                     Grid.Row="0" Visibility="{x:Bind viewModel.isPagesCommandsVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
@@ -86,7 +85,7 @@
             <TextBlock Margin="0,5,30,0" x:Uid="ActionsTextBlock"  Grid.Column="4"  HorizontalAlignment="Center" FontSize="20"/>
         </Grid>
         <ListView x:Name="MenuItemslistView"  ItemsSource="{x:Bind viewModel.MenuItemlistElements}" Grid.Row="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                      ScrollViewer.VerticalScrollMode="Auto" SelectionMode="None">
+                      ScrollViewer.VerticalScrollMode="Auto" SelectionMode="None" Margin="0,0,0,20" BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Padding="0,20,0,10">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="vm:MenuItemListElement">
                     <Grid HorizontalAlignment="Stretch" Margin="0,0,0,10">
@@ -103,7 +102,8 @@
                         <Border CornerRadius="4" Grid.Column="0" BorderThickness="2" BorderBrush="LightGray" Width="80" Height="80">
                             <Image Source="{x:Bind ThumbnailUri}"  Width="80" Height="80" Stretch="Fill"/>
                         </Border>
-                        <TextBlock Text="{x:Bind menuItem.ItemName}" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind menuItem.ItemName}" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+                                   Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Text="{x:Bind menuItem.SalePrice}" Grid.Column="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Text="{x:Bind menuItem.MenuItemType, Converter={StaticResource menuItemTypeConverter}}"
                            Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>

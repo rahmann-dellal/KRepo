@@ -30,12 +30,12 @@
                 <FontIcon Glyph="&#xE74D;"  FontSize="24"/>
             </Button>
             <Button Command="{x:Bind ViewModel.ReduceQuantityCommand}" Grid.Column="2" MinWidth="80" Margin="0,0,0,0">
-                <FontIcon Glyph="&#xE73C;" FontSize="24" />
+                <FontIcon Glyph="&#xE738;" FontSize="24" />
             </Button>
         </Grid>
-        <Border Background="#FFF4F4F4" CornerRadius="2" Padding="10,10,0,10" Grid.Row="1" 
+        <Border Background="#FFF4F4F4" CornerRadius="10" Padding="10,10,0,10" Grid.Row="1" 
                 BorderThickness="0" BorderBrush="{ThemeResource SystemAccentColor}" 
-                 Margin="0,0,0,0" HorizontalAlignment="Center" Width="700">
+                 Margin="0,0,0,0" HorizontalAlignment="Center" MinWidth="650" MinHeight="200">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>

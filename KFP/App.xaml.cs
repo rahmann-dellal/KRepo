@@ -56,8 +56,8 @@ namespace KFP
             services.AddDbContext<KFPContext>();
 
             //VMs
-            services.AddSingleton<MenuItemSelectorVM>();
-            services.AddSingleton<OrderingVM>();
+            services.AddTransient<MenuItemSelectorVM>();
+            services.AddTransient<OrderingVM>();
             services.AddTransient<OrderVM>();
             services.AddTransient<DisplayUserVM>(); 
             services.AddTransient<EditUserVM>();

@@ -46,7 +46,9 @@ namespace KFP.ViewModels
             }
             set
             {
-                SetProperty(ref _selectedOrderItemElement, value);
+                _selectedOrderItemElement = value;
+                OnPropertyChanged(nameof(selectedOrderItemElement));
+                //SetProperty(ref _selectedOrderItemElement, value);
                 OnOrderItemElementSelected();
 
                 addQuantityCommand?.NotifyCanExecuteChanged();
@@ -98,6 +100,7 @@ namespace KFP.ViewModels
                     selectedOrderItemElement = element;
                 }
                 clearOrderCommand?.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(orderTotalPrice));
             }
         }
 
@@ -194,6 +197,7 @@ namespace KFP.ViewModels
         {
             OrderItemElements.Clear();
             selectedOrderItemElement = null;
+            clearOrderCommand?.NotifyCanExecuteChanged();
             OnPropertyChanged(nameof(orderTotalPrice));
         }
 
@@ -275,7 +279,6 @@ namespace KFP.ViewModels
                 element.ParentOrderItemElement = this;
                 this.AddOnItemElements.Add(element);
                 _orderVM.onAddedAddonDelegate?.Invoke(element);
-                _orderVM.OnPropertyChanged(nameof(_orderVM.orderTotalPrice));
             }
         }
     }

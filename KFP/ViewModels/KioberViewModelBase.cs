@@ -17,9 +17,9 @@ namespace KFP.ViewModels
         }
 
         // Removed the override keyword as the base method is not marked as virtual, abstract, or override
-        public new void OnPropertyChanged(string propertyName)
-        {
-            base.OnPropertyChanged(propertyName);
-        }
+        //public new void OnPropertyChanged(string propertyName)
+        //{
+        //    base.OnPropertyChanged(propertyName);
+        //}
     }
 }
