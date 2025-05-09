@@ -61,6 +61,19 @@
                         </StackPanel>
                     </Button>
                     <Button Margin="0,0,10,0" Height="50" BorderBrush="LawnGreen" BorderThickness="1">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <TextBlock  Text="Select Table" Margin="0,0,0,12" />
+                                    <Button  Content="Table 1" />
+                                    <Button  Content="Table 2" />
+                                    <Button  Content="Table 3" />
+                                    <Button  Content="Table 4" />
+                                    <Button  Content="Table 5" />
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+
                         <StackPanel Orientation="Horizontal">
                             <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0"  Foreground="LawnGreen"/>
                             <TextBlock x:Uid="TableButtonTextBlock" Margin="0,0,10,0"/>
