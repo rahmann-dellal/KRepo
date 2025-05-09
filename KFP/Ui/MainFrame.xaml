@@ -49,7 +49,7 @@
                             <TextBlock x:Uid="ListMenuItemsTextBlock"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
-                            <FontIcon Glyph="&#xEA37;"/>
+                            <PathIcon Data="{StaticResource ListMenuItemsIcon}"/>
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="AddMenuItemNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
@@ -57,7 +57,7 @@
                             <TextBlock x:Uid="AddMenuItemTextBlock"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
-                            <FontIcon Glyph="&#xE710;"/>
+                            <PathIcon Data="{StaticResource AddMenuItemsIcon}"/>
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="CategoriesNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">

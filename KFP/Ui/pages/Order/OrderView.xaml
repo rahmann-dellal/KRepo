@@ -92,10 +92,14 @@
                                     <TextBlock Text="{x:Bind orderItem.UnitPrice}" FontSize="16"   Grid.Column="1" Grid.Row="0" Margin="15,0,0,0"/>
                                     <TextBlock Text="{x:Bind orderItem.Quantity, Mode=OneWay}" FontSize="16"   Grid.Column="2" Grid.Row="0" Margin="15,0,0,0"/>
                                     <TextBlock Text="{x:Bind orderItem.TotalPrice, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}, ConverterParameter='F2'}" FontSize="16" Grid.Column="3" Grid.Row="0" Margin="15,0,0,0"/>
-                                    <Button Width="40" Content="+" Command="{x:Bind selectToAddAddonsCommand}"  Grid.Column="4" Grid.Row="0" Margin="5,0,0,0"
-                                                Visibility="{x:Bind canSelectToAddAddons, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
-                                    <Button Width="40" Content="-" Command="{x:Bind unselectToAddAddonsCommand}" Grid.Column="4" Grid.Row="0" Margin="5,0,0,0"
-                                                Visibility="{x:Bind isAddingAddons, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                    <Button  Command="{x:Bind selectToAddAddonsCommand}"  Grid.Column="4" Grid.Row="0" Margin="5,0,0,0"
+                                                Visibility="{x:Bind canSelectToAddAddons, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                                        <PathIcon Data="{StaticResource  AddAddonIcon}"/>
+                                    </Button>
+                                    <Button Command="{x:Bind unselectToAddAddonsCommand}" Grid.Column="4" Grid.Row="0" Margin="5,0,0,0"
+                                                Visibility="{x:Bind isAddingAddons, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                                        <PathIcon Data="{StaticResource RemoveAddonIcon}"/>
+                                    </Button>
                                     <TextBlock Text="Select Add-ons" Foreground="Green" Margin="10,0,0,0" Grid.ColumnSpan="5" Grid.Row="1"
                                                    Visibility="{x:Bind isAddingAddons, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
                                 </Grid>
