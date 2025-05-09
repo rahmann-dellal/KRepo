@@ -104,7 +104,7 @@
                         </Border>
                         <TextBlock Text="{x:Bind menuItem.ItemName}" TextWrapping="Wrap" TextTrimming="WordEllipsis"
                                    Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{x:Bind menuItem.SalePrice}" Grid.Column="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind menuItem.SalePrice, Converter={StaticResource DoubleToStringConverter}}" Grid.Column="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Text="{x:Bind menuItem.MenuItemType, Converter={StaticResource menuItemTypeConverter}}"
                            Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 

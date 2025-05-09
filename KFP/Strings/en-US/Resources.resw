@@ -414,4 +414,73 @@
   <data name="Drink" xml:space="preserve">
     <value>Drink</value>
   </data>
+  <data name="TablesTextBlock.Text" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="OrdersTextBlock.Text" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="CounterButtonTextBlock.Text" xml:space="preserve">
+    <value>Counter</value>
+  </data>
+  <data name="TableButtonTextBlock.Text" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="DeliveryButtonTextBlock.Text" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="OrderForTextBlock.Text" xml:space="preserve">
+    <value>Order for</value>
+  </data>
+  <data name="TakeOrderTextBlock.Text" xml:space="preserve">
+    <value>Take Order</value>
+  </data>
+  <data name="CategoryTextBlock.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="TypeTextBlock.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="AllSelector.Text" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="MainSelector.Text" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="AddonsSelector.Text" xml:space="preserve">
+    <value>Add-ons</value>
+  </data>
+  <data name="DrinksSelector.Text" xml:space="preserve">
+    <value>Drinks</value>
+  </data>
+  <data name="OtherSelector.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="GotoTextBlock.Text" xml:space="preserve">
+    <value>Go to : </value>
+  </data>
+  <data name="MenuItemTextBlock.Text" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="UnitPriceTextBlock.Text" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="QtTextBlock.Text" xml:space="preserve">
+    <value>Qt</value>
+  </data>
+  <data name="TotalTextBlock.Text" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="SelectMenuItemTextBlock.Text" xml:space="preserve">
+    <value>Select Menu Item</value>
+  </data>
+  <data name="SelectAddOnsTxtBlock.Text" xml:space="preserve">
+    <value>Select Add-ons</value>
+  </data>
+  <data name="ClearOrderTextBlock.Text" xml:space="preserve">
+    <value>Clear Order</value>
+  </data>
+  <data name="TotalPriceTxtBlock.Text" xml:space="preserve">
+    <value>Total Price</value>
+  </data>
 </root>
