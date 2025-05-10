@@ -93,5 +93,20 @@ namespace KFP.Ui.pages
                 _appState.WindowPresenterKind = value;
             }
         }
+
+        public double? NumberOfTables
+        {
+            get
+            {
+                return _appDataService.NumberOfTables;
+            }
+            set
+            {
+                if (value==null)
+                    _appDataService.NumberOfTables = 25;
+                else
+                    _appDataService.NumberOfTables = (int) value;
+            }
+        }
     }
 }

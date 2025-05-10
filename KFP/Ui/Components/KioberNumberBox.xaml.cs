@@ -30,6 +30,7 @@ namespace KFP.Ui.Components
         private void NumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = sender as TextBox;
+
             if (textBox != null && double.TryParse(textBox.Text, out double newValue))
             {
                 if(textBox.Text.Contains(","))
@@ -43,6 +44,20 @@ namespace KFP.Ui.Components
                     textBox.Text = -newValue + "";
                     Value = -newValue;
                     oldValue = -newValue;
+                    return;
+                }
+                if (AllowOnlyIntgers && newValue % 1 != 0)
+                {
+                    textBox.Text = Math.Floor(newValue) + "";
+                    Value = Math.Floor(newValue);
+                    oldValue = Math.Floor(newValue);
+                    return;
+                }
+                if(MaxValue.HasValue && newValue > MaxValue)
+                {
+                    textBox.Text = MaxValue + "";
+                    Value = MaxValue;
+                    oldValue = MaxValue.Value;
                     return;
                 }
             }
@@ -72,6 +87,29 @@ namespace KFP.Ui.Components
                 typeof(KioberNumberBox),
                 new PropertyMetadata(false));
 
+        public static readonly DependencyProperty AllowOnlyIntgersProperty =
+            DependencyProperty.Register(
+                nameof(AllowOnlyIntgers),
+                typeof(bool),
+                typeof(KioberNumberBox),
+                new PropertyMetadata(false));
+        public static readonly DependencyProperty MaxValueProperty =
+            DependencyProperty.Register(
+                nameof(MaxValue),
+                typeof(double?),
+                typeof(KioberNumberBox),
+                new PropertyMetadata(null, OnValueChanged));
+        public bool AllowOnlyIntgers
+        {
+            get => (bool)GetValue(AllowOnlyIntgersProperty);
+            set => SetValue(AllowOnlyIntgersProperty, value);
+        }
+
+        public double? MaxValue
+        {
+            get => (double?)GetValue(MaxValueProperty);
+            set => SetValue(MaxValueProperty, value);
+        }
         public double? Value
         {
             get => (double?)GetValue(ValueProperty);

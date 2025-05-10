@@ -46,6 +46,13 @@ namespace KFP.DATA_Access
                 .HasForeignKey(oi => oi.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+
+
+            modelBuilder.Entity<Session>().HasMany(s => s.Orders)
+                .WithOne(o => o.Session)
+                .HasForeignKey(o => o.SessionId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             // Invoice → Order (Set null on delete)
             modelBuilder.Entity<Invoice>()
                 .HasOne(i => i.Order)

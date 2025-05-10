@@ -483,4 +483,7 @@
   <data name="TotalPriceTxtBlock.Text" xml:space="preserve">
     <value>Total Price</value>
   </data>
+  <data name="NumberOfTablesTextBlock.Text" xml:space="preserve">
+    <value>Number of tables</value>
+  </data>
 </root>

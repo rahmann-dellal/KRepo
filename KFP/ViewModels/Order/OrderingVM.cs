@@ -35,14 +35,14 @@ namespace KFP.ViewModels
             set { _selectedOrderItem = value; OnPropertyChanged(); }
         }
 
-        public ICommand SendToKitchenCommand { get; }
+        public ICommand SetPreparingCommand { get; }
         public ICommand ConfirmPaymentCashCommand { get; }
         public ICommand ConfirmPaymentCardCommand { get; }
 
         public OrderingVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, OrderVM orderVM)
         {
             dbContext = context;
-            SendToKitchenCommand = new RelayCommand(() => SendToKitchen());
+            SetPreparingCommand = new RelayCommand(() => SetPreparing());
             ConfirmPaymentCashCommand = new RelayCommand(() => ConfirmPayment("Cash"));
             ConfirmPaymentCardCommand = new RelayCommand(() => ConfirmPayment("Card"));
             this.menuItemSelectorVM = menuItemSelectorVM;
@@ -60,10 +60,10 @@ namespace KFP.ViewModels
         }
 
 
-        private void SendToKitchen()
+        private void SetPreparing()
         {
             CurrentOrder.Status = OrderStatus.Preparing;
-            CurrentOrder.isPreparing = DateTime.Now;
+            CurrentOrder.SetPreparingAt = DateTime.Now;
         }
 
         private void ConfirmPayment(string method)

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KFP.DATA
 {
@@ -21,6 +23,7 @@ namespace KFP.DATA
             }
         }
 
+        [NotMapped]
         public bool isSessionActive
         {
             get
@@ -29,7 +32,7 @@ namespace KFP.DATA
             }
         }
         public AppUser appUser { get; set; }
-
+        public List<Order> Orders { get; set; } = new();
         public Session() {
             
         }

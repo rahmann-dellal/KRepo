@@ -57,6 +57,21 @@ namespace KFP.Services
             }
         }
         
+        public int NumberOfTables
+        {
+            get
+            {
+                if (localSettings.Values["NumberOfTables"] != null)
+                    return (int)localSettings.Values["NumberOfTables"];
+                else
+                    return 25;
+            }
+            set
+            {
+                localSettings.Values["NumberOfTables"] = value;
+            }
+        }
+
         public AppWindowPresenterKind WindowPresenterKind
         {
             get

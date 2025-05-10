@@ -30,16 +30,16 @@ namespace KFP.DATA
         }
         public int Id { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
-
-        public DateTime? isPreparing { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? SetPreparingAt { get; set; }
+        public DateTime? SetReadyAt { get; set; }
         public DateTime? CompletedAt { get; set; }
-        public DateTime? ServedAt { get; set; }
         public DateTime? CanceledAt { get; set; }
 
         public string? Notes { get; set; }
-
+        public Session? Session { get; set; }
+        public int? SessionId { get; set; }
         public List<OrderItem> OrderItems { get; set; }
 
         public int? AppUserId { get; set; }
