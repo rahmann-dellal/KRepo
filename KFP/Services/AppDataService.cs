@@ -8,12 +8,12 @@ namespace KFP.Services
 {
     public class AppDataService 
     {
-        Windows.Storage.ApplicationDataContainer localSettings = 
-        Windows.Storage.ApplicationData.Current.LocalSettings;
+        Windows.Storage.ApplicationDataContainer Settings = 
+        Windows.Storage.ApplicationData.Current.RoamingSettings;
         public Currency Currency {
             get
             {
-                var value = (string) localSettings.Values["Currency"];
+                var value = (string) Settings.Values["Currency"];
                 if (value != null && value != "")
                 {
                     try 
@@ -32,7 +32,7 @@ namespace KFP.Services
             }
             set
             {
-                localSettings.Values["Currency"] = value.ToString();
+                Settings.Values["Currency"] = value.ToString();
             }
         }
 
@@ -40,7 +40,7 @@ namespace KFP.Services
         {
             get
             {
-                var value = (string)localSettings.Values["Applanguage"];
+                var value = (string)Settings.Values["Applanguage"];
                 if (value != null && value != "")
                 {
                     return value;
@@ -53,7 +53,7 @@ namespace KFP.Services
             }
             set
             {
-                localSettings.Values["Applanguage"] = value;
+                Settings.Values["Applanguage"] = value;
             }
         }
         
@@ -61,14 +61,14 @@ namespace KFP.Services
         {
             get
             {
-                if (localSettings.Values["NumberOfTables"] != null)
-                    return (int)localSettings.Values["NumberOfTables"];
+                if (Settings.Values["NumberOfTables"] != null)
+                    return (int)Settings.Values["NumberOfTables"];
                 else
                     return 25;
             }
             set
             {
-                localSettings.Values["NumberOfTables"] = value;
+                Settings.Values["NumberOfTables"] = value;
             }
         }
 
@@ -76,14 +76,14 @@ namespace KFP.Services
         {
             get
             {
-                if (localSettings.Values["WindowPresenterKind"] != null)
-                    return (AppWindowPresenterKind)localSettings.Values["WindowPresenterKind"];
+                if (Settings.Values["WindowPresenterKind"] != null)
+                    return (AppWindowPresenterKind)Settings.Values["WindowPresenterKind"];
                 else
                     return AppWindowPresenterKind.Default;
             }
             set
             {
-                localSettings.Values["WindowPresenterKind"] = (int) value;
+                Settings.Values["WindowPresenterKind"] = (int) value;
             }
         }
 
