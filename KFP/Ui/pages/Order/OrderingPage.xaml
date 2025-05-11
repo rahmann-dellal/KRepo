@@ -21,7 +21,8 @@
                 <TextBlock x:Uid="POSTextBlock" FontSize="24" FontWeight="SemiBold" Margin="60,0,0,0" HorizontalAlignment="Left"/>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Background="{StaticResource SecondBackgroud}" CornerRadius="10">
                     <TextBlock x:Uid="GotoTextBlock" FontWeight="SemiBold" VerticalAlignment="Center" Margin="50,0,80,0"/>
-                    <HyperlinkButton Margin="0,0,50,0"   BorderThickness="0" CornerRadius="0" BorderBrush="{ThemeResource SystemAccentColor}" Width="200" >
+                    <HyperlinkButton Margin="0,0,50,0"   BorderThickness="0" CornerRadius="0" BorderBrush="{ThemeResource SystemAccentColor}" Width="200" 
+                                     Visibility="{x:Bind ViewModel.HasTables, Converter={StaticResource BoolToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Uid="TablesTextBlock" FontSize="16" Margin="0,0,20,0" VerticalAlignment="Center" />
                             <PathIcon Data="{StaticResource TablesIconData}"/>
@@ -68,11 +69,17 @@
                     </Border>
                     <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
                             BorderThickness="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
+                            Visibility="{x:Bind ViewModel.HasTables, Converter={StaticResource BoolToVisibilityConverter}}"
                             CornerRadius="5">
                         <Button Height="50">
                             <Button.Flyout>
                                 <Flyout x:Name="tablesFlyout">
-                                    <ListView ItemsSource="{x:Bind ViewModel.TableListElements, Mode=TwoWay}" SelectionMode="None" MaxHeight="1600" MaxWidth="700">
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="MinWidth" Value="680" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <ListView ItemsSource="{x:Bind ViewModel.TableListElements, Mode=TwoWay}" SelectionMode="None" MaxWidth="650">
                                         <ListView.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <controls:WrapPanel HorizontalAlignment="Center"/>

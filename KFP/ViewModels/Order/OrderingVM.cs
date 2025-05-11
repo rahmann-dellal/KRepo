@@ -33,7 +33,7 @@ namespace KFP.ViewModels
         }
 
 
-        private bool _isSetOnCounter = false;
+        private bool _isSetOnCounter = true;
 
         public bool IsSetOnCounter
         {
@@ -67,13 +67,12 @@ namespace KFP.ViewModels
             }
         }
         public int numberOfTables { get; set; }
-
+        public bool HasTables => numberOfTables > 0;
         public ICommand SetPreparingCommand { get; }
         public ICommand ConfirmPaymentCashCommand { get; }
         public ICommand ConfirmPaymentCardCommand { get; }
         public RelayCommand SetOnCounterCommand { get; set; }
         public RelayCommand SetForDeliveryCommand { get; set; }
-
 
         public OrderingVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, OrderVM orderVM, AppDataService appDataService)
         {

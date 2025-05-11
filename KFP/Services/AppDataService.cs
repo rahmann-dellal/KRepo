@@ -64,7 +64,7 @@ namespace KFP.Services
                 if (Settings.Values["NumberOfTables"] != null)
                     return (int)Settings.Values["NumberOfTables"];
                 else
-                    return 25;
+                    return 0;
             }
             set
             {
