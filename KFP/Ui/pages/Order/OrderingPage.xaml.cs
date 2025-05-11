@@ -30,6 +30,15 @@ namespace KFP.Ui.pages
         {
             ViewModel = Ioc.Default.GetService<OrderingVM>();
             this.InitializeComponent();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(ViewModel.SelectedTableNumber))
+            {
+                tablesFlyout.Hide();
+            }
         }
     }
 }

@@ -16,16 +16,16 @@ namespace KFP.Converters
     {
         public object? Convert(object value, Type targetType, object parameter, string language)
         {
-            bool connected = KioberConverter.ToBool(value);
+            bool BoolValue = KioberConverter.ToBool(value);
             if (targetType == typeof(Thickness))
             {
                 int thickness = 0;
                 if (parameter != null && parameter is string parameterString) // Fix CS1061
                 {
                     thickness = int.TryParse(parameterString, out int parsedThickness) ? parsedThickness : 0;
-                    return connected ? new Thickness(thickness) : new Thickness(0);
+                    return BoolValue ? new Thickness(thickness) : new Thickness(0);
                 }
-                return connected ? new Thickness(4) : new Thickness(0);
+                return BoolValue ? new Thickness(4) : new Thickness(0);
             }
             if (targetType == typeof(Brush))
             {
@@ -46,7 +46,7 @@ namespace KFP.Converters
                         color = null;
                     }
                 }
-                return connected ? new SolidColorBrush(color ?? Colors.LawnGreen) : null;
+                return BoolValue ? new SolidColorBrush(color ?? Colors.LawnGreen) : new SolidColorBrush(Colors.Black);
             }
             return null;
         }

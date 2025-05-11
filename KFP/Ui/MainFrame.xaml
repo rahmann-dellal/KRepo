@@ -84,7 +84,7 @@
                             <TextBlock x:Uid="ListUsersTextBlock"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
-                            <FontIcon Glyph="&#xEA37;"/>
+                            <FontIcon Glyph="&#xEA4A;"/>
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="AddUserNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">

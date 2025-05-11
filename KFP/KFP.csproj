@@ -65,7 +65,6 @@
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-150.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-400.png" />
-    <None Remove="Assets\Images\TablesIcon.svg" />
     <None Remove="Ui\ClockInFrame.xaml" />
     <None Remove="Ui\Components\KioberNumberBox.xaml" />
     <None Remove="Ui\Components\PINInput.xaml" />

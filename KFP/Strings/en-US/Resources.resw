@@ -486,4 +486,7 @@
   <data name="NumberOfTablesTextBlock.Text" xml:space="preserve">
     <value>Number of tables</value>
   </data>
+  <data name="OrderTextBlock.Text" xml:space="preserve">
+    <value>Order</value>
+  </data>
 </root>

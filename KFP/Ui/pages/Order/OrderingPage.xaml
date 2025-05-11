@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:views="using:KFP.Ui.pages"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:vm="using:KFP.ViewModels" DataContext="{x:Bind ViewModel}">
 
     <Grid>
@@ -18,7 +19,7 @@
         <StackPanel Grid.Row="0" >
             <Grid Margin="0,20,30,0">
                 <TextBlock x:Uid="POSTextBlock" FontSize="24" FontWeight="SemiBold" Margin="60,0,0,0" HorizontalAlignment="Left"/>
-                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Background="#FFF4F4F4" CornerRadius="10">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Background="{StaticResource SecondBackgroud}" CornerRadius="10">
                     <TextBlock x:Uid="GotoTextBlock" FontWeight="SemiBold" VerticalAlignment="Center" Margin="50,0,80,0"/>
                     <HyperlinkButton Margin="0,0,50,0"   BorderThickness="0" CornerRadius="0" BorderBrush="{ThemeResource SystemAccentColor}" Width="200" >
                         <StackPanel Orientation="Horizontal">
@@ -54,44 +55,83 @@
                 </Grid.RowDefinitions>
                 <TextBlock x:Uid="OrderForTextBlock" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,10" FontSize="12" FontWeight="Bold"/>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                    <Button Margin="0,0,10,0" Height="50" >
-                        <StackPanel Orientation="Horizontal">
-                            <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"/>
-                            <TextBlock  x:Uid="CounterButtonTextBlock"  Margin="0,0,20,0"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Margin="0,0,10,0" Height="50" BorderBrush="LawnGreen" BorderThickness="1">
-                        <Button.Flyout>
-                            <Flyout>
-                                <StackPanel>
-                                    <TextBlock  Text="Select Table" Margin="0,0,0,12" />
-                                    <Button  Content="Table 1" />
-                                    <Button  Content="Table 2" />
-                                    <Button  Content="Table 3" />
-                                    <Button  Content="Table 4" />
-                                    <Button  Content="Table 5" />
-                                </StackPanel>
-                            </Flyout>
-                        </Button.Flyout>
+                    <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
+                        BorderThickness="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
+                        CornerRadius="5">
+                        <Button Height="50" Command="{x:Bind ViewModel.SetOnCounterCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"
+                                          Foreground="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
+                                <TextBlock  x:Uid="CounterButtonTextBlock"  Margin="0,0,20,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                    <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
+                            BorderThickness="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
+                            CornerRadius="5">
+                        <Button Height="50">
+                            <Button.Flyout>
+                                <Flyout x:Name="tablesFlyout">
+                                    <ListView ItemsSource="{x:Bind ViewModel.TableListElements, Mode=TwoWay}" SelectionMode="None" MaxHeight="1600" MaxWidth="700">
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <controls:WrapPanel HorizontalAlignment="Center"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:TableListElement">
+                                                <Button Width="150" Height="70" Margin="5" Command="{x:Bind selectTableCommand}">
+                                                    <Grid HorizontalAlignment="Center" Margin="5,0,15,0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="60"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <PathIcon Data="{StaticResource TableIconData}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+                                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind TableNumber}" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                                        <TextBlock x:Uid="OrderTextBlock" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0"
+                                                               Visibility="{x:Bind order, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                        <TextBlock  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0"
+                                                                Visibility="{x:Bind order, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                                                        <Run Text="#"/>
+                                                        <Run Text="{x:Bind order.Id, Mode=OneWay}"/>
+                                                        </TextBlock>
+                                                    </Grid>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Flyout>
+                            </Button.Flyout>
 
-                        <StackPanel Orientation="Horizontal">
-                            <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0"  Foreground="LawnGreen"/>
-                            <TextBlock x:Uid="TableButtonTextBlock" Margin="0,0,10,0"/>
-                            <TextBlock Text="12" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Margin="0,0,0,0" Height="50">
-                        <StackPanel Orientation="Horizontal">
-                            <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"/>
-                            <TextBlock x:Uid="DeliveryButtonTextBlock" Margin="0,0,10,0"/>
-                        </StackPanel>
-                    </Button>
+                            <StackPanel Orientation="Horizontal">
+                                <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0" 
+                                          Foreground="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
+                                <TextBlock x:Uid="TableButtonTextBlock" Margin="0,0,10,0"/>
+                                <TextBlock Text="{x:Bind ViewModel.SelectedTableNumber, Mode=OneWay}" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                    <Border BorderBrush="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
+                        BorderThickness="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
+                        CornerRadius="5">
+                        <Button Height="50" Command="{x:Bind ViewModel.SetForDeliveryCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"
+                                      Foreground="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
+                                <TextBlock x:Uid="DeliveryButtonTextBlock" Margin="0,0,10,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
                 </StackPanel>
-                
+
                 <views:OrderView ViewModel="{x:Bind ViewModel.orderVM}" Grid.Row="2" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Button Grid.Row="3" Command="{Binding SetPreparingCommand}" Width="300" Height="50" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Uid="TakeOrderTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/> 
+                        <TextBlock x:Uid="TakeOrderTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
                         <FontIcon Glyph="&#xE70D;" FontSize="22" FontWeight="ExtraBold"/>
                     </StackPanel>
                 </Button>
