@@ -23,12 +23,12 @@ namespace KFP.Ui.pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class OrderingPage : Page
+    public sealed partial class PointOfSalesPage : Page
     {
-        OrderingVM ViewModel;
-        public OrderingPage()
+        PointOfSalesVM ViewModel;
+        public PointOfSalesPage()
         {
-            ViewModel = Ioc.Default.GetService<OrderingVM>();
+            ViewModel = Ioc.Default.GetService<PointOfSalesVM>();
             this.InitializeComponent();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }

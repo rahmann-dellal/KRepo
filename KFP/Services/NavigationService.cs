@@ -27,7 +27,7 @@ namespace KFP.Services
         {
             if(pageType == KioberFoodPage.POS)
             {
-                navigateTo(typeof(OrderingPage), parameters);
+                navigateTo(typeof(PointOfSalesPage), parameters);
             }
             else if (pageType == KioberFoodPage.MenuItemList)
             {

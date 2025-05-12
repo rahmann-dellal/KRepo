@@ -83,6 +83,8 @@ namespace KFP.Services
         private void StartSession(AppUser user)
         {
             CurrentSession = new Session(user);
+            _dbContext.Add<Session>(CurrentSession);
+            _dbContext.SaveChanges();
             //changes on the current session must be propagated to the session manager
             CurrentSession.PropertyChanged += (o, e) =>
             {
@@ -101,7 +103,7 @@ namespace KFP.Services
             }
             try
             {
-                _dbContext.Add<Session>(CurrentSession);
+                _dbContext.Update<Session>(CurrentSession);
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)

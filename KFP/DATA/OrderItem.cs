@@ -16,8 +16,8 @@ namespace KFP.DATA
         }
         public int Id { get; set; }
 
-        public int OrderId { get; set; }
-        public Order Order { get; set; } = null!;
+        public int? OrderId { get; set; }
+        public Order? Order { get; set; } = null!;
 
         public int? MenuItemId { get; set; }
         public MenuItem? MenuItem { get; set; } = null!;
@@ -56,9 +56,6 @@ namespace KFP.DATA
 
         [NotMapped]
         public bool IsAddOn => ParentOrderItem != null;
-
-        [NotMapped]
-        public ObservableCollection<OrderItem> AddOnItems { get; set; } = new(); //Only used in UI
     }
 
 }

@@ -13,13 +13,14 @@ using KFP.Services;
 
 namespace KFP.ViewModels
 {
-    public class OrderingVM : KioberViewModelBase
+    public class PointOfSalesVM : KioberViewModelBase
     {
         private AppDataService _appDataService;
+        private SessionManager _sessionManager;
         public MenuItemSelectorVM menuItemSelectorVM;
         public OrderVM orderVM;
         public ObservableCollection<TableListElement> TableListElements { get; set; }
-        public ObservableCollection<Order> PendingOrders { get; set; }
+        public ObservableCollection<Order> CurrentOrders { get; set; }
 
         private KFPContext dbContext;
         public ObservableCollection<MenuItem> MenuItems { get; set; } = new();
@@ -68,18 +69,18 @@ namespace KFP.ViewModels
         }
         public int numberOfTables { get; set; }
         public bool HasTables => numberOfTables > 0;
-        public ICommand SetPreparingCommand { get; }
-        public ICommand ConfirmPaymentCashCommand { get; }
-        public ICommand ConfirmPaymentCardCommand { get; }
+        public RelayCommand TakeOrderCommand { get; }
+        public RelayCommand ConfirmPaymentCashCommand { get; }
+        public RelayCommand ConfirmPaymentCardCommand { get; }
         public RelayCommand SetOnCounterCommand { get; set; }
         public RelayCommand SetForDeliveryCommand { get; set; }
 
-        public OrderingVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, OrderVM orderVM, AppDataService appDataService)
+        public PointOfSalesVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, OrderVM orderVM, AppDataService appDataService, SessionManager sessionManager)
         {
             _appDataService = appDataService;
             numberOfTables = _appDataService.NumberOfTables;
             dbContext = context;
-            SetPreparingCommand = new RelayCommand(() => SetPreparing());
+            TakeOrderCommand = new RelayCommand(() => TakeOrder(), canTakeOrder);
             ConfirmPaymentCashCommand = new RelayCommand(() => ConfirmPayment("Cash"));
             ConfirmPaymentCardCommand = new RelayCommand(() => ConfirmPayment("Card"));
             this.menuItemSelectorVM = menuItemSelectorVM;
@@ -104,7 +105,7 @@ namespace KFP.ViewModels
                 SetForDeliveryCommand.NotifyCanExecuteChanged();
             }, () => IsSetForDelivery != true);
 
-            PendingOrders = new ObservableCollection<Order>(dbContext.Orders
+            CurrentOrders = new ObservableCollection<Order>(dbContext.Orders
                 .Include(o => o.OrderItems)
                 .Include(o => o.Session)
                 .Where(o => o.Status == OrderStatus.Pending || o.Status == OrderStatus.Preparing || o.Status == OrderStatus.Ready)
@@ -115,15 +116,18 @@ namespace KFP.ViewModels
             {
                 var element = new TableListElement(i, this);
                 TableListElements.Add(element);
-                if (PendingOrders.Count > 0)
+                if (CurrentOrders.Count > 0)
                 {
-                    var order = PendingOrders.FirstOrDefault(o => o.TableNumber == i);
+                    var order = CurrentOrders.FirstOrDefault(o => o.TableNumber == i);
                     if (order != null)
                     {
                         element.order = order;
                     }
                 }
             }
+
+            _sessionManager = sessionManager;
+            orderVM.OrderItemElements.CollectionChanged += (s,e) => TakeOrderCommand.NotifyCanExecuteChanged();
         }
 
         private void MenuItemSelectorVM_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -144,10 +148,42 @@ namespace KFP.ViewModels
         }
 
 
-        private void SetPreparing()
+        private void TakeOrder()
         {
+            CurrentOrder = orderVM.order;
             CurrentOrder.Status = OrderStatus.Preparing;
             CurrentOrder.SetPreparingAt = DateTime.Now;
+            CurrentOrder.Session = _sessionManager.CurrentSession;
+            CurrentOrder.SessionId = _sessionManager.CurrentSession.SessionId;
+            CurrentOrder.AppUser = _sessionManager.LoggedInUser;
+            CurrentOrder.AppUserId = _sessionManager.LoggedInUser?.AppUserID;
+            CurrentOrder.AppUserName = _sessionManager.LoggedInUser?.UserName;
+            if(IsSetOnCounter)
+            {
+                CurrentOrder.Type = OrderType.Counter;
+            }
+            else if (IsSetForDelivery)
+            {
+                CurrentOrder.Type = OrderType.Delivery;
+                CurrentOrder.DeliveryInfo = new DeliveryInfo();
+            }
+            else
+            {
+                CurrentOrder.Type = OrderType.Table;
+                CurrentOrder.TableNumber = SelectedTableNumber;
+            }
+            dbContext.Orders.Add(CurrentOrder);
+            dbContext.SaveChanges();
+        }
+
+        public bool canTakeOrder()
+        {
+            if (orderVM.order == null)
+                return false;
+            if (orderVM.order.OrderItems.Count == 0)
+                return false;
+
+            return true;
         }
 
         private void ConfirmPayment(string method)
@@ -160,7 +196,7 @@ namespace KFP.ViewModels
 
     public class TableListElement
     {
-        public TableListElement(int tableNumber, OrderingVM orderingVM)
+        public TableListElement(int tableNumber, PointOfSalesVM orderingVM)
         {
             TableNumber = tableNumber;
             parentVM = orderingVM;
@@ -179,7 +215,7 @@ namespace KFP.ViewModels
             parentVM.SelectedTableNumber != TableNumber
             );
         }
-        private OrderingVM parentVM;
+        private PointOfSalesVM parentVM;
         public int TableNumber { get; set; }
         public string TableName => $"Table {TableNumber}";
         public Order? order { get; set; }

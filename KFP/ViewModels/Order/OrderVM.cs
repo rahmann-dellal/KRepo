@@ -17,7 +17,7 @@ namespace KFP.ViewModels
     public partial class OrderVM : KioberViewModelBase
     {
         private AppDataService _appDataService;
-        public OnAddedAddonDelegate? onAddedAddonDelegate { get; set; } = null!;
+        public OnAddedAddonDelegate? onAddedAddonDelegate { get; set; } = null!; //used to bring into view the added element
         public Order order { get; set; } = new();
         public Currency Currency { get; set; } = new();
         public double orderTotalPrice {
@@ -69,6 +69,7 @@ namespace KFP.ViewModels
 
         public OrderVM(AppDataService appDataService)
         {
+            order = new Order();
             // Initialize the order with a new list of order items
             OrderItemElements.CollectionChanged += (s, e) =>
             {
@@ -95,6 +96,7 @@ namespace KFP.ViewModels
                     item.MenuItemName = menuItem.ItemName;
                     item.UnitPrice = menuItem.SalePrice;
                     item.Quantity = 1;
+                    order.OrderItems.Add(item);
                     element.orderItem = item;
                     OrderItemElements.Add(element);
                     selectedOrderItemElement = element;
@@ -170,11 +172,13 @@ namespace KFP.ViewModels
             {
                 if(selectedOrderItemElement.IsAddOn)
                 {
+                    selectedOrderItemElement.ParentOrderItemElement?.orderItem.AddOns.Remove(selectedOrderItemElement.orderItem);
                     selectedOrderItemElement.ParentOrderItemElement?.AddOnItemElements.Remove(selectedOrderItemElement);
                 }
                 else
                 {
-                    OrderItemElements.Remove(selectedOrderItemElement);
+                    order.OrderItems.Remove(selectedOrderItemElement.orderItem);
+                    OrderItemElements.Remove(selectedOrderItemElement);                    
                 }                
                 selectedOrderItemElement = null;
                 OnPropertyChanged(nameof(orderTotalPrice));
@@ -195,6 +199,7 @@ namespace KFP.ViewModels
         [RelayCommand(CanExecute = nameof(canClearOrder))]
         public void ClearOrder()
         {
+            order.OrderItems.Clear();
             OrderItemElements.Clear();
             selectedOrderItemElement = null;
             clearOrderCommand?.NotifyCanExecuteChanged();
@@ -275,6 +280,9 @@ namespace KFP.ViewModels
                 item.MenuItemName = menuItem.ItemName;
                 item.UnitPrice = menuItem.SalePrice;
                 item.Quantity = this.orderItem.Quantity;
+                item.ParentOrderItem = this.orderItem;
+                item.ParentOrderItemId = this.orderItem.Id;
+                this.orderItem.AddOns.Add(item);
                 element.orderItem = item;
                 element.ParentOrderItemElement = this;
                 this.AddOnItemElements.Add(element);

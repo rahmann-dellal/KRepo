@@ -76,7 +76,6 @@
     <None Remove="Ui\pages\MenuItemListPage.xaml" />
     <None Remove="Ui\pages\MenuItems\CategoriesPage.xaml" />
     <None Remove="Ui\pages\Order\MenuItemSelector.xaml" />
-    <None Remove="Ui\pages\Order\OrderingPage.xaml" />
     <None Remove="Ui\pages\Order\OrderView.xaml" />
     <None Remove="Ui\pages\SessionPage.xaml" />
     <None Remove="Ui\pages\SettingsPage.xaml" />
@@ -157,7 +156,7 @@
     <Page Update="Ui\pages\Order\OrderView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Ui\pages\Order\OrderingPage.xaml">
+    <Page Update="Ui\pages\Order\PointOfSalesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Ui\pages\Order\MenuItemSelector.xaml">
