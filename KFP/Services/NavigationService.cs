@@ -29,6 +29,10 @@ namespace KFP.Services
             {
                 navigateTo(typeof(PointOfSalesPage), parameters);
             }
+            else if (pageType == KioberFoodPage.DisplayOrderPage)
+            {
+                navigateTo(typeof(DisplayOrderPage), parameters);
+            }
             else if (pageType == KioberFoodPage.MenuItemList)
             {
                 navigateTo(typeof(MenuItemListPage), parameters);

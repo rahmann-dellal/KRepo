@@ -14,6 +14,7 @@ namespace KFP.Services
     public enum KioberFoodPage
     {
         POS,
+        DisplayOrderPage,
         MenuItemList,
         AddMenuItem,
         EditMenuItem,

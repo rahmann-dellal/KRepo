@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="KFP.Ui.pages.DisplayOrderView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KFP.Ui.pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:KFP.DATA"
+    mc:Ignorable="d">
+
+    <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10,10,0,10" Grid.Row="1" 
+        BorderThickness="0" BorderBrush="{ThemeResource SystemAccentColor}" 
+         Margin="0,0,0,0" HorizontalAlignment="Center" MinWidth="600" MinHeight="200">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="45"/>
+
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Uid="MenuItemTextBlock" Text="Menu Item" FontSize="16" FontWeight="SemiBold"  Grid.Column="0" Margin="10,0,0,0"/>
+                <TextBlock x:Uid="UnitPriceTextBlock" Text="Unit Price" FontSize="16" FontWeight="SemiBold"  Grid.Column="1" Margin="-15,0,0,0"/>
+                <TextBlock x:Uid="QtTextBlock" Text="Qt" FontSize="16" FontWeight="SemiBold"  Grid.Column="2" Margin="-15,0,0,0"/>
+                <TextBlock x:Uid="TotalTextBlock" Text="Total" FontSize="16" FontWeight="SemiBold"  Grid.Column="3" Margin="-15,0,0,0"/>
+            </Grid>
+            <StackPanel Grid.Row="1" Margin="0,20,0,20"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    Visibility="{x:Bind isListEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                <TextBlock x:Uid="NothingTextBlock" Margin="0,0,0,10" Foreground="DimGray"/>
+            </StackPanel>
+            <TreeView x:Name="OrderTreeView" ItemsSource="{x:Bind order.OrderItems, Mode=OneWay}" Grid.Row="1" Margin="0,10,0,0"
+                               CanDragItems="False" CanDrag="False" AllowDrop="False" SelectionMode="None">
+                <TreeView.ItemTemplate>
+                    <DataTemplate x:DataType="data:OrderItem">
+                        <TreeViewItem Grid.Column="0"
+                                   IsExpanded="True"
+                                   ItemsSource="{x:Bind AddOns, Mode=OneWay}" CanDrag="False" AllowDrop="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" MinWidth="200"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" >
+                                    <TextBlock Text="+" Margin="0,0,5 ,0" Visibility="{x:Bind IsAddOn, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    <TextBlock Text="{x:Bind MenuItemName}" FontSize="16" />
+                                </StackPanel>
+
+                                <TextBlock Text="{x:Bind UnitPrice}" FontSize="16"   Grid.Column="1" Grid.Row="0" Margin="15,0,0,0"/>
+                                <TextBlock Text="{x:Bind Quantity, Mode=OneWay}" FontSize="16"   Grid.Column="2" Grid.Row="0" Margin="15,0,0,0"/>
+                                <TextBlock Text="{x:Bind TotalPrice, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}, ConverterParameter='F2'}" FontSize="16" Grid.Column="3" Grid.Row="0" Margin="15,0,0,0"/>
+                                
+                            </Grid>
+                        </TreeViewItem>
+                    </DataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Grid>
+    </Border>
+</UserControl>

@@ -23,13 +23,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace KFP.Ui.pages
 {
-    public sealed partial class OrderView : UserControl
+    public sealed partial class EditOrderView : UserControl
     {
         public static readonly DependencyProperty AllowEditingProperty =
             DependencyProperty.Register(
                 nameof(AllowEditing),
                 typeof(bool),
-                typeof(OrderView),
+                typeof(EditOrderView),
                 new PropertyMetadata(false));
 
         public bool AllowEditing
@@ -41,17 +41,17 @@ namespace KFP.Ui.pages
         public static readonly DependencyProperty ViewModelProperty =
             DependencyProperty.Register(
                 nameof(ViewModel),
-                typeof(OrderVM),
-                typeof(OrderView),
+                typeof(EditOrderVM),
+                typeof(EditOrderView),
                 new PropertyMetadata(null));
 
-        public OrderVM ViewModel
+        public EditOrderVM ViewModel
         {
-            get => (OrderVM)GetValue(ViewModelProperty);
+            get => (EditOrderVM)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
         }
 
-        public OrderView()
+        public EditOrderView()
         {
             this.InitializeComponent();
         }

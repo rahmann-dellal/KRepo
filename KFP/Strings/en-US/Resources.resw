@@ -429,8 +429,8 @@
   <data name="DeliveryButtonTextBlock.Text" xml:space="preserve">
     <value>Delivery</value>
   </data>
-  <data name="OrderForTextBlock.Text" xml:space="preserve">
-    <value>Order for</value>
+  <data name="OrderLocationTextBlock.Text" xml:space="preserve">
+    <value>Location</value>
   </data>
   <data name="TakeOrderTextBlock.Text" xml:space="preserve">
     <value>Take Order</value>

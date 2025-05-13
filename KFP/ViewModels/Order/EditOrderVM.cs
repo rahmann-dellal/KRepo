@@ -14,7 +14,7 @@ namespace KFP.ViewModels
 {
     //used in the UI to bring the add-on into view
     public delegate void OnAddedAddonDelegate(OrderItemListElement element);
-    public partial class OrderVM : KioberViewModelBase
+    public partial class EditOrderVM : KioberViewModelBase
     {
         private AppDataService _appDataService;
         public OnAddedAddonDelegate? onAddedAddonDelegate { get; set; } = null!; //used to bring into view the added element
@@ -67,7 +67,7 @@ namespace KFP.ViewModels
 
         public ObservableCollection<OrderItemListElement> OrderItemElements { get; set; } = new();
 
-        public OrderVM(AppDataService appDataService)
+        public EditOrderVM(AppDataService appDataService)
         {
             order = new Order();
             // Initialize the order with a new list of order items
@@ -240,8 +240,8 @@ namespace KFP.ViewModels
                 return !IsAddOn && !isAddingAddons && orderItem.MenuItem.MenuItemType != MenuItemType.Addon;
             }
         }
-        private OrderVM _orderVM;
-        public OrderItemListElement(OrderVM orderVM)
+        private EditOrderVM _orderVM;
+        public OrderItemListElement(EditOrderVM orderVM)
         {
             _orderVM = orderVM;
         }

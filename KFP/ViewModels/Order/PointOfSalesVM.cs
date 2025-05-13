@@ -17,8 +17,9 @@ namespace KFP.ViewModels
     {
         private AppDataService _appDataService;
         private SessionManager _sessionManager;
+        private NavigationService _navigationService;
         public MenuItemSelectorVM menuItemSelectorVM;
-        public OrderVM orderVM;
+        public EditOrderVM orderVM;
         public ObservableCollection<TableListElement> TableListElements { get; set; }
         public ObservableCollection<Order> CurrentOrders { get; set; }
 
@@ -75,11 +76,15 @@ namespace KFP.ViewModels
         public RelayCommand SetOnCounterCommand { get; set; }
         public RelayCommand SetForDeliveryCommand { get; set; }
 
-        public PointOfSalesVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, OrderVM orderVM, AppDataService appDataService, SessionManager sessionManager)
+        public PointOfSalesVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, EditOrderVM orderVM, AppDataService appDataService, SessionManager sessionManager, NavigationService ns)
         {
             _appDataService = appDataService;
-            numberOfTables = _appDataService.NumberOfTables;
+            _navigationService = ns;
+            _sessionManager = sessionManager;
             dbContext = context;
+
+            numberOfTables = _appDataService.NumberOfTables;
+
             TakeOrderCommand = new RelayCommand(() => TakeOrder(), canTakeOrder);
             ConfirmPaymentCashCommand = new RelayCommand(() => ConfirmPayment("Cash"));
             ConfirmPaymentCardCommand = new RelayCommand(() => ConfirmPayment("Card"));
@@ -126,7 +131,6 @@ namespace KFP.ViewModels
                 }
             }
 
-            _sessionManager = sessionManager;
             orderVM.OrderItemElements.CollectionChanged += (s,e) => TakeOrderCommand.NotifyCanExecuteChanged();
         }
 
@@ -173,7 +177,10 @@ namespace KFP.ViewModels
                 CurrentOrder.TableNumber = SelectedTableNumber;
             }
             dbContext.Orders.Add(CurrentOrder);
-            dbContext.SaveChanges();
+            var result = dbContext.SaveChanges();
+            if (result > 0) {
+                _navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { CurrentOrder.Id });
+            }
         }
 
         public bool canTakeOrder()
