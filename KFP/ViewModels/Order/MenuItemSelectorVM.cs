@@ -45,7 +45,7 @@ namespace KFP.ViewModels
             get => _selectedMenuItem;
             set { _selectedMenuItem = value; OnPropertyChanged(); }
         }
-
+        public bool isListEmpty => FilteredMenuItems.Count == 0;
         public bool IsLoading { get; set; }
         private Currency Currency;
 
@@ -80,6 +80,7 @@ namespace KFP.ViewModels
             ApplyFilter();
             IsLoading = false;
             OnPropertyChanged(nameof(IsLoading));
+            OnPropertyChanged(nameof(isListEmpty));
         }
 
         private void ApplyFilter()
@@ -96,8 +97,10 @@ namespace KFP.ViewModels
                 filtered = filtered.Where(i => i.MenuItemType == MenuItemTypeFilter);
 
             FilteredMenuItems.Clear();
-            foreach (var item in filtered)
+            foreach (var item in filtered) { 
                 FilteredMenuItems.Add(new MenuItemElement(item, imageConverter, Currency));
+            }
+            OnPropertyChanged(nameof(isListEmpty));
         }
 
         public List<MenuItemType> getMenuItemTypes()

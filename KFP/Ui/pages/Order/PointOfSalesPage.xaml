@@ -131,18 +131,40 @@
                                       Foreground="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
                                 <TextBlock x:Uid="DeliveryButtonTextBlock" Margin="0,0,10,0"/>
                             </StackPanel>
+                            <Button.Flyout>
+                                <Flyout>
+                                    <StackPanel>
+                                        <TextBox x:Uid="DeliveryInfoNametxtBox" Text="{x:Bind ViewModel.DeliveryInfo.CustomerName, Mode=TwoWay}" Margin="10" MinWidth="150" MaxLength="35"/>
+                                        <TextBox x:Uid="DeliveryInfoPhonetxtBox" Text="{x:Bind ViewModel.DeliveryInfo.PhoneNumber, Mode=TwoWay}" Margin="10" MinWidth="150" MaxLength="20"/>
+                                        <TextBox x:Uid="DeliveryInfoAddresstxtBox" Text="{x:Bind ViewModel.DeliveryInfo.Address, Mode=TwoWay}" AcceptsReturn="True"
+                                                 Margin="10" MinWidth="300" MinHeight="200" MaxLength="700" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
                         </Button>
                     </Border>
                 </StackPanel>
 
                 <views:EditOrderView ViewModel="{x:Bind ViewModel.orderVM}" Grid.Row="2" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Button Grid.Row="3" Command="{x:Bind ViewModel.TakeOrderCommand}" Width="300" Height="50" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Uid="TakeOrderTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
-                        <FontIcon Glyph="&#xE70D;" FontSize="22" FontWeight="ExtraBold"/>
-                    </StackPanel>
-                </Button>
-
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button Width="50" Height="50" BorderBrush="CadetBlue" Margin="0,0,10,0">
+                        <FontIcon Glyph="&#xE70B;" FontSize="22" FontWeight="ExtraBold" Foreground="CadetBlue"/>
+                        <Button.Flyout>
+                            <Flyout>
+                                <TextBox Text="{x:Bind ViewModel.Notes, Mode=TwoWay}" x:Uid="NotesTextBox" MaxLength="700" MaxWidth="400" MinWidth="300" MinHeight="200" TextWrapping="Wrap" AcceptsReturn="True"/>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                    <Button  Command="{x:Bind ViewModel.TakeOrderCommand}" Width="300" Height="50" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Uid="TakeOrderTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
+                            <FontIcon Glyph="&#xF78C;" FontSize="22" FontWeight="ExtraBold" Foreground="Green"
+                                  Visibility="{x:Bind ViewModel.canTakeOrder, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}" />
+                            <FontIcon Glyph="&#xF78C;" FontSize="22" FontWeight="ExtraBold" Foreground="LightGray"
+                                  Visibility="{x:Bind ViewModel.isOrderEmpty, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
                 <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <Button Content="Pay Cash" Command="{Binding ConfirmPaymentCashCommand}" />
                     <Button Content="Pay Card" Command="{Binding ConfirmPaymentCardCommand}" Margin="5,0,0,0" />

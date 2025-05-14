@@ -274,18 +274,29 @@ namespace KFP.ViewModels
         public void AddAddon(MenuItem menuItem)
         {
             if (!this.IsAddOn) {
-                OrderItemListElement element = new OrderItemListElement(_orderVM);
-                OrderItem item = new OrderItem();
-                item.MenuItem = menuItem;
-                item.MenuItemName = menuItem.ItemName;
-                item.UnitPrice = menuItem.SalePrice;
-                item.Quantity = this.orderItem.Quantity;
-                item.ParentOrderItem = this.orderItem;
-                item.ParentOrderItemId = this.orderItem.Id;
-                this.orderItem.AddOns.Add(item);
-                element.orderItem = item;
-                element.ParentOrderItemElement = this;
-                this.AddOnItemElements.Add(element);
+                OrderItemListElement element;
+                // Check if the menu item is already an add-on
+                if (this.AddOnItemElements.Any(x => x.orderItem.MenuItemId == menuItem.Id))
+                {
+                    element = this.AddOnItemElements.FirstOrDefault(x => x.orderItem.MenuItemId == menuItem.Id);
+                    element.orderItem.Quantity++;
+                }
+                else
+                {
+                    element = new OrderItemListElement(_orderVM);
+                    OrderItem item = new OrderItem();
+                    item.MenuItem = menuItem;
+                    item.MenuItemId = menuItem.Id;
+                    item.MenuItemName = menuItem.ItemName;
+                    item.UnitPrice = menuItem.SalePrice;
+                    item.Quantity = this.orderItem.Quantity;
+                    item.ParentOrderItem = this.orderItem;
+                    item.ParentOrderItemId = this.orderItem.Id;
+                    this.orderItem.AddOns.Add(item);
+                    element.orderItem = item;
+                    element.ParentOrderItemElement = this;
+                    this.AddOnItemElements.Add(element);
+                }
                 _orderVM.onAddedAddonDelegate?.Invoke(element);
             }
         }

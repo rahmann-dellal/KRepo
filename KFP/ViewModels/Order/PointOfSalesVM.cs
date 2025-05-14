@@ -47,6 +47,16 @@ namespace KFP.ViewModels
             }
         }
 
+        private DeliveryInfo _deliveryInfo = new();
+        public DeliveryInfo DeliveryInfo
+        {
+            get => _deliveryInfo;
+            set
+            {
+                _deliveryInfo = value;
+                OnPropertyChanged(nameof(DeliveryInfo));
+            }
+        }
         private bool _isSetForDelivery = false;
         public bool IsSetForDelivery
         {
@@ -68,6 +78,8 @@ namespace KFP.ViewModels
                 OnPropertyChanged(nameof(SelectedTableNumber));
             }
         }
+
+        public string Notes { get; set; } = string.Empty;
         public int numberOfTables { get; set; }
         public bool HasTables => numberOfTables > 0;
         public RelayCommand TakeOrderCommand { get; }
@@ -85,7 +97,7 @@ namespace KFP.ViewModels
 
             numberOfTables = _appDataService.NumberOfTables;
 
-            TakeOrderCommand = new RelayCommand(() => TakeOrder(), canTakeOrder);
+            TakeOrderCommand = new RelayCommand(() => TakeOrder(), () => canTakeOrder);
             ConfirmPaymentCashCommand = new RelayCommand(() => ConfirmPayment("Cash"));
             ConfirmPaymentCardCommand = new RelayCommand(() => ConfirmPayment("Card"));
             this.menuItemSelectorVM = menuItemSelectorVM;
@@ -108,7 +120,7 @@ namespace KFP.ViewModels
                 SelectedTableNumber = null;
                 SetOnCounterCommand.NotifyCanExecuteChanged();
                 SetForDeliveryCommand.NotifyCanExecuteChanged();
-            }, () => IsSetForDelivery != true);
+            });
 
             CurrentOrders = new ObservableCollection<Order>(dbContext.Orders
                 .Include(o => o.OrderItems)
@@ -131,7 +143,12 @@ namespace KFP.ViewModels
                 }
             }
 
-            orderVM.OrderItemElements.CollectionChanged += (s,e) => TakeOrderCommand.NotifyCanExecuteChanged();
+            orderVM.OrderItemElements.CollectionChanged += (s, e) =>
+            {
+                TakeOrderCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(canTakeOrder));
+                OnPropertyChanged(nameof(isOrderEmpty));
+            };
         }
 
         private void MenuItemSelectorVM_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -162,36 +179,57 @@ namespace KFP.ViewModels
             CurrentOrder.AppUser = _sessionManager.LoggedInUser;
             CurrentOrder.AppUserId = _sessionManager.LoggedInUser?.AppUserID;
             CurrentOrder.AppUserName = _sessionManager.LoggedInUser?.UserName;
-            if(IsSetOnCounter)
+            CurrentOrder.CreatedAt = DateTime.Now;
+            CurrentOrder.TotalPrice = orderVM.orderTotalPrice;
+            if (!String.IsNullOrEmpty(Notes))
+            {
+                CurrentOrder.Notes = Notes;
+            }
+
+            if (IsSetOnCounter)
             {
                 CurrentOrder.Type = OrderType.Counter;
             }
             else if (IsSetForDelivery)
             {
                 CurrentOrder.Type = OrderType.Delivery;
-                CurrentOrder.DeliveryInfo = new DeliveryInfo();
+                if (!String.IsNullOrEmpty(DeliveryInfo.CustomerName) || !String.IsNullOrEmpty(DeliveryInfo.PhoneNumber) || !String.IsNullOrEmpty(DeliveryInfo.Address))
+                {
+                    CurrentOrder.DeliveryInfo = DeliveryInfo; 
+                }
             }
             else
             {
                 CurrentOrder.Type = OrderType.Table;
                 CurrentOrder.TableNumber = SelectedTableNumber;
             }
-            dbContext.Orders.Add(CurrentOrder);
+            if (dbContext.Orders.Any(o => o.Id == CurrentOrder.Id))
+            {
+                dbContext.Orders.Update(CurrentOrder);
+            }
+            else
+            {
+                dbContext.Orders.Add(CurrentOrder);
+            }
             var result = dbContext.SaveChanges();
             if (result > 0) {
                 _navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { CurrentOrder.Id });
             }
         }
 
-        public bool canTakeOrder()
+        public bool canTakeOrder
         {
-            if (orderVM.order == null)
-                return false;
-            if (orderVM.order.OrderItems.Count == 0)
-                return false;
+            get
+            {
+                if (orderVM.order == null)
+                    return false;
+                if (orderVM.order.OrderItems.Count == 0)
+                    return false;
 
-            return true;
+                return true;
+            }
         }
+        public bool isOrderEmpty => orderVM.order == null || orderVM.order.OrderItems.Count == 0;
 
         private void ConfirmPayment(string method)
         {

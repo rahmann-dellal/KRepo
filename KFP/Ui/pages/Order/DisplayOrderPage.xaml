@@ -12,15 +12,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" >
+
+        <StackPanel Grid.Row="0">
             <Grid Margin="0,20,30,0">
                 <TextBlock FontSize="24" FontWeight="SemiBold" Margin="60,0,0,0" HorizontalAlignment="Left">
-                    <Run x:Uid="OrderTextBlock" Text="Order"/>
+                    <Run x:Uid="OrderTextBlock" />
                     <Run Text="#"/>
                     <Run Text="{x:Bind ViewModel.order.Id, Mode=OneWay}"/>
                 </TextBlock>
@@ -42,48 +40,134 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,40,0,0">
-            <TextBlock x:Uid="OrderLocationTextBlock"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,40,15" FontSize="15" FontWeight="Bold"/>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
-        BorderThickness="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
-                    Visibility="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToVisibilityConverter} ,Mode=OneWay}"
-        CornerRadius="5">
-                    <Button Height="50" IsEnabled="False" Foreground="Black" FontWeight="Bold">
-                        <StackPanel Orientation="Horizontal">
-                            <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"
-                          Foreground="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
-                            <TextBlock  x:Uid="CounterButtonTextBlock"  Margin="0,0,20,0"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-                <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
-            BorderThickness="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
-            Visibility="{x:Bind ViewModel.order.TableNumber, Converter={StaticResource BoolToVisibilityConverter}}"
-            CornerRadius="5">
-                    <Button Height="50" IsEnabled="False" Foreground="Black" FontWeight="Bold">
-                        <StackPanel Orientation="Horizontal">
-                            <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0" 
-                          Foreground="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
-                            <TextBlock x:Uid="TableButtonTextBlock" Margin="0,0,10,0"/>
-                            <TextBlock Text="{x:Bind ViewModel.SelectedTableNumber, Mode=OneWay}" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-                <Border BorderBrush="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
-                    BorderThickness="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
-                    Visibility="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToVisibilityConverter} ,Mode=OneWay}"
-                    CornerRadius="5">
-                    <Button Height="50" IsEnabled="False" Foreground="Black" FontWeight="Bold">
-                        <StackPanel Orientation="Horizontal">
-                            <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"
-                      Foreground="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
-                            <TextBlock x:Uid="DeliveryButtonTextBlock" Margin="0,0,10,0"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="340"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"  HorizontalAlignment="Center" Margin="0,40,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Top">
+                    <TextBlock x:Uid="OrderLocationTextBlock"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,40,25" FontSize="15" FontWeight="Bold"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                        <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
+                            BorderThickness="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
+                            Visibility="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToVisibilityConverter} ,Mode=OneWay}"
+                            CornerRadius="5">
+                            <Button Height="50" IsEnabled="False" Foreground="Black" FontWeight="Bold">
+                                <StackPanel Orientation="Horizontal">
+                                    <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"
+                                                Foreground="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
+                                    <TextBlock  x:Uid="CounterButtonTextBlock"  Margin="0,0,20,0" Foreground="Black"/>
+                                </StackPanel>
+                            </Button>
+                        </Border>
+                        <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
+                                BorderThickness="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
+                                Visibility="{x:Bind ViewModel.order.TableNumber, Converter={StaticResource BoolToVisibilityConverter}}"
+                                CornerRadius="5">
+                            <Button Height="50" IsEnabled="False" Foreground="Black" FontWeight="Bold">
+                                <StackPanel Orientation="Horizontal">
+                                    <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0" 
+                                                Foreground="{x:Bind ViewModel.SelectedTableNumber, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
+                                    <TextBlock x:Uid="TableButtonTextBlock" Margin="0,0,10,0" Foreground="Black"/>
+                                    <TextBlock Text="{x:Bind ViewModel.SelectedTableNumber, Mode=OneWay}" FontWeight="Bold" Foreground="Black"/>
+                                </StackPanel>
+                            </Button>
+                        </Border>
+                        <Border BorderBrush="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
+                                 BorderThickness="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
+                                  Visibility="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToVisibilityConverter} ,Mode=OneWay}"
+                                     CornerRadius="5">
+                            <Button Height="50" IsEnabled="False" Foreground="Black" FontWeight="Bold">
+                                <StackPanel Orientation="Horizontal">
+                                    <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"
+                                                Foreground="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
+                                    <TextBlock x:Uid="DeliveryButtonTextBlock" Margin="0,0,10,0" Foreground="Black"/>
+                                </StackPanel>
+                            </Button>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
+                    <pages:DisplayOrderView order="{x:Bind ViewModel.order, Mode=OneWay}"     />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <TextBlock x:Uid="TotalPriceTxtBlock" FontSize="16" FontWeight="SemiBold" Margin="0,0,10,0"/>
+                        <TextBlock Text="{x:Bind ViewModel.order.TotalPrice,Mode=OneWay, Converter={StaticResource DoubleToStringConverter}}" FontSize="16" FontWeight="SemiBold" Margin="0,0,10,0"/>
+                        <TextBlock Text="{x:Bind ViewModel.Currency, Mode=OneWay}" FontSize="16" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,40">
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                        <Button   Width="200"  Margin="0,0,20,0" >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Uid="EditOrderTextBlock" Margin="0,0,30,0"  />
+                                <FontIcon Glyph="&#xE70F;"  FontWeight="ExtraBold"  />
+                            </StackPanel>
+                        </Button>
+                        <Button   Width="200"  Margin="0,0,0,0" BorderBrush="OrangeRed">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Uid="CancelOrderTextBlock" Margin="0,0,30,0"  />
+                                <FontIcon Glyph="&#xE711;"  FontWeight="ExtraBold" Foreground="OrangeRed" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <TextBlock x:Uid="ConfirmPaymentTextBlock" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Button   Width="300" Height="50" Margin="0,0,20,0" Background="LightPink">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Uid="CashPaymentTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
+                                <PathIcon Data="{StaticResource CardIconData}"   />
+                            </StackPanel>
+                        </Button>
+                        <Button   Width="300" Height="50" Margin="0,0,0,0" Background="CadetBlue">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Uid="CardPaymentTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
+                                <FontIcon Glyph="&#xE8C7;" FontSize="22"  FontWeight="ExtraBold"  />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Padding="10" Margin="0,0,40,0">
+                <StackPanel Margin="0,30,0,0" Visibility="{x:Bind ViewModel.order.Notes, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="NotesTextBlock"/>
+                    <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
+                    Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="100">
+                        <TextBlock MinHeight="100" MaxHeight="600" Text="{x:Bind ViewModel.order.Notes}" TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="DeliveryInfoTextBlock"/>
+                    <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo.CustomerName, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock HorizontalAlignment="Left" FontWeight="Bold"  x:Uid="customerNameTextBlock"/>
+                        <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
+                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="50">
+                            <TextBlock  MaxHeight="50" Text="{x:Bind ViewModel.order.DeliveryInfo.CustomerName}"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo.PhoneNumber, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" x:Uid="customerPhoneTextBlock"/>
+                        <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
+                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="50">
+                            <TextBlock MaxHeight="50" Text="{x:Bind ViewModel.order.DeliveryInfo.PhoneNumber}"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo.Address, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" x:Uid="AdressTextBlock"/>
+                        <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
+                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="100">
+                            <TextBlock MinHeight="100" MaxHeight="600" Text="{x:Bind ViewModel.order.DeliveryInfo.Address}" TextWrapping="Wrap"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <pages:DisplayOrderView order="{x:Bind ViewModel.order, Mode=OneWay}" Grid.Row="2" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        </Grid>
     </Grid>
 </Page>

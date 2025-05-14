@@ -320,7 +320,7 @@
     <value>Nothing Yet !</value>
   </data>
   <data name="NothingToDisplayTxtBlk.Text" xml:space="preserve">
-    <value>Nothing to display ...</value>
+    <value>Nothing to show...</value>
   </data>
   <data name="Operation_was_seccessfull" xml:space="preserve">
     <value>Operation was successful !</value>
@@ -488,5 +488,59 @@
   </data>
   <data name="OrderTextBlock.Text" xml:space="preserve">
     <value>Order</value>
+  </data>
+  <data name="DeliveryInfoNametxtBox.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DeliveryInfoNametxtBox.PlaceholderText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DeliveryInfoPhonetxtBox.Header" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="DeliveryInfoPhonetxtBox.PlaceholderText" xml:space="preserve">
+    <value>xxx xxx xxx</value>
+  </data>
+  <data name="DeliveryInfoAddresstxtBox.Header" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="DeliveryInfoAddresstxtBox.PlaceholderText" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="NotesTextBox.PlaceholderText" xml:space="preserve">
+    <value>Add Something ...</value>
+  </data>
+  <data name="EditOrderTextBlock.Text" xml:space="preserve">
+    <value>Edit Order</value>
+  </data>
+  <data name="CancelOrderTextBlock.Text" xml:space="preserve">
+    <value>Cancel Order</value>
+  </data>
+  <data name="DeliveryInfoTextBlock.Text" xml:space="preserve">
+    <value>Delivery Information</value>
+  </data>
+  <data name="NotesTextBox.Header" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotesTextBlock.Text" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="customerNameTextBlock.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="customerPhoneTextBlock.Text" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="AdressTextBlock.Text" xml:space="preserve">
+    <value>Adress</value>
+  </data>
+  <data name="ConfirmPaymentTextBlock.Text" xml:space="preserve">
+    <value>Confirm Payment</value>
+  </data>
+  <data name="CashPaymentTextBlock.Text" xml:space="preserve">
+    <value>Cash Payment</value>
+  </data>
+  <data name="CardPaymentTextBlock.Text" xml:space="preserve">
+    <value>Card Payment</value>
   </data>
 </root>

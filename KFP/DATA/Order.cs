@@ -53,5 +53,7 @@ namespace KFP.DATA
 
         // Optional: Delivery address or phone if you want
         public DeliveryInfo DeliveryInfo { get; set; }
+
+        public double? TotalPrice { get; set; }
     }
 }

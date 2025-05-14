@@ -32,7 +32,7 @@
                     <TextBlock x:Uid="POSTextBlock"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xE7F4;"/>
+                    <FontIcon Glyph="&#xEC77;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
 

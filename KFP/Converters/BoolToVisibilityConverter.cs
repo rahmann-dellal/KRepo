@@ -12,18 +12,10 @@ namespace KFP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value == null)
-            {
-                return Visibility.Collapsed;
-            }
+            bool boolValue = KioberConverter.ToBool(value);
 
-            if (value is bool boolValue)
-            {
                 return boolValue ? Visibility.Visible : Visibility.Collapsed;
-            } else
-            {
-                return Visibility.Visible;
-            }
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
