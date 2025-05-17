@@ -56,7 +56,8 @@ namespace KFP.DATA_Access
             // Invoice → Order (Set null on delete)
             modelBuilder.Entity<Invoice>()
                 .HasOne(i => i.Order)
-                .WithMany() // Invoice does not need a navigation property in Order
+                .WithOne(o => o.Invoice)
+                .HasForeignKey<Invoice>(i => i.OrderId)
                 .OnDelete(DeleteBehavior.SetNull);
 
             // OrderItem → MenuItem

@@ -543,4 +543,52 @@
   <data name="CardPaymentTextBlock.Text" xml:space="preserve">
     <value>Card Payment</value>
   </data>
+  <data name="DeferPaymentTextBlock.Text" xml:space="preserve">
+    <value>Defer Payment</value>
+  </data>
+  <data name="PaymentTextBlock.Text" xml:space="preserve">
+    <value>Payment :</value>
+  </data>
+  <data name="ByCardTextBlock.Text" xml:space="preserve">
+    <value>By Card</value>
+  </data>
+  <data name="CashTextBlock.Text" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="DeferredTextBlock.Text" xml:space="preserve">
+    <value>Deferred</value>
+  </data>
+  <data name="ChangePaymentTextBlock.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="CompleteOrderTextBlock.Text" xml:space="preserve">
+    <value>Complete Order</value>
+  </data>
+  <data name="NewOrderTextBlock.Text" xml:space="preserve">
+    <value>New Order</value>
+  </data>
+  <data name="Canceling_Order" xml:space="preserve">
+    <value>Canceling Order : </value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Cancel_Order" xml:space="preserve">
+    <value>Cancel order ?</value>
+  </data>
+  <data name="Confirm_payment" xml:space="preserve">
+    <value>Confirm payment</value>
+  </data>
+  <data name="Confirm_Card_Payment" xml:space="preserve">
+    <value>Confirm payment by card ?</value>
+  </data>
+  <data name="Confirm_Cash_Payment" xml:space="preserve">
+    <value>Confirm payment by cash ?</value>
+  </data>
+  <data name="Complete_Order" xml:space="preserve">
+    <value>Complete Order</value>
+  </data>
+  <data name="Confrim_Order_Completed" xml:space="preserve">
+    <value>Set order as completed ?</value>
+  </data>
 </root>

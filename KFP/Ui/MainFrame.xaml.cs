@@ -32,6 +32,10 @@ namespace KFP.Ui
             this.InitializeComponent();
             StrongReferenceMessenger.Default.Register<UserAddedMessage>(this, (r, m) => OnUserAdded(m.UserId));
             _sessionManager = Ioc.Default.GetService<SessionManager>();
+
+            selectedNVI = POSNVI;
+            ContentFrame.Navigate(typeof(PointOfSalesPage));
+            NavView.Header = null;//StringLocalisationService.getStringWithKey("POS");
         }
         ~MainFrame()
         {

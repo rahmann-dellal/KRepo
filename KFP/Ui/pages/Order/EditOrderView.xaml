@@ -114,16 +114,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" HorizontalAlignment="Left" Command="{x:Bind ViewModel.ClearOrderCommand}">
+            <Button Grid.Column="0" HorizontalAlignment="Left" Command="{x:Bind ViewModel.ClearOrderCommand}" >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Uid="ClearOrderTextBlock" FontSize="16" FontWeight="SemiBold" Margin="0,0,10,0"/>
                     <FontIcon Glyph="&#xE72C;" FontSize="16"/>
                 </StackPanel>
             </Button>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock x:Uid="TotalPriceTxtBlock" FontSize="16" FontWeight="SemiBold" Margin="0,0,10,0"/>
-                <TextBlock Text="{x:Bind ViewModel.orderTotalPrice,Mode=OneWay, Converter={StaticResource DoubleToStringConverter}}" FontSize="16" FontWeight="SemiBold" Margin="0,0,10,0"/>
-                <TextBlock Text="{x:Bind ViewModel.Currency, Mode=OneWay}" FontSize="16" FontWeight="SemiBold"/>
+                <TextBlock x:Uid="TotalPriceTxtBlock" FontSize="18"  Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Bind ViewModel.orderTotalPrice,Mode=OneWay, Converter={StaticResource DoubleToStringConverter}}" FontSize="22" FontWeight="SemiBold" Margin="0,0,10,0" />
+                <TextBlock Text="{x:Bind ViewModel.Currency, Mode=OneWay}" FontSize="18"  VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
     </Grid>

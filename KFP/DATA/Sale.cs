@@ -24,11 +24,11 @@ namespace KFP.DATA
         public string ItemName { get; set; }
         public int? MenuItemId { get; set; }
         public MenuItem? MenuItem { get; set; }
-        public int UnitPrice { get; set; }
+        public double? UnitPrice { get; set; }
         public int Quantity { get; set; }
 
         [NotMapped]
-        public int TotalPrice => UnitPrice * Quantity;
+        public double? TotalPrice => UnitPrice * Quantity;
 
         public int? InvoiceId { get; set; }
         public Invoice? Invoice { get; set; }

@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using KFP.DATA;
-using System.Windows.Input;
 using KFP.DATA_Access;
 using Microsoft.EntityFrameworkCore;
 using KFP.Services;
@@ -83,8 +80,6 @@ namespace KFP.ViewModels
         public int numberOfTables { get; set; }
         public bool HasTables => numberOfTables > 0;
         public RelayCommand TakeOrderCommand { get; }
-        public RelayCommand ConfirmPaymentCashCommand { get; }
-        public RelayCommand ConfirmPaymentCardCommand { get; }
         public RelayCommand SetOnCounterCommand { get; set; }
         public RelayCommand SetForDeliveryCommand { get; set; }
 
@@ -98,8 +93,6 @@ namespace KFP.ViewModels
             numberOfTables = _appDataService.NumberOfTables;
 
             TakeOrderCommand = new RelayCommand(() => TakeOrder(), () => canTakeOrder);
-            ConfirmPaymentCashCommand = new RelayCommand(() => ConfirmPayment("Cash"));
-            ConfirmPaymentCardCommand = new RelayCommand(() => ConfirmPayment("Card"));
             this.menuItemSelectorVM = menuItemSelectorVM;
             this.orderVM = orderVM;
 
@@ -188,11 +181,11 @@ namespace KFP.ViewModels
 
             if (IsSetOnCounter)
             {
-                CurrentOrder.Type = OrderType.Counter;
+                CurrentOrder.Type = OrderLocation.Counter;
             }
             else if (IsSetForDelivery)
             {
-                CurrentOrder.Type = OrderType.Delivery;
+                CurrentOrder.Type = OrderLocation.Delivery;
                 if (!String.IsNullOrEmpty(DeliveryInfo.CustomerName) || !String.IsNullOrEmpty(DeliveryInfo.PhoneNumber) || !String.IsNullOrEmpty(DeliveryInfo.Address))
                 {
                     CurrentOrder.DeliveryInfo = DeliveryInfo; 
@@ -200,7 +193,7 @@ namespace KFP.ViewModels
             }
             else
             {
-                CurrentOrder.Type = OrderType.Table;
+                CurrentOrder.Type = OrderLocation.Table;
                 CurrentOrder.TableNumber = SelectedTableNumber;
             }
             if (dbContext.Orders.Any(o => o.Id == CurrentOrder.Id))
@@ -230,13 +223,6 @@ namespace KFP.ViewModels
             }
         }
         public bool isOrderEmpty => orderVM.order == null || orderVM.order.OrderItems.Count == 0;
-
-        private void ConfirmPayment(string method)
-        {
-            // handle payment logic
-            CurrentOrder.Status = OrderStatus.Completed;
-            CurrentOrder.CompletedAt = DateTime.Now;
-        }
     }
 
     public class TableListElement

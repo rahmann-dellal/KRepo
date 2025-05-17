@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using KFP.DATA_Access;
 using KFP.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using KFP.Services;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,7 +36,87 @@ namespace KFP.Ui.pages
                 if(parameters == null || parameters.Count == 0)
                     return;
                 int orderId = (int)parameters.FirstOrDefault();
+                ViewModel.showConfirmCancelOrderDialog = ShowConfirmCancelOrderDialog;
+                ViewModel.showConfirmCashPaymentDialog = ShowConfirmCashPaymentDialog;
+                ViewModel.showConfirmCardPaymentDialog = ShowConfirmCardPaymentDialog;
+                ViewModel.showSetOrderCompletedDialog = ShowSetOrderCompletedDialog;
                 ViewModel.LoadOrder(orderId);
+            }
+        }
+
+        public async Task<bool> ShowConfirmCancelOrderDialog(int OrderId)
+        {
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Cancel_Order");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Canceling_Order") + OrderId;
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("No");
+            confirmDialog.XamlRoot = this.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> ShowConfirmCashPaymentDialog()
+        {
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Confirm_payment");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confirm_Cash_Payment");
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.XamlRoot = this.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> ShowConfirmCardPaymentDialog()
+        {
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Confirm_payment") ;
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confirm_Card_Payment") ;
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.XamlRoot = this.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> ShowSetOrderCompletedDialog()
+        {
+            ContentDialog confirmDialog = new ContentDialog();
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Complete_Order");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confrim_Order_Completed");
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.XamlRoot = this.XamlRoot;
+            ContentDialogResult result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

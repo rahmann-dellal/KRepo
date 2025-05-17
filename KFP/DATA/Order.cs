@@ -14,7 +14,7 @@ namespace KFP.DATA
         Completed,
         Cancelled
     }
-    public enum OrderType
+    public enum OrderLocation
     {
         Table,
         Counter,
@@ -46,7 +46,7 @@ namespace KFP.DATA
         public AppUser? AppUser { get; set; }
         public string AppUserName { get; set; } = string.Empty;
 
-        public OrderType Type { get; set; } = OrderType.Counter;
+        public OrderLocation Type { get; set; } = OrderLocation.Counter;
 
         // Only used when Type == Table
         public int? TableNumber { get; set; }
@@ -55,5 +55,6 @@ namespace KFP.DATA
         public DeliveryInfo DeliveryInfo { get; set; }
 
         public double? TotalPrice { get; set; }
+        public Invoice? Invoice { get; set; } = null!;
     }
 }
