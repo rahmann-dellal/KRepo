@@ -18,21 +18,20 @@ namespace KFP.ViewModels
         public MenuItemSelectorVM menuItemSelectorVM;
         public EditOrderVM orderVM;
         public ObservableCollection<TableListElement> TableListElements { get; set; }
-        public ObservableCollection<Order> CurrentOrders { get; set; }
+        public ObservableCollection<Order> WaitingOrders { get; set; } //list of pending orders displyed in the tables flyout
 
         private KFPContext dbContext;
         public ObservableCollection<MenuItem> MenuItems { get; set; } = new();
-        public ObservableCollection<Category> Categories { get; set; } = new();
 
         private KFP.DATA.Order _currentOrder = new();
-        public KFP.DATA.Order CurrentOrder
+        public KFP.DATA.Order CurrentOrder //order being created or edited
         {
             get => _currentOrder;
             set { _currentOrder = value; OnPropertyChanged(); }
         }
 
 
-        private bool _isSetOnCounter = true;
+        private bool _isSetOnCounter = true; //current order set on counter
 
         public bool IsSetOnCounter
         {
@@ -55,7 +54,7 @@ namespace KFP.ViewModels
             }
         }
         private bool _isSetForDelivery = false;
-        public bool IsSetForDelivery
+        public bool IsSetForDelivery //current order set for delivery
         {
             get => _isSetForDelivery;
             set
@@ -66,7 +65,7 @@ namespace KFP.ViewModels
         }
 
         private int? _selectedTableNumber = null;
-        public int? SelectedTableNumber
+        public int? SelectedTableNumber //current order table number
         {
             get => _selectedTableNumber;
             set
@@ -77,7 +76,7 @@ namespace KFP.ViewModels
         }
 
         public string Notes { get; set; } = string.Empty;
-        public int numberOfTables { get; set; }
+        public int numberOfTables { get; set; } //number of tables in the restaurant as set in the app settings
         public bool HasTables => numberOfTables > 0;
         public RelayCommand TakeOrderCommand { get; }
         public RelayCommand SetOnCounterCommand { get; set; }
@@ -115,7 +114,7 @@ namespace KFP.ViewModels
                 SetForDeliveryCommand.NotifyCanExecuteChanged();
             });
 
-            CurrentOrders = new ObservableCollection<Order>(dbContext.Orders
+            WaitingOrders = new ObservableCollection<Order>(dbContext.Orders
                 .Include(o => o.OrderItems)
                 .Include(o => o.Session)
                 .Where(o => o.Status == OrderStatus.Pending || o.Status == OrderStatus.Preparing || o.Status == OrderStatus.Ready)
@@ -124,11 +123,11 @@ namespace KFP.ViewModels
             TableListElements = new ObservableCollection<TableListElement>();
             for (int i = 1; i <= numberOfTables; i++)
             {
-                var element = new TableListElement(i, this);
+                var element = new TableListElement(i, this, _navigationService);
                 TableListElements.Add(element);
-                if (CurrentOrders.Count > 0)
+                if (WaitingOrders.Count > 0)
                 {
-                    var order = CurrentOrders.FirstOrDefault(o => o.TableNumber == i);
+                    var order = WaitingOrders.FirstOrDefault(o => o.TableNumber == i);
                     if (order != null)
                     {
                         element.order = order;
@@ -227,15 +226,16 @@ namespace KFP.ViewModels
 
     public class TableListElement
     {
-        public TableListElement(int tableNumber, PointOfSalesVM orderingVM)
+        public TableListElement(int tableNumber, PointOfSalesVM POSVM, NavigationService navigationService)
         {
+            _navigationService = navigationService;
             TableNumber = tableNumber;
-            parentVM = orderingVM;
+            parentVM = POSVM;
             selectTableCommand = new RelayCommand(() =>
             {
                 if (order != null)
                 {
-                    orderingVM.loadOrder(order);
+                    _navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { order.Id });
                 }
                 parentVM.SelectedTableNumber = TableNumber;
                 parentVM.IsSetOnCounter = false;
@@ -250,6 +250,7 @@ namespace KFP.ViewModels
         public int TableNumber { get; set; }
         public string TableName => $"Table {TableNumber}";
         public Order? order { get; set; }
+        private NavigationService _navigationService;
 
         public RelayCommand selectTableCommand { get; set; }
     }

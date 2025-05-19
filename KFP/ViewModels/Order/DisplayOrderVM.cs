@@ -13,8 +13,8 @@ using Microsoft.UI.Xaml.Controls;
 namespace KFP.ViewModels
 {
     public delegate Task<bool> ShowConfirmCancelOrderDialog(int orderId);
-    public delegate Task<bool> ShowConfirmCashPaymentDialog();
-    public delegate Task<bool> ShowConfirmCardPaymentDialog();
+    public delegate Task<bool> ShowConfirmCashPaymentDialog(double? total, string currency);
+    public delegate Task<bool> ShowConfirmCardPaymentDialog(double? total, string currency);
     public delegate Task<bool> ShowSetOrderCompletedDialog();
     public partial class DisplayOrderVM : KioberViewModelBase
     {
@@ -100,7 +100,7 @@ namespace KFP.ViewModels
         [RelayCommand]
         public async Task ConfirmCashPayment ()
         {
-            bool confirmation = await showConfirmCashPaymentDialog();
+            bool confirmation = await showConfirmCashPaymentDialog(order.TotalPrice, Currency.ToString());
             if (!confirmation)
             {
                 return;
@@ -122,7 +122,7 @@ namespace KFP.ViewModels
         [RelayCommand]
         public async Task ConfirmCardPayment()
         {
-            bool confirmation = await showConfirmCardPaymentDialog();
+            bool confirmation = await showConfirmCardPaymentDialog(order.TotalPrice, Currency.ToString());
             if (!confirmation)
             {
                 return;
