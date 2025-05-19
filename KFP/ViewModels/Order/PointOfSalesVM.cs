@@ -180,11 +180,11 @@ namespace KFP.ViewModels
 
             if (IsSetOnCounter)
             {
-                CurrentOrder.Type = OrderLocation.Counter;
+                CurrentOrder.orderLocation = OrderLocation.Counter;
             }
             else if (IsSetForDelivery)
             {
-                CurrentOrder.Type = OrderLocation.Delivery;
+                CurrentOrder.orderLocation = OrderLocation.Delivery;
                 if (!String.IsNullOrEmpty(DeliveryInfo.CustomerName) || !String.IsNullOrEmpty(DeliveryInfo.PhoneNumber) || !String.IsNullOrEmpty(DeliveryInfo.Address))
                 {
                     CurrentOrder.DeliveryInfo = DeliveryInfo; 
@@ -192,7 +192,7 @@ namespace KFP.ViewModels
             }
             else
             {
-                CurrentOrder.Type = OrderLocation.Table;
+                CurrentOrder.orderLocation = OrderLocation.Table;
                 CurrentOrder.TableNumber = SelectedTableNumber;
             }
             if (dbContext.Orders.Any(o => o.Id == CurrentOrder.Id))

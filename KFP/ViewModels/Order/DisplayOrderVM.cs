@@ -38,9 +38,9 @@ namespace KFP.ViewModels
 
         public bool HasTables;
 
-        public bool IsSetOnCounter => order?.Type == OrderLocation.Counter;
+        public bool IsSetOnCounter => order?.orderLocation == OrderLocation.Counter;
         public int? SelectedTableNumber => order?.TableNumber ?? null;
-        public bool IsSetForDelivery => order?.Type == OrderLocation.Delivery;
+        public bool IsSetForDelivery => order?.orderLocation == OrderLocation.Delivery;
         public Currency Currency;
         public bool isPaidCash { get; set; }
         public bool isPaidCard { get; set; }
@@ -78,6 +78,24 @@ namespace KFP.ViewModels
             {
                 throw new Exception("Order not found");
             }
+            if(order.paymentMethod == PaymentMethod.Cash)
+            {
+                isPaidCash = true;
+                isPaidCard = false;
+                PaymentDeferred = false;
+            }
+            else if (order.paymentMethod == PaymentMethod.Card)
+            {
+                isPaidCard = true;
+                isPaidCash = false;
+                PaymentDeferred = false;
+            }
+            else
+            {
+                isPaidCard = false;
+                isPaidCash = false;
+                PaymentDeferred = false;
+            }
             OnPropertyChanged();
         }
 
@@ -108,6 +126,7 @@ namespace KFP.ViewModels
             isPaidCash = true;
             isPaidCard = false;
             PaymentDeferred = false;
+            order.paymentMethod = PaymentMethod.Cash;
             Invoice invoice = CreateInvoice(PaymentMethod.Cash);
             OnPropertyChanged(nameof(PaymentSet));
             OnPropertyChanged(nameof(PaymentPending));
@@ -130,6 +149,7 @@ namespace KFP.ViewModels
             isPaidCard = true;
             isPaidCash = false;
             PaymentDeferred = false;
+            order.paymentMethod = PaymentMethod.Card;
             Invoice invoice = CreateInvoice(PaymentMethod.Card);
             OnPropertyChanged(nameof(PaymentSet));
             OnPropertyChanged(nameof(PaymentPending));
@@ -147,6 +167,7 @@ namespace KFP.ViewModels
             PaymentDeferred = true;
             isPaidCard = false;
             isPaidCash = false;
+            order.paymentMethod = null;
             OnPropertyChanged(nameof(PaymentSet));
             OnPropertyChanged(nameof(PaymentPending));
             OnPropertyChanged(nameof(PaymentDeferred));

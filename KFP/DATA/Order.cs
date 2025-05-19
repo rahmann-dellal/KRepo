@@ -46,7 +46,7 @@ namespace KFP.DATA
         public AppUser? AppUser { get; set; }
         public string AppUserName { get; set; } = string.Empty;
 
-        public OrderLocation Type { get; set; } = OrderLocation.Counter;
+        public OrderLocation orderLocation { get; set; } = OrderLocation.Counter;
 
         // Only used when Type == Table
         public int? TableNumber { get; set; }
@@ -56,5 +56,6 @@ namespace KFP.DATA
 
         public double? TotalPrice { get; set; }
         public Invoice? Invoice { get; set; } = null!;
+        public PaymentMethod? paymentMethod { get; set; }
     }
 }
