@@ -187,7 +187,7 @@
                 </StackPanel>
             </Grid>
 
-            <ScrollViewer Grid.Column="1" HorizontalAlignment="Right" Margin="0,20,0,0" MaxWidth="300">
+            <ScrollViewer Grid.Column="1" HorizontalAlignment="Right" Margin="0,20,10,0" MaxWidth="300">
                 <StackPanel Margin="0,0,20,0">
                 <StackPanel Margin="0,30,0,0" Visibility="{x:Bind ViewModel.order.Notes, Converter={StaticResource BoolToVisibilityConverter}}">
                     <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="NotesTextBlock"/>
