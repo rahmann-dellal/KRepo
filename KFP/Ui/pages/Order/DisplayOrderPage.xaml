@@ -42,19 +42,23 @@
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="340"/>
+                <ColumnDefinition MinWidth="700" Width="*"/>
+                <ColumnDefinition Width="260"  />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0"  HorizontalAlignment="Center" Margin="0,40,0,40">
+            <Grid Grid.Column="0"  HorizontalAlignment="Center" Margin="0,30,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30*"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="5*"/>
+
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center">
-                    <TextBlock x:Uid="OrderLocationTextBlock"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,40,25" FontSize="15" FontWeight="Bold"/>
+                    <TextBlock x:Uid="OrderLocationTextBlock"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,40,0" FontSize="15" FontWeight="Bold"/>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" >
                         <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
                             BorderThickness="1"
@@ -95,7 +99,7 @@
                         </Border>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0" 
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0" 
                             Visibility="{x:Bind ViewModel.CanEditOrder, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                     <Button   Width="200"  Margin="0,0,20,0" >
                         <StackPanel Orientation="Horizontal">
@@ -110,9 +114,9 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <pages:DisplayOrderView Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" 
+                <pages:DisplayOrderView Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" 
                                         order="{x:Bind ViewModel.order, Mode=OneWay}"  />
-                <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <StackPanel Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,10">
                         <TextBlock x:Uid="TotalPriceTxtBlock" FontSize="18"  Margin="0,0,20,0" VerticalAlignment="Bottom"/>
                         <TextBlock Text="{x:Bind ViewModel.order.TotalPrice,Mode=OneWay, Converter={StaticResource DoubleToStringConverter}}" FontSize="22" FontWeight="SemiBold" Margin="0,0,10,0" VerticalAlignment="Center"/>
@@ -120,9 +124,9 @@
                     </StackPanel>
 
                 </StackPanel>
-                <StackPanel Grid.Row="4" HorizontalAlignment="Center" Margin="0,0,0,40" >
+                <StackPanel Grid.Row="6" HorizontalAlignment="Center" Margin="0,0,0,0" >
 
-                    <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0"
+                    <StackPanel HorizontalAlignment="Center" Margin="0,0,0,0"
                                  Visibility="{x:Bind ViewModel.PaymentPending, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                         <TextBlock x:Uid="ConfirmPaymentTextBlock" FontWeight="Bold" HorizontalAlignment="Center" />
                         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
@@ -146,7 +150,7 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0" 
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0" 
                         Visibility="{x:Bind ViewModel.PaymentSet, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                         <TextBlock x:Uid="PaymentTextBlock" HorizontalAlignment="Center" Margin="0,0,20,0" VerticalAlignment="Center"/>
                         <TextBlock x:Uid="ByCardTextBlock" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"
@@ -163,16 +167,16 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,0" 
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" 
                         Visibility="{x:Bind ViewModel.PaymentSet, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
-                        <Button Width="250" Height="100"  Margin="0,0,30,0" Background="Honeydew" BorderThickness="2" 
+                        <Button Width="250" Height="90"  Margin="0,0,30,0" Background="Honeydew" BorderThickness="2" 
                                 Command="{x:Bind ViewModel.OrderCompletedCommandCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Uid="CompleteOrderTextBlock" FontSize="16" Margin="0,0,30,0" FontWeight="SemiBold" HorizontalAlignment="Left" TextWrapping="Wrap"/>
                                 <FontIcon Glyph="&#xE930;" FontSize="22"  FontWeight="ExtraBold"  HorizontalAlignment="Right" Foreground="Green"/>
                             </StackPanel>
                         </Button>
-                        <Button Width="250" Height="100"  Margin="0,0,0,0" Background="#FF77BBFF" BorderThickness="2" 
+                        <Button Width="250" Height="90"  Margin="0,0,0,0" Background="#FF77BBFF" BorderThickness="2" 
                                 Command="{x:Bind ViewModel.NewOrderCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Uid="NewOrderTextBlock" FontSize="16" Margin="0,0,30,0" FontWeight="SemiBold" HorizontalAlignment="Left" TextWrapping="Wrap"/>
@@ -183,40 +187,41 @@
                 </StackPanel>
             </Grid>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Padding="10" Margin="0,0,40,0">
+            <ScrollViewer Grid.Column="1" HorizontalAlignment="Right" Margin="0,20,0,0" MaxWidth="300">
+                <StackPanel Margin="0,0,20,0">
                 <StackPanel Margin="0,30,0,0" Visibility="{x:Bind ViewModel.order.Notes, Converter={StaticResource BoolToVisibilityConverter}}">
                     <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="NotesTextBlock"/>
-                    <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
-                    Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="100">
-                        <TextBlock MinHeight="100" MaxHeight="600" Text="{x:Bind ViewModel.order.Notes}" TextWrapping="Wrap"/>
+                        <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10"
+                    Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="200" MinHeight="100">
+                        <TextBlock MinHeight="100" MaxHeight="400"  Text="{x:Bind ViewModel.order.Notes}" TextWrapping="Wrap"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo, Converter={StaticResource BoolToVisibilityConverter}}">
                     <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="DeliveryInfoTextBlock"/>
                     <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo.CustomerName, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <TextBlock HorizontalAlignment="Left" FontWeight="Bold"  x:Uid="customerNameTextBlock"/>
-                        <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
-                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="50">
-                            <TextBlock  MaxHeight="50" Text="{x:Bind ViewModel.order.DeliveryInfo.CustomerName}"/>
+                        <TextBlock HorizontalAlignment="Left" FontWeight="SemiBold"  x:Uid="customerNameTextBlock"/>
+                            <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10,10,10,0"
+                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="200" MinHeight="50">
+                            <TextBlock  MaxHeight="50" Text="{x:Bind ViewModel.order.DeliveryInfo.CustomerName}" TextWrapping="Wrap"/>
                         </Border>
                     </StackPanel>
                     <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo.PhoneNumber, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" x:Uid="customerPhoneTextBlock"/>
-                        <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
-                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="50">
-                            <TextBlock MaxHeight="50" Text="{x:Bind ViewModel.order.DeliveryInfo.PhoneNumber}"/>
+                        <TextBlock HorizontalAlignment="Left" FontWeight="SemiBold" x:Uid="customerPhoneTextBlock"/>
+                            <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10,10,10,0"
+                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="200" MinHeight="50">
+                            <TextBlock MaxHeight="50" Text="{x:Bind ViewModel.order.DeliveryInfo.PhoneNumber}" TextWrapping="Wrap"/>
                         </Border>
                     </StackPanel>
                     <StackPanel Margin="0,20,0,0" Visibility="{x:Bind ViewModel.order.DeliveryInfo.Address, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" x:Uid="AdressTextBlock"/>
-                        <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10" Grid.Row="1" Grid.Column="1"
-                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="280" MinHeight="100">
-                            <TextBlock MinHeight="100" MaxHeight="600" Text="{x:Bind ViewModel.order.DeliveryInfo.Address}" TextWrapping="Wrap"/>
+                        <TextBlock HorizontalAlignment="Left" FontWeight="SemiBold" x:Uid="AdressTextBlock"/>
+                            <Border Background="{StaticResource SecondBackgroud}" CornerRadius="10" Padding="10"
+                    Margin="0,10,0,0" HorizontalAlignment="Center" MinWidth="200" MinHeight="100">
+                            <TextBlock MinHeight="100" MaxHeight="300" Text="{x:Bind ViewModel.order.DeliveryInfo.Address}" TextWrapping="Wrap"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

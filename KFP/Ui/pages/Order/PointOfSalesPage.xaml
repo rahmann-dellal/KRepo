@@ -46,13 +46,13 @@
 
 
             <!-- Order section -->
-            <Grid Grid.Column="0 " Margin="0,10,10,10">
+            <Grid Grid.Column="0 " Margin="0,10,10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="12*"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto" MinHeight="60"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <TextBlock x:Uid="OrderLocationTextBlock" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,10" FontSize="12" FontWeight="Bold"/>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" >
@@ -137,7 +137,7 @@
                                         <TextBox x:Uid="DeliveryInfoNametxtBox" Text="{x:Bind ViewModel.DeliveryInfo.CustomerName, Mode=TwoWay}" Margin="10" MinWidth="150" MaxLength="35"/>
                                         <TextBox x:Uid="DeliveryInfoPhonetxtBox" Text="{x:Bind ViewModel.DeliveryInfo.PhoneNumber, Mode=TwoWay}" Margin="10" MinWidth="150" MaxLength="20"/>
                                         <TextBox x:Uid="DeliveryInfoAddresstxtBox" Text="{x:Bind ViewModel.DeliveryInfo.Address, Mode=TwoWay}" AcceptsReturn="True"
-                                                 Margin="10" MinWidth="300" MinHeight="200" MaxLength="700" TextWrapping="Wrap" />
+                                                 Margin="10" MinWidth="300" MinHeight="200" MaxLength="280" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Flyout>
                             </Button.Flyout>
@@ -151,7 +151,7 @@
                         <FontIcon Glyph="&#xE70B;" FontSize="22" FontWeight="ExtraBold" Foreground="CadetBlue"/>
                         <Button.Flyout>
                             <Flyout>
-                                <TextBox Text="{x:Bind ViewModel.Notes, Mode=TwoWay}" x:Uid="NotesTextBox" MaxLength="700" MaxWidth="400" MinWidth="300" MinHeight="200" TextWrapping="Wrap" AcceptsReturn="True"/>
+                                <TextBox Text="{x:Bind ViewModel.Notes, Mode=TwoWay}" x:Uid="NotesTextBox" MaxLength="400" MaxWidth="400" MinWidth="300" MinHeight="200" TextWrapping="Wrap" AcceptsReturn="True"/>
                             </Flyout>
                         </Button.Flyout>
                     </Button>
@@ -165,11 +165,6 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Button Content="Pay Cash" Command="{Binding ConfirmPaymentCashCommand}" />
-                    <Button Content="Pay Card" Command="{Binding ConfirmPaymentCardCommand}" Margin="5,0,0,0" />
-                    <Button Content="Clear" Command="{Binding ClearOrderCommand}" Margin="5,0,0,0" />
-                </StackPanel>-->
             </Grid>
 
             <!-- Menu Item Selector -->

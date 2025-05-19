@@ -120,13 +120,15 @@ namespace KFP.Ui.pages
             }
         }
 
-        public async Task<bool> ShowSetOrderCompletedDialog()
+        public async Task<bool> ShowSetOrderCompletedDialog(int orderId)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Complete_Order");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Complete_Order") + "  #" + orderId ;
             confirmDialog.Content = StringLocalisationService.getStringWithKey("Confrim_Order_Completed");
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
+            confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
+            confirmDialog.CloseButtonStyle = dialogButtonStyle;
             confirmDialog.XamlRoot = this.XamlRoot;
             ContentDialogResult result = await confirmDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)

@@ -15,7 +15,7 @@ namespace KFP.ViewModels
     public delegate Task<bool> ShowConfirmCancelOrderDialog(int orderId);
     public delegate Task<bool> ShowConfirmCashPaymentDialog(double? total, string currency);
     public delegate Task<bool> ShowConfirmCardPaymentDialog(double? total, string currency);
-    public delegate Task<bool> ShowSetOrderCompletedDialog();
+    public delegate Task<bool> ShowSetOrderCompletedDialog(int orderId);
     public partial class DisplayOrderVM : KioberViewModelBase
     {
         private Order _order;
@@ -222,7 +222,7 @@ namespace KFP.ViewModels
         [RelayCommand]
         public async Task OrderCompletedCommand()
         {
-            bool confirmation = await showSetOrderCompletedDialog();
+            bool confirmation = await showSetOrderCompletedDialog(order.Id);
             if (!confirmation)
             {
                 return;

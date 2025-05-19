@@ -532,7 +532,7 @@
     <value>Phone</value>
   </data>
   <data name="AdressTextBlock.Text" xml:space="preserve">
-    <value>Adress</value>
+    <value>Address</value>
   </data>
   <data name="ConfirmPaymentTextBlock.Text" xml:space="preserve">
     <value>Confirm Payment</value>
