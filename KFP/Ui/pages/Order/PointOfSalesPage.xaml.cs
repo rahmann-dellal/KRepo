@@ -40,5 +40,18 @@ namespace KFP.Ui.pages
                 tablesFlyout.Hide();
             }
         }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                var parameters = e.Parameter as List<Object>;
+
+                if (parameters == null || parameters.Count == 0)
+                    return;
+                int orderId = (int)parameters.FirstOrDefault();
+                ViewModel.loadOrder(orderId);
+            }
+        }
     }
 }

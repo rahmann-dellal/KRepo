@@ -145,7 +145,7 @@
                     </Border>
                 </StackPanel>
 
-                <views:EditOrderView ViewModel="{x:Bind ViewModel.orderVM}" Grid.Row="2" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <views:EditOrderView ViewModel="{x:Bind ViewModel.editOrderVM}" Grid.Row="2" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Button Width="50" Height="50" BorderBrush="CadetBlue" Margin="0,0,10,0">
                         <FontIcon Glyph="&#xE70B;" FontSize="22" FontWeight="ExtraBold" Foreground="CadetBlue"/>

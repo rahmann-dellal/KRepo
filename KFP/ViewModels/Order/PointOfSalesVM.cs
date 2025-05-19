@@ -16,12 +16,11 @@ namespace KFP.ViewModels
         private SessionManager _sessionManager;
         private NavigationService _navigationService;
         public MenuItemSelectorVM menuItemSelectorVM;
-        public EditOrderVM orderVM;
+        public EditOrderVM editOrderVM;
         public ObservableCollection<TableListElement> TableListElements { get; set; }
         public ObservableCollection<Order> WaitingOrders { get; set; } //list of pending orders displyed in the tables flyout
 
         private KFPContext dbContext;
-        public ObservableCollection<MenuItem> MenuItems { get; set; } = new();
 
         private KFP.DATA.Order _currentOrder = new();
         public KFP.DATA.Order CurrentOrder //order being created or edited
@@ -93,7 +92,7 @@ namespace KFP.ViewModels
 
             TakeOrderCommand = new RelayCommand(() => TakeOrder(), () => canTakeOrder);
             this.menuItemSelectorVM = menuItemSelectorVM;
-            this.orderVM = orderVM;
+            this.editOrderVM = orderVM;
 
             menuItemSelectorVM.PropertyChanged += MenuItemSelectorVM_PropertyChanged;
 
@@ -141,38 +140,62 @@ namespace KFP.ViewModels
                 OnPropertyChanged(nameof(canTakeOrder));
                 OnPropertyChanged(nameof(isOrderEmpty));
             };
+            loadOrder(new KFP.DATA.Order());
         }
 
         private void MenuItemSelectorVM_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(menuItemSelectorVM.SelectedMenuItem))
             {
-                orderVM.OnMenuItemSelected(menuItemSelectorVM.SelectedMenuItem);
+                editOrderVM.OnMenuItemSelected(menuItemSelectorVM.SelectedMenuItem);
             }
         }
 
+        public void loadOrder(int OrderId)
+        {
+            var order = dbContext.Orders
+                .Include(o => o.OrderItems).ThenInclude(oi => oi.AddOns)
+                .Include(o => o.Session)
+                .Include(o => o.DeliveryInfo)
+                .FirstOrDefault(o => o.Id == OrderId);
+            if (order != null) { 
+                loadOrder(order);
+            }
+        }
         public void loadOrder(Order order)
         {
             CurrentOrder = order;
-            if (CurrentOrder != null)
+            if (CurrentOrder == null)
             {
-                //TODO: Load order
+                CurrentOrder = new KFP.DATA.Order();
+
             }
+            editOrderVM.loadOrder(CurrentOrder);
+            IsSetOnCounter = CurrentOrder.orderLocation == OrderLocation.Counter;
+            IsSetForDelivery = CurrentOrder.orderLocation == OrderLocation.Delivery;
+            DeliveryInfo = CurrentOrder.DeliveryInfo;
+            Notes = CurrentOrder.Notes;
+            SelectedTableNumber = CurrentOrder.TableNumber;
         }
 
 
         private void TakeOrder()
         {
-            CurrentOrder = orderVM.order;
             CurrentOrder.Status = OrderStatus.Preparing;
             CurrentOrder.SetPreparingAt = DateTime.Now;
-            CurrentOrder.Session = _sessionManager.CurrentSession;
-            CurrentOrder.SessionId = _sessionManager.CurrentSession.SessionId;
-            CurrentOrder.AppUser = _sessionManager.LoggedInUser;
-            CurrentOrder.AppUserId = _sessionManager.LoggedInUser?.AppUserID;
-            CurrentOrder.AppUserName = _sessionManager.LoggedInUser?.UserName;
-            CurrentOrder.CreatedAt = DateTime.Now;
-            CurrentOrder.TotalPrice = orderVM.orderTotalPrice;
+            if(CurrentOrder.Session == null)
+            {
+                CurrentOrder.Session = _sessionManager.CurrentSession;
+                CurrentOrder.SessionId = _sessionManager.CurrentSession.SessionId;
+                CurrentOrder.AppUser = _sessionManager.LoggedInUser;
+                CurrentOrder.AppUserId = _sessionManager.LoggedInUser?.AppUserID;
+                CurrentOrder.AppUserName = _sessionManager.LoggedInUser?.UserName;
+            }
+            
+            if(CurrentOrder.CreatedAt != null) { 
+                CurrentOrder.CreatedAt = DateTime.Now;
+            }
+            CurrentOrder.TotalPrice = editOrderVM.orderTotalPrice;
             if (!String.IsNullOrEmpty(Notes))
             {
                 CurrentOrder.Notes = Notes;
@@ -187,7 +210,7 @@ namespace KFP.ViewModels
                 CurrentOrder.orderLocation = OrderLocation.Delivery;
                 if (!String.IsNullOrEmpty(DeliveryInfo.CustomerName) || !String.IsNullOrEmpty(DeliveryInfo.PhoneNumber) || !String.IsNullOrEmpty(DeliveryInfo.Address))
                 {
-                    CurrentOrder.DeliveryInfo = DeliveryInfo; 
+                    CurrentOrder.DeliveryInfo = DeliveryInfo;
                 }
             }
             else
@@ -204,7 +227,8 @@ namespace KFP.ViewModels
                 dbContext.Orders.Add(CurrentOrder);
             }
             var result = dbContext.SaveChanges();
-            if (result > 0) {
+            if (result > 0)
+            {
                 _navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { CurrentOrder.Id });
             }
         }
@@ -213,15 +237,15 @@ namespace KFP.ViewModels
         {
             get
             {
-                if (orderVM.order == null)
+                if (CurrentOrder == null)
                     return false;
-                if (orderVM.order.OrderItems.Count == 0)
+                if (CurrentOrder.OrderItems.Count == 0)
                     return false;
 
                 return true;
             }
         }
-        public bool isOrderEmpty => orderVM.order == null || orderVM.order.OrderItems.Count == 0;
+        public bool isOrderEmpty => CurrentOrder == null || CurrentOrder.OrderItems.Count == 0;
     }
 
     public class TableListElement

@@ -114,6 +114,11 @@ namespace KFP.ViewModels
             _navigationService.navigateTo(KioberFoodPage.POS);
         }
 
+        [RelayCommand(CanExecute = nameof(CanEditOrder))]
+        public void EditOrder()
+        {
+            _navigationService.navigateTo(KioberFoodPage.POS, new List<object>() { order.Id });
+        }
 
         [RelayCommand]
         public async Task ConfirmCashPayment ()

@@ -25,13 +25,12 @@ namespace KFP.DATA
     {
         public Order()
         {
-            CreatedAt = DateTime.Now;
             OrderItems = new List<OrderItem>();
         }
         public int Id { get; set; }
 
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? CreatedAt { get; set; }
         public DateTime? SetPreparingAt { get; set; }
         public DateTime? SetReadyAt { get; set; }
         public DateTime? CompletedAt { get; set; }

@@ -18,7 +18,7 @@ namespace KFP.ViewModels
     {
         private AppDataService _appDataService;
         public OnAddedAddonDelegate? onAddedAddonDelegate { get; set; } = null!; //used to bring into view the added element
-        public Order order { get; set; } = new();
+        private Order order { get; set; } = new();
         public Currency Currency { get; set; } = new();
         public double orderTotalPrice {
             get
@@ -79,6 +79,27 @@ namespace KFP.ViewModels
             };
             _appDataService = appDataService;
             Currency = appDataService.Currency;
+        }
+        public void loadOrder(Order order)
+        {
+            this.order = order;
+            OrderItemElements.Clear();
+            foreach (var item in order.OrderItems)
+            {
+                OrderItemListElement element = new OrderItemListElement(this);
+                element.orderItem = item;
+                if (item.AddOns != null && item.AddOns.Count > 0)
+                {
+                    foreach (var addon in item.AddOns)
+                    {
+                        OrderItemListElement addonElement = new OrderItemListElement(this);
+                        addonElement.orderItem = addon;
+                        addonElement.ParentOrderItemElement = element;
+                        element.AddOnItemElements.Add(addonElement);
+                    }
+                }
+                OrderItemElements.Add(element);
+            }
         }
         public void OnMenuItemSelected(MenuItem menuItem)
         {

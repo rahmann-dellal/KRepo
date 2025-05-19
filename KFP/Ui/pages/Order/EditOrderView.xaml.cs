@@ -25,18 +25,6 @@ namespace KFP.Ui.pages
 {
     public sealed partial class EditOrderView : UserControl
     {
-        public static readonly DependencyProperty AllowEditingProperty =
-            DependencyProperty.Register(
-                nameof(AllowEditing),
-                typeof(bool),
-                typeof(EditOrderView),
-                new PropertyMetadata(false));
-
-        public bool AllowEditing
-        {
-            get => (bool)GetValue(AllowEditingProperty);
-            set => SetValue(AllowEditingProperty, value);
-        }
 
         public static readonly DependencyProperty ViewModelProperty =
             DependencyProperty.Register(
