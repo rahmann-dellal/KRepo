@@ -10,6 +10,11 @@ using KFP.Services;
 
 namespace KFP.ViewModels
 {
+    public enum POSVMMode
+    {
+        NewOrder,
+        EditOrder
+    }
     public class PointOfSalesVM : KioberViewModelBase
     {
         private AppDataService _appDataService;
@@ -17,6 +22,9 @@ namespace KFP.ViewModels
         private NavigationService _navigationService;
         public MenuItemSelectorVM menuItemSelectorVM;
         public EditOrderVM editOrderVM;
+        public POSVMMode POSVMMode { get; set; } = POSVMMode.NewOrder; //mode of the view model, new order or edit order
+        public bool inEditingMode => POSVMMode == POSVMMode.EditOrder; //is the view model in editing mode
+        public bool newOrderMode => POSVMMode == POSVMMode.NewOrder; //is the view model in new order mode
         public ObservableCollection<TableListElement> TableListElements { get; set; }
         public ObservableCollection<Order> WaitingOrders { get; set; } //list of pending orders displyed in the tables flyout
 
@@ -141,6 +149,7 @@ namespace KFP.ViewModels
                 OnPropertyChanged(nameof(isOrderEmpty));
             };
             loadOrder(new KFP.DATA.Order());
+            POSVMMode = POSVMMode.NewOrder;
         }
 
         private void MenuItemSelectorVM_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -158,22 +167,31 @@ namespace KFP.ViewModels
                 .Include(o => o.Session)
                 .Include(o => o.DeliveryInfo)
                 .FirstOrDefault(o => o.Id == OrderId);
-            if (order != null) { 
+            if (order != null) {
+                POSVMMode = POSVMMode.EditOrder;
                 loadOrder(order);
             }
         }
         public void loadOrder(Order order)
         {
+            POSVMMode = POSVMMode.EditOrder;
             CurrentOrder = order;
             if (CurrentOrder == null)
             {
                 CurrentOrder = new KFP.DATA.Order();
-
+                POSVMMode = POSVMMode.NewOrder;
             }
             editOrderVM.loadOrder(CurrentOrder);
             IsSetOnCounter = CurrentOrder.orderLocation == OrderLocation.Counter;
             IsSetForDelivery = CurrentOrder.orderLocation == OrderLocation.Delivery;
-            DeliveryInfo = CurrentOrder.DeliveryInfo;
+            if (CurrentOrder.DeliveryInfo != null)
+            {
+                DeliveryInfo = CurrentOrder.DeliveryInfo;
+            }
+            else
+            {
+                DeliveryInfo = new DeliveryInfo();
+            }
             Notes = CurrentOrder.Notes;
             SelectedTableNumber = CurrentOrder.TableNumber;
         }
@@ -182,17 +200,14 @@ namespace KFP.ViewModels
         private void TakeOrder()
         {
             CurrentOrder.Status = OrderStatus.Preparing;
-            CurrentOrder.SetPreparingAt = DateTime.Now;
-            if(CurrentOrder.Session == null)
+            if(POSVMMode == POSVMMode.NewOrder)
             {
+                CurrentOrder.SetPreparingAt = DateTime.Now;
                 CurrentOrder.Session = _sessionManager.CurrentSession;
                 CurrentOrder.SessionId = _sessionManager.CurrentSession.SessionId;
                 CurrentOrder.AppUser = _sessionManager.LoggedInUser;
                 CurrentOrder.AppUserId = _sessionManager.LoggedInUser?.AppUserID;
-                CurrentOrder.AppUserName = _sessionManager.LoggedInUser?.UserName;
-            }
-            
-            if(CurrentOrder.CreatedAt != null) { 
+                CurrentOrder.AppUserName = _sessionManager.LoggedInUser?.UserName;            
                 CurrentOrder.CreatedAt = DateTime.Now;
             }
             CurrentOrder.TotalPrice = editOrderVM.orderTotalPrice;
@@ -204,6 +219,8 @@ namespace KFP.ViewModels
             if (IsSetOnCounter)
             {
                 CurrentOrder.orderLocation = OrderLocation.Counter;
+                CurrentOrder.DeliveryInfo = null;
+                CurrentOrder.TableNumber = null;
             }
             else if (IsSetForDelivery)
             {
@@ -212,11 +229,13 @@ namespace KFP.ViewModels
                 {
                     CurrentOrder.DeliveryInfo = DeliveryInfo;
                 }
+                CurrentOrder.TableNumber = null;
             }
             else
             {
                 CurrentOrder.orderLocation = OrderLocation.Table;
                 CurrentOrder.TableNumber = SelectedTableNumber;
+                CurrentOrder.DeliveryInfo = null;
             }
             if (dbContext.Orders.Any(o => o.Id == CurrentOrder.Id))
             {
@@ -257,17 +276,28 @@ namespace KFP.ViewModels
             parentVM = POSVM;
             selectTableCommand = new RelayCommand(() =>
             {
-                if (order != null)
+                if (order != null && parentVM.CurrentOrder != order)
                 {
                     _navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { order.Id });
                 }
-                parentVM.SelectedTableNumber = TableNumber;
-                parentVM.IsSetOnCounter = false;
-                parentVM.IsSetForDelivery = false;
-                parentVM.SetOnCounterCommand.NotifyCanExecuteChanged();
-                parentVM.SetForDeliveryCommand.NotifyCanExecuteChanged();
+                else
+                {
+                    if(parentVM.inEditingMode && parentVM.CurrentOrder != null && parentVM.SelectedTableNumber != null)
+                    {
+                        var oldLocation = parentVM.TableListElements.Where(tle => tle.TableNumber== parentVM.SelectedTableNumber).FirstOrDefault();
+                        if(oldLocation != null)
+                        {
+                            oldLocation.order = null;
+                        }
+                    }
+                    parentVM.SelectedTableNumber = TableNumber;
+                    parentVM.IsSetOnCounter = false;
+                    parentVM.IsSetForDelivery = false;
+                    parentVM.SetOnCounterCommand.NotifyCanExecuteChanged();
+                    parentVM.SetForDeliveryCommand.NotifyCanExecuteChanged();
+                }
             }, () =>
-            parentVM.SelectedTableNumber != TableNumber
+            parentVM.SelectedTableNumber != TableNumber && order == null
             );
         }
         private PointOfSalesVM parentVM;

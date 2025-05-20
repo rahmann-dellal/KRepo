@@ -157,7 +157,10 @@
                     </Button>
                     <Button  Command="{x:Bind ViewModel.TakeOrderCommand}" Width="300" Height="50" Margin="0,0,0,0" >
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Uid="TakeOrderTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"/>
+                            <TextBlock x:Uid="TakeOrderTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"
+                                       Visibility="{x:Bind ViewModel.newOrderMode}"/>
+                            <TextBlock x:Uid="ConfirmChangesTextBlock" Margin="0,0,70,0" FontSize="18" FontWeight="SemiBold"
+                                        Visibility="{x:Bind ViewModel.inEditingMode}"/>
                             <FontIcon Glyph="&#xF78C;" FontSize="22" FontWeight="ExtraBold" Foreground="Green"
                                   Visibility="{x:Bind ViewModel.canTakeOrder, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}" />
                             <FontIcon Glyph="&#xF78C;" FontSize="22" FontWeight="ExtraBold" Foreground="LightGray"
