@@ -4,9 +4,11 @@ using KFP.DATA_Access;
 using KFP.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static KFP.Ui.Components.NumberPad;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -21,9 +23,12 @@ namespace KFP.Ui
         public List<AppUser> AppUsers { get; private set; }
 
         private AppUser? _selectedUser;
+        private double OpeningCash = 0;
+        private bool OpeningCashSet = false;
+        private bool showOpeningCashInput { get => !OpeningCashSet; }
 
-
-        public AppUser? selectedUser { 
+        public AppUser? selectedUser
+        {
             get
             {
                 return _selectedUser;
@@ -48,7 +53,8 @@ namespace KFP.Ui
             }
         }
 
-        public bool isUserSelected { 
+        public bool isUserSelected
+        {
             get
             {
                 return selectedUser != null;
@@ -59,7 +65,7 @@ namespace KFP.Ui
             _context = Ioc.Default.GetService<KFPContext>();
             _sessionManager = Ioc.Default.GetService<SessionManager>();
             AppUsers = _context.AppUsers.ToList();
-            
+
             this.InitializeComponent();
 
             if (AppUsers.Count == 1)
@@ -67,6 +73,17 @@ namespace KFP.Ui
                 selectedUser = AppUsers[0];
                 UselectUserButton.Visibility = Visibility.Collapsed;
             }
+
+            var lastSession = _context.Sessions.OrderByDescending(s => s.End)
+                .FirstOrDefault();
+            if (lastSession != null)
+            {
+                OpeningCash = lastSession.ClosingCash;
+            } else
+            {
+                OpeningCash = 0;
+            }
+            numberBox.Value = OpeningCash;
 
             cancelAndExitButton.Content = StringLocalisationService.getStringWithKey("cancelAndExit");
             pinInput.PromptText = StringLocalisationService.getStringWithKey("please_enter_pin");
@@ -78,9 +95,9 @@ namespace KFP.Ui
         {
             if (pinInput.isPinValid && selectedUser != null)
             {
-                var Logintask = _sessionManager.tryLogin(selectedUser, pinInput.PIN);
+                var Logintask = _sessionManager.tryLogin(selectedUser, pinInput.PIN, OpeningCash);
                 Logintask.Wait();
-                if(Logintask.Result == false)
+                if (Logintask.Result == false)
                 {
                     pinInput.PromptText = StringLocalisationService.getStringWithKey("Wrong_PIN_Try_again");
                     pinInput.resetPin();
@@ -95,10 +112,13 @@ namespace KFP.Ui
 
         private void UselectUserButton_Click(object sender, RoutedEventArgs e)
         {
-            if(AppUsers.Count > 1) { 
+            if (AppUsers.Count > 1)
+            {
                 selectedUser = null;
                 UsersListView.SelectedItem = null;
             }
+            openingCashInput.Visibility = Visibility.Visible;
+            pinInput.Visibility = Visibility.Collapsed;
         }
 
         private void SelectedUserPanelFadeIn()
@@ -116,6 +136,59 @@ namespace KFP.Ui
         public void FocusPinInput()
         {
             pinInput.Focus(FocusState.Programmatic);
+        }
+
+        private void NumberPadBackButton_Click(object sender, EventArgs e)
+        {
+            TextBox targetTextBox = numberBox.NumberTextBox;
+
+            int selStart = targetTextBox.SelectionStart;
+            int selLength = targetTextBox.SelectionLength;
+
+            if (selLength > 0)
+            {
+                targetTextBox.Text = targetTextBox.Text.Remove(selStart, selLength);
+                targetTextBox.SelectionStart = selStart;
+            }
+            else if (selStart > 0)
+            {
+                targetTextBox.Text = targetTextBox.Text.Remove(selStart - 1, 1);
+                targetTextBox.SelectionStart = selStart - 1;
+            }
+        }
+
+        private void NumberPadButton_Click(object sender, CharacterEventArgs e)
+        {
+            TextBox targetTextBox = numberBox.NumberTextBox;
+
+            string input = e.Character;
+            int selectionStart = targetTextBox.SelectionStart;
+            int selectionLength = targetTextBox.SelectionLength;
+
+            if (selectionLength > 0)
+            {
+                // Replace the selected text
+                targetTextBox.Text = targetTextBox.Text
+                    .Remove(selectionStart, selectionLength)
+                    .Insert(selectionStart, input);
+
+                targetTextBox.SelectionStart = selectionStart + input.Length;
+            }
+            else
+            {
+                // Insert at cursor position
+                targetTextBox.Text = targetTextBox.Text
+                    .Insert(selectionStart, input);
+
+                targetTextBox.SelectionStart = selectionStart + input.Length;
+            }
+        }
+
+        private void numberBoxButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpeningCash = numberBox.Value?? 0;
+            openingCashInput.Visibility = Visibility.Collapsed;
+            pinInput.Visibility = Visibility.Visible;
         }
     }
 }

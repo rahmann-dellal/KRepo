@@ -20,10 +20,10 @@
         </Style>
         <converters:AvatarCodeToImageSourceConverter x:Key="avatarConverter"/>
         <DataTemplate x:DataType="data:AppUser" x:Key="userTemplate">
-            <Border BorderBrush="{StaticResource SystemAccentColorLight3}" BorderThickness="1" Margin="0,2,0,2" CornerRadius="4">
+            <Border BorderBrush="{StaticResource SystemAccentColorLight3}" BorderThickness="1" Margin="0,0,0,0" CornerRadius="4">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="240">
-                    <Image Width="55" Height="60"  Margin="3,3,30,3" Source="{x:Bind avatarCode, Converter={StaticResource avatarConverter}}"/>
-                    <TextBlock Text="{x:Bind UserName}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Image Width="55" Height="55"  Margin="3,3,30,3" Source="{x:Bind avatarCode, Converter={StaticResource avatarConverter}}"/>
+                    <TextBlock Text="{x:Bind UserName}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
             </Border>
         </DataTemplate>
@@ -38,12 +38,12 @@
 
     <ScrollViewer>
 
-        <StackPanel HorizontalAlignment="Center" Width="562"  Margin="0,40,0,15">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,40">
-                <Image Source="ms-appx:///Assets/Images/Logo/StoreLogo.png" HorizontalAlignment="Center" Stretch="UniformToFill" Height="70" Width="70" Margin="0,0,30,0"/>
+        <StackPanel HorizontalAlignment="Center" Width="562"  Margin="0,15,0,15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,25">
+                <Image Source="ms-appx:///Assets/Images/Logo/StoreLogo.png" HorizontalAlignment="Center" Stretch="UniformToFill" Height="60" Width="60" Margin="0,0,30,0"/>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"> Kiober</TextBlock>
-                    <TextBlock FontSize="22" FontWeight="Normal" HorizontalAlignment="Center" x:Uid="LoginTextBlock"/>
+                    <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"> Kiober</TextBlock>
+                    <TextBlock FontSize="18" FontWeight="Normal" HorizontalAlignment="Center" x:Uid="LoginTextBlock"/>
                 </StackPanel>
             </StackPanel>
 
@@ -53,6 +53,12 @@
                 <ListView x:Name="UsersListView" ItemsSource="{x:Bind Path=AppUsers}" SelectedItem="{x:Bind Path=selectedUser, Mode=TwoWay}"
                           HorizontalContentAlignment="Center"
                           ItemTemplate="{StaticResource userTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <controls:WrapPanel HorizontalAlignment="Center" />
@@ -66,18 +72,27 @@
                 <StackPanel Orientation="Horizontal">
                     <ContentControl x:Name="userContentControl"  ContentTemplate="{StaticResource ResourceKey=userTemplate}" DataContext="{x:Bind selectedUser}"
                                 Margin="0,0,20,0"/>
-                    <Button x:Name="UselectUserButton" Click="UselectUserButton_Click" Height="70" Width="70" BorderBrush="{StaticResource SystemAccentColorLight3}" BorderThickness="1"  CornerRadius="20">
-                        <SymbolIcon Symbol="Clear"/>
+                    <Button x:Name="UselectUserButton" Click="UselectUserButton_Click" Height="65" Width="65" BorderBrush="Gray" BorderThickness="1"  CornerRadius="10">
+                        <SymbolIcon Symbol="Clear" Foreground="Gray"/>
                     </Button>
                 </StackPanel>
-                <StackPanel Margin="0,25,0,0">
-                    <custom:PINInput x:Name="pinInput" ShowPin="False"/>
+                <custom:PINInput x:Name="pinInput" ShowPin="False" Margin="0,20,0,0"
+                                 Visibility="{x:Bind OpeningCashSet, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                <StackPanel x:Name="openingCashInput" Margin="0,25,0,0" Visibility="{x:Bind showOpeningCashInput, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Opening Cash" VerticalAlignment="Center"/>
+                        <custom:KioberNumberBox Value="{x:Bind OpeningCash, Mode=TwoWay}" x:Name="numberBox" Height="50" AllowOnlyPositiveValues="True" Margin="0,0,20,0"/>
+                        <Button x:Name="numberBoxButton" Click="numberBoxButton_Click"
+                                Height="100" Width="100"
+                                BorderBrush="{StaticResource SystemAccentColorLight3}" BorderThickness="1"  CornerRadius="20">
+                            <FontIcon Glyph="&#xE72A;" FontSize="50" Foreground="Green"/>
+                        </Button>
+                    </StackPanel>
+                    <custom:NumberPad Margin="0,30,0,0" BackSpacePressed="NumberPadBackButton_Click" buttonPressed="NumberPadButton_Click"/>
                 </StackPanel>
             </StackPanel>
 
-            <HyperlinkButton x:Name="cancelAndExitButton" Margin="0,25,0,0" HorizontalAlignment="Center" Click="cancelAndExitButton_Click"/>
-
-
+            <HyperlinkButton x:Name="cancelAndExitButton" Margin="0,20,0,0" HorizontalAlignment="Center" Click="cancelAndExitButton_Click"/>
 
         </StackPanel>
     </ScrollViewer>

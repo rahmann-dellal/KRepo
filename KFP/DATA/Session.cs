@@ -23,6 +23,10 @@ namespace KFP.DATA
             }
         }
 
+        public double OpeningCash { get; set; }
+        public double ClosingCash { get; set; }
+        public double TotalCardPayments { get; set; }
+
         [NotMapped]
         public bool isSessionActive
         {

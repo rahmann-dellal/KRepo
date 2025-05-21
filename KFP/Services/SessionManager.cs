@@ -59,11 +59,11 @@ namespace KFP.Services
 
 
 
-        public async Task<bool> tryLogin(AppUser user, string pin)
+        public async Task<bool> tryLogin(AppUser user, string pin, double OpeningCash = 0)
         {
             if (isPinCorrect(user, pin))
             {
-                StartSession(user);
+                StartSession(user, OpeningCash);
                 return true;
             }
             else
@@ -80,9 +80,10 @@ namespace KFP.Services
                 return true;
             else return false;
         }
-        private void StartSession(AppUser user)
+        private void StartSession(AppUser user, double OpeningCash = 0)
         {
             CurrentSession = new Session(user);
+            CurrentSession.OpeningCash = OpeningCash;
             _dbContext.Add<Session>(CurrentSession);
             _dbContext.SaveChanges();
             //changes on the current session must be propagated to the session manager
@@ -103,6 +104,10 @@ namespace KFP.Services
             }
             try
             {
+                CurrentSession.ClosingCash = CurrentSession.OpeningCash + TotalCashPayment;
+
+                CurrentSession.TotalCardPayments = TotalCardPayments;
+
                 _dbContext.Update<Session>(CurrentSession);
                 _dbContext.SaveChanges();
             }
@@ -112,6 +117,25 @@ namespace KFP.Services
             }
 
             CurrentSession = null;
+        }
+
+        public double TotalCashPayment
+        {
+            get
+            {
+                return _dbContext.Invoices
+                    .Where(i => i.SessionId == CurrentSession.SessionId && i.paymentMethod == PaymentMethod.Cash)
+                    .Sum((i => i.TotalPrice != null ? i.TotalPrice : 0.0)) ?? 0.0;
+            }
+        }
+        public double TotalCardPayments
+        {
+            get
+            {
+                return _dbContext.Invoices
+                   .Where(i => i.SessionId == CurrentSession.SessionId && i.paymentMethod == PaymentMethod.Card)
+                   .Sum((i => i.TotalPrice != null ? i.TotalPrice : 0.0)) ?? 0.0;
+            }
         }
 
     }

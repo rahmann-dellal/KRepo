@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="KFP.Ui.Components.NumberPad"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KFP.Ui.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FocusVisualPrimaryBrush" Value="DarkBlue"/>
+        </Style>
+        <Storyboard x:Name="ExitStoryboard">
+            <FadeOutThemeAnimation Storyboard.TargetName="thisPinInput" />
+        </Storyboard>
+        <Storyboard x:Name="EnterStoryboard">
+            <FadeInThemeAnimation Storyboard.TargetName="thisPinInput" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Center" MaxHeight="370" x:Name="myGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="0" Content="1" x:Name="b1"/>
+        <Button Grid.Column="1" Grid.Row="0" Content="2" x:Name="b2"/>
+        <Button Grid.Column="2" Grid.Row="0" Content="3" x:Name="b3"/>
+        <Button Grid.Column="0" Grid.Row="1" Content="4" x:Name="b4"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="5" x:Name="b5"/>
+        <Button Grid.Column="2" Grid.Row="1" Content="6" x:Name="b6"/>
+        <Button Grid.Column="0" Grid.Row="2" Content="7" x:Name="b7"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="8" x:Name="b8"/>
+        <Button Grid.Column="2" Grid.Row="2" Content="9" x:Name="b9"/>
+        <Button Grid.Column="0" Grid.Row="3" Content="." x:Name="bDot"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="0" x:Name="b0"/>
+        <Button Grid.Column="2" Grid.Row="3" x:Name="bBack" Click="OnBackSpaceButtonClicked">
+            <SymbolIcon Symbol="Back"/>
+        </Button>
+    </Grid>
+</UserControl>

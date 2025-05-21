@@ -10,10 +10,22 @@ namespace KFP.Ui.Components
     public sealed partial class KioberNumberBox : UserControl
     {
         double oldValue = 0;
+        string oldStringValue ="";
         public KioberNumberBox()
         {
             this.InitializeComponent();
             this.NumberTextBox.TextChanged += NumberTextBox_TextChanged;
+            this.NumberTextBox.Tapped += NumberTextBox_Tapped;
+            this.NumberTextBox.GotFocus += NumberTextBox_GotFocus;
+        }
+
+        private void NumberTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            NumberTextBox.SelectAll();
+        }
+        private void NumberTextBox_Tapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            NumberTextBox.SelectAll();
         }
 
         private void NumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -26,27 +38,29 @@ namespace KFP.Ui.Components
                 {
                     textBox.Text = textBox.Text.Replace(",", ".");
                 }
-                Value = newValue;
-                oldValue = newValue;
+                if(Value != newValue) { 
+                    Value = newValue;
+                    //oldValue = newValue;
+                }
                 if (AllowOnlyPositiveValues && newValue < 0)
                 {
                     textBox.Text = -newValue + "";
                     Value = -newValue;
-                    oldValue = -newValue;
+                    //oldValue = -newValue;
                     return;
                 }
                 if (AllowOnlyIntgers && newValue % 1 != 0)
                 {
                     textBox.Text = Math.Floor(newValue) + "";
                     Value = Math.Floor(newValue);
-                    oldValue = Math.Floor(newValue);
+                    //oldValue = Math.Floor(newValue);
                     return;
                 }
                 if(MaxValue.HasValue && newValue > MaxValue)
                 {
                     textBox.Text = MaxValue + "";
                     Value = MaxValue;
-                    oldValue = MaxValue.Value;
+                    //oldValue = MaxValue.Value;
                     return;
                 }
             }
@@ -67,7 +81,7 @@ namespace KFP.Ui.Components
                 nameof(Value),
                 typeof(double?),
                 typeof(KioberNumberBox),
-                new PropertyMetadata(null, OnValueChanged));
+                new PropertyMetadata(0.0, OnValueChanged));
 
         public static readonly DependencyProperty AllowOnlyPositiveValuesProperty =
             DependencyProperty.Register(
@@ -108,7 +122,11 @@ namespace KFP.Ui.Components
                 {
                     value = 0;
                 }
-                SetValue(ValueProperty, value);
+                if (value != oldValue)
+                {
+                    SetValue(ValueProperty, value);
+                    oldValue = value?? 0;
+                }
             }
         }
 
@@ -121,7 +139,9 @@ namespace KFP.Ui.Components
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = (KioberNumberBox)d;
+            if (double.TryParse(control.NumberTextBox.Text, out double newValue) && control.Value == newValue) return;
             control.NumberTextBox.Text = e.NewValue?.ToString();
+            control.NumberTextBox.SelectAll();
         }
 
         private void OnUpButtonClick(object sender, RoutedEventArgs e)

@@ -594,4 +594,22 @@
   <data name="ConfirmChangesTextBlock.Text" xml:space="preserve">
     <value>Confirm Changes</value>
   </data>
+  <data name="cashDrawerTexBlock.Text" xml:space="preserve">
+    <value>Cash Drawer</value>
+  </data>
+  <data name="OpeningCashTextBlock.Text" xml:space="preserve">
+    <value>Opening Cash</value>
+  </data>
+  <data name="TotalCashTextBlock.Text" xml:space="preserve">
+    <value>Total Cash Payments</value>
+  </data>
+  <data name="TotalCardTextBlock.Text" xml:space="preserve">
+    <value>Total Card Payments</value>
+  </data>
+  <data name="TotalPaymentsTextBlock.Text" xml:space="preserve">
+    <value>Total Payments</value>
+  </data>
+  <data name="TotalinDrawerTextBlock.Text" xml:space="preserve">
+    <value>Total In Drawer</value>
+  </data>
 </root>

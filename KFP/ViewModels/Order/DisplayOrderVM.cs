@@ -35,6 +35,7 @@ namespace KFP.ViewModels
         private NavigationService _navigationService;
         private AppDataService _appDataService;
         private Currency _currency;
+        private SessionManager _sessionManager;
 
         public bool HasTables;
 
@@ -58,7 +59,7 @@ namespace KFP.ViewModels
                 return !isPaidCard && !isPaidCash;
             }
         }
-        public DisplayOrderVM(KFPContext context, NavigationService ns, AppDataService ads)
+        public DisplayOrderVM(KFPContext context, NavigationService ns, AppDataService ads, SessionManager sessionManager)
         {
             dbContext = context;
             _navigationService = ns;
@@ -66,6 +67,7 @@ namespace KFP.ViewModels
             _currency = _appDataService.Currency;
             HasTables = _appDataService.NumberOfTables > 0;
             Currency = _appDataService.Currency;
+            _sessionManager = sessionManager;
         }
 
         public void LoadOrder(int orderId)
@@ -208,6 +210,8 @@ namespace KFP.ViewModels
                 paymentMethod = paymentMethod,
                 AppUserName = order.AppUserName,
                 IssuedAt = DateTime.UtcNow,
+                SessionId = _sessionManager.CurrentSession.SessionId,
+                Session = _sessionManager.CurrentSession,
             };
 
             foreach(var oi in order.OrderItems)

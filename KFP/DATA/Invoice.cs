@@ -28,6 +28,9 @@ namespace KFP.DATA
         public Order? Order { get; set; } = null;
         public int? OrderId { get; set; }
         public PaymentMethod? paymentMethod { get; set; }
+
+        public Session? Session { get; set; } = null;
+        public int? SessionId { get; set; } = null;
     }
 
 

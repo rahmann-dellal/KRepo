@@ -54,6 +54,41 @@ namespace KFP.Ui.pages
         private DispatcherTimer timer;
         private string activeFor;
         DispatcherTimer dispatcherTimer;
+
+        public double OpeningCash { get
+            {
+                return CurentSession.OpeningCash;
+            }
+        }
+        public double totalCashPayments
+        {
+            get
+            {
+                return _sessionManager.TotalCashPayment;
+            }
+        }
+        public double totalCardPayments
+        {
+            get
+            {
+                return _sessionManager.TotalCardPayments;
+            }
+        }
+
+        public double TotalInDrawer
+        {
+            get
+            {
+                return OpeningCash + totalCashPayments;
+            }
+        }
+        public double TotalPayments
+        {
+            get
+            {
+                return totalCashPayments + totalCardPayments;
+            }
+        }
         public SessionPage()
         {
             _sessionManager = Ioc.Default.GetService<SessionManager>();
