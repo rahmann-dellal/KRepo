@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using System;
+using Windows.UI;
 
 namespace KFP.Converters
 {
@@ -30,7 +31,7 @@ namespace KFP.Converters
                 }
                 else if (timePassed < OverdueDelay)
                 {
-                    return new SolidColorBrush(Colors.Orange);
+                    return new SolidColorBrush(Color.FromArgb(0xFF,0xCC,0x77,0));
                 }
                 else
                 {

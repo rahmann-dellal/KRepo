@@ -23,6 +23,7 @@ namespace KFP.ViewModels
 
         public ObservableCollection<Order> WaitingOrders { get; set; }
         public ObservableCollection<OrdersListElement> FilterdOrders { get; set; } = new ObservableCollection<OrdersListElement>();
+        public bool isFilterdListEmpty  { get => FilterdOrders.Count == 0; }
         public KFPContext dbContext;
         private AppDataService _appDataService;
         public NavigationService navigationService { get; private set; }
@@ -107,6 +108,7 @@ namespace KFP.ViewModels
                     FilterdOrders.Add(new OrdersListElement (order, this));
                 }
             }
+            OnPropertyChanged(nameof(isFilterdListEmpty));
         }
     }
 
@@ -138,7 +140,10 @@ namespace KFP.ViewModels
         }
         public string OrderTimePassedString { 
             get {
+                if (OrderTimePassed < TimeSpan.FromDays(1))
                     return string.Format("{0:hh\\:mm\\:ss}", OrderTimePassed);
+                else
+                    return string.Format("{0:dd}d {1:hh\\:mm\\:ss}", OrderTimePassed, OrderTimePassed);
             } 
         }
 
@@ -167,6 +172,18 @@ namespace KFP.ViewModels
                     return order.OrderItems.Count;
             }
         }
+        public string numberOfItemsString
+        {
+            get
+            {
+                if (numberOfItems == 0)
+                    return StringLocalisationService.getStringWithKey("NoItems");
+                else if (numberOfItems == 1)
+                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Item");
+                else
+                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Items");
+            }
+        }
 
         private bool _isSelected;
         public bool IsSelected
@@ -185,9 +202,11 @@ namespace KFP.ViewModels
                     }
                     _isSelected = value;
                     OnPropertyChanged(nameof(IsSelected));
+                    OnPropertyChanged(nameof(isUnselected));
                 }
             }
         }
+        public bool isUnselected => !IsSelected;
 
         public OrdersListVM parentVM;
 
@@ -202,6 +221,18 @@ namespace KFP.ViewModels
         {
             OnPropertyChanged(nameof(OrderTimePassedString));
             OnPropertyChanged(nameof(OrderTimePassed));
+        }
+        [RelayCommand]
+        public void selectOrder()
+        {
+            if (IsSelected)
+            {
+                IsSelected = false;
+            }
+            else
+            {
+                IsSelected = true;
+            }
         }
 
         [RelayCommand]
@@ -232,7 +263,7 @@ namespace KFP.ViewModels
             }
         }
 
-        [RelayCommand(CanExecute = nameof(canEditOrder))]
+        [RelayCommand(CanExecute = nameof(OrderPaymentPending))]
         public void EditOrder()
         {
             if (parentVM != null)
@@ -240,11 +271,11 @@ namespace KFP.ViewModels
                 parentVM.navigationService.navigateTo(KioberFoodPage.POS, new List<object> { order.Id });
             }
         }
-        public bool canEditOrder
+        public bool OrderPaymentPending
         {
             get => order.paymentMethod != PaymentMethod.Cash && order.paymentMethod != PaymentMethod.Card;
         }
-        [RelayCommand(CanExecute = nameof(canEditOrder))]
+        [RelayCommand(CanExecute = nameof(OrderPaymentPending))]
         public async Task CancelOrder()
         {
             var result = await parentVM.showConfirmCancelOrderDialog(order.Id);

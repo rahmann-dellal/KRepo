@@ -9,6 +9,7 @@
     xmlns:vm="using:KFP.ViewModels"
     xmlns:communityControls="using:CommunityToolkit.WinUI.Controls"
     xmlns:converters="using:KFP.Converters"
+    xmlns:components="using:KFP.Ui.Components"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:TimePassedToBruchConverter x:Key="TimePassedToBruchConverter"/>
@@ -80,7 +81,8 @@
                     <TextBlock x:Uid="OrderTimePassedTextBlock" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center"/>
                     <TextBlock x:Uid="OrderLocationTextBlock" FontWeight="SemiBold" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center"/>
                     <TextBlock x:Uid="ActionsTextBlock" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center"/>
-
+                    <TextBlock x:Uid="NothingToDisplayTxtBlk" Grid.Row="1" Grid.ColumnSpan="8" Visibility="{x:Bind ViewModel.isFilterdListEmpty, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                FontSize="16" Foreground="DimGray" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <ListView ItemsSource="{x:Bind ViewModel.FilterdOrders}" SelectionMode="None" Grid.Row="1" Grid.ColumnSpan="8" Margin="0,20,0,0">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="vm:OrdersListElement">
@@ -95,31 +97,48 @@
                                         <ColumnDefinition Width="5*"/>
                                         <ColumnDefinition Width="10*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{x:Bind OrderId}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="1" Text="items" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="2" Text="{x:Bind TotalPrice}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="3" Text="{x:Bind payment}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="4" Text="{x:Bind OrderStartTime}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="5" Text="{x:Bind OrderTimePassedString, Mode=OneWay}"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind OrderId}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <Button Command="{x:Bind selectOrderCommand}"  Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{x:Bind numberOfItemsString}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                <FontIcon Glyph="&#xEDDC;" FontSize="8" Visibility="{x:Bind isUnselected, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                <FontIcon Glyph="&#xEDDB;" FontSize="8" Visibility="{x:Bind IsSelected, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
+                                    <TextBlock  Grid.Row="0" Grid.Column="2" Text="{x:Bind TotalPrice}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="3" Text="{x:Bind payment}"
+                                               Foreground="{x:Bind OrderPaymentPending, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=#FFCC7700}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="4" Text="{x:Bind OrderStartTime}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="5" Text="{x:Bind OrderTimePassedString, Mode=OneWay}"
                                                Foreground="{x:Bind OrderTimePassed, Converter={StaticResource TimePassedToBruchConverter}, Mode=OneWay}"
                                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="6" Text="{x:Bind orderLocation}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <communityControls:WrapPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button  Margin="0,0,0,0" Width="60" Height="60" Command="{x:Bind showOrderDetailsCommand}">
+                                    <TextBlock  Grid.Row="0" Grid.Column="6" Text="{x:Bind orderLocation}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <communityControls:WrapPanel  Grid.Row="0" Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button x:Uid="ShowOrderButton" Margin="0,0,0,0" Width="60" Height="60" Command="{x:Bind showOrderDetailsCommand}">
                                             <FontIcon Glyph="&#xE8AD;" Foreground="DarkBlue"/>
                                         </Button>
-                                        <Button Width="60" Height="60" Command="{x:Bind setOrderCompletedCommand}">
+                                        <Button x:Uid="CompleteOrderButton" Width="60" Height="60" Command="{x:Bind setOrderCompletedCommand}">
                                             <FontIcon Glyph="&#xE930;" Foreground="LightGreen"/>
                                         </Button>
-                                        <Button Width="60" Height="60" Visibility="{x:Bind canEditOrder, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        <Button x:Uid="EditOrderButton" Width="60" Height="60" Visibility="{x:Bind OrderPaymentPending, Converter={StaticResource BoolToVisibilityConverter}}"
                                                 Command="{x:Bind EditOrderCommand}">
                                             <FontIcon Glyph="&#xE70F;"/>
                                         </Button>
-                                        <Button Width="60" Height="60" Visibility="{x:Bind canEditOrder, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        <Button x:Uid="CancelOrderButton" Width="60" Height="60" Visibility="{x:Bind OrderPaymentPending, Converter={StaticResource BoolToVisibilityConverter}}"
                                                 Command="{x:Bind CancelOrderCommand}">
                                             <FontIcon Glyph="&#xE711;" Foreground="LightCoral"/>
                                         </Button>
                                     </communityControls:WrapPanel>
+                                    <local:DisplayOrderView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Margin="0,15,0,0" HorizontalAlignment="Left"
+                                                          Visibility="{x:Bind IsSelected, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                                          order="{x:Bind order, Mode=OneWay}" />
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

@@ -660,4 +660,25 @@
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>
   </data>
+  <data name="ShowOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Show Order</value>
+  </data>
+  <data name="CompleteOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Complete Order</value>
+  </data>
+  <data name="EditOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Edit Order</value>
+  </data>
+  <data name="CancelOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Cancel Order</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>No Items</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
 </root>

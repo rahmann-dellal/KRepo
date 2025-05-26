@@ -31,7 +31,7 @@
                 <TextBlock x:Uid="QtTextBlock" Text="Qt" FontSize="16" FontWeight="SemiBold"  Grid.Column="2" Margin="0,0,0,0" HorizontalAlignment="Right"/>
                 <TextBlock x:Uid="TotalTextBlock" Text="Total" FontSize="16" FontWeight="SemiBold"  Grid.Column="3" Margin="0,0,0,0" HorizontalAlignment="Right"/>
             </Grid>
-            <StackPanel Grid.Row="1" Margin="0,20,0,20"
+            <StackPanel Grid.Row="1" Margin="0,20,0,20" x:Name="EmptyListPanel"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Visibility="{x:Bind isListEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                 <TextBlock x:Uid="NothingTextBlock" Margin="0,0,0,10" Foreground="DimGray"/>
@@ -52,11 +52,11 @@
                                     <ColumnDefinition Width="45"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" >
-                                    <TextBlock Text="+" Margin="0,0,5 ,0" Visibility="{x:Bind IsAddOn, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                                    <TextBlock Text="{x:Bind MenuItemName}" FontSize="16" />
+                                    <TextBlock Text="+" Margin="0,0,5 ,0" Visibility="{x:Bind IsAddOn, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                    <TextBlock Text="{x:Bind MenuItemName, Mode=OneWay}" FontSize="16" />
                                 </StackPanel>
 
-                                <TextBlock Text="{x:Bind UnitPrice}" FontSize="16"   Grid.Column="1" Grid.Row="0" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+                                <TextBlock Text="{x:Bind UnitPrice, Mode=OneWay}" FontSize="16"   Grid.Column="1" Grid.Row="0" Margin="0,0,0,0" HorizontalAlignment="Right"/>
                                 <TextBlock Text="{x:Bind Quantity, Mode=OneWay}" FontSize="16"   Grid.Column="2" Grid.Row="0" Margin="0,0,0,0" HorizontalAlignment="Right"/>
                                 <TextBlock Text="{x:Bind TotalPrice, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}, ConverterParameter='F2'}"
                                            FontSize="16" Grid.Column="3" Grid.Row="0" Margin="0,0,0,0" HorizontalAlignment="Right"/>

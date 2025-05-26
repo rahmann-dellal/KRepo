@@ -31,7 +31,14 @@ namespace KFP.Ui.pages
         public KFP.DATA.Order order
         {
             get => (KFP.DATA.Order)GetValue(ViewModelProperty);
-            set => SetValue(ViewModelProperty, value);
+            set {
+                SetValue(ViewModelProperty, value);
+                OrderTreeView.ItemsSource = order.OrderItems;
+                if (order != null && order.OrderItems != null && order.OrderItems.Count > 0)
+                {
+                    EmptyListPanel.Visibility = Visibility.Collapsed;
+                }
+            }
         }
         public DisplayOrderView()
         {
