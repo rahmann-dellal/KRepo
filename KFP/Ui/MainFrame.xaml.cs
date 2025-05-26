@@ -4,6 +4,7 @@ using KFP.DATA;
 using KFP.Messages;
 using KFP.Services;
 using KFP.Ui.pages;
+using KFP.Ui.pages.Order;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
@@ -53,6 +54,18 @@ namespace KFP.Ui
                     selectedNVI = POSNVI;
                     ContentFrame.Navigate(typeof(PointOfSalesPage));
                     NavView.Header = null;//StringLocalisationService.getStringWithKey("POS");
+                }
+                else if (InvokedNVI == TablesNVI)
+                {
+                    selectedNVI = TablesNVI;
+                    ContentFrame.Navigate(typeof(TablesPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Tables");
+                }
+                else if (InvokedNVI == OrdersNVI)
+                {
+                    selectedNVI = OrdersNVI;
+                    ContentFrame.Navigate(typeof(OrdersListPage));
+                    NavView.Header = null;
                 }
                 else if (InvokedNVI == ListMenuItemsNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {

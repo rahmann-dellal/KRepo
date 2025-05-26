@@ -42,7 +42,7 @@ namespace KFP.Ui
                     selectUserPanel.Visibility = Visibility.Collapsed;
                     SelectedUserPanelFadeIn();
                     pinInput.resetPin();
-                    FocusPinInput();
+                    CashNumberPad.Focus(FocusState.Programmatic);
 
                 }
                 else
@@ -132,11 +132,7 @@ namespace KFP.Ui
             selectedUserPanel.Visibility = Visibility.Collapsed;
             HideSelectedUserStoryboard.Begin();
         }
-        // Add this method to the ClockInFrame class to focus the pinInput control.
-        public void FocusPinInput()
-        {
-            pinInput.Focus(FocusState.Programmatic);
-        }
+
 
         private void NumberPadBackButton_Click(object sender, EventArgs e)
         {
@@ -189,6 +185,7 @@ namespace KFP.Ui
             OpeningCash = numberBox.Value?? 0;
             openingCashInput.Visibility = Visibility.Collapsed;
             pinInput.Visibility = Visibility.Visible;
+            pinInput.Focus(FocusState.Programmatic);
         }
     }
 }

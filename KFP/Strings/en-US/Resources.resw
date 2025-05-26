@@ -612,4 +612,52 @@
   <data name="TotalinDrawerTextBlock.Text" xml:space="preserve">
     <value>Total In Drawer</value>
   </data>
+  <data name="Counter" xml:space="preserve">
+    <value>Counter</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="Card" xml:space="preserve">
+    <value>Card</value>
+  </data>
+  <data name="Deferred" xml:space="preserve">
+    <value>Deferred</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="CounterCheckBox.Content" xml:space="preserve">
+    <value>Counter</value>
+  </data>
+  <data name="TablesCheckBox.Content" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="DeliveryCheckBox.Content" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="OrderItemsTextBlock.Text" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="OrderPaymentTextBlock.Text" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="OrderTimeCreatedTextBlock.Text" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="OrderTimePassedTextBlock.Text" xml:space="preserve">
+    <value>Time Passed</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
 </root>

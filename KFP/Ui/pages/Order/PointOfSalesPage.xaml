@@ -21,14 +21,14 @@
                 <TextBlock x:Uid="POSTextBlock" FontSize="24" FontWeight="SemiBold" Margin="60,0,0,0" HorizontalAlignment="Left"/>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Background="{StaticResource SecondBackgroud}" CornerRadius="10">
                     <TextBlock x:Uid="GotoTextBlock" FontWeight="SemiBold" VerticalAlignment="Center" Margin="50,0,80,0"/>
-                    <HyperlinkButton Margin="0,0,50,0"   BorderThickness="0" CornerRadius="0" BorderBrush="{ThemeResource SystemAccentColor}" Width="200" 
+                    <HyperlinkButton Command="{x:Bind ViewModel.NavigatetoTablesCommand}" Margin="0,0,50,0"   BorderThickness="0" CornerRadius="0" BorderBrush="{ThemeResource SystemAccentColor}" Width="200" 
                                      Visibility="{x:Bind ViewModel.HasTables, Converter={StaticResource BoolToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Uid="TablesTextBlock" FontSize="16" Margin="0,0,20,0" VerticalAlignment="Center" />
                             <PathIcon Data="{StaticResource TablesIconData}"/>
                         </StackPanel>
                     </HyperlinkButton>
-                    <HyperlinkButton Margin="0,0,20,0"   BorderThickness="0" CornerRadius="0"  BorderBrush="{ThemeResource SystemAccentColor}" Width="200" >
+                    <HyperlinkButton Command="{x:Bind ViewModel.NavigateToOrdersCommand}" Margin="0,0,20,0"   BorderThickness="0" CornerRadius="0"  BorderBrush="{ThemeResource SystemAccentColor}" Width="200" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Uid="OrdersTextBlock" FontSize="16" Margin="0,0,20,0" VerticalAlignment="Center" />
                             <PathIcon Data="{StaticResource OrdersIconData}"/>

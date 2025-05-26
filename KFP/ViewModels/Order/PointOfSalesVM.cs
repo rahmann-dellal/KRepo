@@ -89,6 +89,10 @@ namespace KFP.ViewModels
         public RelayCommand SetOnCounterCommand { get; set; }
         public RelayCommand SetForDeliveryCommand { get; set; }
 
+        public RelayCommand NavigateToOrdersCommand { get; set; }
+        public RelayCommand NavigatetoTablesCommand { get; set; }
+
+
         public PointOfSalesVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, EditOrderVM orderVM, AppDataService appDataService, SessionManager sessionManager, NavigationService ns)
         {
             _appDataService = appDataService;
@@ -103,6 +107,9 @@ namespace KFP.ViewModels
             this.editOrderVM = orderVM;
 
             menuItemSelectorVM.PropertyChanged += MenuItemSelectorVM_PropertyChanged;
+
+            NavigateToOrdersCommand = new RelayCommand(() => _navigationService.navigateTo(KioberFoodPage.OrdersListPage));
+            NavigatetoTablesCommand = new RelayCommand(() => _navigationService.navigateTo(KioberFoodPage.TablesPage));
 
             SetOnCounterCommand = new RelayCommand(() =>
             {

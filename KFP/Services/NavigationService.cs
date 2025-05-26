@@ -1,5 +1,6 @@
 ﻿using KFP.Ui;
 using KFP.Ui.pages;
+using KFP.Ui.pages.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,14 @@ namespace KFP.Services
             else if (pageType == KioberFoodPage.DisplayOrderPage)
             {
                 navigateTo(typeof(DisplayOrderPage), parameters);
+            }
+            else if(pageType == KioberFoodPage.OrdersListPage)
+            {
+                navigateTo(typeof(OrdersListPage), parameters);
+            }
+            else if (pageType == KioberFoodPage.TablesPage)
+            {
+                navigateTo(typeof(TablesPage), parameters);
             }
             else if (pageType == KioberFoodPage.MenuItemList)
             {

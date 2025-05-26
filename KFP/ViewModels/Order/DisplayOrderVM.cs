@@ -59,6 +59,9 @@ namespace KFP.ViewModels
                 return !isPaidCard && !isPaidCash;
             }
         }
+
+        public RelayCommand NavigateToOrdersCommand { get; set; }
+        public RelayCommand NavigatetoTablesCommand { get; set; }
         public DisplayOrderVM(KFPContext context, NavigationService ns, AppDataService ads, SessionManager sessionManager)
         {
             dbContext = context;
@@ -68,6 +71,8 @@ namespace KFP.ViewModels
             HasTables = _appDataService.NumberOfTables > 0;
             Currency = _appDataService.Currency;
             _sessionManager = sessionManager;
+            NavigateToOrdersCommand = new RelayCommand(() => _navigationService.navigateTo(KioberFoodPage.OrdersListPage));
+            NavigatetoTablesCommand = new RelayCommand(() => _navigationService.navigateTo(KioberFoodPage.TablesPage));
         }
 
         public void LoadOrder(int orderId)

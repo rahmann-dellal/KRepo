@@ -60,6 +60,7 @@ namespace KFP
             services.AddTransient<PointOfSalesVM>();
             services.AddTransient<EditOrderVM>();
             services.AddTransient<DisplayOrderVM>();
+            services.AddTransient<OrdersListVM>();
             services.AddTransient<DisplayUserVM>(); 
             services.AddTransient<EditUserVM>();
             services.AddTransient<EditMenuItemVM>();

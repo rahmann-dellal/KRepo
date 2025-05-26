@@ -15,6 +15,8 @@ namespace KFP.Services
     {
         POS,
         DisplayOrderPage,
+        OrdersListPage,
+        TablesPage,
         MenuItemList,
         AddMenuItem,
         EditMenuItem,

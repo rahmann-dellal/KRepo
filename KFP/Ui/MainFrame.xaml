@@ -27,13 +27,39 @@
             <Image Source="ms-appx:///Assets/StoreLogo.png" Width="26"/>
         </NavigationView.PaneHeader>-->
         <NavigationView.MenuItems>
-            <NavigationViewItem x:Name="POSNVI">
+            <NavigationViewItem>
                 <NavigationViewItem.Content>
                     <TextBlock x:Uid="POSTextBlock"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xEC77;"/>
                 </NavigationViewItem.Icon>
+                <NavigationViewItem.MenuItems>
+                    <NavigationViewItem x:Name="POSNVI">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="POSTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xEC77;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="TablesNVI">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="TablesTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <PathIcon Data="{StaticResource TablesIconData}"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="OrdersNVI">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="OrdersTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <PathIcon Data="{StaticResource OrdersIconData}"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </NavigationViewItem.MenuItems>
             </NavigationViewItem>
 
             <NavigationViewItem x:Name="MenuItemsNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
