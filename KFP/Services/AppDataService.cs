@@ -89,6 +89,21 @@ namespace KFP.Services
             }
         }
 
+        public string RestaurantName
+        {
+            get
+            {
+                if (Settings.Values["RestaurantName"] != null)
+                    return (string)Settings.Values["RestaurantName"];
+                else
+                    return null;
+            }
+            set
+            {
+                Settings.Values["RestaurantName"] = value;
+            }
+        }
+
         public TimeSpan OrderLateDelay
         {
             get

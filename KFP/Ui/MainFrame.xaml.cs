@@ -4,7 +4,6 @@ using KFP.DATA;
 using KFP.Messages;
 using KFP.Services;
 using KFP.Ui.pages;
-using KFP.Ui.pages.Order;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
@@ -18,6 +17,9 @@ namespace KFP.Ui
     {
         private NavigationViewItem? _selectedNVI;
         private SessionManager _sessionManager;
+        private AppState _appState;
+        public bool DinerHasTables { get; set; } = true;
+
         public NavigationViewItem? selectedNVI {
             private get{
                 return _selectedNVI;
@@ -32,7 +34,19 @@ namespace KFP.Ui
         {
             this.InitializeComponent();
             StrongReferenceMessenger.Default.Register<UserAddedMessage>(this, (r, m) => OnUserAdded(m.UserId));
-            _sessionManager = Ioc.Default.GetService<SessionManager>();
+            _sessionManager = Ioc.Default.GetService<SessionManager>()!;
+            _appState = Ioc.Default.GetService<AppState>()!;
+            _appState.PropertyChanged += (s,e) => { 
+                DinerHasTables = _appState.DinerHasTables; 
+                if(DinerHasTables)
+                {
+                    TablesNVI.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    TablesNVI.Visibility = Visibility.Collapsed;
+                }
+            };
 
             selectedNVI = POSNVI;
             ContentFrame.Navigate(typeof(PointOfSalesPage));
@@ -59,7 +73,7 @@ namespace KFP.Ui
                 {
                     selectedNVI = TablesNVI;
                     ContentFrame.Navigate(typeof(TablesPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Tables");
+                    NavView.Header = null;
                 }
                 else if (InvokedNVI == OrdersNVI)
                 {

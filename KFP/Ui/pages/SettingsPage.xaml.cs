@@ -58,7 +58,8 @@ namespace KFP.Ui.pages
             }
         }
 
-        public Currency Currency {
+        public Currency Currency
+        {
             get
             {
                 return _appDataService.Currency;
@@ -102,10 +103,52 @@ namespace KFP.Ui.pages
             }
             set
             {
-                if (value==null)
+                if (value == null)
+                {
                     _appDataService.NumberOfTables = 25;
+                    _appState.DinerHasTables = true;
+                }
                 else
-                    _appDataService.NumberOfTables = (int) value;
+                {
+                    _appDataService.NumberOfTables = (int)value;
+                    _appState.DinerHasTables = (int)value > 0;
+                }
+            }
+        }
+
+        public string RestaurantName
+        {
+            get
+            {
+                return _appDataService.RestaurantName;
+            }
+            set
+            {
+                _appDataService.RestaurantName = value;
+            }
+        }
+
+        public double? OrderLateDelay
+        {
+            get
+            {
+                return _appDataService.OrderLateDelay.Minutes;
+            }
+            set
+            {
+                _appDataService.OrderLateDelay = TimeSpan.FromMinutes(value??0);
+            }
+        }
+
+        public double? OrderOverDueDelay
+        {
+            get
+            {
+                return _appDataService.OrderOverdueDelay.Minutes;
+            }
+            set
+            {
+                _appDataService.OrderOverdueDelay = TimeSpan.FromMinutes(value ?? 0);
             }
         }
     }

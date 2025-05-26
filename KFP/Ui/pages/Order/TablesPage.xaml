@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="KFP.Ui.pages.Order.TablesPage"
+    x:Class="KFP.Ui.pages.TablesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:KFP.Ui.pages.Order"
+    xmlns:local="using:KFP.Ui.pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Grid>
-        <TextBlock>Tables Page</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" >
+            <Grid Margin="0,20,30,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Uid="TablesTextBlock" Grid.Column="0" FontSize="24" FontWeight="SemiBold" Margin="60,0,0,0" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1"  HorizontalAlignment="Right" Background="{StaticResource SecondBackgroud}" CornerRadius="10">
+                    <TextBlock x:Uid="GotoTextBlock" FontWeight="SemiBold" VerticalAlignment="Center" Margin="50,0,80,0"/>
+                    <HyperlinkButton Command="{x:Bind ViewModel.NavigateToOrdersCommand}" Margin="0,0,50,0"   BorderThickness="0" CornerRadius="0" BorderBrush="{ThemeResource SystemAccentColor}" Width="200" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Uid="OrdersTextBlock" FontSize="16" Margin="0,0,20,0" VerticalAlignment="Center" />
+                            <PathIcon Data="{StaticResource OrdersIconData}"/>
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton Command="{x:Bind ViewModel.NavigateToPOSCommand}" Margin="0,0,20,0" BorderThickness="0" CornerRadius="0"  BorderBrush="{ThemeResource SystemAccentColor}" Width="200" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Uid="POSTextBlock" FontSize="16" Margin="0,0,20,0" VerticalAlignment="Center" />
+                            <FontIcon Glyph="&#xEC77;"/>
+                        </StackPanel>
+                    </HyperlinkButton>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Grid Margin="20,20,20,20" Grid.Row="1">
+        </Grid>
     </Grid>
 </Page>

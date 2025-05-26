@@ -681,4 +681,19 @@
   <data name="Item" xml:space="preserve">
     <value>Item</value>
   </data>
+  <data name="RestaurantTextBox.Text" xml:space="preserve">
+    <value>Diner</value>
+  </data>
+  <data name="RestaurantNameTextBox.Text" xml:space="preserve">
+    <value>Diner's name</value>
+  </data>
+  <data name="orderLateDelayTextBlock.Text" xml:space="preserve">
+    <value>Order Late Delay</value>
+  </data>
+  <data name="minutesTextBlock.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="orderOverdueDelayTextBlock.Text" xml:space="preserve">
+    <value>Order Overdue Delay</value>
+  </data>
 </root>

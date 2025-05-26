@@ -7,6 +7,7 @@ namespace KFP
     public partial class AppState : ObservableObject
     {
         private SessionManager _sessionManager;
+        private AppDataService _appDataService;
         public bool isSessionActive
         {
             get
@@ -16,10 +17,15 @@ namespace KFP
         }
         [ObservableProperty]
         private AppWindowPresenterKind windowPresenterKind;
+
+        [ObservableProperty]
+        private bool dinerHasTables;
         public AppState(SessionManager sessionManager, AppDataService appDataService)
         {
             _sessionManager = sessionManager;
+            _appDataService = appDataService;
             windowPresenterKind = appDataService.WindowPresenterKind;
+            DinerHasTables = appDataService.NumberOfTables > 0;
         }
     }
 }

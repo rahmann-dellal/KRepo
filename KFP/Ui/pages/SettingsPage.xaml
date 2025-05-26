@@ -26,6 +26,14 @@
                       Width="200"
                       Margin="10"/>
         </StackPanel>
+        <TextBlock FontSize="22" x:Uid="RestaurantTextBox" Margin="0,20,0,0"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
+            <TextBlock x:Uid="RestaurantNameTextBox" FontSize="18"/>
+            <TextBox x:Name="RestaurantNameBox"
+               Text="{x:Bind RestaurantName, Mode=TwoWay}" 
+               Width="200"
+               Margin="10"/>
+        </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
             <TextBlock x:Uid="NumberOfTablesTextBlock" FontSize="18"/>
             <components:KioberNumberBox x:Name="NumberOfTablesBox"
@@ -33,7 +41,24 @@
                        Width="200"
                        Margin="10"/>
         </StackPanel>
-
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
+            <TextBlock x:Uid="orderLateDelayTextBlock" FontSize="18"/>
+            <StackPanel Orientation="Horizontal">
+                <components:KioberNumberBox x:Name="orderLateInput"
+                    Value="{x:Bind OrderLateDelay, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="120"
+                    Width="200"
+                    Margin="10,10,30,10"/>
+                <TextBlock x:Uid="minutesTextBlock" FontSize="16" VerticalAlignment="Center"/>
+            </StackPanel>
+            <TextBlock x:Uid="orderOverdueDelayTextBlock" FontSize="18"/>
+            <StackPanel Orientation="Horizontal">
+                <components:KioberNumberBox x:Name="orderOverDueInput"
+                                            Value="{x:Bind OrderOverDueDelay, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="120"
+                                            Width="200"
+                                            Margin="10,10,30,10"/>
+                <TextBlock x:Uid="minutesTextBlock" FontSize="16" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 
 </Page>

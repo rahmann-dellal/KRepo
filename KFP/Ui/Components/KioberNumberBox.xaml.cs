@@ -9,7 +9,7 @@ namespace KFP.Ui.Components
 {
     public sealed partial class KioberNumberBox : UserControl
     {
-        double oldValue = 0;
+        double? oldValue = null;
         string oldStringValue ="";
         public KioberNumberBox()
         {
@@ -56,7 +56,7 @@ namespace KFP.Ui.Components
                     //oldValue = Math.Floor(newValue);
                     return;
                 }
-                if(MaxValue.HasValue && newValue > MaxValue)
+                 if(MaxValue.HasValue && newValue > MaxValue)
                 {
                     textBox.Text = MaxValue + "";
                     Value = MaxValue;
@@ -101,7 +101,7 @@ namespace KFP.Ui.Components
                 nameof(MaxValue),
                 typeof(double?),
                 typeof(KioberNumberBox),
-                new PropertyMetadata(null, OnValueChanged));
+                new PropertyMetadata(null, null));
         public bool AllowOnlyIntgers
         {
             get => (bool)GetValue(AllowOnlyIntgersProperty);
@@ -125,6 +125,7 @@ namespace KFP.Ui.Components
                 if (value != oldValue)
                 {
                     SetValue(ValueProperty, value);
+                    NumberTextBox.Text = value?.ToString();
                     oldValue = value?? 0;
                 }
             }
