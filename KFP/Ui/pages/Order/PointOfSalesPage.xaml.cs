@@ -49,8 +49,22 @@ namespace KFP.Ui.pages
 
                 if (parameters == null || parameters.Count == 0)
                     return;
-                int orderId = (int)parameters.FirstOrDefault();
-                ViewModel.loadOrder(orderId);
+                var parameter = parameters.FirstOrDefault();
+                if (parameter == null) {
+                    return;
+                }
+                if (parameter is int)
+                {
+                    // If the parameter is an int, load the order with that ID
+                    int orderId = (int)parameter;
+                    ViewModel.loadOrder(orderId);
+                }
+                else if (parameter is TablesElement)
+                {
+                    ViewModel.SelectedTableNumber = ((TablesElement)parameter).TableNumber;
+                    ViewModel.IsSetOnCounter = false;
+                    ViewModel.IsSetForDelivery = false;
+                }
             }
         }
     }

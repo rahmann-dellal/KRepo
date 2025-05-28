@@ -652,7 +652,7 @@
     <value>Created At</value>
   </data>
   <data name="OrderTimePassedTextBlock.Text" xml:space="preserve">
-    <value>Time Passed</value>
+    <value>Duration since</value>
   </data>
   <data name="Tables" xml:space="preserve">
     <value>Tables</value>

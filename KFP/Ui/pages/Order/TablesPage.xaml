@@ -6,8 +6,14 @@
     xmlns:local="using:KFP.Ui.pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:vm="using:KFP.ViewModels"
+    xmlns:converters="using:KFP.Converters">
 
+    <Page.Resources>
+        <converters:TimePassedToBruchConverter x:Key="TimePassedToBruchConverter"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -38,6 +44,56 @@
             </Grid>
         </StackPanel>
         <Grid Margin="20,20,20,20" Grid.Row="1">
+            <Border Background="{StaticResource SecondBackgroud}" CornerRadius="20" Padding="20">
+                <ListView ItemsSource="{x:Bind ViewModel.Tables, Mode=TwoWay}" SelectionMode="None">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:TablesElement">
+                            <Button Width="250" Height="100" Margin="5" Command="{x:Bind NavigateToDisplayOrderCommand}"
+                                    BorderBrush="{x:Bind order, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=#FF2299AA}">
+                                <Grid HorizontalAlignment="Center" Margin="5,0,15,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <PathIcon Data="{StaticResource TableIconData}"  HorizontalAlignment="Center" Margin="0,5,0,5"
+                                                  Foreground="{x:Bind order, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=#FF2299AA}"/>
+                                        <TextBlock  Text="{x:Bind TableNumber}" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,0"
+                                                    Foreground="{x:Bind order, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=#FF2299AA}"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20,0,0,8" 
+                                                Visibility="{x:Bind order, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                                        <Run  x:Uid="OrderTextBlock"/>
+                                        <Run  Text=" #" FontWeight="SemiBold"/>
+                                         <Run Text="{x:Bind order.Id, Mode=OneWay}" FontWeight="SemiBold"/>
+                                    </TextBlock>
+                                    <TextBlock  Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20,0,0,8"
+                                                 Visibility="{x:Bind order, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                                        <Run x:Uid="TotalTextBlock"/>
+                                        <Run Text=":"/>
+                                        <Run Text="{x:Bind order.TotalPrice, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}, ConverterParameter='F2'}" FontWeight="SemiBold" FontSize="18"/>
+                                        <Run Text="{x:Bind Currency}"/>
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20,0,0,0" 
+                                                 Visibility="{x:Bind order, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                               Text="{x:Bind OrderTimePassedString, Mode=OneWay}"
+                                               Foreground="{x:Bind OrderTimePassed, Converter={StaticResource TimePassedToBruchConverter}}"/>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
         </Grid>
     </Grid>
 </Page>

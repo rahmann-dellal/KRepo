@@ -12,7 +12,7 @@ namespace KFP.Ui.pages
     /// </summary>
     public sealed partial class TablesPage : Page
     {
-        TablesVM ViewModel;
+        public TablesVM ViewModel;
         public TablesPage()
         {
             ViewModel = Ioc.Default.GetService<TablesVM>()!;

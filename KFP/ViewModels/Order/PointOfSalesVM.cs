@@ -309,7 +309,7 @@ namespace KFP.ViewModels
         }
         private PointOfSalesVM parentVM;
         public int TableNumber { get; set; }
-        public string TableName => $"Table {TableNumber}";
+        public string TableName => StringLocalisationService.getStringWithKey("Table") + " " + TableNumber;
         public Order? order { get; set; }
         private NavigationService _navigationService;
 
