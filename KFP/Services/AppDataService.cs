@@ -89,7 +89,7 @@ namespace KFP.Services
             }
         }
 
-        public string RestaurantName
+        public string? RestaurantName
         {
             get
             {
@@ -101,6 +101,50 @@ namespace KFP.Services
             set
             {
                 Settings.Values["RestaurantName"] = value;
+            }
+        }
+
+        public string? RestaurantPhoneNumber1
+        {
+            get
+            {
+                if (Settings.Values["RestaurantPhoneNumber"] != null)
+                    return (string)Settings.Values["RestaurantPhoneNumber"];
+                else
+                    return null;
+            }
+            set
+            {
+                Settings.Values["RestaurantPhoneNumber"] = value;
+            }
+        }
+        public string? RestaurantPhoneNumber2
+        {
+            get
+            {
+                if (Settings.Values["RestaurantPhoneNumber2"] != null)
+                    return (string)Settings.Values["RestaurantPhoneNumber2"];
+                else
+                    return null;
+            }
+            set
+            {
+                Settings.Values["RestaurantPhoneNumber2"] = value;
+            }
+        }
+
+        public string? RestaurantAddress
+        {
+            get
+            {
+                if (Settings.Values["RestaurantAddress"] != null)
+                    return (string)Settings.Values["RestaurantAddress"];
+                else
+                    return null;
+            }
+            set
+            {
+                Settings.Values["RestaurantAddress"] = value;
             }
         }
 
@@ -132,6 +176,93 @@ namespace KFP.Services
             set
             {
                 Settings.Values["OrderOverdueDelay"] = (int)value.TotalMinutes;
+            }
+        }
+
+        public string? OrderPrinterName
+        {
+            get
+            {
+                if (Settings.Values["OrderPrinterName"] != null)
+                    return (string)Settings.Values["OrderPrinterName"];
+                else
+                    return null;
+            }
+            set
+            {
+                Settings.Values["OrderPrinterName"] = value;
+            }
+        }
+        public string? InvoicePrinterName
+        {
+            get
+            {
+                if (Settings.Values["InvoicePrinterName"] != null)
+                    return (string)Settings.Values["InvoicePrinterName"];
+                else
+                    return null;
+            }
+            set
+            {
+                Settings.Values["InvoicePrinterName"] = value;
+            }
+        }
+
+        public string? KitchenPrinterName
+        {
+            get
+            {
+                if (Settings.Values["KitchenPrinterName"] != null)
+                    return (string)Settings.Values["KitchenPrinterName"];
+                else
+                    return null;
+            }
+            set
+            {
+                Settings.Values["KitchenPrinterName"] = value;
+            }
+        }
+
+        public bool IsKitchenPrinterEnabled
+        {
+            get
+            {
+                if(Settings.Values["IsKitchenPrinterEnabled"] != null)
+                    return (bool)Settings.Values["IsKitchenPrinterEnabled"];
+                else
+                    return false;
+            }
+            set
+            {
+                Settings.Values["IsKitchenPrinterEnabled"] = value;
+            }
+        }
+        public bool IsOrderPrinterEnabled
+        {
+            get
+            {
+                if (Settings.Values["IsOrderPrinterEnabled"] != null)
+                    return (bool)Settings.Values["IsOrderPrinterEnabled"];
+                else
+                    return false;
+            }
+            set
+            {
+                Settings.Values["IsOrderPrinterEnabled"] = value;
+            }
+        }
+        public bool IsInvoicePrinterEnabled
+        {
+            get
+            {
+                if (Settings.Values["IsInvoicePrinterEnabled"] != null)
+                    return (bool)Settings.Values["IsInvoicePrinterEnabled"];
+                else
+                    return false;
+            }
+            set
+            {
+                Settings.Values["IsInvoicePrinterEnabled"] = value;
             }
         }
     }

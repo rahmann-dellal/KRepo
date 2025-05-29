@@ -7,58 +7,133 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:ui="using:CommunityToolkit.WinUI"
     xmlns:components="using:KFP.Ui.Components">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,40,0,0">
-        <TextBlock FontSize="22" x:Uid="GeneralSettings"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
-            <TextBlock x:Uid="App_Window_Display" FontSize="18"/>
-            <RadioButtons Margin="10,10,0,0">
-                <RadioButton x:Name="FullScreenRadio" x:Uid="FullScreen" Checked="RadioButtonFullScreen_Checked"/>
-                <RadioButton x:Name="OverlappedRadio" x:Uid="Overlapped" Checked="RadioButton_CheckedOverlapped"/>
-            </RadioButtons>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
-            <TextBlock x:Uid="Currency" FontSize="18"/>
-            <ComboBox x:Name="CurrencyComboBox"
-                      ItemsSource="{x:Bind Currencies, Mode=OneWay}"
-                      SelectedItem="{x:Bind Currency, Mode=TwoWay}"
-                      Width="200"
-                      Margin="10"/>
-        </StackPanel>
-        <TextBlock FontSize="22" x:Uid="RestaurantTextBox" Margin="0,20,0,0"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
-            <TextBlock x:Uid="RestaurantNameTextBox" FontSize="18"/>
-            <TextBox x:Name="RestaurantNameBox"
-               Text="{x:Bind RestaurantName, Mode=TwoWay}" 
-               Width="200"
-               Margin="10"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
-            <TextBlock x:Uid="NumberOfTablesTextBlock" FontSize="18"/>
-            <components:KioberNumberBox x:Name="NumberOfTablesBox"
-                       Value="{x:Bind NumberOfTables, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="99"
-                       Width="200"
-                       Margin="10"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20,25,0,0">
-            <TextBlock x:Uid="orderLateDelayTextBlock" FontSize="18"/>
-            <StackPanel Orientation="Horizontal">
-                <components:KioberNumberBox x:Name="orderLateInput"
-                    Value="{x:Bind OrderLateDelay, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="120"
-                    Width="200"
-                    Margin="10,10,30,10"/>
-                <TextBlock x:Uid="minutesTextBlock" FontSize="16" VerticalAlignment="Center"/>
-            </StackPanel>
-            <TextBlock x:Uid="orderOverdueDelayTextBlock" FontSize="18"/>
-            <StackPanel Orientation="Horizontal">
-                <components:KioberNumberBox x:Name="orderOverDueInput"
-                                            Value="{x:Bind OrderOverDueDelay, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="120"
-                                            Width="200"
-                                            Margin="10,10,30,10"/>
-                <TextBlock x:Uid="minutesTextBlock" FontSize="16" VerticalAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-    </StackPanel>
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,40,20,40">
 
+            <TextBlock FontSize="22" x:Uid="GeneralSettings" FontWeight="SemiBold"/>
+            <controls:SettingsCard x:Uid="App_Window_Display" Margin="20,25,0,0"
+                               HeaderIcon="{ui:FontIcon Glyph=&#xE7F4;}" >
+                <RadioButtons Margin="10,10,0,0">
+                    <RadioButton x:Name="FullScreenRadio" x:Uid="FullScreen" Checked="RadioButtonFullScreen_Checked"/>
+                    <RadioButton x:Name="OverlappedRadio" x:Uid="Overlapped" Checked="RadioButton_CheckedOverlapped"/>
+                </RadioButtons>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="CurrencySettingCard" Margin="20,25,0,0"
+                   HeaderIcon="{ui:FontIcon Glyph=&#xE825;}" >
+                <ComboBox ItemsSource="{x:Bind ViewModel.Currencies, Mode=OneWay}"
+                          SelectedItem="{x:Bind ViewModel.Currency, Mode=TwoWay}"
+                          Width="200"
+                          Margin="10"/>
+            </controls:SettingsCard>
+
+            <TextBlock FontSize="22" x:Uid="DinerTextBox" Margin="0,20,0,0" FontWeight="SemiBold"/>
+
+            <controls:SettingsCard x:Uid="DinerNameSettingCard" Margin="20,25,0,0" >
+                <TextBox Text="{x:Bind ViewModel.RestaurantName, Mode=TwoWay}" 
+                         Width="200"
+                         Margin="10"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="DinerPhoneNumber1SettingCard" Margin="20,25,0,0"
+                                   HeaderIcon="{ui:FontIcon Glyph=&#xE717;}">
+                <TextBox Text="{x:Bind ViewModel.RestaurantPhoneNumber1, Mode=TwoWay}" 
+                         Width="200"
+                         Margin="10"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="DinerPhoneNumber2SettingCard" Margin="20,25,0,0" 
+                                   HeaderIcon="{ui:FontIcon Glyph=&#xE717;}">
+                <TextBox Text="{x:Bind ViewModel.RestaurantPhoneNumber2, Mode=TwoWay}" 
+                         Width="200"
+                         Margin="10"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="DinerAddressSettingCard" Margin="20,25,0,0" 
+                                   HeaderIcon="{ui:FontIcon Glyph=&#xE913;}">
+                <TextBox  Text="{x:Bind ViewModel.RestaurantAddress, Mode=TwoWay}" IsSpellCheckEnabled="False"
+                          Width="400" Height="70" TextWrapping="Wrap" MaxLength="100"
+                          Margin="10"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="NumberOfTablesSettingCard" Margin="20,25,0,0" >
+                <controls:SettingsCard.HeaderIcon>
+                    <PathIcon Data="{StaticResource TablesIconData}"/>
+                </controls:SettingsCard.HeaderIcon>
+                <components:KioberNumberBox
+                   Value="{x:Bind ViewModel.NumberOfTables, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="99"
+                   Width="200"
+                   Margin="10"/>
+            </controls:SettingsCard>
+            
+           
+            <TextBlock x:Uid="OrdersTextBlock" FontSize="18" Margin="0,20,0,0" FontWeight="SemiBold"/>
+
+            <controls:SettingsCard x:Uid="orderLateDelaySettingCard" Margin="20,25,0,0"
+                                   HeaderIcon="{ui:FontIcon Glyph=&#xE916;}">
+                <StackPanel Orientation="Horizontal">
+                    <components:KioberNumberBox Value="{x:Bind ViewModel.OrderLateDelay, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="120"
+                                                Width="200"
+                                                Margin="10,10,30,10"/>
+                    <TextBlock x:Uid="minutesTextBlock" FontSize="16" VerticalAlignment="Center"/>
+                </StackPanel>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="orderOverdueDelaySettingCard" Margin="20,25,0,0" 
+                                   HeaderIcon="{ui:FontIcon Glyph=&#xE916;}">
+                <StackPanel Orientation="Horizontal">
+                    <components:KioberNumberBox Value="{x:Bind ViewModel.OrderOverDueDelay, Mode=TwoWay}" AllowOnlyIntgers="True" AllowOnlyPositiveValues="True" MaxValue="120"
+                                                Width="200"
+                                                Margin="10,10,30,10"/>
+                    <TextBlock x:Uid="minutesTextBlock" FontSize="16" VerticalAlignment="Center"/>
+                </StackPanel>
+            </controls:SettingsCard>
+
+                
+            <TextBlock x:Uid="PrintingTextBlock" FontSize="18" Margin="0,20,0,0" FontWeight="SemiBold"/>
+
+            <controls:SettingsCard x:Uid="PrintInvoiceSettingCard" Margin="20,25,0,0"
+                       HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=TwoWay}"
+                              Margin="10"/>
+            </controls:SettingsCard>
+            <controls:SettingsCard x:Uid="InvoicePrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=OneWay}"
+                                   HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
+                          SelectedItem="{x:Bind ViewModel.InvoicePrinterName, Mode=TwoWay}"
+                          Width="200"
+                          Margin="10"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="PrintCustomerOrderSettingCard" Margin="20,25,0,0"
+           HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsOrderPrinterEnabled, Mode=TwoWay}"
+                  Margin="10"/>
+            </controls:SettingsCard>
+            <controls:SettingsCard x:Uid="CustomerOrderPrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsOrderPrinterEnabled, Mode=OneWay}"
+                       HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
+              SelectedItem="{x:Bind ViewModel.OrderPrinterName, Mode=TwoWay}"
+              Width="200"
+              Margin="10"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard x:Uid="PrintKitchenOrderSettingCard" Margin="20,25,0,0"
+           HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsKitchenPrinterEnabled, Mode=TwoWay}"
+                  Margin="10"/>
+            </controls:SettingsCard>
+            <controls:SettingsCard x:Uid="KitchenOrderPrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsKitchenPrinterEnabled, Mode=OneWay}"
+                       HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
+              SelectedItem="{x:Bind ViewModel.KitchenPrinterName, Mode=TwoWay}"
+              Width="200"
+              Margin="10"/>
+            </controls:SettingsCard>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

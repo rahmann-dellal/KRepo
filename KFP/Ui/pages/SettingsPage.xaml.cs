@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.DependencyInjection;
 using KFP.DATA;
 using KFP.Services;
+using KFP.ViewModels;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -28,127 +29,30 @@ namespace KFP.Ui.pages
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
-        private AppDataService _appDataService;
-        private AppState _appState;
-        public List<Currency> Currencies { get; set; }
+        public SettingsVM ViewModel;
+
 
         public SettingsPage()
         {
-            _appDataService = Ioc.Default.GetService<AppDataService>();
-            _appState = Ioc.Default.GetService<AppState>();
+            ViewModel = Ioc.Default.GetService<SettingsVM>()!;
             this.InitializeComponent();
-            FullScreenRadio.IsChecked = WindowPresenterKind == AppWindowPresenterKind.FullScreen;
-            OverlappedRadio.IsChecked = WindowPresenterKind == AppWindowPresenterKind.Overlapped;
-            Currencies = Enum.GetValues(typeof(Currency)).Cast<Currency>().ToList();
+            FullScreenRadio.IsChecked = ViewModel.WindowPresenterKind == AppWindowPresenterKind.FullScreen;
+            OverlappedRadio.IsChecked = ViewModel.WindowPresenterKind == AppWindowPresenterKind.Overlapped;
         }
 
         private void RadioButtonFullScreen_Checked(object sender, RoutedEventArgs e)
         {
-            if (WindowPresenterKind != AppWindowPresenterKind.FullScreen)
+            if (ViewModel.WindowPresenterKind != AppWindowPresenterKind.FullScreen)
             {
-                WindowPresenterKind = AppWindowPresenterKind.FullScreen;
+                ViewModel.WindowPresenterKind = AppWindowPresenterKind.FullScreen;
             }
         }
 
         private void RadioButton_CheckedOverlapped(object sender, RoutedEventArgs e)
         {
-            if (WindowPresenterKind != AppWindowPresenterKind.Overlapped)
+            if (ViewModel.WindowPresenterKind != AppWindowPresenterKind.Overlapped)
             {
-                WindowPresenterKind = AppWindowPresenterKind.Overlapped;
-            }
-        }
-
-        public Currency Currency
-        {
-            get
-            {
-                return _appDataService.Currency;
-            }
-            set
-            {
-                _appDataService.Currency = value;
-            }
-        }
-
-        public string language
-        {
-            get
-            {
-                return _appDataService.AppLanguage;
-            }
-            set
-            {
-                _appDataService.AppLanguage = value;
-            }
-        }
-
-        public AppWindowPresenterKind WindowPresenterKind
-        {
-            get
-            {
-                return _appDataService.WindowPresenterKind;
-            }
-            set
-            {
-                _appDataService.WindowPresenterKind = value;
-                _appState.WindowPresenterKind = value;
-            }
-        }
-
-        public double? NumberOfTables
-        {
-            get
-            {
-                return _appDataService.NumberOfTables;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    _appDataService.NumberOfTables = 25;
-                    _appState.DinerHasTables = true;
-                }
-                else
-                {
-                    _appDataService.NumberOfTables = (int)value;
-                    _appState.DinerHasTables = (int)value > 0;
-                }
-            }
-        }
-
-        public string RestaurantName
-        {
-            get
-            {
-                return _appDataService.RestaurantName;
-            }
-            set
-            {
-                _appDataService.RestaurantName = value;
-            }
-        }
-
-        public double? OrderLateDelay
-        {
-            get
-            {
-                return _appDataService.OrderLateDelay.Minutes;
-            }
-            set
-            {
-                _appDataService.OrderLateDelay = TimeSpan.FromMinutes(value??0);
-            }
-        }
-
-        public double? OrderOverDueDelay
-        {
-            get
-            {
-                return _appDataService.OrderOverdueDelay.Minutes;
-            }
-            set
-            {
-                _appDataService.OrderOverdueDelay = TimeSpan.FromMinutes(value ?? 0);
+                ViewModel.WindowPresenterKind = AppWindowPresenterKind.Overlapped;
             }
         }
     }

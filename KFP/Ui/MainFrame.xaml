@@ -132,7 +132,7 @@
                     <TextBlock x:Uid="SessionTextBlock"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xE916;"/>
+                    <FontIcon Glyph="&#xF182;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem x:Name="AboutNVI">

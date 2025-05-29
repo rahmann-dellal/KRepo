@@ -67,6 +67,7 @@ namespace KFP
             services.AddTransient<EditMenuItemVM>();
             services.AddTransient<AddMenuItemVM>();
             services.AddTransient<MenuItemListVM>();
+            services.AddTransient<SettingsVM>();
 
             services.AddTransient<ImageConverter>();
             services.AddTransient<FileSystemAccess>();
@@ -76,7 +77,9 @@ namespace KFP
             services.AddSingleton<SessionManager>();
             services.AddSingleton<AppState>();
             services.AddSingleton<NavigationService>();
+            services.AddSingleton<PrintingService>();
             services.AddSingleton<INavigationService>(s => s.GetRequiredService<NavigationService>());
+            services.AddSingleton<IPrintingService>(s => s.GetRequiredService<PrintingService>());
 
 
             var serviceProvider = services.BuildServiceProvider();

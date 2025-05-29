@@ -9,60 +9,78 @@
     mc:Ignorable="d">
 
     <ScrollViewer>
-    <Grid>
-        <Grid HorizontalAlignment="Center"  Margin="0,40,0,0" Height="auto" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="150"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" x:Uid="startedAtTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Bind startedAt}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
+        <Grid>
+            <Grid HorizontalAlignment="Center"  Margin="0,40,0,0" Height="auto" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" x:Uid="startedAtTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Bind startedAt}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="1" x:Uid="activeForTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="timerTextBlock" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" x:Uid="activeForTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" x:Name="timerTextBlock" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="2" x:Uid="CurrentUserTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="{x:Bind LoggedInUser.UserName}"
+                <TextBlock Grid.Column="0" Grid.Row="2" x:Uid="CurrentUserTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{x:Bind LoggedInUser.UserName}"
                        FontWeight="SemiBold" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
 
-            <TextBlock Grid.ColumnSpan="2" Grid.Row="3" FontWeight="SemiBold" x:Uid="cashDrawerTexBlock" Margin="0,10,20,20" HorizontalAlignment="Center" FontSize="18"/>
+                <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="3" Margin="0,10,20,20" HorizontalAlignment="Center">
+                    <FontIcon Glyph="&#xEC59;" Margin="0,0,20,0"/>
+                    <TextBlock  FontWeight="SemiBold" x:Uid="cashDrawerTexBlock"  FontSize="18"/>
+                </StackPanel>
+                
+                <TextBlock Grid.Column="0" Grid.Row="4" x:Uid="OpeningCashTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="4" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17">
+                    <Run Text="{x:Bind OpeningCash, Converter={StaticResource DoubleToStringConverter}}" FontWeight="SemiBold"/>
+                    <Run Text="{x:Bind currency}"/>
+                </TextBlock>
 
-            <TextBlock Grid.Column="0" Grid.Row="4" x:Uid="OpeningCashTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="4" Text="{x:Bind OpeningCash}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
-            
-            <TextBlock Grid.Column="0" Grid.Row="5" x:Uid="TotalCashTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="5" Text="{x:Bind totalCashPayments}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" x:Uid="TotalCashTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="5" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17">
+                <Run Text="{x:Bind totalCashPayments, Converter={StaticResource DoubleToStringConverter}}" FontWeight="SemiBold"/>
+                <Run Text="{x:Bind currency}"/>
+                </TextBlock>
 
-            <TextBlock Grid.Column="0" Grid.Row="6" x:Uid="TotalCardTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="6" Text="{x:Bind totalCardPayments}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
+                <TextBlock Grid.Column="0" Grid.Row="6" x:Uid="TotalCardTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="6" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17">
+                    <Run Text="{x:Bind totalCardPayments, Converter={StaticResource DoubleToStringConverter}}" FontWeight="SemiBold"/>
+                    <Run Text="{x:Bind currency}"/>
+                </TextBlock>
 
-            <TextBlock Grid.Column="0" Grid.Row="7" x:Uid="TotalPaymentsTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="7" Text="{x:Bind TotalPayments}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
-            
-            <TextBlock Grid.Column="0" Grid.Row="8" x:Uid="TotalinDrawerTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
-            <TextBlock Grid.Column="1" Grid.Row="8" Text="{x:Bind TotalInDrawer}" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17"/>
+                <TextBlock Grid.Column="0" Grid.Row="7" x:Uid="TotalPaymentsTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="7" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17">
+                    <Run Text="{x:Bind TotalPayments, Converter={StaticResource DoubleToStringConverter}}" FontWeight="SemiBold"/>
+                    <Run Text="{x:Bind currency}"/>
+                </TextBlock>
 
-            <Button Width="200" Grid.ColumnSpan="2" Grid.Row="9" HorizontalAlignment="Center" 
+                <TextBlock Grid.Column="0" Grid.Row="8" x:Uid="TotalinDrawerTextBlock" Margin="0,0,20,20" HorizontalAlignment="Right" FontSize="18"/>
+                <TextBlock Grid.Column="1" Grid.Row="8" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="17">
+                    <Run Text="{x:Bind TotalInDrawer, Converter={StaticResource DoubleToStringConverter}}" FontWeight="SemiBold"/>
+                    <Run Text="{x:Bind currency}"/>
+                </TextBlock>
+
+                <Button Width="200" Grid.ColumnSpan="2" Grid.Row="9" HorizontalAlignment="Center" 
             Background="{StaticResource AccentFillColorDefaultBrush}" Foreground="{StaticResource TextOnAccentFillColorPrimary}"
             Click="LogOutButton_Click" Margin="0,0,0,0">
-                <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xF3B1;" Margin="0,0,30,0"/>
-                    <TextBlock x:Uid="logoutButton" Margin="8,0,0,0"/>
-                </StackPanel>
-            </Button>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF3B1;" Margin="0,0,30,0"/>
+                        <TextBlock x:Uid="logoutButton" Margin="8,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
         </Grid>
-    </Grid>
     </ScrollViewer>
 </Page>

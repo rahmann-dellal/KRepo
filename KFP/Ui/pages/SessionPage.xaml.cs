@@ -30,6 +30,7 @@ namespace KFP.Ui.pages
 
         private SessionManager _sessionManager;
         private AppDataService _appDataService;
+        private Currency currency;
         public Session CurentSession
         {
             get
@@ -91,8 +92,9 @@ namespace KFP.Ui.pages
         }
         public SessionPage()
         {
-            _sessionManager = Ioc.Default.GetService<SessionManager>();
-            _appDataService = Ioc.Default.GetService<AppDataService>();
+            _sessionManager = Ioc.Default.GetService<SessionManager>()!;
+            _appDataService = Ioc.Default.GetService<AppDataService>()!;
+            currency = _appDataService.Currency;
             this.InitializeComponent();
             this.Loaded += OnPageLoaded;
             this.Unloaded += (s, e) => { if (dispatcherTimer != null) dispatcherTimer.Stop(); };

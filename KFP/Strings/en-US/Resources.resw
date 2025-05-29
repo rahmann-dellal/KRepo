@@ -168,7 +168,7 @@
   <data name="allCategoriesCombo.PlaceholderText" xml:space="preserve">
     <value>Select Category</value>
   </data>
-  <data name="App_Window_Display.Text" xml:space="preserve">
+  <data name="App_Window_Display.Header" xml:space="preserve">
     <value>Window's Display</value>
   </data>
   <data name="Are_you_sure_to_continue" xml:space="preserve">
@@ -483,7 +483,7 @@
   <data name="TotalPriceTxtBlock.Text" xml:space="preserve">
     <value>Total Price</value>
   </data>
-  <data name="NumberOfTablesTextBlock.Text" xml:space="preserve">
+  <data name="NumberOfTablesSettingCard.Header" xml:space="preserve">
     <value>Number of tables</value>
   </data>
   <data name="OrderTextBlock.Text" xml:space="preserve">
@@ -681,19 +681,91 @@
   <data name="Item" xml:space="preserve">
     <value>Item</value>
   </data>
-  <data name="RestaurantTextBox.Text" xml:space="preserve">
+  <data name="DinerTextBox.Text" xml:space="preserve">
     <value>Diner</value>
   </data>
-  <data name="RestaurantNameTextBox.Text" xml:space="preserve">
-    <value>Diner's name</value>
-  </data>
-  <data name="orderLateDelayTextBlock.Text" xml:space="preserve">
+  <data name="orderLateDelaySettingCard.Header" xml:space="preserve">
     <value>Order Late Delay</value>
   </data>
   <data name="minutesTextBlock.Text" xml:space="preserve">
     <value>Minutes</value>
   </data>
-  <data name="orderOverdueDelayTextBlock.Text" xml:space="preserve">
+  <data name="orderOverdueDelaySettingCard.Header" xml:space="preserve">
     <value>Order Overdue Delay</value>
+  </data>
+  <data name="PrintingTextBlock.Text" xml:space="preserve">
+    <value>Printing</value>
+  </data>
+  <data name="CurrencySettingCard.Header" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="DinerNameSettingCard.Header" xml:space="preserve">
+    <value>Diner's Name</value>
+  </data>
+  <data name="NumberOfTablesSettingCard.Description" xml:space="preserve">
+    <value>Enter 0 if the diner has no tables</value>
+  </data>
+  <data name="orderLateDelaySettingCard.Description" xml:space="preserve">
+    <value>Number of minutes before the order is considered late (Orange warning)</value>
+  </data>
+  <data name="orderOverdueDelaySettingCard.Description" xml:space="preserve">
+    <value>Number of minutes before the order is considered overdue (Red warning)</value>
+  </data>
+  <data name="DinerNameSettingCard.Description" xml:space="preserve">
+    <value>Can be set to be printed later with invoices or order tickets</value>
+  </data>
+  <data name="DinerPhoneNumber1SettingCard.Header" xml:space="preserve">
+    <value>First Phone Number </value>
+  </data>
+  <data name="DinerPhoneNumber2SettingCard.Header" xml:space="preserve">
+    <value>Second Phone Number</value>
+  </data>
+  <data name="DinerAddressSettingCard.Header" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="DinerAddressSettingCard.Description" xml:space="preserve">
+    <value>Can be set to be printed later with invoices or order tickets</value>
+  </data>
+  <data name="DinerPhoneNumber1SettingCard.Description" xml:space="preserve">
+    <value>Can be set to be printed later with invoices or order tickets</value>
+  </data>
+  <data name="DinerPhoneNumber2SettingCard.Description" xml:space="preserve">
+    <value>Can be set to be printed later with invoices or order tickets</value>
+  </data>
+  <data name="InvoicePrinterSettingCard.Header" xml:space="preserve">
+    <value>Invoice Printer</value>
+  </data>
+  <data name="PrintInvoiceSettingCard.Header" xml:space="preserve">
+    <value>Print Invoices ?</value>
+  </data>
+  <data name="InvoicePrinterSettingCard.Description" xml:space="preserve">
+    <value>Select the printer used for printing payment receipts</value>
+  </data>
+  <data name="PrintInvoiceSettingCard.Description" xml:space="preserve">
+    <value>Print receipt of payment for customer ?</value>
+  </data>
+  <data name="PrintCustomerOrderSettingCard.Header" xml:space="preserve">
+    <value>Print order for customer ?</value>
+  </data>
+  <data name="PrintCustomerOrderSettingCard.Description" xml:space="preserve">
+    <value>Print order for customer before payment</value>
+  </data>
+  <data name="CustomerOrderPrinterSettingCard.Header" xml:space="preserve">
+    <value>Order printer for customers</value>
+  </data>
+  <data name="CustomerOrderPrinterSettingCard.Description" xml:space="preserve">
+    <value>Select the printer used for printing orders for customers</value>
+  </data>
+  <data name="PrintKitchenOrderSettingCard.Header" xml:space="preserve">
+    <value>Print order for kitchen ?</value>
+  </data>
+  <data name="PrintKitchenOrderSettingCard.Description" xml:space="preserve">
+    <value>Orders tickets for kitchen</value>
+  </data>
+  <data name="KitchenOrderPrinterSettingCard.Header" xml:space="preserve">
+    <value>Kitchen printer</value>
+  </data>
+  <data name="KitchenOrderPrinterSettingCard.Description" xml:space="preserve">
+    <value>Select kitchen printer</value>
   </data>
 </root>
