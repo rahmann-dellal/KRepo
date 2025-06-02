@@ -25,7 +25,9 @@ namespace KFP.ViewModels
             Printers = _printingService.GetAvailablePrinters();
         }
 
-        //General Settings
+        /// <section>
+        /// General Settings
+        /// </section>
         public Currency Currency
         {
             get
@@ -63,7 +65,9 @@ namespace KFP.ViewModels
             }
         }
 
-        //Diner
+        /// <section>
+        /// Diner Settings
+        /// </section>
         public double? NumberOfTables
         {
             get
@@ -85,7 +89,7 @@ namespace KFP.ViewModels
             }
         }
 
-        public string? RestaurantName
+        public string? DinerName
         {
             get
             {
@@ -96,7 +100,7 @@ namespace KFP.ViewModels
                 _appDataService.RestaurantName = value;
             }
         }
-        public string? RestaurantPhoneNumber1
+        public string? DinerPhoneNumber1
         {
             get
             {
@@ -108,7 +112,7 @@ namespace KFP.ViewModels
             }
         }
 
-        public string? RestaurantPhoneNumber2
+        public string? DinerPhoneNumber2
         {
             get
             {
@@ -119,7 +123,7 @@ namespace KFP.ViewModels
                 _appDataService.RestaurantPhoneNumber2 = value;
             }
         }
-        public string? RestaurantAddress
+        public string? DinerAddress
         {
             get
             {
@@ -131,7 +135,9 @@ namespace KFP.ViewModels
             }
         }
 
-        //Orders
+        /// <section>
+        /// Order Settings
+        /// </section>
         public double? OrderLateDelay
         {
             get
@@ -144,7 +150,7 @@ namespace KFP.ViewModels
             }
         }
 
-        public double? OrderOverDueDelay
+        public double? OrderOverdueDelay
         {
             get
             {
@@ -156,8 +162,9 @@ namespace KFP.ViewModels
             }
         }
 
-        //Printing
-
+        /// <section>
+        /// Printing Settings
+        /// </section>
         public string? KitchenPrinterName
         {
             get
@@ -169,15 +176,15 @@ namespace KFP.ViewModels
                 _appDataService.KitchenPrinterName = value;
             }
         }
-        public string? OrderPrinterName
+        public string? PreBillPrinterName
         {
             get
             {
-                return _appDataService.OrderPrinterName;
+                return _appDataService.PreBillPrinterName;
             }
             set
             {
-                _appDataService.OrderPrinterName = value;
+                _appDataService.PreBillPrinterName = value;
             }
         }
         public string? InvoicePrinterName
@@ -203,16 +210,16 @@ namespace KFP.ViewModels
                 OnPropertyChanged(nameof(IsKitchenPrinterEnabled));
             }
         }
-        public bool IsOrderPrinterEnabled
+        public bool IsPreBillPrinterEnabled
         {
             get
             {
-                return _appDataService.IsOrderPrinterEnabled;
+                return _appDataService.IsPreBillPrinterEnabled;
             }
             set
             {
-                _appDataService.IsOrderPrinterEnabled = value;
-                OnPropertyChanged(nameof(IsOrderPrinterEnabled));
+                _appDataService.IsPreBillPrinterEnabled = value;
+                OnPropertyChanged(nameof(IsPreBillPrinterEnabled));
             }
         }
         public bool IsInvoicePrinterEnabled
@@ -225,6 +232,122 @@ namespace KFP.ViewModels
             {
                 _appDataService.IsInvoicePrinterEnabled = value;
                 OnPropertyChanged(nameof(IsInvoicePrinterEnabled));
+            }
+        }
+
+        public bool PrintDinerNameWithInvoice
+        {
+            get
+            {
+                return _appDataService.PrintDinerNameWithInvoice;
+            }
+            set
+            {
+                _appDataService.PrintDinerNameWithInvoice = value;
+            }
+        }
+
+        public bool PrintDinerAddressWithInvoice
+        {
+            get
+            {
+                return _appDataService.PrintDinerAddressWithInvoice;
+            }
+            set
+            {
+                _appDataService.PrintDinerAddressWithInvoice = value;
+            }
+        }
+
+        public bool PrintDinerPhoneNumber1WithInvoice
+        {
+            get
+            {
+                return _appDataService.PrintDinerPhoneNumber1WithInvoice;
+            }
+            set
+            {
+                _appDataService.PrintDinerPhoneNumber1WithInvoice = value;
+            }
+        }
+
+        public bool PrintDinerPhoneNumber2WithInvoice
+        {
+            get
+            {
+                return _appDataService.PrintDinerPhoneNumber2WithInvoice;
+            }
+            set
+            {
+                _appDataService.PrintDinerPhoneNumber2WithInvoice = value;
+            }
+        }
+
+        public bool PrintCashierNameWithInvoice
+        {
+            get
+            {
+                return _appDataService.PrintCashierNameWithInvoice;
+            }
+            set
+            {
+                _appDataService.PrintCashierNameWithInvoice = value;
+            }
+        }
+
+        public bool PrintDinerNameWithPreBill
+        {
+            get
+            {
+                return _appDataService.PrintDinerNameWithPreBill;
+            }
+            set
+            {
+                _appDataService.PrintDinerNameWithPreBill = value;
+            }
+        }
+        public bool PrintDinerAddressWithPreBill
+        {
+            get
+            {
+                return _appDataService.PrintDinerAddressWithPreBill;
+            }
+            set
+            {
+                _appDataService.PrintDinerAddressWithPreBill = value;
+            }
+        }
+        public bool PrintDinerPhoneNumber1WithPreBill
+        {
+            get
+            {
+                return _appDataService.PrintDinerPhoneNumber1WithPreBill;
+            }
+            set
+            {
+                _appDataService.PrintDinerPhoneNumber1WithPreBill = value;
+            }
+        }
+        public bool PrintDinerPhoneNumber2WithPreBill
+        {
+            get
+            {
+                return _appDataService.PrintDinerPhoneNumber2WithPreBill;
+            }
+            set
+            {
+                _appDataService.PrintDinerPhoneNumber2WithPreBill = value;
+            }
+        }
+        public bool PrintCashierNameWithPreBill
+        {
+            get
+            {
+                return _appDataService.PrintCashierNameWithPreBill;
+            }
+            set
+            {
+                _appDataService.PrintCashierNameWithPreBill = value;
             }
         }
     }

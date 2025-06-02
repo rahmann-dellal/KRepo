@@ -10,7 +10,6 @@ using Windows.Graphics.Imaging;
 using System.IO;
 using WinRT;
 using System.Runtime.InteropServices.WindowsRuntime;
-using KFP.Printables;
 using Microsoft.UI;
 using System.Globalization;
 
@@ -32,10 +31,10 @@ namespace KFP.Services
         {
             _appDataService = appDataService;
             kitchenPrinterName = _appDataService.KitchenPrinterName;
-            orderPrinterName = _appDataService.OrderPrinterName;
+            orderPrinterName = _appDataService.PreBillPrinterName;
             invoicePrinterName = _appDataService.InvoicePrinterName;
             IsKitchenPrinterEnabled = _appDataService.IsKitchenPrinterEnabled;
-            IsOrderPrinterEnabled = _appDataService.IsOrderPrinterEnabled;
+            IsOrderPrinterEnabled = _appDataService.IsPreBillPrinterEnabled;
             IsInvoicePrinterEnabled = _appDataService.IsInvoicePrinterEnabled;
         }
 

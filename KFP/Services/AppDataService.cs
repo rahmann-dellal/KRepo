@@ -10,6 +10,10 @@ namespace KFP.Services
     {
         Windows.Storage.ApplicationDataContainer Settings =
         Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+        /// <section>
+        /// General Settings
+        /// </section>
         public Currency Currency
         {
             get
@@ -59,6 +63,24 @@ namespace KFP.Services
             }
         }
 
+        public AppWindowPresenterKind WindowPresenterKind
+        {
+            get
+            {
+                if (Settings.Values["WindowPresenterKind"] != null)
+                    return (AppWindowPresenterKind)Settings.Values["WindowPresenterKind"];
+                else
+                    return AppWindowPresenterKind.Default;
+            }
+            set
+            {
+                Settings.Values["WindowPresenterKind"] = (int)value;
+            }
+        }
+
+        /// <section>
+        /// Diner Settings
+        /// </section>
         public int NumberOfTables
         {
             get
@@ -74,20 +96,7 @@ namespace KFP.Services
             }
         }
 
-        public AppWindowPresenterKind WindowPresenterKind
-        {
-            get
-            {
-                if (Settings.Values["WindowPresenterKind"] != null)
-                    return (AppWindowPresenterKind)Settings.Values["WindowPresenterKind"];
-                else
-                    return AppWindowPresenterKind.Default;
-            }
-            set
-            {
-                Settings.Values["WindowPresenterKind"] = (int)value;
-            }
-        }
+
 
         public string? RestaurantName
         {
@@ -148,6 +157,9 @@ namespace KFP.Services
             }
         }
 
+        /// <section>
+        /// Order Settings
+        /// </section>
         public TimeSpan OrderLateDelay
         {
             get
@@ -179,18 +191,21 @@ namespace KFP.Services
             }
         }
 
-        public string? OrderPrinterName
+        /// <section>
+        /// Printing Settings
+        /// </section>
+        public string? PreBillPrinterName
         {
             get
             {
-                if (Settings.Values["OrderPrinterName"] != null)
-                    return (string)Settings.Values["OrderPrinterName"];
+                if (Settings.Values["PreBillPrinterName"] != null)
+                    return (string)Settings.Values["PreBillPrinterName"];
                 else
                     return null;
             }
             set
             {
-                Settings.Values["OrderPrinterName"] = value;
+                Settings.Values["PreBillPrinterName"] = value;
             }
         }
         public string? InvoicePrinterName
@@ -227,7 +242,7 @@ namespace KFP.Services
         {
             get
             {
-                if(Settings.Values["IsKitchenPrinterEnabled"] != null)
+                if (Settings.Values["IsKitchenPrinterEnabled"] != null)
                     return (bool)Settings.Values["IsKitchenPrinterEnabled"];
                 else
                     return false;
@@ -237,18 +252,18 @@ namespace KFP.Services
                 Settings.Values["IsKitchenPrinterEnabled"] = value;
             }
         }
-        public bool IsOrderPrinterEnabled
+        public bool IsPreBillPrinterEnabled
         {
             get
             {
-                if (Settings.Values["IsOrderPrinterEnabled"] != null)
-                    return (bool)Settings.Values["IsOrderPrinterEnabled"];
+                if (Settings.Values["IsPreBillPrinterEnabled"] != null)
+                    return (bool)Settings.Values["IsPreBillPrinterEnabled"];
                 else
                     return false;
             }
             set
             {
-                Settings.Values["IsOrderPrinterEnabled"] = value;
+                Settings.Values["IsPreBillPrinterEnabled"] = value;
             }
         }
         public bool IsInvoicePrinterEnabled
@@ -263,6 +278,153 @@ namespace KFP.Services
             set
             {
                 Settings.Values["IsInvoicePrinterEnabled"] = value;
+            }
+        }
+
+        public bool PrintDinerNameWithInvoice
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerNameWithInvoice"] != null)
+                    return (bool)Settings.Values["PrintDinerNameWithInvoice"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerNameWithInvoice"] = value;
+            }
+        }
+
+        public bool PrintDinerAddressWithInvoice
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerAddressWithInvoice"] != null)
+                    return (bool)Settings.Values["PrintDinerAddressWithInvoice"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerAddressWithInvoice"] = value;
+            }
+        }
+
+        public bool PrintDinerPhoneNumber1WithInvoice
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerPhoneNumber1WithInvoice"] != null)
+                    return (bool)Settings.Values["PrintDinerPhoneNumber1WithInvoice"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerPhoneNumber1WithInvoice"] = value;
+            }
+        }
+        public bool PrintDinerPhoneNumber2WithInvoice
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerPhoneNumber2WithInvoice"] != null)
+                    return (bool)Settings.Values["PrintDinerPhoneNumber2WithInvoice"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerPhoneNumber2WithInvoice"] = value;
+            }
+        }
+
+        public bool PrintCashierNameWithInvoice
+        {
+            get
+            {
+                if (Settings.Values["PrintCashierNameWithInvoice"] != null)
+                    return (bool)Settings.Values["PrintCashierNameWithInvoice"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintCashierNameWithInvoice"] = value;
+            }
+        }
+        public bool PrintDinerNameWithPreBill
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerNameWithPreBill"] != null)
+                    return (bool)Settings.Values["PrintDinerNameWithPreBill"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerNameWithPreBill"] = value;
+            }
+        }
+
+        public bool PrintDinerAddressWithPreBill
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerAddressWithPreBill"] != null)
+                    return (bool)Settings.Values["PrintDinerAddressWithPreBill"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerAddressWithPreBill"] = value;
+            }
+        }
+
+        public bool PrintDinerPhoneNumber1WithPreBill
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerPhoneNumber1WithPreBill"] != null)
+                    return (bool)Settings.Values["PrintDinerPhoneNumber1WithPreBill"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerPhoneNumber1WithPreBill"] = value;
+            }
+        }
+
+        public bool PrintDinerPhoneNumber2WithPreBill
+        {
+            get
+            {
+                if (Settings.Values["PrintDinerPhoneNumber2WithPreBill"] != null)
+                    return (bool)Settings.Values["PrintDinerPhoneNumber2WithPreBill"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintDinerPhoneNumber2WithPreBill"] = value;
+            }
+        }
+        public bool PrintCashierNameWithPreBill
+        {
+            get
+            {
+                if (Settings.Values["PrintCashierNameWithPreBill"] != null)
+                    return (bool)Settings.Values["PrintCashierNameWithPreBill"];
+                else
+                    return true;
+            }
+            set
+            {
+                Settings.Values["PrintCashierNameWithPreBill"] = value;
             }
         }
     }

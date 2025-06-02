@@ -55,5 +55,44 @@ namespace KFP.Ui.pages
                 ViewModel.WindowPresenterKind = AppWindowPresenterKind.Overlapped;
             }
         }
+
+        private void SelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
+        {
+            if (sender.SelectedItem == generalSettingsSelectorItem)
+            {
+                scrollToElement(GeneralSettingsTextBlock);
+            }
+            else if (sender.SelectedItem == DinerSelectorItem)
+            {
+                scrollToElement(DinerTextBlock);
+            }
+            else if (sender.SelectedItem == OrdersSelectorItem)
+            {
+                scrollToElement(OrdersTextBlock);
+            }
+            else if (sender.SelectedItem == PrintingSelectorItem)
+            {
+                scrollToElement(PrintingTextBlock);
+            }
+        }
+
+        private void scrollToElement(FrameworkElement element)
+        {
+            // Get current scroll offset
+            double currentOffset = scrollViewer.VerticalOffset;
+
+            // Get the position of the element relative to the ScrollViewer
+            GeneralTransform transform = element.TransformToVisual(scrollViewer);
+            Point position = transform.TransformPoint(new Point(0, scrollViewer.VerticalOffset));
+            double targetOffset = position.Y;
+
+
+            scrollViewer.ChangeView(null, targetOffset, null);
+        }
+
+        private void scrollViewer_DirectManipulationCompleted(object sender, object e)
+        {
+            selectorBar.SelectedItem = null; // Reset the selected item when scrolling stops
+        }
     }
 }

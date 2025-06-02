@@ -264,7 +264,7 @@ namespace KFP.ViewModels
                 {
                     _printingService.PrintOrderForKitchen(CurrentOrder);
                 }
-                if (_printingService != null && _appDataService.IsOrderPrinterEnabled)
+                if (_printingService != null && _appDataService.IsPreBillPrinterEnabled)
                 {
                     _printingService.PrintOrderForCustomer(CurrentOrder);
                 }
