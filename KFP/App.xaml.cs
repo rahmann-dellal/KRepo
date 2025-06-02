@@ -79,8 +79,8 @@ namespace KFP
             services.AddSingleton<NavigationService>();
             services.AddSingleton<PrintingService>();
             services.AddSingleton<INavigationService>(s => s.GetRequiredService<NavigationService>());
-            services.AddSingleton<IPrintingService>(s => s.GetRequiredService<PrintingService>());
-
+            services.AddTransient<IPrintingService>(s => s.GetRequiredService<PrintingService>());
+            services.AddSingleton<MainWindow>(s => MainWindow);
 
             var serviceProvider = services.BuildServiceProvider();
             Ioc.Default.ConfigureServices(serviceProvider);

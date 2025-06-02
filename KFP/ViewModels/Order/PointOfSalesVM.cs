@@ -20,6 +20,7 @@ namespace KFP.ViewModels
         private AppDataService _appDataService;
         private SessionManager _sessionManager;
         private NavigationService _navigationService;
+        private IPrintingService _printingService;
         public MenuItemSelectorVM menuItemSelectorVM;
         public EditOrderVM editOrderVM;
         public POSVMMode POSVMMode { get; set; } = POSVMMode.NewOrder; //mode of the view model, new order or edit order
@@ -93,11 +94,14 @@ namespace KFP.ViewModels
         public RelayCommand NavigatetoTablesCommand { get; set; }
 
 
-        public PointOfSalesVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, EditOrderVM orderVM, AppDataService appDataService, SessionManager sessionManager, NavigationService ns)
+        public PointOfSalesVM(KFPContext context, MenuItemSelectorVM menuItemSelectorVM, EditOrderVM orderVM,
+            AppDataService appDataService, SessionManager sessionManager, NavigationService ns, IPrintingService printingService)
         {
             _appDataService = appDataService;
             _navigationService = ns;
             _sessionManager = sessionManager;
+            _printingService = printingService;
+
             dbContext = context;
 
             numberOfTables = _appDataService.NumberOfTables;
@@ -256,6 +260,14 @@ namespace KFP.ViewModels
             if (result > 0)
             {
                 _navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { CurrentOrder.Id });
+                if (_printingService != null && _appDataService.IsKitchenPrinterEnabled)
+                {
+                    _printingService.PrintOrderForKitchen(CurrentOrder);
+                }
+                if (_printingService != null && _appDataService.IsOrderPrinterEnabled)
+                {
+                    _printingService.PrintOrderForCustomer(CurrentOrder);
+                }
             }
         }
 
