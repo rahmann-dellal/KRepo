@@ -18,7 +18,7 @@ namespace KFP.Ui
         private NavigationViewItem? _selectedNVI;
         private SessionManager _sessionManager;
         private AppState _appState;
-        public bool DinerHasTables { get; set; } = true;
+        public bool EstablishmentHasTables { get; set; } = true;
 
         public NavigationViewItem? selectedNVI {
             private get{
@@ -37,8 +37,8 @@ namespace KFP.Ui
             _sessionManager = Ioc.Default.GetService<SessionManager>()!;
             _appState = Ioc.Default.GetService<AppState>()!;
             _appState.PropertyChanged += (s,e) => { 
-                DinerHasTables = _appState.DinerHasTables; 
-                if(DinerHasTables)
+                EstablishmentHasTables = _appState.EstablishmentHasTables; 
+                if(EstablishmentHasTables)
                 {
                     TablesNVI.Visibility = Visibility.Visible;
                 }

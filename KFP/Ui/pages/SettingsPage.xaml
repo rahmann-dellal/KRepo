@@ -18,18 +18,18 @@
         </Grid.RowDefinitions>
         <SelectorBar x:Name="selectorBar"
                      Grid.Row="0"  Margin="25,10,30,0" HorizontalAlignment="Center" 
-                     Background="{StaticResource SecondBackgroud}" CornerRadius="20"
+                     Background="{StaticResource SecondBackgroud}" CornerRadius="15" Padding="15,0,15,0"
                      SelectionChanged="SelectorBar_SelectionChanged">
             <SelectorBarItem  Text="GeneralSettings"  FontSize="18" IsSelected="True" 
                               x:Name="generalSettingsSelectorItem"/>
-            <SelectorBarItem x:Name="DinerSelectorItem" Text="Diner"  FontSize="18"/>
+            <SelectorBarItem x:Name="EstablishmentSelectorItem" Text="Establishment"  FontSize="18"/>
             <SelectorBarItem x:Name="OrdersSelectorItem"  Text="Orders"  FontSize="18"/>
             <SelectorBarItem x:Name="PrintingSelectorItem" Text="Printing"  FontSize="18"/>
 
         </SelectorBar>
 
-        <ScrollViewer Grid.Row="1" x:Name="scrollViewer" DirectManipulationCompleted="scrollViewer_DirectManipulationCompleted">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,20,20,40">
+        <ScrollViewer Grid.Row="1"  x:Name="scrollViewer" DirectManipulationCompleted="scrollViewer_DirectManipulationCompleted">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="40,20,40,40" >
 
                 <TextBlock FontSize="22" x:Name="GeneralSettingsTextBlock" x:Uid="GeneralSettings" FontWeight="SemiBold"/>
                 <controls:SettingsCard x:Uid="App_Window_Display" Margin="20,25,0,0"
@@ -48,31 +48,31 @@
                           Margin="10"/>
                 </controls:SettingsCard>
 
-                <TextBlock FontSize="22" x:Name="DinerTextBlock" x:Uid="DinerTextBox" Margin="0,20,0,0" FontWeight="SemiBold"/>
+                <TextBlock FontSize="22" x:Name="EstablishmentTextBlock" x:Uid="EstablishmentTextBox" Margin="0,20,0,0" FontWeight="SemiBold"/>
 
-                <controls:SettingsCard x:Uid="DinerNameSettingCard" Margin="20,25,0,0" >
-                    <TextBox Text="{x:Bind ViewModel.DinerName, Mode=TwoWay}" 
+                <controls:SettingsCard x:Uid="EstablishmentNameSettingCard" Margin="20,25,0,0" >
+                    <TextBox Text="{x:Bind ViewModel.EstablishmentName, Mode=TwoWay}" 
                          Width="200"
                          Margin="10"/>
                 </controls:SettingsCard>
 
-                <controls:SettingsCard x:Uid="DinerPhoneNumber1SettingCard" Margin="20,25,0,0"
+                <controls:SettingsCard x:Uid="EstablishmentPhoneNumber1SettingCard" Margin="20,25,0,0"
                                    HeaderIcon="{ui:FontIcon Glyph=&#xE717;}">
-                    <TextBox Text="{x:Bind ViewModel.DinerPhoneNumber1, Mode=TwoWay}" 
+                    <TextBox Text="{x:Bind ViewModel.EstablishmentPhoneNumber1, Mode=TwoWay}" 
                          Width="200"
                          Margin="10"/>
                 </controls:SettingsCard>
 
-                <controls:SettingsCard x:Uid="DinerPhoneNumber2SettingCard" Margin="20,25,0,0" 
+                <controls:SettingsCard x:Uid="EstablishmentPhoneNumber2SettingCard" Margin="20,25,0,0" 
                                    HeaderIcon="{ui:FontIcon Glyph=&#xE717;}">
-                    <TextBox Text="{x:Bind ViewModel.DinerPhoneNumber2, Mode=TwoWay}" 
+                    <TextBox Text="{x:Bind ViewModel.EstablishmentPhoneNumber2, Mode=TwoWay}" 
                          Width="200"
                          Margin="10"/>
                 </controls:SettingsCard>
 
-                <controls:SettingsCard x:Uid="DinerAddressSettingCard" Margin="20,25,0,0" 
+                <controls:SettingsCard x:Uid="EstablishmentAddressSettingCard" Margin="20,25,0,0" 
                                    HeaderIcon="{ui:FontIcon Glyph=&#xE913;}">
-                    <TextBox  Text="{x:Bind ViewModel.DinerAddress, Mode=TwoWay}" IsSpellCheckEnabled="False"
+                    <TextBox  Text="{x:Bind ViewModel.EstablishmentAddress, Mode=TwoWay}" IsSpellCheckEnabled="False"
                           Width="400" Height="70" TextWrapping="Wrap" MaxLength="100"
                           Margin="10"/>
                 </controls:SettingsCard>
@@ -113,44 +113,70 @@
 
                 <TextBlock x:Uid="PrintingTextBlock" x:Name="PrintingTextBlock" FontSize="18" Margin="0,20,0,0" FontWeight="SemiBold"/>
 
-                <controls:SettingsCard x:Uid="PrintInvoiceSettingCard" Margin="20,25,0,0"
-                       HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                <controls:SettingsExpander x:Uid="PrintInvoiceSettingCard" Margin="20,25,0,0"
+                                           HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" IsExpanded="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=TwoWay}">
                     <ToggleSwitch IsOn="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=TwoWay}"
-                              Margin="10"/>
-                </controls:SettingsCard>
-                <controls:SettingsCard x:Uid="InvoicePrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=OneWay}"
-                                   HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
-                    <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
-                          SelectedItem="{x:Bind ViewModel.InvoicePrinterName, Mode=TwoWay}"
-                          Width="200"
-                          Margin="10"/>
-                </controls:SettingsCard>
+                                  Margin="10"/>
+                    <controls:SettingsExpander.Items>
+                        <controls:SettingsCard x:Uid="InvoicePrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=OneWay}"
+                                               HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                            <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
+                                      SelectedItem="{x:Bind ViewModel.InvoicePrinterName, Mode=TwoWay}"
+                                      Width="200"
+                                      Margin="10"/>
+                        </controls:SettingsCard>
+                        <controls:SettingsCard x:Uid="PrintEstablishmentNameWithInvoiceSettingCard" Margin="20,0,0,0" IsEnabled="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=OneWay}">
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.PrintEstablishmentNameWithInvoice, Mode=TwoWay}"
+                                          Margin="10"/>
+                        </controls:SettingsCard>
+                        <controls:SettingsCard x:Uid="PrintEstablishmentAddressWithInvoiceSettingCard" Margin="20,0,0,0" IsEnabled="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=OneWay}">
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.PrintEstablishmentAddressWithInvoice, Mode=TwoWay}"
+                                          Margin="10"/>
+                        </controls:SettingsCard>
+                        <controls:SettingsCard x:Uid="PrintEstablishmentPhone1WithInvoiceSettingCard" Margin="20,0,0,0" IsEnabled="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=OneWay}">
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.PrintEstablishmentPhoneNumber1WithInvoice, Mode=TwoWay}"
+                                          Margin="10"/>
+                        </controls:SettingsCard>
+                        <controls:SettingsCard x:Uid="PrintEstablishmentPhone2WithInvoiceSettingCard" Margin="20,0,0,0" IsEnabled="{x:Bind ViewModel.IsInvoicePrinterEnabled, Mode=OneWay}">
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.PrintEstablishmentPhoneNumber2WithInvoice, Mode=TwoWay}"
+                                          Margin="10"/>
+                        </controls:SettingsCard>
+                    </controls:SettingsExpander.Items>
 
-                <controls:SettingsCard x:Uid="PrintCustomerOrderSettingCard" Margin="20,25,0,0"
-           HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+                </controls:SettingsExpander>
+
+
+                <controls:SettingsExpander x:Uid="PrintCustomerOrderSettingCard" Margin="20,25,0,0"
+                                       HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" IsExpanded="{x:Bind ViewModel.IsPreBillPrinterEnabled, Mode=TwoWay}">
                     <ToggleSwitch IsOn="{x:Bind ViewModel.IsPreBillPrinterEnabled, Mode=TwoWay}"
-                  Margin="10"/>
-                </controls:SettingsCard>
-                <controls:SettingsCard x:Uid="CustomerOrderPrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsPreBillPrinterEnabled, Mode=OneWay}"
+                                  Margin="10"/>
+                    <controls:SettingsExpander.Items>
+                        <controls:SettingsCard x:Uid="CustomerOrderPrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsPreBillPrinterEnabled, Mode=OneWay}"
                        HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
-                    <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
-              SelectedItem="{x:Bind ViewModel.PreBillPrinterName, Mode=TwoWay}"
-              Width="200"
-              Margin="10"/>
-                </controls:SettingsCard>
+                            <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
+                                      SelectedItem="{x:Bind ViewModel.PreBillPrinterName, Mode=TwoWay}"
+                                      Width="200"
+                                      Margin="10"/>
+                        </controls:SettingsCard>
+                    </controls:SettingsExpander.Items>
+                </controls:SettingsExpander>
 
-                <controls:SettingsCard x:Uid="PrintKitchenOrderSettingCard" Margin="20,25,0,0"
-           HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
+
+                <controls:SettingsExpander x:Uid="PrintKitchenOrderSettingCard" Margin="20,25,0,0"
+                                       HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" IsExpanded="{x:Bind ViewModel.IsKitchenPrinterEnabled, Mode=TwoWay}">
                     <ToggleSwitch IsOn="{x:Bind ViewModel.IsKitchenPrinterEnabled, Mode=TwoWay}"
-                  Margin="10"/>
-                </controls:SettingsCard>
-                <controls:SettingsCard x:Uid="KitchenOrderPrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsKitchenPrinterEnabled, Mode=OneWay}"
+                                  Margin="10"/>
+                    <controls:SettingsExpander.Items>
+                        <controls:SettingsCard x:Uid="KitchenOrderPrinterSettingCard" Margin="20,25,0,0" IsEnabled="{x:Bind ViewModel.IsKitchenPrinterEnabled, Mode=OneWay}"
                        HeaderIcon="{ui:FontIcon Glyph=&#xEC5B;}" >
-                    <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
-              SelectedItem="{x:Bind ViewModel.KitchenPrinterName, Mode=TwoWay}"
-              Width="200"
-              Margin="10"/>
-                </controls:SettingsCard>
+                            <ComboBox ItemsSource="{x:Bind ViewModel.Printers, Mode=OneWay}"
+                                      SelectedItem="{x:Bind ViewModel.KitchenPrinterName, Mode=TwoWay}"
+                                      Width="200"
+                                      Margin="10"/>
+                        </controls:SettingsCard>
+                    </controls:SettingsExpander.Items>
+                </controls:SettingsExpander>
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

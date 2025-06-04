@@ -19,13 +19,13 @@ namespace KFP
         private AppWindowPresenterKind windowPresenterKind;
 
         [ObservableProperty]
-        private bool dinerHasTables;
+        private bool establishmentHasTables;
         public AppState(SessionManager sessionManager, AppDataService appDataService)
         {
             _sessionManager = sessionManager;
             _appDataService = appDataService;
             windowPresenterKind = appDataService.WindowPresenterKind;
-            DinerHasTables = appDataService.NumberOfTables > 0;
+            EstablishmentHasTables = appDataService.NumberOfTables > 0;
         }
     }
 }

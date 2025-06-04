@@ -84,7 +84,7 @@ namespace KFP.ViewModels
         }
 
         public string Notes { get; set; } = string.Empty;
-        public int numberOfTables { get; set; } //number of tables in the restaurant as set in the app settings
+        public int numberOfTables { get; set; } //number of tables in the Establishment as set in the app settings
         public bool HasTables => numberOfTables > 0;
         public RelayCommand TakeOrderCommand { get; }
         public RelayCommand SetOnCounterCommand { get; set; }

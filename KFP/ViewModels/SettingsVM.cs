@@ -66,7 +66,7 @@ namespace KFP.ViewModels
         }
 
         /// <section>
-        /// Diner Settings
+        /// Establishment Settings
         /// </section>
         public double? NumberOfTables
         {
@@ -79,59 +79,59 @@ namespace KFP.ViewModels
                 if (value == null)
                 {
                     _appDataService.NumberOfTables = 25;
-                    _appState.DinerHasTables = true;
+                    _appState.EstablishmentHasTables = true;
                 }
                 else
                 {
                     _appDataService.NumberOfTables = (int)value;
-                    _appState.DinerHasTables = (int)value > 0;
+                    _appState.EstablishmentHasTables = (int)value > 0;
                 }
             }
         }
 
-        public string? DinerName
+        public string? EstablishmentName
         {
             get
             {
-                return _appDataService.RestaurantName;
+                return _appDataService.EstablishmentName;
             }
             set
             {
-                _appDataService.RestaurantName = value;
+                _appDataService.EstablishmentName = value;
             }
         }
-        public string? DinerPhoneNumber1
+        public string? EstablishmentPhoneNumber1
         {
             get
             {
-                return _appDataService.RestaurantPhoneNumber1;
+                return _appDataService.EstablishmentPhoneNumber1;
             }
             set
             {
-                _appDataService.RestaurantPhoneNumber1 = value;
+                _appDataService.EstablishmentPhoneNumber1 = value;
             }
         }
 
-        public string? DinerPhoneNumber2
+        public string? EstablishmentPhoneNumber2
         {
             get
             {
-                return _appDataService.RestaurantPhoneNumber2;
+                return _appDataService.EstablishmentPhoneNumber2;
             }
             set
             {
-                _appDataService.RestaurantPhoneNumber2 = value;
+                _appDataService.EstablishmentPhoneNumber2 = value;
             }
         }
-        public string? DinerAddress
+        public string? EstablishmentAddress
         {
             get
             {
-                return _appDataService.RestaurantAddress;
+                return _appDataService.EstablishmentAddress;
             }
             set
             {
-                _appDataService.RestaurantAddress = value;
+                _appDataService.EstablishmentAddress = value;
             }
         }
 
@@ -235,51 +235,51 @@ namespace KFP.ViewModels
             }
         }
 
-        public bool PrintDinerNameWithInvoice
+        public bool PrintEstablishmentNameWithInvoice
         {
             get
             {
-                return _appDataService.PrintDinerNameWithInvoice;
+                return _appDataService.PrintEstablishmentNameWithInvoice;
             }
             set
             {
-                _appDataService.PrintDinerNameWithInvoice = value;
+                _appDataService.PrintEstablishmentNameWithInvoice = value;
             }
         }
 
-        public bool PrintDinerAddressWithInvoice
+        public bool PrintEstablishmentAddressWithInvoice
         {
             get
             {
-                return _appDataService.PrintDinerAddressWithInvoice;
+                return _appDataService.PrintEstablishmentAddressWithInvoice;
             }
             set
             {
-                _appDataService.PrintDinerAddressWithInvoice = value;
+                _appDataService.PrintEstablishmentAddressWithInvoice = value;
             }
         }
 
-        public bool PrintDinerPhoneNumber1WithInvoice
+        public bool PrintEstablishmentPhoneNumber1WithInvoice
         {
             get
             {
-                return _appDataService.PrintDinerPhoneNumber1WithInvoice;
+                return _appDataService.PrintEstablishmentPhoneNumber1WithInvoice;
             }
             set
             {
-                _appDataService.PrintDinerPhoneNumber1WithInvoice = value;
+                _appDataService.PrintEstablishmentPhoneNumber1WithInvoice = value;
             }
         }
 
-        public bool PrintDinerPhoneNumber2WithInvoice
+        public bool PrintEstablishmentPhoneNumber2WithInvoice
         {
             get
             {
-                return _appDataService.PrintDinerPhoneNumber2WithInvoice;
+                return _appDataService.PrintEstablishmentPhoneNumber2WithInvoice;
             }
             set
             {
-                _appDataService.PrintDinerPhoneNumber2WithInvoice = value;
+                _appDataService.PrintEstablishmentPhoneNumber2WithInvoice = value;
             }
         }
 
@@ -295,48 +295,48 @@ namespace KFP.ViewModels
             }
         }
 
-        public bool PrintDinerNameWithPreBill
+        public bool PrintEstablishmentNameWithPreBill
         {
             get
             {
-                return _appDataService.PrintDinerNameWithPreBill;
+                return _appDataService.PrintEstablishmentNameWithPreBill;
             }
             set
             {
-                _appDataService.PrintDinerNameWithPreBill = value;
+                _appDataService.PrintEstablishmentNameWithPreBill = value;
             }
         }
-        public bool PrintDinerAddressWithPreBill
+        public bool PrintEstablishmentAddressWithPreBill
         {
             get
             {
-                return _appDataService.PrintDinerAddressWithPreBill;
+                return _appDataService.PrintEstablishmentAddressWithPreBill;
             }
             set
             {
-                _appDataService.PrintDinerAddressWithPreBill = value;
+                _appDataService.PrintEstablishmentAddressWithPreBill = value;
             }
         }
-        public bool PrintDinerPhoneNumber1WithPreBill
+        public bool PrintEstablishmentPhoneNumber1WithPreBill
         {
             get
             {
-                return _appDataService.PrintDinerPhoneNumber1WithPreBill;
+                return _appDataService.PrintEstablishmentPhoneNumber1WithPreBill;
             }
             set
             {
-                _appDataService.PrintDinerPhoneNumber1WithPreBill = value;
+                _appDataService.PrintEstablishmentPhoneNumber1WithPreBill = value;
             }
         }
-        public bool PrintDinerPhoneNumber2WithPreBill
+        public bool PrintEstablishmentPhoneNumber2WithPreBill
         {
             get
             {
-                return _appDataService.PrintDinerPhoneNumber2WithPreBill;
+                return _appDataService.PrintEstablishmentPhoneNumber2WithPreBill;
             }
             set
             {
-                _appDataService.PrintDinerPhoneNumber2WithPreBill = value;
+                _appDataService.PrintEstablishmentPhoneNumber2WithPreBill = value;
             }
         }
         public bool PrintCashierNameWithPreBill

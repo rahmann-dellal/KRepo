@@ -62,9 +62,9 @@ namespace KFP.Ui.pages
             {
                 scrollToElement(GeneralSettingsTextBlock);
             }
-            else if (sender.SelectedItem == DinerSelectorItem)
+            else if (sender.SelectedItem == EstablishmentSelectorItem)
             {
-                scrollToElement(DinerTextBlock);
+                scrollToElement(EstablishmentTextBlock);
             }
             else if (sender.SelectedItem == OrdersSelectorItem)
             {

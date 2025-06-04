@@ -79,7 +79,7 @@ namespace KFP.Services
         }
 
         /// <section>
-        /// Diner Settings
+        /// Establishment Settings
         /// </section>
         public int NumberOfTables
         {
@@ -98,62 +98,62 @@ namespace KFP.Services
 
 
 
-        public string? RestaurantName
+        public string? EstablishmentName
         {
             get
             {
-                if (Settings.Values["RestaurantName"] != null)
-                    return (string)Settings.Values["RestaurantName"];
+                if (Settings.Values["EstablishmentName"] != null)
+                    return (string)Settings.Values["EstablishmentName"];
                 else
                     return null;
             }
             set
             {
-                Settings.Values["RestaurantName"] = value;
+                Settings.Values["EstablishmentName"] = value;
             }
         }
 
-        public string? RestaurantPhoneNumber1
+        public string? EstablishmentPhoneNumber1
         {
             get
             {
-                if (Settings.Values["RestaurantPhoneNumber"] != null)
-                    return (string)Settings.Values["RestaurantPhoneNumber"];
+                if (Settings.Values["EstablishmentPhoneNumber"] != null)
+                    return (string)Settings.Values["EstablishmentPhoneNumber"];
                 else
                     return null;
             }
             set
             {
-                Settings.Values["RestaurantPhoneNumber"] = value;
+                Settings.Values["EstablishmentPhoneNumber"] = value;
             }
         }
-        public string? RestaurantPhoneNumber2
+        public string? EstablishmentPhoneNumber2
         {
             get
             {
-                if (Settings.Values["RestaurantPhoneNumber2"] != null)
-                    return (string)Settings.Values["RestaurantPhoneNumber2"];
+                if (Settings.Values["EstablishmentPhoneNumber2"] != null)
+                    return (string)Settings.Values["EstablishmentPhoneNumber2"];
                 else
                     return null;
             }
             set
             {
-                Settings.Values["RestaurantPhoneNumber2"] = value;
+                Settings.Values["EstablishmentPhoneNumber2"] = value;
             }
         }
 
-        public string? RestaurantAddress
+        public string? EstablishmentAddress
         {
             get
             {
-                if (Settings.Values["RestaurantAddress"] != null)
-                    return (string)Settings.Values["RestaurantAddress"];
+                if (Settings.Values["EstablishmentAddress"] != null)
+                    return (string)Settings.Values["EstablishmentAddress"];
                 else
                     return null;
             }
             set
             {
-                Settings.Values["RestaurantAddress"] = value;
+                Settings.Values["EstablishmentAddress"] = value;
             }
         }
 
@@ -281,62 +281,62 @@ namespace KFP.Services
             }
         }
 
-        public bool PrintDinerNameWithInvoice
+        public bool PrintEstablishmentNameWithInvoice
         {
             get
             {
-                if (Settings.Values["PrintDinerNameWithInvoice"] != null)
-                    return (bool)Settings.Values["PrintDinerNameWithInvoice"];
+                if (Settings.Values["PrintEstablishmentNameWithInvoice"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentNameWithInvoice"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerNameWithInvoice"] = value;
+                Settings.Values["PrintEstablishmentNameWithInvoice"] = value;
             }
         }
 
-        public bool PrintDinerAddressWithInvoice
+        public bool PrintEstablishmentAddressWithInvoice
         {
             get
             {
-                if (Settings.Values["PrintDinerAddressWithInvoice"] != null)
-                    return (bool)Settings.Values["PrintDinerAddressWithInvoice"];
+                if (Settings.Values["PrintEstablishmentAddressWithInvoice"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentAddressWithInvoice"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerAddressWithInvoice"] = value;
+                Settings.Values["PrintEstablishmentAddressWithInvoice"] = value;
             }
         }
 
-        public bool PrintDinerPhoneNumber1WithInvoice
+        public bool PrintEstablishmentPhoneNumber1WithInvoice
         {
             get
             {
-                if (Settings.Values["PrintDinerPhoneNumber1WithInvoice"] != null)
-                    return (bool)Settings.Values["PrintDinerPhoneNumber1WithInvoice"];
+                if (Settings.Values["PrintEstablishmentPhoneNumber1WithInvoice"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber1WithInvoice"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerPhoneNumber1WithInvoice"] = value;
+                Settings.Values["PrintEstablishmentPhoneNumber1WithInvoice"] = value;
             }
         }
-        public bool PrintDinerPhoneNumber2WithInvoice
+        public bool PrintEstablishmentPhoneNumber2WithInvoice
         {
             get
             {
-                if (Settings.Values["PrintDinerPhoneNumber2WithInvoice"] != null)
-                    return (bool)Settings.Values["PrintDinerPhoneNumber2WithInvoice"];
+                if (Settings.Values["PrintEstablishmentPhoneNumber2WithInvoice"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber2WithInvoice"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerPhoneNumber2WithInvoice"] = value;
+                Settings.Values["PrintEstablishmentPhoneNumber2WithInvoice"] = value;
             }
         }
 
@@ -354,63 +354,63 @@ namespace KFP.Services
                 Settings.Values["PrintCashierNameWithInvoice"] = value;
             }
         }
-        public bool PrintDinerNameWithPreBill
+        public bool PrintEstablishmentNameWithPreBill
         {
             get
             {
-                if (Settings.Values["PrintDinerNameWithPreBill"] != null)
-                    return (bool)Settings.Values["PrintDinerNameWithPreBill"];
+                if (Settings.Values["PrintEstablishmentNameWithPreBill"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentNameWithPreBill"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerNameWithPreBill"] = value;
+                Settings.Values["PrintEstablishmentNameWithPreBill"] = value;
             }
         }
 
-        public bool PrintDinerAddressWithPreBill
+        public bool PrintEstablishmentAddressWithPreBill
         {
             get
             {
-                if (Settings.Values["PrintDinerAddressWithPreBill"] != null)
-                    return (bool)Settings.Values["PrintDinerAddressWithPreBill"];
+                if (Settings.Values["PrintEstablishmentAddressWithPreBill"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentAddressWithPreBill"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerAddressWithPreBill"] = value;
+                Settings.Values["PrintEstablishmentAddressWithPreBill"] = value;
             }
         }
 
-        public bool PrintDinerPhoneNumber1WithPreBill
+        public bool PrintEstablishmentPhoneNumber1WithPreBill
         {
             get
             {
-                if (Settings.Values["PrintDinerPhoneNumber1WithPreBill"] != null)
-                    return (bool)Settings.Values["PrintDinerPhoneNumber1WithPreBill"];
+                if (Settings.Values["PrintEstablishmentPhoneNumber1WithPreBill"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber1WithPreBill"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerPhoneNumber1WithPreBill"] = value;
+                Settings.Values["PrintEstablishmentPhoneNumber1WithPreBill"] = value;
             }
         }
 
-        public bool PrintDinerPhoneNumber2WithPreBill
+        public bool PrintEstablishmentPhoneNumber2WithPreBill
         {
             get
             {
-                if (Settings.Values["PrintDinerPhoneNumber2WithPreBill"] != null)
-                    return (bool)Settings.Values["PrintDinerPhoneNumber2WithPreBill"];
+                if (Settings.Values["PrintEstablishmentPhoneNumber2WithPreBill"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber2WithPreBill"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintDinerPhoneNumber2WithPreBill"] = value;
+                Settings.Values["PrintEstablishmentPhoneNumber2WithPreBill"] = value;
             }
         }
         public bool PrintCashierNameWithPreBill
