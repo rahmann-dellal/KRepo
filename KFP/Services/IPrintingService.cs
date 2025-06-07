@@ -9,10 +9,10 @@ namespace KFP.Services
 {
     public interface IPrintingService
     {
-        public Task PrintOrderForKitchen(Order order);
-        public void PrintOrderForCustomer(Order order);
+        public void PrintKitchenTicket(Order order);
+        public void PrintPreBill(Order order);
 
-        public void PrintInvoice(Invoice invoice);
+        public void PrintReceipt(Invoice invoice);
 
         public List<string> GetAvailablePrinters();
     }

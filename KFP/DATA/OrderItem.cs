@@ -56,6 +56,8 @@ namespace KFP.DATA
 
         [NotMapped]
         public bool IsAddOn => ParentOrderItem != null;
+
+        public string? Notes { get; set; }
     }
 
 }

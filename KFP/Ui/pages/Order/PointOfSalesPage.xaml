@@ -137,7 +137,7 @@
                                         <TextBox x:Uid="DeliveryInfoNametxtBox" Text="{x:Bind ViewModel.DeliveryInfo.CustomerName, Mode=TwoWay}" Margin="10" MinWidth="150" MaxLength="35"/>
                                         <TextBox x:Uid="DeliveryInfoPhonetxtBox" Text="{x:Bind ViewModel.DeliveryInfo.PhoneNumber, Mode=TwoWay}" Margin="10" MinWidth="150" MaxLength="20"/>
                                         <TextBox x:Uid="DeliveryInfoAddresstxtBox" Text="{x:Bind ViewModel.DeliveryInfo.Address, Mode=TwoWay}" AcceptsReturn="True"
-                                                 Margin="10" MinWidth="300" MinHeight="200" MaxLength="280" TextWrapping="Wrap" />
+                                                 Margin="10" MinWidth="300" MinHeight="200" MaxLength="100" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Flyout>
                             </Button.Flyout>

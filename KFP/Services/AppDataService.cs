@@ -208,18 +208,18 @@ namespace KFP.Services
                 Settings.Values["PreBillPrinterName"] = value;
             }
         }
-        public string? InvoicePrinterName
+        public string? ReceiptPrinterName
         {
             get
             {
-                if (Settings.Values["InvoicePrinterName"] != null)
-                    return (string)Settings.Values["InvoicePrinterName"];
+                if (Settings.Values["ReceiptPrinterName"] != null)
+                    return (string)Settings.Values["ReceiptPrinterName"];
                 else
                     return null;
             }
             set
             {
-                Settings.Values["InvoicePrinterName"] = value;
+                Settings.Values["ReceiptPrinterName"] = value;
             }
         }
 
@@ -266,92 +266,92 @@ namespace KFP.Services
                 Settings.Values["IsPreBillPrinterEnabled"] = value;
             }
         }
-        public bool IsInvoicePrinterEnabled
+        public bool IsReceiptPrinterEnabled
         {
             get
             {
-                if (Settings.Values["IsInvoicePrinterEnabled"] != null)
-                    return (bool)Settings.Values["IsInvoicePrinterEnabled"];
+                if (Settings.Values["IsReceiptPrinterEnabled"] != null)
+                    return (bool)Settings.Values["IsReceiptPrinterEnabled"];
                 else
                     return false;
             }
             set
             {
-                Settings.Values["IsInvoicePrinterEnabled"] = value;
+                Settings.Values["IsReceiptPrinterEnabled"] = value;
             }
         }
 
-        public bool PrintEstablishmentNameWithInvoice
+        public bool PrintEstablishmentNameWithReceipt
         {
             get
             {
-                if (Settings.Values["PrintEstablishmentNameWithInvoice"] != null)
-                    return (bool)Settings.Values["PrintEstablishmentNameWithInvoice"];
+                if (Settings.Values["PrintEstablishmentNameWithReceipt"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentNameWithReceipt"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintEstablishmentNameWithInvoice"] = value;
+                Settings.Values["PrintEstablishmentNameWithReceipt"] = value;
             }
         }
 
-        public bool PrintEstablishmentAddressWithInvoice
+        public bool PrintEstablishmentAddressWithReceipt
         {
             get
             {
-                if (Settings.Values["PrintEstablishmentAddressWithInvoice"] != null)
-                    return (bool)Settings.Values["PrintEstablishmentAddressWithInvoice"];
+                if (Settings.Values["PrintEstablishmentAddressWithReceipt"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentAddressWithReceipt"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintEstablishmentAddressWithInvoice"] = value;
+                Settings.Values["PrintEstablishmentAddressWithReceipt"] = value;
             }
         }
 
-        public bool PrintEstablishmentPhoneNumber1WithInvoice
+        public bool PrintEstablishmentPhoneNumber1WithReceipt
         {
             get
             {
-                if (Settings.Values["PrintEstablishmentPhoneNumber1WithInvoice"] != null)
-                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber1WithInvoice"];
+                if (Settings.Values["PrintEstablishmentPhoneNumber1WithReceipt"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber1WithReceipt"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintEstablishmentPhoneNumber1WithInvoice"] = value;
+                Settings.Values["PrintEstablishmentPhoneNumber1WithReceipt"] = value;
             }
         }
-        public bool PrintEstablishmentPhoneNumber2WithInvoice
+        public bool PrintEstablishmentPhoneNumber2WithReceipt
         {
             get
             {
-                if (Settings.Values["PrintEstablishmentPhoneNumber2WithInvoice"] != null)
-                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber2WithInvoice"];
+                if (Settings.Values["PrintEstablishmentPhoneNumber2WithReceipt"] != null)
+                    return (bool)Settings.Values["PrintEstablishmentPhoneNumber2WithReceipt"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintEstablishmentPhoneNumber2WithInvoice"] = value;
+                Settings.Values["PrintEstablishmentPhoneNumber2WithReceipt"] = value;
             }
         }
 
-        public bool PrintCashierNameWithInvoice
+        public bool PrintCashierNameWithReceipt
         {
             get
             {
-                if (Settings.Values["PrintCashierNameWithInvoice"] != null)
-                    return (bool)Settings.Values["PrintCashierNameWithInvoice"];
+                if (Settings.Values["PrintCashierNameWithReceipt"] != null)
+                    return (bool)Settings.Values["PrintCashierNameWithReceipt"];
                 else
                     return true;
             }
             set
             {
-                Settings.Values["PrintCashierNameWithInvoice"] = value;
+                Settings.Values["PrintCashierNameWithReceipt"] = value;
             }
         }
         public bool PrintEstablishmentNameWithPreBill

@@ -187,15 +187,15 @@ namespace KFP.ViewModels
                 _appDataService.PreBillPrinterName = value;
             }
         }
-        public string? InvoicePrinterName
+        public string? ReceiptPrinterName
         {
             get
             {
-                return _appDataService.InvoicePrinterName;
+                return _appDataService.ReceiptPrinterName;
             }
             set
             {
-                _appDataService.InvoicePrinterName = value;
+                _appDataService.ReceiptPrinterName = value;
             }
         }
         public bool IsKitchenPrinterEnabled
@@ -222,76 +222,76 @@ namespace KFP.ViewModels
                 OnPropertyChanged(nameof(IsPreBillPrinterEnabled));
             }
         }
-        public bool IsInvoicePrinterEnabled
+        public bool IsReceiptPrinterEnabled
         {
             get
             {
-                return _appDataService.IsInvoicePrinterEnabled;
+                return _appDataService.IsReceiptPrinterEnabled;
             }
             set
             {
-                _appDataService.IsInvoicePrinterEnabled = value;
-                OnPropertyChanged(nameof(IsInvoicePrinterEnabled));
+                _appDataService.IsReceiptPrinterEnabled = value;
+                OnPropertyChanged(nameof(IsReceiptPrinterEnabled));
             }
         }
 
-        public bool PrintEstablishmentNameWithInvoice
+        public bool PrintEstablishmentNameWithReceipt
         {
             get
             {
-                return _appDataService.PrintEstablishmentNameWithInvoice;
+                return _appDataService.PrintEstablishmentNameWithReceipt;
             }
             set
             {
-                _appDataService.PrintEstablishmentNameWithInvoice = value;
+                _appDataService.PrintEstablishmentNameWithReceipt = value;
             }
         }
 
-        public bool PrintEstablishmentAddressWithInvoice
+        public bool PrintEstablishmentAddressWithReceipt
         {
             get
             {
-                return _appDataService.PrintEstablishmentAddressWithInvoice;
+                return _appDataService.PrintEstablishmentAddressWithReceipt;
             }
             set
             {
-                _appDataService.PrintEstablishmentAddressWithInvoice = value;
+                _appDataService.PrintEstablishmentAddressWithReceipt = value;
             }
         }
 
-        public bool PrintEstablishmentPhoneNumber1WithInvoice
+        public bool PrintEstablishmentPhoneNumber1WithReceipt
         {
             get
             {
-                return _appDataService.PrintEstablishmentPhoneNumber1WithInvoice;
+                return _appDataService.PrintEstablishmentPhoneNumber1WithReceipt;
             }
             set
             {
-                _appDataService.PrintEstablishmentPhoneNumber1WithInvoice = value;
+                _appDataService.PrintEstablishmentPhoneNumber1WithReceipt = value;
             }
         }
 
-        public bool PrintEstablishmentPhoneNumber2WithInvoice
+        public bool PrintEstablishmentPhoneNumber2WithReceipt
         {
             get
             {
-                return _appDataService.PrintEstablishmentPhoneNumber2WithInvoice;
+                return _appDataService.PrintEstablishmentPhoneNumber2WithReceipt;
             }
             set
             {
-                _appDataService.PrintEstablishmentPhoneNumber2WithInvoice = value;
+                _appDataService.PrintEstablishmentPhoneNumber2WithReceipt = value;
             }
         }
 
-        public bool PrintCashierNameWithInvoice
+        public bool PrintCashierNameWithReceipt
         {
             get
             {
-                return _appDataService.PrintCashierNameWithInvoice;
+                return _appDataService.PrintCashierNameWithReceipt;
             }
             set
             {
-                _appDataService.PrintCashierNameWithInvoice = value;
+                _appDataService.PrintCashierNameWithReceipt = value;
             }
         }
 

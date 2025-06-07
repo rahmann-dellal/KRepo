@@ -30,6 +30,8 @@ namespace KFP.DATA
 
         public MenuItemType? MenuItemType { get; set; }
         public List<Category>? Categories { get; set; }
+
+        public double? SpecialTaxRate { get; set; }
     }
 
     public enum MenuItemType { Main, Addon, Drink, Other }

@@ -262,11 +262,11 @@ namespace KFP.ViewModels
                 _navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { CurrentOrder.Id });
                 if (_printingService != null && _appDataService.IsKitchenPrinterEnabled)
                 {
-                    _printingService.PrintOrderForKitchen(CurrentOrder);
+                    _printingService.PrintKitchenTicket(CurrentOrder);
                 }
                 if (_printingService != null && _appDataService.IsPreBillPrinterEnabled)
                 {
-                    _printingService.PrintOrderForCustomer(CurrentOrder);
+                    _printingService.PrintPreBill(CurrentOrder);
                 }
             }
         }

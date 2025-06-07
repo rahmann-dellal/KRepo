@@ -77,7 +77,7 @@ namespace KFP
             services.AddSingleton<SessionManager>();
             services.AddSingleton<AppState>();
             services.AddSingleton<NavigationService>();
-            services.AddSingleton<PrintingService>();
+            services.AddTransient<PrintingService>();
             services.AddSingleton<INavigationService>(s => s.GetRequiredService<NavigationService>());
             services.AddTransient<IPrintingService>(s => s.GetRequiredService<PrintingService>());
             services.AddSingleton<MainWindow>(s => MainWindow);
