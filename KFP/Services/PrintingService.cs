@@ -134,6 +134,20 @@ namespace KFP.Services
 
                 y += 10;
 
+                // Centered time
+                string timeString = order.SetPreparingAt != null ? ((DateTime)order.SetPreparingAt).ToString(new CultureInfo(_appDataService.AppLanguage)) : string.Empty;
+                SizeF timeSize = g.MeasureString(timeString, boldFont);
+                float xCentered = (pageWidth - timeSize.Width) / 2;
+                g.DrawString(timeString, boldFont, Brushes.Black, xCentered, y);
+                y += 20;
+
+                // Centered Order number
+                string OrderString = StringLocalisationService.getStringWithKey("Order") + " #" + order.Id;
+                SizeF OrderStringSize = g.MeasureString(OrderString, boldFont);
+                xCentered = (pageWidth - OrderStringSize.Width) / 2;
+                g.DrawString(OrderString, boldFont, Brushes.Black, xCentered, y);
+                y += 20;
+
                 // Order location
                 string locationLabel = order.orderLocation switch
                 {
@@ -148,17 +162,19 @@ namespace KFP.Services
 
                 if (order.orderLocation == OrderLocation.Delivery && order.DeliveryInfo is DeliveryInfo info)
                 {
-                    if (!string.IsNullOrWhiteSpace(info.CustomerName))
-                        //g.DrawString(info.CustomerName, regularFont, Brushes.Black, margin, y);
-                    DrawWrappedText(g,"Customer Name : " + info.CustomerName, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
-                    if (!string.IsNullOrWhiteSpace(info.PhoneNumber))
-                        //g.DrawString(info.PhoneNumber, regularFont, Brushes.Black, margin, y += 15);
-                    DrawWrappedText(g, "Phone : " + info.PhoneNumber, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
-                    if (!string.IsNullOrWhiteSpace(info.Address))
-                        //g.DrawString(info.Address, regularFont, Brushes.Black, margin, y += 15);
-                    DrawWrappedText(g, "Address : " + info.Address, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
-                    //y += 10;
-                }
+                    if (!string.IsNullOrWhiteSpace(info.CustomerName)) {
+                        string customerNameString = StringLocalisationService.getStringWithKey("CustomerName");
+                        DrawWrappedText(g, customerNameString +" : " + info.CustomerName, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
+                    }
+                    if (!string.IsNullOrWhiteSpace(info.PhoneNumber)) {
+                        string phoneString = StringLocalisationService.getStringWithKey("Phone");
+                        DrawWrappedText(g, phoneString + " : " + info.PhoneNumber, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
+                    }
+                    if (!string.IsNullOrWhiteSpace(info.Address)) {
+                        string addressString = StringLocalisationService.getStringWithKey("Address");
+                        DrawWrappedText(g, addressString + " : " + info.Address, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
+                    }
+            }
                 y += 20;
 
                 // Header

@@ -843,4 +843,13 @@
   <data name="ReceiptUnitPrice" xml:space="preserve">
     <value>UP</value>
   </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Customer Name</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
 </root>
