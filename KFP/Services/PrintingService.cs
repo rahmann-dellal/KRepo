@@ -21,11 +21,11 @@ namespace KFP.Services
         private Currency Currency;
 
         private string? kitchenPrinterName;
-        private string? orderPrinterName;
+        private string? PreBillPrinterName;
         private string? ReceiptPrinterName;
 
         private bool IsKitchenPrinterEnabled;
-        private bool IsOrderPrinterEnabled;
+        private bool IsPreBillPrinterEnabled;
         private bool IsReceiptPrinterEnabled;
 
         private bool PrintEstablishmentNameWithReceipt;
@@ -47,10 +47,10 @@ namespace KFP.Services
         {
             _appDataService = appDataService;
             kitchenPrinterName = _appDataService.KitchenPrinterName;
-            orderPrinterName = _appDataService.PreBillPrinterName;
+            PreBillPrinterName = _appDataService.PreBillPrinterName;
             ReceiptPrinterName = _appDataService.ReceiptPrinterName;
             IsKitchenPrinterEnabled = _appDataService.IsKitchenPrinterEnabled;
-            IsOrderPrinterEnabled = _appDataService.IsPreBillPrinterEnabled;
+            IsPreBillPrinterEnabled = _appDataService.IsPreBillPrinterEnabled;
             IsReceiptPrinterEnabled = _appDataService.IsReceiptPrinterEnabled;
 
             PrintEstablishmentNameWithReceipt = _appDataService.PrintEstablishmentNameWithReceipt;
@@ -84,12 +84,123 @@ namespace KFP.Services
 
         public void PrintReceipt(PaymentReceipt receipt)
         {
-            throw new NotImplementedException();
+            if (!IsReceiptPrinterEnabled || string.IsNullOrEmpty(ReceiptPrinterName))
+            {
+                return;
+            }
+
+            using var printDoc = new PrintDocument();
+            printDoc.PrintPage += (s, e) =>
+            {
+                var g = e.Graphics;
+                int pageWidth = (int)e.PageBounds.Width;
+                int margin = 10;
+                float y = margin;
+
+                var boldFont = new Font("Arial", 10, FontStyle.Bold);
+                var regularFont = new Font("Arial", 9);
+                var grayPen = new Pen(Color.LightGray) { DashPattern = new float[] { 2, 2 } };
+
+                // Localized labels
+                string qtyLabel = StringLocalisationService.getStringWithKey("Qty");
+                string itemLabel = StringLocalisationService.getStringWithKey("Item");
+                string unitPriceLabel = StringLocalisationService.getStringWithKey("ReceiptUnitPrice");
+                string totalLabel = StringLocalisationService.getStringWithKey("Total");
+                string receiptLabel = StringLocalisationService.getStringWithKey("Receipt");
+                string paymentMethodLabel = StringLocalisationService.getStringWithKey("PaymentMethod");
+
+                // Establishment info
+                if (PrintEstablishmentNameWithReceipt && !string.IsNullOrWhiteSpace(EstablishmentName))
+                    DrawWrappedCenteredText(g, EstablishmentName, boldFont, Brushes.Black, pageWidth, ref y);
+
+                if (PrintEstablishmentAddressWithReceipt && !string.IsNullOrWhiteSpace(EstablishmentAddress))
+                    DrawWrappedCenteredText(g, EstablishmentAddress, regularFont, Brushes.Black, pageWidth, ref y);
+
+                if (PrintEstablishmentPhoneNumber1WithReceipt && !string.IsNullOrWhiteSpace(EstablishmentPhoneNumber1))
+                    DrawWrappedCenteredText(g, EstablishmentPhoneNumber1, regularFont, Brushes.Black, pageWidth, ref y);
+
+                if (PrintEstablishmentPhoneNumber2WithReceipt && !string.IsNullOrWhiteSpace(EstablishmentPhoneNumber2))
+                    DrawWrappedCenteredText(g, EstablishmentPhoneNumber2, regularFont, Brushes.Black, pageWidth, ref y);
+
+                y += 10;
+
+                // Receipt ID (centered)
+                string receiptText = $"{receiptLabel} #{receipt.PaymentReceiptId}";
+                DrawWrappedCenteredText(g, receiptText, boldFont, Brushes.Black, pageWidth, ref y);
+
+                // Date (centered)
+                string timeString = receipt.IssuedAt.ToString(new CultureInfo(_appDataService.AppLanguage));
+                DrawWrappedCenteredText(g, timeString, regularFont, Brushes.Black, pageWidth, ref y);
+
+                y += 10;
+
+                // Header row
+                int colQty = margin;
+                int colItem = colQty + 40;
+                int colUnit = pageWidth - margin - 100;
+                int colTotal = pageWidth - margin - 50;
+
+                g.DrawString(qtyLabel, boldFont, Brushes.Black, colQty, y);
+                g.DrawString(itemLabel, boldFont, Brushes.Black, colItem, y);
+                g.DrawString(unitPriceLabel, boldFont, Brushes.Black, colUnit, y);
+                g.DrawString(totalLabel, boldFont, Brushes.Black, colTotal, y);
+                y += 18;
+
+                g.DrawLine(new Pen(Color.Black, 1) { DashPattern = new float[] { 4, 2 } }, margin, y, pageWidth - margin, y);
+                y += 10;
+
+                double grandTotal = 0;
+
+                foreach (var sale in receipt.Sales)
+                {
+                    string qtyText = sale.Quantity.ToString();
+                    string itemName = sale.ItemName;
+                    string unitPrice = sale.UnitPrice?.ToString("F2") ?? "0.00";
+                    double subtotal = (sale.UnitPrice ?? 0) * sale.Quantity;
+                    string totalPrice = subtotal.ToString("F2");
+                    grandTotal += subtotal;
+
+                    // Qty
+                    g.DrawString(qtyText, regularFont, Brushes.Black, colQty, y);
+
+                    // Item name - wrap if needed
+                    int itemWidth = colUnit - colItem - 5;
+                    SizeF itemSize = g.MeasureString(itemName, regularFont, itemWidth);
+                    RectangleF itemRect = new RectangleF(colItem, y, itemWidth, itemSize.Height);
+                    g.DrawString(itemName, regularFont, Brushes.Black, itemRect);
+
+                    // Unit price & total
+                    g.DrawString(unitPrice, regularFont, Brushes.Black, colUnit, y);
+                    g.DrawString(totalPrice, regularFont, Brushes.Black, colTotal, y);
+
+                    y += itemSize.Height + 5;
+                    g.DrawLine(grayPen, margin, y, pageWidth - margin, y);
+                    y += 5;
+                }
+
+                y += 10;
+
+                // Grand Total
+                string grandTotalText = $"{totalLabel}: {receipt.TotalPrice?.ToString("F2") ?? grandTotal.ToString("F2")} {Currency}";
+                SizeF totalSize = g.MeasureString(grandTotalText, boldFont);
+                g.DrawString(grandTotalText, boldFont, Brushes.Black, pageWidth - margin - totalSize.Width, y);
+                y += 20;
+
+                // Payment method
+                if (receipt.paymentMethod != null)
+                {
+                    string methodText = $"{paymentMethodLabel}: {receipt.paymentMethod}";
+                    g.DrawString(methodText, boldFont, Brushes.Black, margin, y);
+                    y += 20;
+                }
+            };
+
+            printDoc.Print();
         }
 
         public void PrintPreBill(Order order)
         {
-            if (!IsOrderPrinterEnabled || string.IsNullOrEmpty(orderPrinterName))
+            if (!IsPreBillPrinterEnabled || string.IsNullOrEmpty(PreBillPrinterName))
                 return;
             using var printDoc = new PrintDocument();
             printDoc.PrintPage += (s, e) =>

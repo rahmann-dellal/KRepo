@@ -36,6 +36,7 @@ namespace KFP.ViewModels
         private AppDataService _appDataService;
         private Currency _currency;
         private SessionManager _sessionManager;
+        private IPrintingService _printingService;
 
         public bool HasTables;
 
@@ -62,7 +63,7 @@ namespace KFP.ViewModels
 
         public RelayCommand NavigateToOrdersCommand { get; set; }
         public RelayCommand NavigatetoTablesCommand { get; set; }
-        public DisplayOrderVM(KFPContext context, NavigationService ns, AppDataService ads, SessionManager sessionManager)
+        public DisplayOrderVM(KFPContext context, NavigationService ns, AppDataService ads, SessionManager sessionManager, IPrintingService printingService)
         {
             dbContext = context;
             _navigationService = ns;
@@ -73,6 +74,7 @@ namespace KFP.ViewModels
             _sessionManager = sessionManager;
             NavigateToOrdersCommand = new RelayCommand(() => _navigationService.navigateTo(KioberFoodPage.OrdersListPage));
             NavigatetoTablesCommand = new RelayCommand(() => _navigationService.navigateTo(KioberFoodPage.TablesPage));
+            _printingService = printingService;
         }
 
         public void LoadOrder(int orderId)
@@ -147,7 +149,10 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(PaymentDeferred));
             OnPropertyChanged(nameof(CanEditOrder));
             ChangePaymentMethodeCommand.NotifyCanExecuteChanged();
-            //TODO:Print receipt
+            if (receipt != null)
+            {
+                _printingService.PrintReceipt(receipt);
+            }
         }
 
         [RelayCommand]
@@ -170,7 +175,10 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(PaymentDeferred));
             OnPropertyChanged(nameof(CanEditOrder));
             ChangePaymentMethodeCommand.NotifyCanExecuteChanged();
-            //TODO:Print receipt
+            if (receipt != null)
+            {
+                _printingService.PrintReceipt(receipt);
+            }
         }
 
         [RelayCommand]

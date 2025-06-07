@@ -841,7 +841,7 @@
     <value>Total</value>
   </data>
   <data name="ReceiptUnitPrice" xml:space="preserve">
-    <value>UP</value>
+    <value>U.P</value>
   </data>
   <data name="CustomerName" xml:space="preserve">
     <value>Customer Name</value>
@@ -851,5 +851,11 @@
   </data>
   <data name="Address" xml:space="preserve">
     <value>Address</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Receipt</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
   </data>
 </root>
