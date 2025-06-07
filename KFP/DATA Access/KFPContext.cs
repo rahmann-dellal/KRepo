@@ -29,7 +29,7 @@ namespace KFP.DATA_Access
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Sale> Sales { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<PaymentReceipt> PaymentReceipts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
@@ -54,10 +54,10 @@ namespace KFP.DATA_Access
                 .OnDelete(DeleteBehavior.SetNull);
 
             // Invoice → Order (Set null on delete)
-            modelBuilder.Entity<Invoice>()
+            modelBuilder.Entity<PaymentReceipt>()
                 .HasOne(i => i.Order)
                 .WithOne(o => o.Invoice)
-                .HasForeignKey<Invoice>(i => i.OrderId)
+                .HasForeignKey<PaymentReceipt>(i => i.OrderId)
                 .OnDelete(DeleteBehavior.SetNull);
 
             // OrderItem → MenuItem
@@ -82,7 +82,7 @@ namespace KFP.DATA_Access
                 .OnDelete(DeleteBehavior.SetNull); 
 
             // Invoice → AppUser
-            modelBuilder.Entity<Invoice>()
+            modelBuilder.Entity<PaymentReceipt>()
                 .HasOne(i => i.AppUser)
                 .WithMany(u => u.Invoices)
                 .HasForeignKey(i => i.AppUserId)

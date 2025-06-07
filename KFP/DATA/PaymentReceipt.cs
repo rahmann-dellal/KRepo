@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace KFP.DATA
 {
-    public class Invoice : ModelBase
+    public class PaymentReceipt : ModelBase
     {
-        public Invoice()
+        public PaymentReceipt()
         {
             IssuedAt = DateTime.Now;
             Sales = new List<Sale>();
         }
 
-        public int InvoiceId { get; set; }
+        public int PaymentReceiptId { get; set; }
         public DateTime IssuedAt { get; set; }
 
         public string AppUserName { get; set; }

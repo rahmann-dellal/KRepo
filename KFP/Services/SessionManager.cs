@@ -123,7 +123,7 @@ namespace KFP.Services
         {
             get
             {
-                return _dbContext.Invoices
+                return _dbContext.PaymentReceipts
                     .Where(i => i.SessionId == CurrentSession.SessionId && i.paymentMethod == PaymentMethod.Cash)
                     .Sum((i => i.TotalPrice != null ? i.TotalPrice : 0.0)) ?? 0.0;
             }
@@ -132,7 +132,7 @@ namespace KFP.Services
         {
             get
             {
-                return _dbContext.Invoices
+                return _dbContext.PaymentReceipts
                    .Where(i => i.SessionId == CurrentSession.SessionId && i.paymentMethod == PaymentMethod.Card)
                    .Sum((i => i.TotalPrice != null ? i.TotalPrice : 0.0)) ?? 0.0;
             }

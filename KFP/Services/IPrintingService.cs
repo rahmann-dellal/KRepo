@@ -12,7 +12,7 @@ namespace KFP.Services
         public void PrintKitchenTicket(Order order);
         public void PrintPreBill(Order order);
 
-        public void PrintReceipt(Invoice invoice);
+        public void PrintReceipt(PaymentReceipt invoice);
 
         public List<string> GetAvailablePrinters();
     }

@@ -139,7 +139,7 @@ namespace KFP.ViewModels
             isPaidCard = false;
             PaymentDeferred = false;
             order.paymentMethod = PaymentMethod.Cash;
-            Invoice invoice = CreateInvoice(PaymentMethod.Cash);
+            PaymentReceipt invoice = CreateInvoice(PaymentMethod.Cash);
             OnPropertyChanged(nameof(PaymentSet));
             OnPropertyChanged(nameof(PaymentPending));
             OnPropertyChanged(nameof(isPaidCash));
@@ -162,7 +162,7 @@ namespace KFP.ViewModels
             isPaidCash = false;
             PaymentDeferred = false;
             order.paymentMethod = PaymentMethod.Card;
-            Invoice invoice = CreateInvoice(PaymentMethod.Card);
+            PaymentReceipt invoice = CreateInvoice(PaymentMethod.Card);
             OnPropertyChanged(nameof(PaymentSet));
             OnPropertyChanged(nameof(PaymentPending));
             OnPropertyChanged(nameof(isPaidCard));
@@ -205,9 +205,9 @@ namespace KFP.ViewModels
         {
             return !isPaidCard && !isPaidCash;
         }
-        public Invoice CreateInvoice(PaymentMethod paymentMethod)
+        public PaymentReceipt CreateInvoice(PaymentMethod paymentMethod)
         {
-            Invoice invoice = new Invoice
+            PaymentReceipt invoice = new PaymentReceipt
             {
                 OrderId = order.Id,
                 AppUserId = order.AppUserId,
@@ -243,7 +243,7 @@ namespace KFP.ViewModels
                     }
                 }
             }
-            dbContext.Invoices.Add(invoice);
+            dbContext.PaymentReceipts.Add(invoice);
             dbContext.Orders.Update(order);
             dbContext.SaveChanges();
             return invoice;

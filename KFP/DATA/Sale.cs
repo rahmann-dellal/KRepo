@@ -31,7 +31,7 @@ namespace KFP.DATA
         public double? TotalPrice => UnitPrice * Quantity;
 
         public int? InvoiceId { get; set; }
-        public Invoice? Invoice { get; set; }
+        public PaymentReceipt? Invoice { get; set; }
         public bool Cancelled { get; set; } = false;
     }
 }

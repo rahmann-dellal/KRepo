@@ -3,6 +3,7 @@ using System;
 using KFP.DATA_Access;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KFP.Migrations
 {
     [DbContext(typeof(KFPContext))]
-    partial class KFPContextModelSnapshot : ModelSnapshot
+    [Migration("20250607032754_RenamingInvoiceToPaymentReceipt")]
+    partial class RenamingInvoiceToPaymentReceipt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
@@ -263,7 +266,7 @@ namespace KFP.Migrations
 
                     b.HasIndex("SessionId");
 
-                    b.ToTable("PaymentReceipts");
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("KFP.DATA.Sale", b =>
