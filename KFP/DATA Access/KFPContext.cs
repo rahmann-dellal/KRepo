@@ -53,10 +53,10 @@ namespace KFP.DATA_Access
                 .HasForeignKey(o => o.SessionId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            // Invoice → Order (Set null on delete)
+            // Receipt → Order (Set null on delete)
             modelBuilder.Entity<PaymentReceipt>()
                 .HasOne(i => i.Order)
-                .WithOne(o => o.Invoice)
+                .WithOne(o => o.Receipt)
                 .HasForeignKey<PaymentReceipt>(i => i.OrderId)
                 .OnDelete(DeleteBehavior.SetNull);
 
@@ -74,19 +74,19 @@ namespace KFP.DATA_Access
                 .HasForeignKey(s => s.MenuItemId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            // Sale → Invoice
+            // Sale → Receipt
             modelBuilder.Entity<Sale>()
-                .HasOne(s => s.Invoice)
+                .HasOne(s => s.Receipt)
                 .WithMany(i => i.Sales)
-                .HasForeignKey(s => s.InvoiceId)
+                .HasForeignKey(s => s.ReceiptId)
                 .OnDelete(DeleteBehavior.SetNull); 
 
-            // Invoice → AppUser
+            // Receipt → AppUser
             modelBuilder.Entity<PaymentReceipt>()
                 .HasOne(i => i.AppUser)
-                .WithMany(u => u.Invoices)
+                .WithMany(u => u.Receipts)
                 .HasForeignKey(i => i.AppUserId)
-                .OnDelete(DeleteBehavior.SetNull); // Keep invoice even if user is deleted
+                .OnDelete(DeleteBehavior.SetNull); // Keep Receipt even if user is deleted
 
             // Order → AppUser
             modelBuilder.Entity<Order>()

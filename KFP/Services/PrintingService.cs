@@ -82,7 +82,7 @@ namespace KFP.Services
             return printers;
         }
 
-        public void PrintReceipt(PaymentReceipt invoice)
+        public void PrintReceipt(PaymentReceipt receipt)
         {
             throw new NotImplementedException();
         }

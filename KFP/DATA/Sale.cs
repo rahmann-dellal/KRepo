@@ -30,8 +30,8 @@ namespace KFP.DATA
         [NotMapped]
         public double? TotalPrice => UnitPrice * Quantity;
 
-        public int? InvoiceId { get; set; }
-        public PaymentReceipt? Invoice { get; set; }
+        public int? ReceiptId { get; set; }
+        public PaymentReceipt? Receipt { get; set; }
         public bool Cancelled { get; set; } = false;
     }
 }

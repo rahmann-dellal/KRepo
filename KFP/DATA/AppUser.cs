@@ -26,7 +26,7 @@ namespace KFP.DATA
             if (this.Role >= role) return true;
             else return false;
         }
-        public List<PaymentReceipt> Invoices { get; set; } = new();
+        public List<PaymentReceipt> Receipts { get; set; } = new();
         public List<Order> Orders { get; set; } = new();
     }
 

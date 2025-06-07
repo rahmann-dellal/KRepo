@@ -139,7 +139,7 @@ namespace KFP.ViewModels
             isPaidCard = false;
             PaymentDeferred = false;
             order.paymentMethod = PaymentMethod.Cash;
-            PaymentReceipt invoice = CreateInvoice(PaymentMethod.Cash);
+            PaymentReceipt receipt = CreateReceipt(PaymentMethod.Cash);
             OnPropertyChanged(nameof(PaymentSet));
             OnPropertyChanged(nameof(PaymentPending));
             OnPropertyChanged(nameof(isPaidCash));
@@ -147,7 +147,7 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(PaymentDeferred));
             OnPropertyChanged(nameof(CanEditOrder));
             ChangePaymentMethodeCommand.NotifyCanExecuteChanged();
-            //TODO:Print invoice
+            //TODO:Print receipt
         }
 
         [RelayCommand]
@@ -162,7 +162,7 @@ namespace KFP.ViewModels
             isPaidCash = false;
             PaymentDeferred = false;
             order.paymentMethod = PaymentMethod.Card;
-            PaymentReceipt invoice = CreateInvoice(PaymentMethod.Card);
+            PaymentReceipt receipt = CreateReceipt(PaymentMethod.Card);
             OnPropertyChanged(nameof(PaymentSet));
             OnPropertyChanged(nameof(PaymentPending));
             OnPropertyChanged(nameof(isPaidCard));
@@ -170,7 +170,7 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(PaymentDeferred));
             OnPropertyChanged(nameof(CanEditOrder));
             ChangePaymentMethodeCommand.NotifyCanExecuteChanged();
-            //TODO:Print invoice
+            //TODO:Print receipt
         }
 
         [RelayCommand]
@@ -205,9 +205,9 @@ namespace KFP.ViewModels
         {
             return !isPaidCard && !isPaidCash;
         }
-        public PaymentReceipt CreateInvoice(PaymentMethod paymentMethod)
+        public PaymentReceipt CreateReceipt(PaymentMethod paymentMethod)
         {
-            PaymentReceipt invoice = new PaymentReceipt
+            PaymentReceipt receipt = new PaymentReceipt
             {
                 OrderId = order.Id,
                 AppUserId = order.AppUserId,
@@ -221,32 +221,32 @@ namespace KFP.ViewModels
 
             foreach(var oi in order.OrderItems)
             {
-                invoice.Sales.Add (new Sale()
+                receipt.Sales.Add (new Sale()
                 {
                     ItemName = oi.MenuItemName,
                     UnitPrice = oi.UnitPrice,
                     Quantity = oi.Quantity,
                     MenuItem = oi.MenuItem,
-                    Invoice = invoice,
+                    Receipt = receipt,
                 });
                 if (oi.AddOns != null && oi.AddOns.Count > 0)
                 {
                     foreach (var addOn in oi.AddOns)
                     {
-                        invoice.Sales.Add(new Sale()
+                        receipt.Sales.Add(new Sale()
                         {
                             ItemName = addOn.MenuItemName,
                             UnitPrice = addOn.UnitPrice,
                             Quantity = addOn.Quantity,
-                            Invoice = invoice,
+                            Receipt = receipt,
                         });
                     }
                 }
             }
-            dbContext.PaymentReceipts.Add(invoice);
+            dbContext.PaymentReceipts.Add(receipt);
             dbContext.Orders.Update(order);
             dbContext.SaveChanges();
-            return invoice;
+            return receipt;
         }
 
         [RelayCommand]

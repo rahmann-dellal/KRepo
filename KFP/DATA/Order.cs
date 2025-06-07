@@ -54,7 +54,7 @@ namespace KFP.DATA
         public DeliveryInfo DeliveryInfo { get; set; }
 
         public double? TotalPrice { get; set; }
-        public PaymentReceipt? Invoice { get; set; } = null!;
+        public PaymentReceipt? Receipt { get; set; } = null!;
         public PaymentMethod? paymentMethod { get; set; }
     }
 }
