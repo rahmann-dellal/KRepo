@@ -858,4 +858,10 @@
   <data name="PaymentMethod" xml:space="preserve">
     <value>Payment Method</value>
   </data>
+  <data name="AccountTextBlock.Text" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
 </root>

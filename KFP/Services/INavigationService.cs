@@ -29,5 +29,6 @@ namespace KFP.Services
         About,
         Settings,
         Session,
+        Account
     }
 }

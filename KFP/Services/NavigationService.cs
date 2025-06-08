@@ -85,6 +85,10 @@ namespace KFP.Services
             {
                 navigateTo(typeof(SettingsPage), parameters);
             }
+            else if (pageType == KioberFoodPage.Account)
+            {
+                navigateTo(typeof(AccountPage), parameters);
+            }
         }
     }
 }

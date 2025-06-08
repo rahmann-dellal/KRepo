@@ -135,6 +135,14 @@
                     <FontIcon Glyph="&#xF182;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+            <NavigationViewItem x:Name="AccountNVI">
+                <NavigationViewItem.Content>
+                    <TextBlock x:Uid="AccountTextBlock"/>
+                </NavigationViewItem.Content>
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE910;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
             <NavigationViewItem x:Name="AboutNVI">
                 <NavigationViewItem.Content>
                     <TextBlock x:Uid="AboutTextBlock"/>

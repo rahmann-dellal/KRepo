@@ -117,6 +117,12 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(SessionPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("Session");
                 }
+                else if (InvokedNVI == AccountNVI)
+                {
+                    selectedNVI = AccountNVI;
+                    ContentFrame.Navigate(typeof(AccountPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Account");
+                }
                 else if (InvokedNVI == AboutNVI)
                 {
                     selectedNVI = AboutNVI;
