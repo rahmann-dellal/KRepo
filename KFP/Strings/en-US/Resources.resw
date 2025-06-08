@@ -712,7 +712,7 @@
     <value>Number of minutes before the order is considered overdue (Red warning)</value>
   </data>
   <data name="EstablishmentNameSettingCard.Description" xml:space="preserve">
-    <value>Can be set to be printed with invoices or pre-bills</value>
+    <value>Can be set to be printed with receipts or pre-bills</value>
   </data>
   <data name="EstablishmentPhoneNumber1SettingCard.Header" xml:space="preserve">
     <value>First Phone Number </value>
@@ -724,16 +724,25 @@
     <value>Address</value>
   </data>
   <data name="EstablishmentAddressSettingCard.Description" xml:space="preserve">
-    <value>Can be set to be printed with invoices or pre-bills</value>
+    <value>Can be set to be printed with receipts or pre-bills</value>
   </data>
   <data name="EstablishmentPhoneNumber1SettingCard.Description" xml:space="preserve">
-    <value>Can be set to be printed later with invoices or pre-bills</value>
+    <value>Can be set to be printed later with receipts or pre-bills</value>
   </data>
   <data name="EstablishmentPhoneNumber2SettingCard.Description" xml:space="preserve">
-    <value>Can be set to be printed with invoices or pre-bills</value>
+    <value>Can be set to be printed with receipts or pre-bills</value>
   </data>
-  <data name="CustomerOrderPrinterSettingCard.Header" xml:space="preserve">
-    <value>Pre-bill printer for customers</value>
+  <data name="ReceiptPrinterSettingCard.Header" xml:space="preserve">
+    <value>Payment receipt's printer</value>
+  </data>
+  <data name="PrintReceiptSettingCard.Header" xml:space="preserve">
+    <value>Print receipt of payment ?</value>
+  </data>
+  <data name="ReceiptPrinterSettingCard.Description" xml:space="preserve">
+    <value>Select the printer used for printing payment receipts</value>
+  </data>
+  <data name="PrintReceiptSettingCard.Description" xml:space="preserve">
+    <value>Print receipt of payment on payment confirmation  ?</value>
   </data>
   <data name="PrintKitchenOrderSettingCard.Header" xml:space="preserve">
     <value>Print order tickets for kitchen ?</value>
@@ -747,50 +756,113 @@
   <data name="KitchenOrderPrinterSettingCard.Description" xml:space="preserve">
     <value>Select kitchen tickets printer</value>
   </data>
-  <data name="InvoicePrinterSettingCard.Header" xml:space="preserve">
-    <value>Invoice Printer</value>
-  </data>
-  <data name="PrintInvoiceSettingCard.Header" xml:space="preserve">
-    <value>Print Invoices ?</value>
-  </data>
-  <data name="InvoicePrinterSettingCard.Description" xml:space="preserve">
-    <value>Select the printer used for printing payment receipts</value>
-  </data>
-  <data name="PrintInvoiceSettingCard.Description" xml:space="preserve">
-    <value>Print receipt of payment for customer ?</value>
-  </data>
-  <data name="PrintCustomerOrderSettingCard.Header" xml:space="preserve">
-    <value>Print pre-bill for customer ?</value>
-  </data>
-  <data name="PrintCustomerOrderSettingCard.Description" xml:space="preserve">
-    <value>Print pre-bill for customer before payment</value>
-  </data>
-  <data name="CustomerOrderPrinterSettingCard.Description" xml:space="preserve">
-    <value>Select the printer used for printing pre-bills for customers</value>
-  </data>
-  <data name="PrintEstablishmentNameWithInvoiceSettingCard.Header" xml:space="preserve">
+  <data name="PrintEstablishmentNameWithReceiptSettingCard.Header" xml:space="preserve">
     <value>Print the establishment's name</value>
   </data>
-  <data name="PrintEstablishmentNameWithInvoiceSettingCard.Description" xml:space="preserve">
-    <value>Add the establishment's name to the invoice header ?</value>
+  <data name="PrintEstablishmentNameWithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Print the establishment's name</value>
   </data>
-  <data name="PrintEstablishmentAddressWithInvoiceSettingCard.Header" xml:space="preserve">
+  <data name="PrintEstablishmentNameWithReceiptSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's name to the receipt's header ?</value>
+  </data>
+  <data name="PrintEstablishmentNameWithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's name to the pre-bill header ?</value>
+  </data>
+  <data name="PrintEstablishmentAddressWithReceiptSettingCard.Header" xml:space="preserve">
     <value>Print the establishment's address</value>
   </data>
-  <data name="PrintEstablishmentAddressWithInvoiceSettingCard.Description" xml:space="preserve">
-    <value>Add the establishment's address to the invoice header ?</value>
+  <data name="PrintEstablishmentAddressWithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Print the establishment's address</value>
   </data>
-  <data name="PrintEstablishmentPhone1WithInvoiceSettingCard.Header" xml:space="preserve">
+  <data name="PrintEstablishmentAddressWithReceiptSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's address to the receipt's header ?</value>
+  </data>
+  <data name="PrintEstablishmentAddressWithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's address to the pre-bill header ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone1WithReceiptSettingCard.Header" xml:space="preserve">
     <value>Print the establishment's first phone number</value>
   </data>
-  <data name="PrintEstablishmentPhone2WithInvoiceSettingCard.Header" xml:space="preserve">
+  <data name="PrintEstablishmentPhone1WithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Print the establishment's first phone number</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithRecieptSettingCard.Header" xml:space="preserve">
     <value>Print the establishment's second phone number</value>
   </data>
-  <data name="PrintEstablishmentPhone1WithInvoiceSettingCard.Description" xml:space="preserve">
-    <value>Add the establishment's first phone number to the invoice header ?</value>
+  <data name="PrintEstablishmentPhone1WithReceiptSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's first phone number to the receipt's header ?</value>
   </data>
-  <data name="PrintEstablishmentPhone2WithInvoiceSettingCard.Description" xml:space="preserve">
-    <value>Add the establishment's second phone number to the invoice header ?</value>
+  <data name="PrintEstablishmentPhone1WithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's first phone number to the pre-bill header ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's second phone number to the pre-bill header ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithRecieptSettingCard.Description" xml:space="preserve">
+    <value>Add the establishment's second phone number to the receipt's header ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Print the establishment's second phone number</value>
+  </data>
+  <data name="PrintPreBillSettingCard.Header" xml:space="preserve">
+    <value>Print pre-bill for customer ?</value>
+  </data>
+  <data name="PreBillPrinterSettingCard.Description" xml:space="preserve">
+    <value>Select the printer used for printing pre-bills for customers</value>
+  </data>
+  <data name="CustomerOrderPrinterSettingCard.Header" xml:space="preserve">
+    <value>Pre-bill printer for customers</value>
+  </data>
+  <data name="PrintPreBillSettingCard.Description" xml:space="preserve">
+    <value>Print pre-bill for customer before payment</value>
+  </data>
+  <data name="generalSettingsSelectorItem.Text" xml:space="preserve">
+    <value>General Settings</value>
+  </data>
+  <data name="EstablishmentSelectorItem.Text" xml:space="preserve">
+    <value>Establishment</value>
+  </data>
+  <data name="OrdersSelectorItem.Text" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="PrintingSelectorItem.Text" xml:space="preserve">
+    <value>Printing</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="ReceiptUnitPrice" xml:space="preserve">
+    <value>U.P</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Customer Name</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Receipt</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="AccountTextBlock.Text" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
   </data>
   <data name="DefaultLoginTextBlock.Text" xml:space="preserve">
     <value>Default PIN : 000000 (please change this after login)</value>
