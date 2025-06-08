@@ -47,6 +47,8 @@ namespace KFP
                         avatarCode = 0
                     });
                     db.SaveChanges();
+                    var appdataservice = new AppDataService();
+                    appdataservice.DefaultUserLogin = true;
                 }
             }
 

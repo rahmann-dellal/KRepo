@@ -19,12 +19,19 @@ namespace KFP.Ui
     {
         private KFPContext _context;
         private SessionManager _sessionManager;
-
+        private AppDataService _appDataService;
         public List<AppUser> AppUsers { get; private set; }
 
         private AppUser? _selectedUser;
         private double OpeningCash = 0;
         private bool OpeningCashSet = false;
+        private bool DefaultUserLogin
+        {
+            get
+            {
+                return _appDataService.DefaultUserLogin;
+            }
+        }
         private bool showOpeningCashInput { get => !OpeningCashSet; }
 
         public AppUser? selectedUser
@@ -64,6 +71,7 @@ namespace KFP.Ui
         {
             _context = Ioc.Default.GetService<KFPContext>();
             _sessionManager = Ioc.Default.GetService<SessionManager>();
+            _appDataService = Ioc.Default.GetService<AppDataService>();
             AppUsers = _context.AppUsers.ToList();
 
             this.InitializeComponent();
@@ -71,6 +79,8 @@ namespace KFP.Ui
             if (AppUsers.Count == 1)
             {
                 selectedUser = AppUsers[0];
+                UselectUserButton.Width = 0;
+                UselectUserButton.Height = 0;
                 UselectUserButton.Visibility = Visibility.Collapsed;
             }
 
@@ -182,6 +192,9 @@ namespace KFP.Ui
 
         private void numberBoxButton_Click(object sender, RoutedEventArgs e)
         {
+            if (DefaultUserLogin) {
+                defaultLoginTextBlock.Visibility = Visibility.Visible;
+            }
             OpeningCash = numberBox.Value?? 0;
             openingCashInput.Visibility = Visibility.Collapsed;
             pinInput.Visibility = Visibility.Visible;

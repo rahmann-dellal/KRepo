@@ -69,13 +69,14 @@
 
 
             <StackPanel x:Name="selectedUserPanel"  Orientation="Vertical" HorizontalAlignment="Center" Visibility="Collapsed">
-                <StackPanel Orientation="Horizontal">
-                    <ContentControl x:Name="userContentControl"  ContentTemplate="{StaticResource ResourceKey=userTemplate}" DataContext="{x:Bind selectedUser}"
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ContentControl x:Name="userContentControl" ContentTemplate="{StaticResource ResourceKey=userTemplate}" DataContext="{x:Bind selectedUser}"
                                 Margin="0,0,20,0"/>
                     <Button x:Name="UselectUserButton" Click="UselectUserButton_Click" Height="65" Width="65" BorderBrush="Gray" BorderThickness="1"  CornerRadius="10">
                         <SymbolIcon Symbol="Clear" Foreground="Gray"/>
                     </Button>
                 </StackPanel>
+                <TextBlock FontSize="13" HorizontalAlignment="Center" x:Uid="DefaultLoginTextBlock" x:Name="defaultLoginTextBlock" Visibility="Collapsed" Margin="0,20,0,0" />
                 <custom:PINInput x:Name="pinInput" ShowPin="False" Margin="0,20,0,0"
                                  Visibility="{x:Bind OpeningCashSet, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                 <StackPanel x:Name="openingCashInput" Margin="0,25,0,0" Visibility="{x:Bind showOpeningCashInput, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">

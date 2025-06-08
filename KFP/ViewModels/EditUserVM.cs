@@ -21,6 +21,7 @@ namespace KFP.ViewModels
         private NavigationService _navigationService;
         private KFPContext _dbContext;
         private SessionManager _sessionManager;
+        private AppDataService _appDataService;
 
         //used in case the reset button is clicked and the previous value will be retreived
         public string OldUserName = "";
@@ -61,11 +62,12 @@ namespace KFP.ViewModels
             }
         }
 
-        public EditUserVM(KFPContext dbcontext, NavigationService ns, SessionManager sessionManager)
+        public EditUserVM(KFPContext dbcontext, NavigationService ns, SessionManager sessionManager, AppDataService appDataService)
         {
             _dbContext = dbcontext;
             _navigationService = ns;
             _sessionManager = sessionManager;
+            _appDataService = appDataService;
         }
 
         public bool UserhasPrivilegesOf(UserRole role)
@@ -92,6 +94,7 @@ namespace KFP.ViewModels
         }
         public async Task<int> saveUserToDBAsync()
         {
+            
             if (_pageMode == UserPageMode.Edition)
             {
                 _dbContext.Entry(User).State = EntityState.Modified;
@@ -103,6 +106,11 @@ namespace KFP.ViewModels
             var result = await _dbContext.SaveChangesAsync();
             if (result > 0)
             {
+                // if this is the first time a user is added or modified, remove the default user login flag
+                if (_appDataService.DefaultUserLogin == true)
+                {
+                    _appDataService.DefaultUserLogin = false;
+                }
                 StrongReferenceMessenger.Default.Send(new UserAddedMessage(User.AppUserID));
             }
             return result;

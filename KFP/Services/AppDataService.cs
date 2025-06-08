@@ -11,6 +11,21 @@ namespace KFP.Services
         Windows.Storage.ApplicationDataContainer Settings =
         Windows.Storage.ApplicationData.Current.RoamingSettings;
 
+        public bool DefaultUserLogin
+        {
+            get
+            {
+                if (Settings.Values["DefaultUserLogin"] != null)
+                    return (bool)Settings.Values["DefaultUserLogin"];
+                else
+                    return false;
+            }
+            set
+            {
+                Settings.Values["DefaultUserLogin"] = value;
+            }
+        }
+
         /// <section>
         /// General Settings
         /// </section>
