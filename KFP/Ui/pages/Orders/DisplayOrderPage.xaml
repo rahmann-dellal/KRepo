@@ -68,7 +68,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"
                                                 Foreground="LightGreen"/>
-                                    <TextBlock  x:Uid="CounterButtonTextBlock"  Margin="0,0,20,0" Foreground="Black"/>
+                                    <TextBlock  x:Uid="CounterButtonTextBlock1"  Margin="0,0,20,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
                         </Border>
@@ -80,7 +80,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0" 
                                                 Foreground="LightGreen"/>
-                                    <TextBlock x:Uid="TableButtonTextBlock" Margin="0,0,10,0" Foreground="Black"/>
+                                    <TextBlock x:Uid="TableButtonTextBlock1" Margin="0,0,10,0" Foreground="Black"/>
                                     <TextBlock Text="{x:Bind ViewModel.SelectedTableNumber, Mode=OneWay}" FontWeight="Bold" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
@@ -93,7 +93,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"
                                                 Foreground="LightGreen"/>
-                                    <TextBlock x:Uid="DeliveryButtonTextBlock" Margin="0,0,10,0" Foreground="Black"/>
+                                    <TextBlock x:Uid="DeliveryButtonTextBlock1" Margin="0,0,10,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
                         </Border>

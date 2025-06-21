@@ -120,11 +120,11 @@ namespace KFP.ViewModels
             get
             {
                 if (order.orderLocation == OrderLocation.Counter)
-                    return StringLocalisationService.getStringWithKey("Counter");
+                    return StringLocalisationService.getStringWithKey("Counter_1");
                 else if (order.orderLocation == OrderLocation.Table)
                     return StringLocalisationService.getStringWithKey("Table") + " " + order.TableNumber;
                 else
-                    return StringLocalisationService.getStringWithKey("Delivery");
+                    return StringLocalisationService.getStringWithKey("Delivery1");
             }
         }
         public string OrderStartTime { get => order.SetPreparingAt?.ToString("HH:mm") ?? ""; }
@@ -179,7 +179,7 @@ namespace KFP.ViewModels
                 if (numberOfItems == 0)
                     return StringLocalisationService.getStringWithKey("NoItems");
                 else if (numberOfItems == 1)
-                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Item");
+                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Item_se4");
                 else
                     return numberOfItems + " " + StringLocalisationService.getStringWithKey("Items");
             }

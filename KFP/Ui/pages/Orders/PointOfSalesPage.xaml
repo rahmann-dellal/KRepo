@@ -54,7 +54,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Uid="OrderLocationTextBlock" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,10" FontSize="12" FontWeight="Bold"/>
+                <TextBlock x:Uid="OrderLocationTextBlock2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,10" FontSize="12" FontWeight="Bold"/>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" >
                     <Border Margin="0,0,10,0"  BorderBrush="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" 
                         BorderThickness="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=1 ,Mode=OneWay}"
@@ -63,7 +63,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"
                                           Foreground="{x:Bind ViewModel.IsSetOnCounter, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
-                                <TextBlock  x:Uid="CounterButtonTextBlock"  Margin="0,0,20,0"/>
+                                <TextBlock  x:Uid="CounterButtonTextBlock2"  Margin="0,0,20,0"/>
                             </StackPanel>
                         </Button>
                     </Border>
@@ -129,7 +129,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"
                                       Foreground="{x:Bind ViewModel.IsSetForDelivery, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"/>
-                                <TextBlock x:Uid="DeliveryButtonTextBlock" Margin="0,0,10,0"/>
+                                <TextBlock x:Uid="DeliveryButtonTextBlock2" Margin="0,0,10,0"/>
                             </StackPanel>
                             <Button.Flyout>
                                 <Flyout>

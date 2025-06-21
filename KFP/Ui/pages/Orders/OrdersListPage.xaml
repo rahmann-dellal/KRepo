@@ -80,7 +80,7 @@
                     <TextBlock x:Uid="OrderTimeCreatedTextBlock" FontWeight="SemiBold" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center"/>
                     <TextBlock x:Uid="OrderTimePassedTextBlock" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center"/>
                     <TextBlock x:Uid="OrderLocationTextBlock" FontWeight="SemiBold" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center"/>
-                    <TextBlock x:Uid="ActionsTextBlock" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center"/>
+                    <TextBlock x:Uid="OrdersListActionsTextBlock" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center"/>
                     <TextBlock x:Uid="NothingToDisplayTxtBlk" Grid.Row="1" Grid.ColumnSpan="8" Visibility="{x:Bind ViewModel.isFilterdListEmpty, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                 FontSize="16" Foreground="DimGray" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <ListView ItemsSource="{x:Bind ViewModel.FilterdOrders}" SelectionMode="None" Grid.Row="1" Grid.ColumnSpan="8" Margin="0,20,0,0">

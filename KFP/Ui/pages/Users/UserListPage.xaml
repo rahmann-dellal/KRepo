@@ -34,7 +34,7 @@
             <TextBlock Margin="25,0,0,0" x:Uid="AvatarTextBlock" Grid.Column="0"  FontSize="20"  HorizontalAlignment="Center"/>
             <TextBlock x:Uid="UsernameTextBlock" Grid.Column="1"  FontSize="20" HorizontalAlignment="Center"/>
             <TextBlock x:Uid="UserRoleTextBlock" Grid.Column="2"  FontSize="20" HorizontalAlignment="Center"/>
-            <TextBlock Margin="0,0,30,0" x:Uid="ActionsTextBlock"  Grid.Column="3"  HorizontalAlignment="Center" FontSize="20"/>
+            <TextBlock Margin="0,0,30,0" x:Uid="UsersListActionsTextBlock"  Grid.Column="3"  HorizontalAlignment="Center" FontSize="20"/>
         </Grid>
         <ListView ItemsSource="{x:Bind UserListElements}"  SelectionMode="None"
                   Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollMode="Auto">

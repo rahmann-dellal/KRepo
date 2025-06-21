@@ -77,11 +77,11 @@
     <None Remove="Ui\pages\EditUserPage.xaml" />
     <None Remove="Ui\pages\MenuItemListPage.xaml" />
     <None Remove="Ui\pages\MenuItems\CategoriesPage.xaml" />
-    <None Remove="Ui\pages\Order\DisplayOrderPage.xaml" />
-    <None Remove="Ui\pages\Order\DisplayOrderView.xaml" />
-    <None Remove="Ui\pages\Order\MenuItemSelector.xaml" />
-    <None Remove="Ui\pages\Order\OrdersListPage.xaml" />
-    <None Remove="Ui\pages\Order\TablesPage.xaml" />
+    <None Remove="Ui\pages\Orders\DisplayOrderPage.xaml" />
+    <None Remove="Ui\pages\Orders\DisplayOrderView.xaml" />
+    <None Remove="Ui\pages\Orders\MenuItemSelector.xaml" />
+    <None Remove="Ui\pages\Orders\OrdersListPage.xaml" />
+    <None Remove="Ui\pages\Orders\TablesPage.xaml" />
     <None Remove="Ui\pages\SessionPage.xaml" />
     <None Remove="Ui\pages\SettingsPage.xaml" />
     <None Remove="Ui\pages\UserListPage.xaml" />
@@ -253,6 +253,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Strings\fr-FR\Ui\" />
+    <Folder Include="Strings\fr-FR\Printables\" />
     <Folder Include="Ui\pages\Users\" />
   </ItemGroup>
 

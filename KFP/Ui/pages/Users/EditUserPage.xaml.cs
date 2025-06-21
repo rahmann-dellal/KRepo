@@ -133,7 +133,7 @@ namespace KFP.Ui.pages
         private async void saveButton_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("save_changes");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("save_changes_2");
             confirmDialog.Title = StringLocalisationService.getStringWithKey("Confirm");
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes");
             confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");

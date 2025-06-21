@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="category_with_same_name_exists" xml:space="preserve">
-    <value>A category with the same name already exists</value>
+  <data name="Item1" xml:space="preserve">
+    <value>Item</value>
   </data>
-  <data name="Invalid_entry" xml:space="preserve">
-    <value>Invalid entry</value>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
   </data>
-  <data name="Please_choose_user_role" xml:space="preserve">
-    <value>Please choose a user role</value>
+  <data name="Qty" xml:space="preserve">
+    <value>Qty</value>
   </data>
-  <data name="please_enter_a_valid_username" xml:space="preserve">
-    <value>Please enter a valid username</value>
+  <data name="Receipt" xml:space="preserve">
+    <value>Receipt</value>
   </data>
-  <data name="please_enter_pin" xml:space="preserve">
-    <value>Enter PIN</value>
+  <data name="ReceiptUnitPrice" xml:space="preserve">
+    <value>U.P</value>
   </data>
-  <data name="please_provide_name_for_item" xml:space="preserve">
-    <value>Please provide a name for the menu item</value>
-  </data>
-  <data name="Please_provide_new_name" xml:space="preserve">
-    <value>Please provide a new name</value>
-  </data>
-  <data name="Username_between_4_16" xml:space="preserve">
-    <value>Username length must be between 4 and 16</value>
-  </data>
-  <data name="Username_cannot_start_with_letter_underscore" xml:space="preserve">
-    <value>Username cannot start or end with a hyphen or underscore.</value>
-  </data>
-  <data name="User_with_same_name_exists" xml:space="preserve">
-    <value>A user with the same username already exists !</value>
-  </data>
-  <data name="You_already_have_an_item_with_the_same_name" xml:space="preserve">
-    <value>You already have an item with the same name</value>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
 </root>

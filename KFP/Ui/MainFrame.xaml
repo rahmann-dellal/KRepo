@@ -80,7 +80,7 @@
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="AddMenuItemNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="AddMenuItemTextBlock"/>
+                            <TextBlock x:Uid="AddMenuItemTextBlock1"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <PathIcon Data="{StaticResource AddMenuItemsIcon}"/>

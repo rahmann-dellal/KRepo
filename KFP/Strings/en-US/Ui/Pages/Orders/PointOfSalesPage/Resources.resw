@@ -117,9 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuItemTypeToolTip.Content" xml:space="preserve">
-    <value>Main : (Like pizzas or dishes) This will appear in the Main tab in the POS page.
-Add-on : (Like sauces or toppings) This will appear in the Add-on tab in the POS page.
-Universal (Not recommended) : This will appear in both tabs in the POS page.</value>
+  <data name="ConfirmChangesTextBlock.Text" xml:space="preserve">
+    <value>Confirm Changes</value>
+  </data>
+  <data name="CounterButtonTextBlock2.Text" xml:space="preserve">
+    <value>Counter</value>
+  </data>
+  <data name="DeliveryButtonTextBlock2.Text" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="DeliveryInfoAddresstxtBox.Header" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="DeliveryInfoAddresstxtBox.PlaceholderText" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="DeliveryInfoNametxtBox.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DeliveryInfoNametxtBox.PlaceholderText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DeliveryInfoPhonetxtBox.Header" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="DeliveryInfoPhonetxtBox.PlaceholderText" xml:space="preserve">
+    <value>xxx xxx xxx</value>
+  </data>
+  <data name="NotesTextBox.Header" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotesTextBox.PlaceholderText" xml:space="preserve">
+    <value>Add Something ...</value>
+  </data>
+  <data name="OrderLocationTextBlock2.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="TableButtonTextBlock.Text" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="TakeOrderTextBlock.Text" xml:space="preserve">
+    <value>Take Order</value>
   </data>
 </root>

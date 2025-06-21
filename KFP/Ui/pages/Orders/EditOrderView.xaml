@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="45"/>
 
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Uid="MenuItemTextBlock" Text="Menu Item" FontSize="16" FontWeight="SemiBold"  Grid.Column="0" Margin="10,0,0,0"/>
+                    <TextBlock x:Uid="MenuItemTextBlock1" Text="Menu Item" FontSize="16" FontWeight="SemiBold"  Grid.Column="0" Margin="10,0,0,0"/>
                     <TextBlock x:Uid="UnitPriceTextBlock" Text="Unit Price" FontSize="16" FontWeight="SemiBold"  Grid.Column="1" Margin="-15,0,0,0"/>
                     <TextBlock x:Uid="QtTextBlock" Text="Qt" FontSize="16" FontWeight="SemiBold"  Grid.Column="2" Margin="-15,0,0,0"/>
                     <TextBlock x:Uid="TotalTextBlock" Text="Total" FontSize="16" FontWeight="SemiBold"  Grid.Column="3" Margin="-15,0,0,0"/>

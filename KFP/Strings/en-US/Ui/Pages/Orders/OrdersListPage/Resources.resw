@@ -117,136 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Addon" xml:space="preserve">
-    <value>Add-on</value>
-    <comment>Used in MenuItemTypeConverter</comment>
+  <data name="Canceling_Order" xml:space="preserve">
+    <value>Canceling Order : </value>
   </data>
-  <data name="Admin" xml:space="preserve">
-    <value>Admin</value>
-    <comment>Used in RoleConverter</comment>
+  <data name="CancelOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Cancel Order</value>
   </data>
-  <data name="Are_you_sure_to_continue" xml:space="preserve">
-    <value>This is permanant ! Are you sure that you want to contitnue ?</value>
-    <comment>Used in DisplayMenuItempage, MenuItemListPage, DisplayUserPage, UserListPage</comment>
+  <data name="Cancel_Order2" xml:space="preserve">
+    <value>Cancel order ?</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-    <comment>Used everywhere !</comment>
+  <data name="Card" xml:space="preserve">
+    <value>Card</value>
   </data>
-  <data name="Cashier" xml:space="preserve">
-    <value>Cashier</value>
-    <comment>Used in RoleConverter</comment>
+  <data name="Cash" xml:space="preserve">
+    <value>Cash</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
-    <comment>Used in EditMenuItemPage, DisplayOrderPage, OrdersListPage, EditUserPage</comment>
+  <data name="CompleteOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Complete Order</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
-    <comment>Used In DisplayMenuItemPage, MenuItemListPage, DisplayUserPage, UserListPage</comment>
+  <data name="Complete_Order2" xml:space="preserve">
+    <value>Complete Order</value>
   </data>
-  <data name="Deleting" xml:space="preserve">
-    <value>Deleting : </value>
-    <comment>Used In DisplayMenuItemPage, MenuItemListPage, DisplayUserPage, UserListPage</comment>
+  <data name="Confrim_Order_Completed2" xml:space="preserve">
+    <value>Set order as completed ?</value>
   </data>
-  <data name="Editing" xml:space="preserve">
-    <value>Editing : </value>
-    <comment>Displayed on EditUserPage header</comment>
+  <data name="CounterCheckBox.Content" xml:space="preserve">
+    <value>Counter</value>
   </data>
-  <data name="Main" xml:space="preserve">
-    <value>Main</value>
-    <comment>Used in MenuItemTypeConverter</comment>
+  <data name="Counter_1" xml:space="preserve">
+    <value>Counter</value>
   </data>
-  <data name="Manager" xml:space="preserve">
-    <value>Manager</value>
-    <comment>Used in RoleConverter</comment>
+  <data name="Delivery1" xml:space="preserve">
+    <value>Delivery</value>
   </data>
-  <data name="NothingTextBlock.Text" xml:space="preserve">
-    <value>Nothing Yet !</value>
-    <comment>Used Everywhere</comment>
+  <data name="DeliveryCheckBox.Content" xml:space="preserve">
+    <value>Delivery</value>
   </data>
-  <data name="NothingToDisplayTxtBlk.Text" xml:space="preserve">
-    <value>Nothing to show...</value>
-    <comment>Used Everywhere</comment>
+  <data name="EditOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Edit Order</value>
   </data>
-  <data name="Operation_was_seccessfull" xml:space="preserve">
-    <value>Operation was successful !</value>
-    <comment>Not used</comment>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
   </data>
-  <data name="POS" xml:space="preserve">
-    <value>Point Of Sales</value>
-    <comment>Not Used</comment>
+  <data name="Item_4" xml:space="preserve">
+    <value>Item</value>
   </data>
-  <data name="POSTextBlock.Text" xml:space="preserve">
-    <value>Point Of Sales</value>
-    <comment>Used In MainFrame.xaml, OrdersLisPage, PointOfSalesPage, TablesPage</comment>
+  <data name="NoItems" xml:space="preserve">
+    <value>No Items</value>
   </data>
-  <data name="Other" xml:space="preserve">
-    <value>Other</value>
-    <comment>Used in MenuItemTypeConverter</comment>
+  <data name="No_2" xml:space="preserve">
+    <value>No</value>
   </data>
-  <data name="upload_from_files_link.Text" xml:space="preserve">
-    <value>Click here to upload</value>
-    <comment>Used in InteractiveImageDisplay</comment>
+  <data name="OrderItemsTextBlock.Text" xml:space="preserve">
+    <value>Items</value>
   </data>
-  <data name="WaitingForLoggin" xml:space="preserve">
-    <value>Login ...</value>
-    <comment>Currently doesn't show (not enough time before login)</comment>
+  <data name="OrderLocationTextBlock.Text" xml:space="preserve">
+    <value>Location</value>
   </data>
-  <data name="Welcom" xml:space="preserve">
-    <value>Welcome</value>
-    <comment>Not used</comment>
+  <data name="OrderPaymentTextBlock.Text" xml:space="preserve">
+    <value>Payment</value>
   </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
-    <comment>Used in EditMenuItemPage, DisplayOrderPage, OrderListPage, EditUserPage</comment>
+  <data name="OrdersListActionsTextBlock.Text" xml:space="preserve">
+    <value>Actions</value>
   </data>
-  <data name="Drink" xml:space="preserve">
-    <value>Drink</value>
-    <comment>Used in MenuItemTypeConverter</comment>
+  <data name="OrderTimeCreatedTextBlock" xml:space="preserve">
+    <value>Created At</value>
   </data>
-  <data name="TablesTextBlock.Text" xml:space="preserve">
+  <data name="OrderTimePassedTextBlock.Text" xml:space="preserve">
+    <value>Duration since</value>
+  </data>
+  <data name="ShowOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Show Order</value>
+  </data>
+  <data name="TablesCheckBox.Content" xml:space="preserve">
     <value>Tables</value>
-    <comment>Used in MainFrame, DisplayOrderPage, OrdersListPage, PointOfSalesPage</comment>
-  </data>
-  <data name="OrdersTextBlock.Text" xml:space="preserve">
-    <value>Orders</value>
-    <comment>Used everyWhere</comment>
-  </data>
-  <data name="GotoTextBlock.Text" xml:space="preserve">
-    <value>Go to : </value>
-    <comment>Used in : DisplayOrderPage, OrdersListPage, PointOfSalesPage, TablesPage</comment>
-  </data>
-  <data name="UnitPriceTextBlock.Text" xml:space="preserve">
-    <value>Unit Price</value>
-    <comment>Used in DisplayOrderView, EditOrderView</comment>
-  </data>
-  <data name="TotalTextBlock.Text" xml:space="preserve">
-    <value>Total</value>
-    <comment>Used in DisplayOrderView, EditOrderView, TablesPage</comment>
-  </data>
-  <data name="TotalPriceTxtBlock.Text" xml:space="preserve">
-    <value>Total Price</value>
-    <comment>Used in DisplayOrderPage, EditOrderPage, OrdersListPage</comment>
-  </data>
-  <data name="OrderTextBlock.Text" xml:space="preserve">
-    <value>Order</value>
-    <comment>Used everyWhere</comment>
-  </data>
-  <data name="Table" xml:space="preserve">
-    <value>Table</value>
-    <comment>Used in PrintingService, OrderListVM, PointOfSalesVM, TablesVM</comment>
-  </data>
-  <data name="Waiting" xml:space="preserve">
-    <value>Waiting</value>
-    <comment>Not Used</comment>
-  </data>
-  <data name="Tables" xml:space="preserve">
-    <value>Tables</value>
-    <comment>NotFound</comment>
-  </data>
-  <data name="Orders" xml:space="preserve">
-    <value>Orders</value>
-    <comment>Not Found</comment>
   </data>
 </root>

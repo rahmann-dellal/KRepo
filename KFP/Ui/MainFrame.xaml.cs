@@ -121,13 +121,13 @@ namespace KFP.Ui
                 {
                     selectedNVI = AccountNVI;
                     ContentFrame.Navigate(typeof(AccountPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Account");
+                    NavView.Header = StringLocalisationService.getStringWithKey("AccountHeader");
                 }
                 else if (InvokedNVI == AboutNVI)
                 {
                     selectedNVI = AboutNVI;
                     ContentFrame.Navigate(typeof(AboutPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("About");
+                    NavView.Header = StringLocalisationService.getStringWithKey("AboutHeader");
                 }
                 else if(args.IsSettingsInvoked && UserHasPrivelegesOf(UserRole.Manager))
                 {

@@ -15,8 +15,6 @@ namespace KFP.Services
 
         private static ResourceContext resourceContext;
         private static ResourceMap resourceMap;
-        private static ResourceMap ErrorsResourceMap;
-        private static ResourceMap ToolTipsResourceMap;
         static StringLocalisationService()
         {
             appDataService = Ioc.Default.GetService<AppDataService>();
@@ -24,8 +22,6 @@ namespace KFP.Services
             resourceContext = new ResourceContext();
             resourceContext.QualifierValues["Language"] = appDataService.AppLanguage;
             resourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
-            ErrorsResourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("ErrorMessages");
-            ToolTipsResourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("ToolTips");
         }
 
         public static string getStringWithKey(string key)
@@ -36,14 +32,6 @@ namespace KFP.Services
                 if (resourceMap != null)
                 {
                     value = resourceMap.GetValue(key, resourceContext);
-                }
-                if (value == null && ErrorsResourceMap != null)
-                {
-                    value = ErrorsResourceMap.GetValue(key, resourceContext);
-                }
-                if (value == null && ToolTipsResourceMap != null)
-                {
-                    value = ToolTipsResourceMap.GetValue(key, resourceContext);
                 }
             }
             catch (Exception ex)

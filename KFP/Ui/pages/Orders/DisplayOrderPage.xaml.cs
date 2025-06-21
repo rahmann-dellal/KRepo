@@ -59,8 +59,8 @@ namespace KFP.Ui.pages
         public async Task<bool> ShowConfirmCancelOrderDialog(int OrderId)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Cancel_Order");
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Canceling_Order") + OrderId;
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Cancel_Order1");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Canceling_Order1") + OrderId;
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("No");
@@ -123,8 +123,8 @@ namespace KFP.Ui.pages
         public async Task<bool> ShowSetOrderCompletedDialog(int orderId)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Complete_Order") + "  #" + orderId ;
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confrim_Order_Completed");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("Complete_Order1") + "  #" + orderId ;
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confrim_Order_Completed1");
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");

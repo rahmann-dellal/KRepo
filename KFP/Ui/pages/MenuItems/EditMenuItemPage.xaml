@@ -18,8 +18,8 @@
     <ScrollViewer>
         <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
             <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-                <AppBarButton Icon="Save" x:Uid="UserSaveButton" x:Name="saveButton" Command="{x:Bind viewModel.SaveCommand}" Background="LightGreen" FontWeight="SemiBold"/>
-                <AppBarButton Icon="Refresh" x:Uid="UserResetButton"  x:Name="resetButton" Command="{x:Bind viewModel.ResetCommand}" FontWeight="SemiBold" />
+                <AppBarButton Icon="Save" x:Uid="MenuItemSaveButton" x:Name="saveButton" Command="{x:Bind viewModel.SaveCommand}" Background="LightGreen" FontWeight="SemiBold"/>
+                <AppBarButton Icon="Refresh" x:Uid="MenuItemResetButton"  x:Name="resetButton" Command="{x:Bind viewModel.ResetCommand}" FontWeight="SemiBold" />
             </CommandBar>
             <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
        Foreground="OrangeRed" FontSize="12"/>
@@ -52,7 +52,7 @@
                         </RadioButtons.ItemTemplate>
                         <RadioButtons.Header>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Uid="Item_Type_text_block" Margin="0,0,10,0"/>
+                                <TextBlock x:Uid="Item_Type_text_block2" Margin="0,0,10,0"/>
                                 <InfoBadge Background="LightGreen" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Top"
                                        ToolTipService.Placement="Right">
                                     <ToolTipService.ToolTip>
@@ -78,7 +78,7 @@
                             Visibility="Collapsed"
                             Foreground="OrangeRed" FontSize="12"/>
 
-                    <TextBlock x:Uid="AssignedCategories"  Margin="0,30,0,10"/>
+                    <TextBlock x:Uid="AssignedCategories2"  Margin="0,30,0,10"/>
                     <RelativePanel>
                         <ComboBox x:Name="allCategoriesCombo" x:Uid="allCategoriesCombo" ItemsSource="{x:Bind viewModel.choiseCategories, Mode=TwoWay}" DisplayMemberPath="CategoryName" Margin="10,8,10,0"
                               HorizontalAlignment="Center" SelectedItem="{x:Bind viewModel.SelectedCategoryToAdd, Mode=TwoWay}">
@@ -101,7 +101,7 @@
                 </StackPanel>
 
                 <StackPanel  Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="picture_text_block"/>
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="picture_text_block1"/>
                     <custom:InteractiveImageDisplay LoadedImageUri="{x:Bind viewModel.PictureUri, Mode=TwoWay}" Command="{x:Bind viewModel.SelectPictureCommand}"
               Height="auto" x:Name="imageGraber" Margin="0,20,0,0"/>
                     <StackPanel VerticalAlignment="Bottom" Orientation="Vertical" Margin="0,20,0,0">
