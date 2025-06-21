@@ -68,7 +68,7 @@ namespace KFP.Services
                 }
                 else
                 {
-                    return "en-US";
+                    return "fr-FR";
                 }
 
             }

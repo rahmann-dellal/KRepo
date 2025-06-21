@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using System.Linq;
+using Windows.Globalization;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,6 +28,7 @@ namespace KFP
         public App()
         {
             this.InitializeComponent();
+            //ApplicationLanguages.PrimaryLanguageOverride = "en";
         }
 
         /// <summary>

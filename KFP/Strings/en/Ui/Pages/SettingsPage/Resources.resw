@@ -196,7 +196,7 @@
     <value>Orders</value>
   </data>
   <data name="Overlapped.Content" xml:space="preserve">
-    <value>Overlapped</value>
+    <value>Windowed</value>
   </data>
   <data name="PreBillPrinterSettingCard.Description" xml:space="preserve">
     <value>Select the printer used for printing pre-bills for customers</value>

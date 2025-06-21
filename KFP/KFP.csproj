@@ -253,8 +253,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Strings\fr-FR\Ui\" />
-    <Folder Include="Strings\fr-FR\Printables\" />
     <Folder Include="Ui\pages\Users\" />
   </ItemGroup>
 
