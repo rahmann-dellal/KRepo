@@ -57,19 +57,19 @@
             <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
                 <TextBlock Text="Picture" x:Uid="picture_text_block"  HorizontalAlignment="Center" FontWeight="Bold"/>
                 <Border CornerRadius="4" BorderThickness="2" BorderBrush="LightGray" Width="300" Height="300" Margin="15,20,0,0">
-                    <Image x:Name="picture" HorizontalAlignment="Center" Width="300" Height="300" Stretch="UniformToFill"/>
+                    <Image x:Name="picture" HorizontalAlignment="Center" Width="300" Height="300" Stretch="Fill"/>
                 </Border>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0">
-                <Button  Width="200" HorizontalContentAlignment="Center" Command="{x:Bind GoToEditPageCommand}"
+                <Button  Width="240" HorizontalContentAlignment="Center" Command="{x:Bind GoToEditPageCommand}"
     Foreground="{ThemeResource TextOnAccentFillColorPrimary}" Background="{ThemeResource AccentFillColorDefaultBrush}" BorderBrush="{ThemeResource ProgressBarBorderThemeBrush}">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="&#xE70F;" />
                         <TextBlock x:Uid="Edit_Menu_Item_Button" Margin="8,0,0,0"/>
                     </StackPanel>
                 </Button>
-                <Button  Width="200" HorizontalContentAlignment="Center" Command="{x:Bind DeleteCommand}"
+                <Button  Width="240" HorizontalContentAlignment="Center" Command="{x:Bind DeleteCommand}"
         Margin="20,0,0,0" 
         Foreground="{ThemeResource SystemFillColorCaution}" BorderBrush="{ThemeResource SystemFillColorCaution}" Background="{ThemeResource SystemFillColorCautionBackground}">
                     <StackPanel Orientation="Horizontal">

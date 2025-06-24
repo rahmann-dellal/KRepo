@@ -30,7 +30,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="0">
                     <TextBox Text="{x:Bind viewModel.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Width="230" HorizontalAlignment="Left" 
+                         Width="330" HorizontalAlignment="Left" 
                          x:Name="itemNameTextBox" FontSize="20">
                         <TextBox.Header>
                             <TextBlock x:Uid="Items_name_Mandatory" FontSize="14"/>
