@@ -28,7 +28,6 @@ namespace KFP
         public App()
         {
             this.InitializeComponent();
-            //ApplicationLanguages.PrimaryLanguageOverride = "en";
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using KFP.DATA;
 using Microsoft.UI.Windowing;
 using System;
 using System.ComponentModel;
+using Windows.System.UserProfile;
 
 namespace KFP.Services
 {
@@ -68,7 +69,7 @@ namespace KFP.Services
                 }
                 else
                 {
-                    return "fr-FR";
+                    return GlobalizationPreferences.Languages[0].Substring(0, 2);
                 }
 
             }

@@ -1,20 +1,22 @@
-﻿using KFP.DATA;
+﻿using CommunityToolkit.Common;
+using KFP.DATA;
 using KFP.Services;
 using Microsoft.UI.Windowing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace KFP.ViewModels
 {
     public class SettingsVM : KioberViewModelBase
     {
+
         private AppDataService _appDataService;
         private AppState _appState;
         private IPrintingService _printingService;
         public List<Currency> Currencies { get; set; }
+        public List<Language> Languages { get; set; }
         public List<string> Printers { get; private set; }
         public SettingsVM(AppDataService appDataService, AppState appState, IPrintingService printingService)
         {
@@ -23,6 +25,13 @@ namespace KFP.ViewModels
             Currencies = Enum.GetValues(typeof(Currency)).Cast<Currency>().ToList(); ;
             _printingService = printingService;
             Printers = _printingService.GetAvailablePrinters();
+            Languages = new List<Language>
+            {
+                new Language("en"),
+                new Language("fr")
+            };
+            var code = _appDataService.AppLanguage;
+            _language = Languages.FirstOrDefault(l => l.Code == code) ?? Languages[0];
         }
 
         /// <section>
@@ -40,15 +49,20 @@ namespace KFP.ViewModels
             }
         }
 
-        public string language
+        private Language _language;
+        public Language language
         {
             get
             {
-                return _appDataService.AppLanguage;
+                return _language;
             }
             set
             {
-                _appDataService.AppLanguage = value;
+                if (_language?.Code == value?.Code)
+                    return;
+
+                _language = value;
+                _appDataService.AppLanguage = value.Code;
             }
         }
 
@@ -348,6 +362,28 @@ namespace KFP.ViewModels
             set
             {
                 _appDataService.PrintCashierNameWithPreBill = value;
+            }
+        }
+    }
+
+    public class Language
+    {
+        public Language() { }
+        public Language(string code)
+        {
+            Code = code;
+        }
+        public string Code { get; set; } = "en";
+        public string Name
+        {
+            get
+            {
+                return Code switch
+                {
+                    "en" => "English",
+                    "fr" => "Français",
+                    _ => "Unknown"
+                };
             }
         }
     }

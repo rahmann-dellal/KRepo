@@ -117,167 +117,184 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="App_Window_Display.Header" xml:space="preserve">
-  <value>Affichage de la fenêtre</value>
-</data>
-	<data name="CurrencySettingCard.Header" xml:space="preserve">
-  <value>Devise</value>
-</data>
-	<data name="CustomerOrderPrinterSettingCard.Header" xml:space="preserve">
-  <value>Imprimante du ticket de commande client</value>
-</data>
-	<data name="EstablishmentAddressSettingCard.Description" xml:space="preserve">
-  <value>Peut être imprimée sur les tickets ou les reçus</value>
-</data>
-	<data name="EstablishmentAddressSettingCard.Header" xml:space="preserve">
-  <value>Adresse</value>
-</data>
-	<data name="EstablishmentNameSettingCard.Description" xml:space="preserve">
-  <value>Peut être imprimé sur les tickets ou les reçus</value>
-</data>
-	<data name="EstablishmentNameSettingCard.Header" xml:space="preserve">
-  <value>Nom de l'établissement</value>
-</data>
-	<data name="EstablishmentPhoneNumber1SettingCard.Description" xml:space="preserve">
-  <value>Peut être imprimé sur les tickets ou les reçus</value>
-</data>
-	<data name="EstablishmentPhoneNumber1SettingCard.Header" xml:space="preserve">
-  <value>Premier numéro de téléphone</value>
-</data>
-	<data name="EstablishmentPhoneNumber2SettingCard.Description" xml:space="preserve">
-  <value>Peut être imprimé sur les tickets ou les reçus</value>
-</data>
-	<data name="EstablishmentPhoneNumber2SettingCard.Header" xml:space="preserve">
-  <value>Deuxième numéro de téléphone</value>
-</data>
-	<data name="EstablishmentSelectorItem.Text" xml:space="preserve">
-  <value>Établissement</value>
-</data>
-	<data name="EstablishmentTextBox.Text" xml:space="preserve">
-  <value>Établissement</value>
-</data>
-	<data name="FullScreen.Content" xml:space="preserve">
-  <value>Plein écran</value>
-</data>
-	<data name="GeneralSettings.Text" xml:space="preserve">
-  <value>Paramètres généraux</value>
-</data>
-	<data name="generalSettingsSelectorItem.Text" xml:space="preserve">
-  <value>Paramètres généraux</value>
-</data>
-	<data name="KitchenOrderPrinterSettingCard.Description" xml:space="preserve">
-  <value>Sélectionner l'imprimante des tickets cuisine</value>
-</data>
-	<data name="KitchenOrderPrinterSettingCard.Header" xml:space="preserve">
-  <value>Imprimante cuisine</value>
-</data>
-	<data name="minutesTextBlock.Text" xml:space="preserve">
-  <value>Minutes</value>
-</data>
-	<data name="NumberOfTablesSettingCard.Description" xml:space="preserve">
-  <value>Entrez 0 si l'établissement ne dispose pas de tables</value>
-</data>
-	<data name="NumberOfTablesSettingCard.Header" xml:space="preserve">
-  <value>Nombre de tables</value>
-</data>
-	<data name="orderLateDelaySettingCard.Description" xml:space="preserve">
-  <value>Nombre de minutes avant que la commande ne soit considérée comme en retard (Alerte orange)</value>
-</data>
-	<data name="orderLateDelaySettingCard.Header" xml:space="preserve">
-  <value>Délai avant retard de commande</value>
-</data>
-	<data name="orderOverdueDelaySettingCard.Description" xml:space="preserve">
-  <value>Nombre de minutes avant que la commande ne soit considérée comme en dépassement (Alerte rouge)</value>
-</data>
-	<data name="orderOverdueDelaySettingCard.Header" xml:space="preserve">
-  <value>Délai avant dépassement de commande</value>
-</data>
-	<data name="OrdersSelectorItem.Text" xml:space="preserve">
-  <value>Commandes</value>
-</data>
-	<data name="Overlapped.Content" xml:space="preserve">
-  <value>Affichage fenêtré</value>
-</data>
-	<data name="PreBillPrinterSettingCard.Description" xml:space="preserve">
-  <value>Sélectionner l'imprimante pour les tickets de commande client</value>
-</data>
-	<data name="PrintEstablishmentAddressWithPreBillSettingCard.Description" xml:space="preserve">
-  <value>Ajouter l'adresse de l'établissement en en-tête du ticket de commande client ?</value>
-</data>
-	<data name="PrintEstablishmentAddressWithPreBillSettingCard.Header" xml:space="preserve">
-  <value>Imprimer l'adresse de l'établissement</value>
-</data>
-	<data name="PrintEstablishmentAddressWithReceiptSettingCard.Description" xml:space="preserve">
-  <value>Ajouter l'adresse de l'établissement en en-tête du reçu ?</value>
-</data>
-	<data name="PrintEstablishmentAddressWithReceiptSettingCard.Header" xml:space="preserve">
-  <value>Imprimer l'adresse de l'établissement</value>
-</data>
-	<data name="PrintEstablishmentNameWithPreBillSettingCard.Description" xml:space="preserve">
-  <value>Ajouter le nom de l'établissement en en-tête du ticket de commande client ?</value>
-</data>
-	<data name="PrintEstablishmentNameWithPreBillSettingCard.Header" xml:space="preserve">
-  <value>Imprimer le nom de l'établissement</value>
-</data>
-	<data name="PrintEstablishmentNameWithReceiptSettingCard.Description" xml:space="preserve">
-  <value>Ajouter le nom de l'établissement en en-tête du reçu ?</value>
-</data>
-	<data name="PrintEstablishmentNameWithReceiptSettingCard.Header" xml:space="preserve">
-  <value>Imprimer le nom de l'établissement</value>
-</data>
-	<data name="PrintEstablishmentPhone1WithPreBillSettingCard.Description" xml:space="preserve">
-  <value>Ajouter le premier numéro de téléphone en en-tête du ticket de commande client ?</value>
-</data>
-	<data name="PrintEstablishmentPhone1WithPreBillSettingCard.Header" xml:space="preserve">
-  <value>Imprimer le premier numéro de téléphone</value>
-</data>
-	<data name="PrintEstablishmentPhone1WithReceiptSettingCard.Description" xml:space="preserve">
-  <value>Ajouter le premier numéro de téléphone en en-tête du reçu ?</value>
-</data>
-	<data name="PrintEstablishmentPhone1WithReceiptSettingCard.Header" xml:space="preserve">
-  <value>Imprimer le premier numéro de téléphone</value>
-</data>
-	<data name="PrintEstablishmentPhone2WithPreBillSettingCard.Description" xml:space="preserve">
-  <value>Ajouter le deuxième numéro de téléphone en en-tête du ticket de commande client ?</value>
-</data>
-	<data name="PrintEstablishmentPhone2WithPreBillSettingCard.Header" xml:space="preserve">
-  <value>Imprimer le deuxième numéro de téléphone</value>
-</data>
-	<data name="PrintEstablishmentPhone2WithRecieptSettingCard.Description" xml:space="preserve">
-  <value>Ajouter le deuxième numéro de téléphone en en-tête du reçu ?</value>
-</data>
-	<data name="PrintEstablishmentPhone2WithRecieptSettingCard.Header" xml:space="preserve">
-  <value>Imprimer le deuxième numéro de téléphone</value>
-</data>
-	<data name="PrintingSelectorItem.Text" xml:space="preserve">
-  <value>Impression</value>
-</data>
-	<data name="PrintingTextBlock.Text" xml:space="preserve">
-  <value>Impression</value>
-</data>
-	<data name="PrintKitchenOrderSettingCard.Description" xml:space="preserve">
-  <value>Tickets pour la cuisine</value>
-</data>
-	<data name="PrintKitchenOrderSettingCard.Header" xml:space="preserve">
-  <value>Imprimer les tickets cuisine ?</value>
-</data>
-	<data name="PrintPreBillSettingCard.Description" xml:space="preserve">
-  <value>Imprimer un ticket de commande client avant le paiement</value>
-</data>
-	<data name="PrintPreBillSettingCard.Header" xml:space="preserve">
-  <value>Imprimer un ticket de commande client ?</value>
-</data>
-	<data name="PrintReceiptSettingCard.Description" xml:space="preserve">
-  <value>Imprimer un reçu de paiement lors de la confirmation</value>
-</data>
-	<data name="PrintReceiptSettingCard.Header" xml:space="preserve">
-  <value>Imprimer un reçu de paiement ?</value>
-</data>
-	<data name="ReceiptPrinterSettingCard.Description" xml:space="preserve">
-  <value>Sélectionner l'imprimante pour les reçus de paiement</value>
-</data>
-	<data name="ReceiptPrinterSettingCard.Header" xml:space="preserve">
-  <value>Imprimante des reçus de paiement</value>
-</data>
-
+  <data name="App_Restart_Needed_to_apply_language_change" xml:space="preserve">
+    <value>Pour appliquer le changement de langue, il faut redémarrer l'application</value>
+  </data>
+  <data name="App_Window_Display.Header" xml:space="preserve">
+    <value>Affichage de la fenêtre</value>
+  </data>
+  <data name="Cancel_3" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="CurrencySettingCard.Header" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="CustomerOrderPrinterSettingCard.Header" xml:space="preserve">
+    <value>Imprimante du ticket de commande client</value>
+  </data>
+  <data name="EstablishmentAddressSettingCard.Description" xml:space="preserve">
+    <value>Peut être imprimée sur les tickets ou les reçus</value>
+  </data>
+  <data name="EstablishmentAddressSettingCard.Header" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="EstablishmentNameSettingCard.Description" xml:space="preserve">
+    <value>Peut être imprimé sur les tickets ou les reçus</value>
+  </data>
+  <data name="EstablishmentNameSettingCard.Header" xml:space="preserve">
+    <value>Nom de l'établissement</value>
+  </data>
+  <data name="EstablishmentPhoneNumber1SettingCard.Description" xml:space="preserve">
+    <value>Peut être imprimé sur les tickets ou les reçus</value>
+  </data>
+  <data name="EstablishmentPhoneNumber1SettingCard.Header" xml:space="preserve">
+    <value>Premier numéro de téléphone</value>
+  </data>
+  <data name="EstablishmentPhoneNumber2SettingCard.Description" xml:space="preserve">
+    <value>Peut être imprimé sur les tickets ou les reçus</value>
+  </data>
+  <data name="EstablishmentPhoneNumber2SettingCard.Header" xml:space="preserve">
+    <value>Deuxième numéro de téléphone</value>
+  </data>
+  <data name="EstablishmentSelectorItem.Text" xml:space="preserve">
+    <value>Établissement</value>
+  </data>
+  <data name="EstablishmentTextBox.Text" xml:space="preserve">
+    <value>Établissement</value>
+  </data>
+  <data name="FullScreen.Content" xml:space="preserve">
+    <value>Plein écran</value>
+  </data>
+  <data name="GeneralSettings.Text" xml:space="preserve">
+    <value>Paramètres généraux</value>
+  </data>
+  <data name="generalSettingsSelectorItem.Text" xml:space="preserve">
+    <value>Paramètres généraux</value>
+  </data>
+  <data name="KitchenOrderPrinterSettingCard.Description" xml:space="preserve">
+    <value>Sélectionner l'imprimante des tickets cuisine</value>
+  </data>
+  <data name="KitchenOrderPrinterSettingCard.Header" xml:space="preserve">
+    <value>Imprimante cuisine</value>
+  </data>
+  <data name="LanguageSettingCard.Description" xml:space="preserve">
+    <value>selectionner la langue (Redémarrage necessaire de l'application)</value>
+  </data>
+  <data name="LanguageSettingCard.Header" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="minutesTextBlock.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="NumberOfTablesSettingCard.Description" xml:space="preserve">
+    <value>Entrez 0 si l'établissement ne dispose pas de tables</value>
+  </data>
+  <data name="NumberOfTablesSettingCard.Header" xml:space="preserve">
+    <value>Nombre de tables</value>
+  </data>
+  <data name="orderLateDelaySettingCard.Description" xml:space="preserve">
+    <value>Nombre de minutes avant que la commande ne soit considérée comme en retard (Alerte orange)</value>
+  </data>
+  <data name="orderLateDelaySettingCard.Header" xml:space="preserve">
+    <value>Délai avant retard de commande</value>
+  </data>
+  <data name="orderOverdueDelaySettingCard.Description" xml:space="preserve">
+    <value>Nombre de minutes avant que la commande ne soit considérée comme en dépassement (Alerte rouge)</value>
+  </data>
+  <data name="orderOverdueDelaySettingCard.Header" xml:space="preserve">
+    <value>Délai avant dépassement de commande</value>
+  </data>
+  <data name="OrdersSelectorItem.Text" xml:space="preserve">
+    <value>Commandes</value>
+  </data>
+  <data name="Overlapped.Content" xml:space="preserve">
+    <value>Affichage fenêtré</value>
+  </data>
+  <data name="PreBillPrinterSettingCard.Description" xml:space="preserve">
+    <value>Sélectionner l'imprimante pour les tickets de commande client</value>
+  </data>
+  <data name="PrintEstablishmentAddressWithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Ajouter l'adresse de l'établissement en en-tête du ticket de commande client ?</value>
+  </data>
+  <data name="PrintEstablishmentAddressWithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Imprimer l'adresse de l'établissement</value>
+  </data>
+  <data name="PrintEstablishmentAddressWithReceiptSettingCard.Description" xml:space="preserve">
+    <value>Ajouter l'adresse de l'établissement en en-tête du reçu ?</value>
+  </data>
+  <data name="PrintEstablishmentAddressWithReceiptSettingCard.Header" xml:space="preserve">
+    <value>Imprimer l'adresse de l'établissement</value>
+  </data>
+  <data name="PrintEstablishmentNameWithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Ajouter le nom de l'établissement en en-tête du ticket de commande client ?</value>
+  </data>
+  <data name="PrintEstablishmentNameWithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Imprimer le nom de l'établissement</value>
+  </data>
+  <data name="PrintEstablishmentNameWithReceiptSettingCard.Description" xml:space="preserve">
+    <value>Ajouter le nom de l'établissement en en-tête du reçu ?</value>
+  </data>
+  <data name="PrintEstablishmentNameWithReceiptSettingCard.Header" xml:space="preserve">
+    <value>Imprimer le nom de l'établissement</value>
+  </data>
+  <data name="PrintEstablishmentPhone1WithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Ajouter le premier numéro de téléphone en en-tête du ticket de commande client ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone1WithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Imprimer le premier numéro de téléphone</value>
+  </data>
+  <data name="PrintEstablishmentPhone1WithReceiptSettingCard.Description" xml:space="preserve">
+    <value>Ajouter le premier numéro de téléphone en en-tête du reçu ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone1WithReceiptSettingCard.Header" xml:space="preserve">
+    <value>Imprimer le premier numéro de téléphone</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithPreBillSettingCard.Description" xml:space="preserve">
+    <value>Ajouter le deuxième numéro de téléphone en en-tête du ticket de commande client ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithPreBillSettingCard.Header" xml:space="preserve">
+    <value>Imprimer le deuxième numéro de téléphone</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithRecieptSettingCard.Description" xml:space="preserve">
+    <value>Ajouter le deuxième numéro de téléphone en en-tête du reçu ?</value>
+  </data>
+  <data name="PrintEstablishmentPhone2WithRecieptSettingCard.Header" xml:space="preserve">
+    <value>Imprimer le deuxième numéro de téléphone</value>
+  </data>
+  <data name="PrintingSelectorItem.Text" xml:space="preserve">
+    <value>Impression</value>
+  </data>
+  <data name="PrintingTextBlock.Text" xml:space="preserve">
+    <value>Impression</value>
+  </data>
+  <data name="PrintKitchenOrderSettingCard.Description" xml:space="preserve">
+    <value>Tickets pour la cuisine</value>
+  </data>
+  <data name="PrintKitchenOrderSettingCard.Header" xml:space="preserve">
+    <value>Imprimer les tickets cuisine ?</value>
+  </data>
+  <data name="PrintPreBillSettingCard.Description" xml:space="preserve">
+    <value>Imprimer un ticket de commande client avant le paiement</value>
+  </data>
+  <data name="PrintPreBillSettingCard.Header" xml:space="preserve">
+    <value>Imprimer un ticket de commande client ?</value>
+  </data>
+  <data name="PrintReceiptSettingCard.Description" xml:space="preserve">
+    <value>Imprimer un reçu de paiement lors de la confirmation</value>
+  </data>
+  <data name="PrintReceiptSettingCard.Header" xml:space="preserve">
+    <value>Imprimer un reçu de paiement ?</value>
+  </data>
+  <data name="ReceiptPrinterSettingCard.Description" xml:space="preserve">
+    <value>Sélectionner l'imprimante pour les reçus de paiement</value>
+  </data>
+  <data name="ReceiptPrinterSettingCard.Header" xml:space="preserve">
+    <value>Imprimante des reçus de paiement</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Redémarrer</value>
+  </data>
+  <data name="RestartNeeded" xml:space="preserve">
+    <value>Redémarrage necessaire</value>
+  </data>
 </root>

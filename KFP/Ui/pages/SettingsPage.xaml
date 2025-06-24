@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:ui="using:CommunityToolkit.WinUI"
-    xmlns:components="using:KFP.Ui.Components">
+    xmlns:components="using:KFP.Ui.Components" xmlns:vm="using:KFP.ViewModels">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -31,6 +31,21 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="40,20,40,40" MaxWidth="900">
 
                 <TextBlock FontSize="22" x:Name="GeneralSettingsTextBlock" x:Uid="GeneralSettings" FontWeight="SemiBold"/>
+                <controls:SettingsCard x:Uid="LanguageSettingCard" Margin="20,25,0,0"
+                                HeaderIcon="{ui:FontIcon Glyph=&#xF085;}" >
+                    <ComboBox  x:Name="LanguageComboBox"
+                              ItemsSource="{x:Bind ViewModel.Languages, Mode=OneWay}"
+                              SelectionChanged="ComboBox_SelectionChanged"
+                              SelectedItem="{x:Bind ViewModel.language, Mode=OneWay}"
+                              Width="200"
+                              Margin="10">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:Language">
+                                <TextBlock Text="{x:Bind Name}" Margin="0,0,10,0"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </controls:SettingsCard>
                 <controls:SettingsCard x:Uid="App_Window_Display" Margin="20,25,0,0"
                                HeaderIcon="{ui:FontIcon Glyph=&#xE7F4;}" >
                     <RadioButtons Margin="10,10,0,0">

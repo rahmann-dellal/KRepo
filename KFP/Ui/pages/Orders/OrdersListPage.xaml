@@ -64,7 +64,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="4*"/>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="6*"/>
                         <ColumnDefinition Width="5*"/>
@@ -88,7 +88,7 @@
                             <DataTemplate x:DataType="vm:OrdersListElement">
                                 <Grid Margin="-15,10,0,0" BorderThickness="1" BorderBrush="#FFCCDDCC" Background="White" Padding="13,10,3,10" CornerRadius="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="4*"/>
                                         <ColumnDefinition Width="5*"/>
                                         <ColumnDefinition Width="6*"/>
                                         <ColumnDefinition Width="5*"/>

@@ -117,35 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="activeForTextBlock.Text" xml:space="preserve">
-  <value>Ouvert depuis</value>
-</data>
-	<data name="cashDrawerTexBlock.Text" xml:space="preserve">
-  <value>Caisson</value>
-</data>
-	<data name="CurrentUserTextBlock.Text" xml:space="preserve">
-  <value>Utilisateur actuel</value>
-</data>
-	<data name="logoutButton.Text" xml:space="preserve">
-  <value>Déconnexion</value>
-</data>
-	<data name="OpeningCashTextBlock.Text" xml:space="preserve">
-  <value>Fonds d'ouverture</value>
-</data>
-	<data name="startedAtTextBlock.Text" xml:space="preserve">
-  <value>Démarré à</value>
-</data>
-	<data name="TotalCardTextBlock.Text" xml:space="preserve">
-  <value>Total paiements carte</value>
-</data>
-	<data name="TotalCashTextBlock.Text" xml:space="preserve">
-  <value>Total paiements espèces</value>
-</data>
-	<data name="TotalinDrawerTextBlock.Text" xml:space="preserve">
-  <value>Total dans le tiroir-caisse</value>
-</data>
-	<data name="TotalPaymentsTextBlock.Text" xml:space="preserve">
-  <value>Total des paiements</value>
-</data>
-
+  <data name="activeForTextBlock.Text" xml:space="preserve">
+    <value>Ouvert depuis</value>
+  </data>
+  <data name="cashDrawerTexBlock.Text" xml:space="preserve">
+    <value>Tiroir-caisse</value>
+  </data>
+  <data name="CurrentUserTextBlock.Text" xml:space="preserve">
+    <value>Utilisateur actuel</value>
+  </data>
+  <data name="logoutButton.Text" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
+  <data name="OpeningCashTextBlock.Text" xml:space="preserve">
+    <value>Fond de caisse initial</value>
+  </data>
+  <data name="startedAtTextBlock.Text" xml:space="preserve">
+    <value>Démarré à</value>
+  </data>
+  <data name="TotalCardTextBlock.Text" xml:space="preserve">
+    <value>Total paiements carte</value>
+  </data>
+  <data name="TotalCashTextBlock.Text" xml:space="preserve">
+    <value>Total paiements espèces</value>
+  </data>
+  <data name="TotalinDrawerTextBlock.Text" xml:space="preserve">
+    <value>Total dans le tiroir-caisse</value>
+  </data>
+  <data name="TotalPaymentsTextBlock.Text" xml:space="preserve">
+    <value>Total des paiements</value>
+  </data>
 </root>

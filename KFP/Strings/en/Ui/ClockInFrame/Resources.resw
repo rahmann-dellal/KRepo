@@ -126,6 +126,9 @@
   <data name="LoginTextBlock.Text" xml:space="preserve">
     <value>Log in</value>
   </data>
+  <data name="OpeningCashTextBlock_2.Text" xml:space="preserve">
+    <value>Opening Cash</value>
+  </data>
   <data name="please_enter_pin" xml:space="preserve">
     <value>Enter PIN</value>
   </data>

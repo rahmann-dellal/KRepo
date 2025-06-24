@@ -80,10 +80,6 @@
     <value>Autre</value>
     <comment>Used in MenuItemTypeConverter</comment>
   </data>
-	<data name="upload_from_files_link.Text" xml:space="preserve">
-    <value>Cliquez ici pour télécharger</value>
-    <comment>Used in InteractiveImageDisplay</comment>
-  </data>
 	<data name="WaitingForLoggin" xml:space="preserve">
     <value>Connexion...</value>
     <comment>Currently doesn't show (not enough time before login)</comment>

@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="App_Restart_Needed_to_apply_language_change" xml:space="preserve">
+    <value>Application restart required to apply language change</value>
+  </data>
   <data name="App_Window_Display.Header" xml:space="preserve">
     <value>Window's Display</value>
+  </data>
+  <data name="Cancel_3" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="CurrencySettingCard.Header" xml:space="preserve">
     <value>Currency</value>
@@ -170,6 +176,12 @@
   </data>
   <data name="KitchenOrderPrinterSettingCard.Header" xml:space="preserve">
     <value>Kitchen printer</value>
+  </data>
+  <data name="LanguageSettingCard.Description" xml:space="preserve">
+    <value>Select display language (need app restart to take effect)</value>
+  </data>
+  <data name="LanguageSettingCard.Header" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="minutesTextBlock.Text" xml:space="preserve">
     <value>Minutes</value>
@@ -278,5 +290,11 @@
   </data>
   <data name="ReceiptPrinterSettingCard.Header" xml:space="preserve">
     <value>Payment receipt's printer</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="RestartNeeded" xml:space="preserve">
+    <value>Restart Required</value>
   </data>
 </root>

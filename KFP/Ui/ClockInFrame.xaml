@@ -81,7 +81,7 @@
                                  Visibility="{x:Bind OpeningCashSet, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                 <StackPanel x:Name="openingCashInput" Margin="0,25,0,0" Visibility="{x:Bind showOpeningCashInput, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="Opening Cash" VerticalAlignment="Center"/>
+                        <TextBlock x:Uid="OpeningCashTextBlock_2" VerticalAlignment="Center"/>
                         <custom:KioberNumberBox Value="{x:Bind OpeningCash, Mode=TwoWay}" x:Name="numberBox" Height="50" AllowOnlyPositiveValues="True" Margin="0,0,20,0"/>
                         <Button x:Name="numberBoxButton" Click="numberBoxButton_Click"
                                 Height="100" Width="100"
