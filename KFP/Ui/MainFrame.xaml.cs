@@ -99,6 +99,24 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(CategoriesPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("Menu_Item_Categories");
                 }
+                else if(InvokedNVI == OrdersHistoryNVI && UserHasPrivelegesOf(UserRole.Manager))
+                {
+                    selectedNVI = OrdersHistoryNVI;
+                    ContentFrame.Navigate(typeof(OrdersHistoryPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Orders_History");
+                }
+                else if (InvokedNVI == SalesHistoryNVI && UserHasPrivelegesOf(UserRole.Manager))
+                {
+                    selectedNVI = SalesHistoryNVI;
+                    ContentFrame.Navigate(typeof(SalesHistoryPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Sales_History");
+                }
+                else if (InvokedNVI == SessionHistoryNVI && UserHasPrivelegesOf(UserRole.Manager))
+                {
+                    selectedNVI = SessionHistoryNVI;
+                    ContentFrame.Navigate(typeof(SessionHistoryPage));
+                    NavView.Header = StringLocalisationService.getStringWithKey("Session_History");
+                }
                 else if (InvokedNVI == ListUsersNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = ListUsersNVI;

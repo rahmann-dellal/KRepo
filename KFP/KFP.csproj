@@ -161,6 +161,15 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Ui\pages\History\SessionHistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Ui\pages\History\SalesHistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Ui\pages\History\OrdersHistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Ui\pages\AccountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

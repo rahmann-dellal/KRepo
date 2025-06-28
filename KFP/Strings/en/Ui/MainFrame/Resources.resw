@@ -124,19 +124,19 @@
     <value>About</value>
   </data>
   <data name="AccountHeader" xml:space="preserve">
-    <value>Account</value>
+    <value>Kiober Account</value>
   </data>
   <data name="AccountTextBlock.Text" xml:space="preserve">
-    <value>Account</value>
+    <value>Kiober Account</value>
   </data>
   <data name="AddMenuItemTextBlock1.Text" xml:space="preserve">
-    <value>Add a menu item</value>
+    <value>Add a Menu Item</value>
   </data>
   <data name="AddUserTextBlock.Text" xml:space="preserve">
     <value>Add a User</value>
   </data>
   <data name="Add_menu_item" xml:space="preserve">
-    <value>Add menu item</value>
+    <value>Add Menu Item</value>
   </data>
   <data name="Add_User" xml:space="preserve">
     <value>Add User</value>
@@ -144,8 +144,11 @@
   <data name="CategoriesTextBlock.Text" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="HistoryTextBlock.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
   <data name="ListMenuItemsTextBlock.Text" xml:space="preserve">
-    <value>List menu items</value>
+    <value>List Menu Items</value>
   </data>
   <data name="ListUsersTextBlock.Text" xml:space="preserve">
     <value>List Users</value>
@@ -157,16 +160,34 @@
     <value>Menu Items</value>
   </data>
   <data name="Menu_items_list" xml:space="preserve">
-    <value>Menu items</value>
+    <value>Menu Items</value>
   </data>
   <data name="Menu_Item_Categories" xml:space="preserve">
     <value>Menu Item Categories</value>
   </data>
+  <data name="OrdersHistoryTextBlock.Text" xml:space="preserve">
+    <value>Order History</value>
+  </data>
+  <data name="Orders_History" xml:space="preserve">
+    <value>Order History</value>
+  </data>
+  <data name="SalesHistoryTextBlock.Text" xml:space="preserve">
+    <value>Sales History</value>
+  </data>
+  <data name="Sales_History" xml:space="preserve">
+    <value>Sales History</value>
+  </data>
   <data name="Session" xml:space="preserve">
     <value>Session</value>
   </data>
+  <data name="SessionHistoryTextBlock.Text" xml:space="preserve">
+    <value>Session History</value>
+  </data>
   <data name="SessionTextBlock.Text" xml:space="preserve">
     <value>Session</value>
+  </data>
+  <data name="Session_History" xml:space="preserve">
+    <value>Session History</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>

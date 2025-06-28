@@ -174,11 +174,11 @@
     <comment>Not used</comment>
   </data>
   <data name="POS" xml:space="preserve">
-    <value>Point Of Sales</value>
+    <value>Point of Sales</value>
     <comment>Not Used</comment>
   </data>
   <data name="POSTextBlock.Text" xml:space="preserve">
-    <value>Point Of Sales</value>
+    <value>Point of Sales</value>
     <comment>Used In MainFrame.xaml, OrdersLisPage, PointOfSalesPage, TablesPage</comment>
   </data>
   <data name="Other" xml:space="preserve">

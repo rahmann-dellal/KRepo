@@ -117,29 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="AddMenuItemTextBlock3.Text" xml:space="preserve">
-  <value>Ajouter un élément au menu</value>
-</data>
-	<data name="AddMenuItemTextBlock2.Text" xml:space="preserve">
-  <value>Ajouter un élément au menu</value>
-</data>
-	<data name="MenuItemsActionsTextBlock.Text" xml:space="preserve">
-  <value>Actions</value>
-</data>
-	<data name="Item_Type_text_block3.Text" xml:space="preserve">
-  <value>Type d’article</value>
-</data>
-	<data name="Items_name2.Text" xml:space="preserve">
-  <value>Nom de l’article</value>
-</data>
-	<data name="Items_price2.Text" xml:space="preserve">
-  <value>Prix de l’article</value>
-</data>
-	<data name="PageTextBlock.Text" xml:space="preserve">
-  <value>Page :</value>
-</data>
-	<data name="picture_text_block2.Text" xml:space="preserve">
-  <value>Image</value>
-</data>
-
+  <data name="AddMenuItemTextBlock3.Text" xml:space="preserve">
+    <value>Ajouter un article au menu</value>
+  </data>
+  <data name="AddMenuItemTextBlock2.Text" xml:space="preserve">
+    <value>Ajouter un article au menu</value>
+  </data>
+  <data name="MenuItemsActionsTextBlock.Text" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="Item_Type_text_block3.Text" xml:space="preserve">
+    <value>Type d’article</value>
+  </data>
+  <data name="Items_name2.Text" xml:space="preserve">
+    <value>Nom de l’article</value>
+  </data>
+  <data name="Items_price2.Text" xml:space="preserve">
+    <value>Prix de l’article</value>
+  </data>
+  <data name="PageTextBlock.Text" xml:space="preserve">
+    <value>Page :</value>
+  </data>
+  <data name="picture_text_block2.Text" xml:space="preserve">
+    <value>Image</value>
+  </data>
 </root>

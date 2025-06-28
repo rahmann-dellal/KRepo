@@ -87,6 +87,7 @@ namespace KFP.Ui.pages
             confirmDialog.Title = StringLocalisationService.getStringWithKey("RestartNeeded");
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Restart");
             confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel_3");
+            confirmDialog.DefaultButton = ContentDialogButton.Primary;
             confirmDialog.XamlRoot = this.XamlRoot;
             ContentDialogResult result = await confirmDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)

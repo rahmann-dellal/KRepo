@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="App_Restart_Needed_to_apply_language_change" xml:space="preserve">
-    <value>Pour appliquer le changement de langue, il faut redémarrer l'application</value>
+    <value>Un redémarrage de l'application est necessaire pour appliquer le changement de langue</value>
   </data>
   <data name="App_Window_Display.Header" xml:space="preserve">
     <value>Affichage de la fenêtre</value>
@@ -178,7 +178,7 @@
     <value>Imprimante cuisine</value>
   </data>
   <data name="LanguageSettingCard.Description" xml:space="preserve">
-    <value>selectionner la langue (Redémarrage necessaire de l'application)</value>
+    <value>Choisissez la langue d’affichage de l’application (vous devrez redémarrer l’application pour appliquer le changement).</value>
   </data>
   <data name="LanguageSettingCard.Header" xml:space="preserve">
     <value>Langue</value>
@@ -295,6 +295,6 @@
     <value>Redémarrer</value>
   </data>
   <data name="RestartNeeded" xml:space="preserve">
-    <value>Redémarrage necessaire</value>
+    <value>Redémarrage requis</value>
   </data>
 </root>

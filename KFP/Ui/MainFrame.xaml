@@ -96,7 +96,40 @@
                     </NavigationViewItem>
                 </NavigationViewItem.MenuItems>
             </NavigationViewItem>
-            
+            <NavigationViewItem x:Name="HistoryNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                <NavigationViewItem.Content>
+                    <TextBlock x:Uid="HistoryTextBlock"/>
+                </NavigationViewItem.Content>
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE81C;"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.MenuItems>
+                    <NavigationViewItem x:Name="OrdersHistoryNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="OrdersHistoryTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <PathIcon Data="{StaticResource OrdersIconData}"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="SalesHistoryNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="SalesHistoryTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE7B8;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem x:Name="SessionHistoryNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
+                        <NavigationViewItem.Content>
+                            <TextBlock x:Uid="SessionHistoryTextBlock"/>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xF182;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </NavigationViewItem.MenuItems>
+            </NavigationViewItem>
             <NavigationViewItem x:Name="UsersNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                 <NavigationViewItem.Content>
                     <TextBlock x:Uid="UsersTextBlock"/>
