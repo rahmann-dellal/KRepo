@@ -3,6 +3,7 @@ using KFP.DATA_Access;
 using KFP.Helpers;
 using KFP.Services;
 using KFP.ViewModels;
+using KFP.ViewModels.History;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
@@ -65,6 +66,9 @@ namespace KFP
             services.AddTransient<DisplayOrderVM>();
             services.AddTransient<OrdersListVM>();
             services.AddTransient<TablesVM>();
+            services.AddTransient<OrdersHistoryVM>();
+            services.AddTransient<SalesHistoryVM>();
+            services.AddTransient<SessionHistoryVM>();
             services.AddTransient<DisplayUserVM>(); 
             services.AddTransient<EditUserVM>();
             services.AddTransient<EditMenuItemVM>();

@@ -6,10 +6,128 @@
     xmlns:local="using:KFP.Ui.pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:vm="using:KFP.ViewModels" xmlns:models="using:KFP.DATA"
+    mc:Ignorable="d">
 
-    <Grid>
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- QUICK FILTER BUTTONS -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+
+            <!-- Two Days -->
+            <Border BorderThickness="{x:Bind viewModel.TwoDaysQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
+                    BorderBrush="{x:Bind viewModel.TwoDaysQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                    CornerRadius="6"
+                    Padding="0">
+                <Button x:Uid="OrdersHistory_TwoDaysFilter"
+                        Command="{x:Bind viewModel.TwoDaysQuickFilter.Command}" />
+            </Border>
+
+            <!-- Last Week -->
+            <Border BorderThickness="{x:Bind viewModel.LastWeekQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
+                    BorderBrush="{x:Bind viewModel.LastWeekQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                    CornerRadius="6"
+                    Padding="0">
+                <Button x:Uid="OrdersHistory_LastWeekFilter"
+                        Command="{x:Bind viewModel.LastWeekQuickFilter.Command}" />
+            </Border>
+
+            <!-- Last Month -->
+            <Border BorderThickness="{x:Bind viewModel.LastMonthQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
+                    BorderBrush="{x:Bind viewModel.LastMonthQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                    CornerRadius="6"
+                    Padding="0">
+                <Button x:Uid="OrdersHistory_LastMonthFilter"
+                        Command="{x:Bind viewModel.LastMonthQuickFilter.Command}" />
+            </Border>
+
+        </StackPanel>
+
+        <!-- DATE PICKERS -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+            <TextBlock x:Uid="OrdersHistory_StartDateLabel" VerticalAlignment="Center"/>
+            <DatePicker SelectedDate="{x:Bind viewModel.StartDate, Mode=TwoWay}" />
+
+            <TextBlock x:Uid="OrdersHistory_EndDateLabel" VerticalAlignment="Center"/>
+            <DatePicker SelectedDate="{x:Bind viewModel.EndDate, Mode=TwoWay}" />
+        </StackPanel>
+
+        <!-- SORT SWITCHES -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10">
+
+            <!-- Sort by Date -->
+
+                <Button Command="{x:Bind viewModel.SortByDateSwitch.Command}">
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <TextBlock x:Uid="OrdersHistory_SortByDateLabel" />
+                        <FontIcon Glyph="{x:Bind viewModel.SortByDateSwitch.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" />
+                    </StackPanel>
+                </Button>
+
+            <!-- Sort by Price -->
+
+                <Button Command="{x:Bind viewModel.SortByPriceSwitch.Command}">
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <TextBlock x:Uid="OrdersHistory_SortByPriceLabel" />
+                        <FontIcon Glyph="{x:Bind viewModel.SortByPriceSwitch.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" />
+                    </StackPanel>
+                </Button>
+
+        </StackPanel>
+
+        <!-- ORDER LIST -->
+        <ListView Grid.Row="3" ItemsSource="{x:Bind viewModel.Orders, Mode=OneWay}" Height="400"
+                  Background="{StaticResource SecondBackgroud}" CornerRadius="6">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Order">
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <TextBlock Text="{x:Bind CreatedAt, Mode=OneWay}" Width="150"/>
+                        <TextBlock Text="{x:Bind TotalPrice, Mode=OneWay}" Width="120"/>
+                        <!-- Add more fields if needed -->
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- PAGINATION -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+
+            <Button x:Uid="OrdersHistory_PreviousPageButton"
+                    Content="⟨" FontWeight="SemiBold"
+                    Command="{x:Bind viewModel.PreviousPageCommand}" />
+
+            <ItemsControl ItemsSource="{x:Bind viewModel.PageCommands, Mode=OneWay}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:PageCommand">
+                        <Border BorderThickness="{x:Bind IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
+                                BorderBrush="{x:Bind IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                                CornerRadius="4"
+                                Padding="0">
+                            <Button Command="{x:Bind Command}">
+                                <TextBlock Text="{x:Bind PageNumber}" />
+                            </Button>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button x:Uid="OrdersHistory_NextPageButton"
+                    Content="⟩" FontWeight="SemiBold"
+                    Command="{x:Bind viewModel.NextPageCommand}" />
+
+        </StackPanel>
 
     </Grid>
 </Page>

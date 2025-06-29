@@ -40,6 +40,7 @@
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <converters:DoubleToStringConverter x:Key="DoubleToStringConverter" />
             <converters:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+            <converters:AscDescBoolToArrowConverter x:Key="AscDescBoolToArrowConverter" />
         </ResourceDictionary>  
    </Application.Resources>  
 </Application>
