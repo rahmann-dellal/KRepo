@@ -2,249 +2,306 @@
 using CommunityToolkit.Mvvm.Input;
 using KFP.DATA;
 using KFP.DATA_Access;
+using KFP.Services;
 using KFP.ViewModels.Helpers;
 using KFP.ViewModels.Helpers.ObjectSelector;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace KFP.ViewModels.History
+namespace KFP.ViewModels
 {
-    public class OrdersHistoryVM : ObservableObject
+    public delegate Task<bool> ShowConfirmDeleteOrderDialog(int orderId);
+    public delegate Task<bool> ShowConfirmDeleteRangeOrderDialog(DateTimeOffset startDate, DateTimeOffset endDate);
+    public partial class OrdersHistoryVM : KioberViewModelBase
     {
-        private readonly KFPContext _dbContext;
+        public readonly KFPContext dbContext;
+        public INavigationService navigationService { get; private set; }
+        public AppDataService appDataService;
+        private const int PageSize = 9;
+        public Currency currency { get; set; }
 
-        private DateTimeOffset? _startDate = DateTime.Today.AddDays(-2);
-        private DateTimeOffset? _endDate = DateTime.Now;
-        private int _currentPage = 1;
-        private int _pageSize = 20;
-        private int _totalPages;
+        [ObservableProperty] private DateTimeOffset startDate;
+        [ObservableProperty] private DateTimeOffset endDate;
+        [ObservableProperty] private int currentPage = 1;
+        [ObservableProperty] private int totalPages = 1;
 
+        public ObservableCollection<OrdersHistoryListElement> DisplayList = new();
 
-
-        private ObservableCollection<Order> _orders = new();
-        private List<Order> _allResults = new();
-
-        public DateTimeOffset? StartDate
+        public ShowConfirmDeleteOrderDialog showConfirmDeleteOrderDialog { get; set; } = null!;
+        public ShowConfirmDeleteRangeOrderDialog showConfirmDeleteRangeOrderDialog { get; set; } = null!;
+        public bool isDisplayedOrdersEmpty
         {
-            get => _startDate;
-            set
+            get
             {
-                if (SetProperty(ref _startDate, value))
-                {
-                    DeselectAll(QuickFilters);
-                    LoadOrders();
-                }
+                return DisplayList == null || DisplayList.Count <= 0;
             }
         }
-
-        public DateTimeOffset? EndDate
+        public bool DisplayedOrdersNotEmpty
         {
-            get => _endDate;
-            set
+            get
             {
-                if (SetProperty(ref _endDate, value))
-                {
-                    DeselectAll(QuickFilters);
-                    LoadOrders();
-                }
+                return DisplayList != null && DisplayList.Count > 0;
             }
         }
+        public SwitchCommand SortByDateCommand { get; }
+        public SwitchCommand SortByPriceCommand { get; }
 
-        public int CurrentPage
+
+        public ICommand ApplyDateRangeCommand { get; }
+        public ICommand SelectPageCommand { get; }
+
+        private List<SwitchCommand> sortCommands = new();
+        public double TotalForSelectedDateRange = 0;
+        public OrdersHistoryVM(KFPContext dbContext, AppDataService appDataService, INavigationService ns)
         {
-            get => _currentPage;
-            set
+            this.dbContext = dbContext;
+            navigationService = ns;
+            this.appDataService = appDataService;
+            currency = this.appDataService.Currency;
+            StartDate = DateTime.Today.AddDays(-2);
+            EndDate = DateTime.Now;
+
+            ApplyDateRangeCommand = new RelayCommand(() => {
+                CurrentPage = 1; // Reset to first page when applying a new date range
+                SetRange(startDate, endDate);
+                LoadOrders();
+                });
+
+            SelectPageCommand = new RelayCommand<int>(page =>
             {
-                if (SetProperty(ref _currentPage, value)) { 
-                    UpdatePagedOrders();
-                    NextPageCommand.NotifyCanExecuteChanged();
-                    PreviousPageCommand.NotifyCanExecuteChanged();
-                }
-            }
-        }
-
-        public int TotalPages
-        {
-            get => _totalPages;
-            private set => SetProperty(ref _totalPages, value);
-        }
-
-        public ObservableCollection<Order> Orders
-        {
-            get => _orders;
-            private set => SetProperty(ref _orders, value);
-        }
-
-        public ObservableCollection<SelectableCommand> PageCommands { get; } = new();
-        public List<SelectableCommand> QuickFilters { get; } = new();
-
-        public SelectableCommand TwoDaysQuickFilter;
-        public SelectableCommand LastWeekQuickFilter;
-        public SelectableCommand LastMonthQuickFilter;
-
-        public SwitchCommand SortByDateSwitch;
-        public SwitchCommand SortByPriceSwitch;
-        
-        public RelayCommand PreviousPageCommand { get; private set; }
-
-        public RelayCommand NextPageCommand { get; private set; }
-        
-
-        public OrdersHistoryVM(KFPContext dbContext)
-        {
-            _dbContext = dbContext;
-
-            PreviousPageCommand = new RelayCommand(() =>
-            {
-                if (CurrentPage > 1)
-                    CurrentPage--;
-            },
-            () => {
-                return CurrentPage > 1;
+                CurrentPage = Math.Clamp(page, 1, TotalPages);
+                LoadOrders();
             });
 
-            NextPageCommand = new RelayCommand(() =>
+            sortCommands = new();
+            SortByDateCommand = new SwitchCommand(() =>
             {
-                if (CurrentPage < TotalPages)
-                    CurrentPage++;
-            },
-            () => {
-                return CurrentPage < PageCommands.Count;
-            });
-
-            InitializeQuickFilters();
-            InitializeSortSwitches();
+                CurrentPage = 1; // Reset to first page when changing sort order
+                ApplySorting("Date");
+            }, sortCommands);
+            SortByPriceCommand = new SwitchCommand(() => {
+                CurrentPage = 1; // Reset to first page when changing sort order
+                ApplySorting("Price"); 
+            }, sortCommands);
+            sortCommands.AddRange(new[] { SortByDateCommand, SortByPriceCommand });
+            SortByDateCommand.IsSwitched = true;
 
             LoadOrders();
         }
-
-        private void InitializeQuickFilters()
+        
+        private void SetRange(DateTimeOffset start, DateTimeOffset end)
         {
-            QuickFilters.Clear();
-
-            TwoDaysQuickFilter = new SelectableCommand(() =>
-            {
-                StartDate = DateTime.Today.AddDays(-2);
-                EndDate = DateTime.Now;
-                LoadOrders();
-            }, QuickFilters);
-
-            LastWeekQuickFilter = new SelectableCommand(() =>
-            {
-                StartDate = DateTime.Today.AddDays(-7);
-                EndDate = DateTime.Now;
-                LoadOrders();
-            }, QuickFilters);
-
-            LastMonthQuickFilter = new SelectableCommand(() =>
-            {
-                StartDate = DateTime.Today.AddMonths(-1);
-                EndDate = DateTime.Now;
-                LoadOrders();
-            }, QuickFilters);
-
-            QuickFilters.Add(TwoDaysQuickFilter);
-            QuickFilters.Add(LastWeekQuickFilter);
-            QuickFilters.Add(LastMonthQuickFilter);
-
-            // Default selection
-            TwoDaysQuickFilter.IsSelected = true;
+            StartDate = start;
+            EndDate = end;
+            LoadOrders();
         }
 
-        private void InitializeSortSwitches()
+        private void ApplySorting(string sortBy)
         {
-            SortByDateSwitch = new SwitchCommand(() =>
-            {
-                LoadOrders();
-            });
-
-            SortByPriceSwitch = new SwitchCommand(() =>
-            {
-                LoadOrders();
-            });
+            _SortBy = sortBy;
+            LoadOrders();
         }
 
-        private void LoadOrders()
-        {
-            _allResults = QueryOrders(StartDate?.DateTime ?? DateTime.Today.AddDays(-2), EndDate?.DateTime ?? DateTime.Now);
-            TotalPages = (_allResults.Count + _pageSize - 1) / _pageSize;
-            CurrentPage = 1;
-            UpdatePagedOrders();
-            GeneratePageCommands();
-        }
+        private string _SortBy = "Date";
 
-        private void UpdatePagedOrders()
+        public void LoadOrders()
         {
-            var paged = _allResults
-                .Skip((CurrentPage - 1) * _pageSize)
-                .Take(_pageSize)
+            var query = dbContext.Orders.Include(o => o.OrderItems)
+                .Where(o => o.CreatedAt >= StartDate.DateTime && o.CreatedAt <= EndDate.DateTime && (o.Status == OrderStatus.Completed || o.Status == OrderStatus.Cancelled));
+
+            query = _SortBy switch
+            {
+                "Price" => SortByPriceCommand.IsSwitched switch
+                { 
+                    true => query.OrderByDescending(o => o.TotalPrice ?? 0),
+                    _ => query.OrderBy(o => o.TotalPrice ?? 0)
+                },
+                _ => SortByDateCommand.IsSwitched switch {
+                    true => query.OrderByDescending(o => o.CreatedAt),
+                    _ => query.OrderBy(o => o.CreatedAt)
+                }
+            };
+            TotalPages = query.Count() / PageSize + (query.Count() % PageSize > 0 ? 1 : 0);
+            CurrentPage = Math.Min(CurrentPage, TotalPages);
+            TotalForSelectedDateRange = (double) (query.Sum(o => (o.TotalPrice != null) ? o.TotalPrice : 0.0 ) ?? 0.0); // making sure that we don't get null values
+            List<Order> ResultList = query.Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
                 .ToList();
-
-            Orders = new ObservableCollection<Order>(paged);
-            UpdatePageSelection();
-        }
-
-        private void GeneratePageCommands()
-        {
-            PageCommands.Clear();
-            var list = new List<SelectableCommand>();
-
-            for (int i = 1; i <= TotalPages; i++)
+            DisplayList.Clear(); // Clear the previous list before adding new items
+            foreach (var order in ResultList)
             {
-                int page = i;
-                list.Add(new PageCommand(i, () =>
-                {
-                    CurrentPage = page;
-                }, list));
+                DisplayList.Add(new OrdersHistoryListElement(order, this));
             }
-
-            foreach (var cmd in list)
-                PageCommands.Add(cmd);
-
-            UpdatePageSelection();
+            
+            OnPropertyChanged(nameof(isDisplayedOrdersEmpty));
+            OnPropertyChanged(nameof(DisplayedOrdersNotEmpty));
+            OnPropertyChanged(nameof(TotalForSelectedDateRange));
         }
 
-        private void UpdatePageSelection()
+        [RelayCommand(CanExecute = nameof(DisplayedOrdersNotEmpty))]
+        public async Task DeleteAllSelectedOrders()
         {
-            if(PageCommands.Count > 0) {
-                PageCommands.ElementAt(CurrentPage - 1).IsSelected = true;
+            var result = await showConfirmDeleteRangeOrderDialog(StartDate, EndDate);
+            if (!result)
+            {
+                return;
             }
-        }
-
-        private List<Order> QueryOrders(DateTime start, DateTime end)
-        {
-            var query = _dbContext.Orders
-                .Where(o => o.CreatedAt >= start && o.CreatedAt <= end);
-
-            // Determine sort direction for date and price
-            bool sortDateDesc = SortByDateSwitch.IsSwitched;
-            bool sortPriceDesc = SortByPriceSwitch.IsSwitched;
-
-            // Apply primary sort: DATE
-            if (sortDateDesc)
-                query = query.OrderByDescending(o => o.CreatedAt);
-            else
-                query = query.OrderBy(o => o.CreatedAt);
-
-            // Apply secondary sort: PRICE (optional, only if selected)
-            if (sortPriceDesc)
-                query = ((IOrderedQueryable<Order>)query).ThenByDescending(o => o.TotalPrice ?? 0);
-            else if (!sortPriceDesc && SortByPriceSwitch.IsSwitched)
-                query = ((IOrderedQueryable<Order>)query).ThenBy(o => o.TotalPrice ?? 0);
-
-            return query.ToList();
-        }
-
-        private void DeselectAll(IEnumerable<SelectableCommand> list)
-        {
-            foreach (var item in list)
-                item.IsSelected = false;
+            var toDelete = dbContext.Orders.Where(o => o.CreatedAt >= StartDate.DateTime && o.CreatedAt <= EndDate.DateTime);
+            dbContext.Orders.RemoveRange(toDelete);
+            await dbContext.SaveChangesAsync();
+            LoadOrders();
         }
     }
 
+    public partial class OrdersHistoryListElement : ObservableObject
+    {
+        public Order order { get; set; }
+        public string orderLocation
+        {
+            get
+            {
+                if (order.orderLocation == OrderLocation.Counter)
+                    return StringLocalisationService.getStringWithKey("Counter_1");
+                else if (order.orderLocation == OrderLocation.Table)
+                    return StringLocalisationService.getStringWithKey("Table") + " " + order.TableNumber;
+                else
+                    return StringLocalisationService.getStringWithKey("Delivery1");
+            }
+        }
+        public string OrderStartTime { get => order.SetPreparingAt?.ToString(new CultureInfo(parentVM.appDataService.AppLanguage)) ?? ""; }
+
+        public string TotalPrice { get => $"{order.TotalPrice?.ToString("F2")} {parentVM.currency}"; }
+        public int? TableNumber { get => order.TableNumber; }
+        public string OrderId { get => "#" + order.Id.ToString(); }
+        public string payment
+        {
+            get
+            {
+                if (order.paymentMethod == PaymentMethod.Cash)
+                    return StringLocalisationService.getStringWithKey("Cash");
+                else if (order.paymentMethod == PaymentMethod.Card)
+                    return StringLocalisationService.getStringWithKey("Card");
+                else
+                    return StringLocalisationService.getStringWithKey("Unpaid");
+            }
+        }
+        public string Status
+        {
+            get
+            {
+                if (order.Status == OrderStatus.Completed)
+                    return StringLocalisationService.getStringWithKey("Completed");
+                else if (order.Status == OrderStatus.Cancelled)
+                    return StringLocalisationService.getStringWithKey("Cancelled");
+                else
+                    return "";
+            }
+        }
+        public int numberOfItems
+        {
+            get
+            {
+                if (order.OrderItems == null)
+                    return 0;
+                else
+                    return order.OrderItems.Count;
+            }
+        }
+        public string numberOfItemsString
+        {
+            get
+            {
+                if (numberOfItems == 0)
+                    return StringLocalisationService.getStringWithKey("NoItems");
+                else if (numberOfItems == 1)
+                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Item_4");
+                else
+                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Items");
+            }
+        }
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                if (_isSelected != value)
+                {
+                    if (value)
+                    {
+                        foreach (var element in parentVM.DisplayList.Where(e => e != this))
+                        {
+                            element.IsSelected = false;
+                        }
+                    }
+                    _isSelected = value;
+                    OnPropertyChanged(nameof(IsSelected));
+                    OnPropertyChanged(nameof(isUnselected));
+                }
+            }
+        }
+        public bool isUnselected => !IsSelected;
+
+        public OrdersHistoryVM parentVM;
+
+        public OrdersHistoryListElement(Order order, OrdersHistoryVM parentVM)
+        {
+            this.order = order;
+            this.parentVM = parentVM;
+        }
+
+        [RelayCommand]
+        public void selectOrder()
+        {
+            if (IsSelected)
+            {
+                IsSelected = false;
+            }
+            else
+            {
+                IsSelected = true;
+            }
+        }
+
+        [RelayCommand]
+        public void showOrderDetails()
+        {
+            if (parentVM != null)
+            {
+                parentVM.navigationService.navigateTo(KioberFoodPage.DisplayOrderPage, new List<object> { order.Id });
+                parentVM.navigationService.SetNewHeader(null);
+            }
+        }
+
+        public bool OrderPaymentPending
+        {
+            get => order.paymentMethod != PaymentMethod.Cash && order.paymentMethod != PaymentMethod.Card;
+        }
+
+        [RelayCommand]
+        public async Task DeleteOrder()
+        {
+            var result = await parentVM.showConfirmDeleteOrderDialog(order.Id);
+            if (!result)
+            {
+                return;
+            }
+            if (parentVM != null)
+            {
+                parentVM.dbContext.Orders.Remove(order);
+                parentVM.dbContext.SaveChanges();
+                parentVM.LoadOrders();
+            }
+        }
+    }
 }

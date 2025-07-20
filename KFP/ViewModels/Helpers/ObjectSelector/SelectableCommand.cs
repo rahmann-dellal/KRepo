@@ -11,7 +11,7 @@ namespace KFP.ViewModels
     public class SelectableCommand : ObservableObject
     {
         public List<SelectableCommand> ContainerList { get; set; }
-        public RelayCommand Command { get; private set; }
+        public RelayCommand Command { get; protected set; }
         public bool _isSelected = false;
         public bool IsSelected
         {
@@ -27,8 +27,10 @@ namespace KFP.ViewModels
                     {
                         ContainerList?.ForEach(item =>
                         {
-                            if (item != this)
+                            if (item != this) { 
                                 item.IsSelected = false;
+                                item.OnPropertyChanged(nameof(IsSelected));
+                            }
                         });
                     }
 

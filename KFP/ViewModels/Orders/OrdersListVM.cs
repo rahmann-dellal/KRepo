@@ -26,7 +26,7 @@ namespace KFP.ViewModels
         public bool isFilterdListEmpty  { get => FilterdOrders.Count == 0; }
         public KFPContext dbContext;
         private AppDataService _appDataService;
-        public NavigationService navigationService { get; private set; }
+        public INavigationService navigationService { get; private set; }
         public Currency currency { get; set; }
 
         private bool _counterFilter = true;
@@ -73,7 +73,7 @@ namespace KFP.ViewModels
 
         public RelayCommand NavigateToPOSCommand { get; set; }
         public RelayCommand NavigatetoTablesCommand { get; set; }
-        public OrdersListVM(KFPContext context, AppDataService appDataService, NavigationService navigationService)
+        public OrdersListVM(KFPContext context, AppDataService appDataService, INavigationService navigationService)
         {
             dbContext = context;
             _appDataService = appDataService;

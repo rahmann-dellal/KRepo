@@ -7,127 +7,141 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:KFP.ViewModels" xmlns:models="using:KFP.DATA"
+    xmlns:components="using:KFP.Ui.Components"
+    xmlns:communityControls="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
 
     <Grid Padding="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+        <Grid.RowDefinitions> 
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <!-- QUICK FILTER BUTTONS -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+        <components:DateRangePicker Grid.Row="0" x:Name="dateRangePicker" HorizontalAlignment="Center"
+                                  StartDate="{x:Bind viewModel.StartDate, Mode=TwoWay}"
+                                  EndDate="{x:Bind viewModel.EndDate, Mode=TwoWay}"
+                                  ApplyRangeCommand="{x:Bind viewModel.ApplyDateRangeCommand}"/>
 
-            <!-- Two Days -->
-            <Border BorderThickness="{x:Bind viewModel.TwoDaysQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
-                    BorderBrush="{x:Bind viewModel.TwoDaysQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
-                    CornerRadius="6"
-                    Padding="0">
-                <Button x:Uid="OrdersHistory_TwoDaysFilter"
-                        Command="{x:Bind viewModel.TwoDaysQuickFilter.Command}" />
-            </Border>
 
-            <!-- Last Week -->
-            <Border BorderThickness="{x:Bind viewModel.LastWeekQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
-                    BorderBrush="{x:Bind viewModel.LastWeekQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
-                    CornerRadius="6"
-                    Padding="0">
-                <Button x:Uid="OrdersHistory_LastWeekFilter"
-                        Command="{x:Bind viewModel.LastWeekQuickFilter.Command}" />
-            </Border>
-
-            <!-- Last Month -->
-            <Border BorderThickness="{x:Bind viewModel.LastMonthQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
-                    BorderBrush="{x:Bind viewModel.LastMonthQuickFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
-                    CornerRadius="6"
-                    Padding="0">
-                <Button x:Uid="OrdersHistory_LastMonthFilter"
-                        Command="{x:Bind viewModel.LastMonthQuickFilter.Command}" />
-            </Border>
-
-        </StackPanel>
-
-        <!-- DATE PICKERS -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-            <TextBlock x:Uid="OrdersHistory_StartDateLabel" VerticalAlignment="Center"/>
-            <DatePicker SelectedDate="{x:Bind viewModel.StartDate, Mode=TwoWay}" />
-
-            <TextBlock x:Uid="OrdersHistory_EndDateLabel" VerticalAlignment="Center"/>
-            <DatePicker SelectedDate="{x:Bind viewModel.EndDate, Mode=TwoWay}" />
-        </StackPanel>
-
-        <!-- SORT SWITCHES -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10">
-
-            <!-- Sort by Date -->
-
-                <Button Command="{x:Bind viewModel.SortByDateSwitch.Command}">
-                    <StackPanel Orientation="Horizontal" Spacing="4">
-                        <TextBlock x:Uid="OrdersHistory_SortByDateLabel" />
-                        <FontIcon Glyph="{x:Bind viewModel.SortByDateSwitch.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" />
+        <!-- Orders List -->
+        <Border Grid.Row="1" Background="{StaticResource SecondBackgroud}" Margin="0,20,0,10" Padding="20" CornerRadius="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Uid="OrderTextBlock2" FontWeight="SemiBold" FontSize="16" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrderItemsTextBlock2" FontWeight="SemiBold" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <!-- Sort by Price -->
+                <Button Command="{x:Bind viewModel.SortByPriceCommand.Command}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock x:Uid="OrdersHistory_SortByPriceLabel" FontWeight="SemiBold"/>
+                        <FontIcon Glyph="{x:Bind viewModel.SortByPriceCommand.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" FontSize="13"/>
                     </StackPanel>
                 </Button>
 
-            <!-- Sort by Price -->
-
-                <Button Command="{x:Bind viewModel.SortByPriceSwitch.Command}">
-                    <StackPanel Orientation="Horizontal" Spacing="4">
-                        <TextBlock x:Uid="OrdersHistory_SortByPriceLabel" />
-                        <FontIcon Glyph="{x:Bind viewModel.SortByPriceSwitch.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" />
+                <TextBlock x:Uid="OrderPaymentTextBlock2" FontWeight="SemiBold" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <!-- Sort by Date -->
+                <Button Command="{x:Bind viewModel.SortByDateCommand.Command}"  Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock x:Uid="OrdersHistory_SortByDateLabel" FontWeight="SemiBold"/>
+                        <FontIcon Glyph="{x:Bind viewModel.SortByDateCommand.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" FontSize="13"/>
                     </StackPanel>
                 </Button>
 
-        </StackPanel>
-
-        <!-- ORDER LIST -->
-        <ListView Grid.Row="3" ItemsSource="{x:Bind viewModel.Orders, Mode=OneWay}" Height="400"
-                  Background="{StaticResource SecondBackgroud}" CornerRadius="6">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:Order">
-                    <StackPanel Orientation="Horizontal" Spacing="20">
-                        <TextBlock Text="{x:Bind CreatedAt, Mode=OneWay}" Width="150"/>
-                        <TextBlock Text="{x:Bind TotalPrice, Mode=OneWay}" Width="120"/>
-                        <!-- Add more fields if needed -->
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <TextBlock x:Uid="OrderUserTextBlock" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrderLocationTextBlock2" FontWeight="SemiBold" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrderStatusTextBlock" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersListActionsTextBlock2" FontWeight="SemiBold" Grid.Column="8" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="NothingToDisplayTxtBlk" Grid.Row="1" Grid.ColumnSpan="9" Visibility="{x:Bind viewModel.isDisplayedOrdersEmpty, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+            FontSize="16" Foreground="DimGray" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ScrollViewer  Grid.Row="1" Grid.ColumnSpan="9" Margin="0,20,0,0">
+                    <ItemsControl ItemsSource="{x:Bind viewModel.DisplayList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:OrdersHistoryListElement">
+                                <Grid BorderThickness="1" BorderBrush="#FFCCDDCC" Background="White" Padding="13,10,3,10" CornerRadius="5" Margin="0,10,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="6*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="10*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind order.Id}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <Button Command="{x:Bind selectOrderCommand}"  Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{x:Bind numberOfItemsString}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                <FontIcon Glyph="&#xEDDC;" FontSize="8" Visibility="{x:Bind isUnselected, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                <FontIcon Glyph="&#xEDDB;" FontSize="8" Visibility="{x:Bind IsSelected, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
+                                    <TextBlock  Grid.Row="0" Grid.Column="2" Text="{x:Bind TotalPrice}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="3" Text="{x:Bind payment}"
+                                                Foreground="{x:Bind OrderPaymentPending, Converter={StaticResource BoolToBrushConverter}, ConverterParameter=#FFCC0000}"
+                                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="4" Text="{x:Bind OrderStartTime}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="5" Text="{x:Bind order.AppUserName}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="6" Text="{x:Bind orderLocation}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Row="0" Grid.Column="7" Text="{x:Bind Status}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <communityControls:WrapPanel  Grid.Row="0" Grid.Column="8" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button x:Uid="ShowOrderButton2" Margin="0,0,10,0" Width="50" Height="50" Command="{x:Bind showOrderDetailsCommand}">
+                                            <FontIcon Glyph="&#xE721;" Foreground="DarkBlue"/>
+                                        </Button>
+                                        <Button x:Uid="DeleteOrderButton" Width="50" Height="50"  Command="{x:Bind DeleteOrderCommand}">
+                                            <FontIcon Glyph="&#xE74D;"  Foreground="OrangeRed"/>
+                                        </Button>
+                                    </communityControls:WrapPanel>
+                                    <local:DisplayOrderView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" Margin="0,15,0,0" HorizontalAlignment="Left"
+                                            Visibility="{x:Bind IsSelected, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                            order="{x:Bind order, Mode=OneWay}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
 
         <!-- PAGINATION -->
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+        <components:Pager Grid.Row="2" TotalPages="{x:Bind viewModel.TotalPages, Mode=OneWay}" HorizontalAlignment="Center"
+        SelectedPage="{x:Bind viewModel.CurrentPage, Mode=TwoWay}"
+        SelectPageCommand="{x:Bind viewModel.SelectPageCommand}"  />
 
-            <Button x:Uid="OrdersHistory_PreviousPageButton"
-                    Content="⟨" FontWeight="SemiBold"
-                    Command="{x:Bind viewModel.PreviousPageCommand}" />
-
-            <ItemsControl ItemsSource="{x:Bind viewModel.PageCommands, Mode=OneWay}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="vm:PageCommand">
-                        <Border BorderThickness="{x:Bind IsSelected, Converter={StaticResource BoolToBrushConverter},  ConverterParameter=2,Mode=OneWay}"
-                                BorderBrush="{x:Bind IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
-                                CornerRadius="4"
-                                Padding="0">
-                            <Button Command="{x:Bind Command}">
-                                <TextBlock Text="{x:Bind PageNumber}" />
-                            </Button>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <Button x:Uid="OrdersHistory_NextPageButton"
-                    Content="⟩" FontWeight="SemiBold"
-                    Command="{x:Bind viewModel.NextPageCommand}" />
-
-        </StackPanel>
+        <Grid Grid.Row="3" Margin="0,10,20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Uid="BulkDeleteButton" Foreground="OrangeRed" BorderBrush="OrangeRed" Margin="20,0,10,0" Command="{x:Bind viewModel.DeleteAllSelectedOrdersCommand}"/>
+            <TextBlock Grid.Column="1">
+                <Run x:Uid="TotalForSelectedDateRange" />
+                <Run Text="{x:Bind viewModel.TotalForSelectedDateRange, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}}" FontSize="18" FontWeight="SemiBold"/>
+                <Run Text="{x:Bind viewModel.currency, Mode=OneWay}" FontSize="18" FontWeight="SemiBold"/>
+            </TextBlock>
+        </Grid>
 
     </Grid>
 </Page>

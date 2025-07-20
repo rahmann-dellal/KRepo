@@ -66,8 +66,10 @@
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-400.png" />
     <None Remove="Ui\ClockInFrame.xaml" />
+    <None Remove="Ui\Components\DateRangePicker.xaml" />
     <None Remove="Ui\Components\KioberNumberBox.xaml" />
     <None Remove="Ui\Components\NumberPad.xaml" />
+    <None Remove="Ui\Components\Pager.xaml" />
     <None Remove="Ui\Components\PINInput.xaml" />
     <None Remove="Ui\MainFrame.xaml" />
     <None Remove="Ui\pages\AboutPage.xaml" />
@@ -161,6 +163,12 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Ui\Components\DateRangePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Ui\Components\Pager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Ui\pages\History\SessionHistoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

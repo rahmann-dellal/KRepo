@@ -25,6 +25,7 @@ namespace KFP.Ui.pages
                 Style buttonStyle = new Style(typeof(Button));
                 buttonStyle.Setters.Add(new Setter(FrameworkElement.WidthProperty, 130));
                 buttonStyle.Setters.Add(new Setter(FrameworkElement.HeightProperty, 90));
+                buttonStyle.Setters.Add(new Setter(Button.CornerRadiusProperty, 2));
                 buttonStyle.Setters.Add(new Setter(Button.FontWeightProperty, FontWeights.Bold));
                 return buttonStyle;
             }

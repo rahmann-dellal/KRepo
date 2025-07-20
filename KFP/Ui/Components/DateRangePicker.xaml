@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="KFP.Ui.Components.DateRangePicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KFP.Ui.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:vm="using:KFP.ViewModels"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls">
+
+    <StackPanel Spacing="12">
+
+        <!-- Quick Filter Buttons -->
+        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+            <TextBlock x:Uid="QuickFiltersTextBlock" Margin="0,0,30,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
+
+            <!-- All Time -->
+            <Border BorderBrush="{x:Bind AllTimeFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                    BorderThickness="{x:Bind AllTimeFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},ConverterParameter=1, Mode=OneWay}"
+                    Margin="2"
+                    CornerRadius="6">
+                <Button x:Uid="DateRangePicker_AllTime"
+                        Command="{x:Bind AllTimeFilter.Command}"
+                        CornerRadius="6"
+                        Padding="10,4" />
+            </Border>
+            <!-- Last 2 Days -->
+            <Border BorderBrush="{x:Bind TwoDaysFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                    BorderThickness="{x:Bind TwoDaysFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},ConverterParameter=1, Mode=OneWay}"
+                    Margin="2"
+                    CornerRadius="6">
+                <Button x:Uid="DateRangePicker_LastTwoDays"
+                        Command="{x:Bind TwoDaysFilter.Command}"
+                        CornerRadius="6"
+                        Padding="10,4" />
+            </Border>
+
+            <!-- Last Week -->
+            <Border BorderBrush="{x:Bind LastWeekFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                    BorderThickness="{x:Bind LastWeekFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},ConverterParameter=1, Mode=OneWay}"
+                    CornerRadius="6"
+                    Margin="2">
+                <Button x:Uid="DateRangePicker_LastWeek"
+                        Command="{x:Bind LastWeekFilter.Command}"
+                        CornerRadius="6"
+                        Padding="10,4" />
+            </Border>
+
+            <!-- Last Month -->
+            <Border BorderBrush="{x:Bind LastMonthFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                    BorderThickness="{x:Bind LastMonthFilter.IsSelected, Converter={StaticResource BoolToBrushConverter},ConverterParameter=1, Mode=OneWay}"
+                    Margin="2"
+                    CornerRadius="6">
+                <Button x:Uid="DateRangePicker_LastMonth"
+                    Command="{x:Bind LastMonthFilter.Command}"
+                    CornerRadius="6"
+                    Padding="10,4"/>
+            </Border>
+
+        </StackPanel>
+
+        <!-- Manual Date Range -->
+        <StackPanel Orientation="Horizontal" Spacing="10">
+
+            <TextBlock x:Uid="OrdersHistory_StartDateLabel" FontWeight="SemiBold"/>
+            <DatePicker Date="{x:Bind StartDate, Mode=TwoWay}" x:Name="StartDateDatePicker"
+                        DateChanged="OnCustomDateChanged" Margin="0,0,30,0"/>
+
+            <TextBlock x:Uid="OrdersHistory_EndDateLabel" FontWeight="SemiBold"/>
+            <DatePicker Date="{x:Bind EndDate, Mode=TwoWay}" x:Name="EndDateDatePicker"
+                        DateChanged="OnCustomDateChanged" />
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

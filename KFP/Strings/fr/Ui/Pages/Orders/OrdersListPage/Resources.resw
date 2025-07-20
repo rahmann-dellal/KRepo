@@ -180,7 +180,7 @@
 	<data name="OrdersListActionsTextBlock.Text" xml:space="preserve">
   <value>Actions</value>
 </data>
-	<data name="OrderTimeCreatedTextBlock" xml:space="preserve">
+	<data name="OrderTimeCreatedTextBlock.Text" xml:space="preserve">
   <value>Créé le</value>
 </data>
 	<data name="OrderTimePassedTextBlock.Text" xml:space="preserve">
