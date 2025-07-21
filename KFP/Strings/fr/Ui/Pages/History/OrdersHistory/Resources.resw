@@ -117,100 +117,75 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdressTextBlock.Text" xml:space="preserve">
-    <value>Adresse</value>
-  </data>
-  <data name="ByCardTextBlock.Text" xml:space="preserve">
-    <value>Par carte</value>
-  </data>
-  <data name="Canceling_Order1" xml:space="preserve">
-    <value>Annulation de la commande : </value>
-  </data>
-  <data name="Cancelled2" xml:space="preserve">
-    <value>Annulée</value>
-  </data>
-  <data name="CancelOrderTextBlock.Text" xml:space="preserve">
-    <value>Annuler la commande</value>
-  </data>
-  <data name="Cancel_Order1" xml:space="preserve">
-    <value>Annuler la commande ?</value>
-  </data>
-  <data name="CardPaymentTextBlock.Text" xml:space="preserve">
-    <value>Paiement par carte</value>
-  </data>
-  <data name="CashPaymentTextBlock.Text" xml:space="preserve">
-    <value>Paiement en espèces</value>
-  </data>
-  <data name="CashTextBlock.Text" xml:space="preserve">
-    <value>Espèces</value>
-  </data>
-  <data name="ChangePaymentTextBlock.Text" xml:space="preserve">
-    <value>Rendu</value>
-  </data>
-  <data name="Completed2" xml:space="preserve">
-    <value>Complétée</value>
-  </data>
-  <data name="CompleteOrderTextBlock.Text" xml:space="preserve">
-    <value>Finaliser la commande</value>
-  </data>
-  <data name="Complete_Order1" xml:space="preserve">
-    <value>Finaliser la commande</value>
-  </data>
-  <data name="ConfirmPaymentTextBlock.Text" xml:space="preserve">
-    <value>Confirmer le paiement</value>
-  </data>
-  <data name="Confirm_Card_Payment" xml:space="preserve">
-    <value>Confirmer le paiement par carte ?</value>
-  </data>
-  <data name="Confirm_Cash_Payment" xml:space="preserve">
-    <value>Confirmer le paiement en espèces ?</value>
-  </data>
-  <data name="Confrim_Order_Completed1" xml:space="preserve">
-    <value>Marquer la commande comme terminée ?</value>
-  </data>
-  <data name="CounterButtonTextBlock1.Text" xml:space="preserve">
-    <value>Comptoir</value>
-  </data>
-  <data name="customerNameTextBlock.Text" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="customerPhoneTextBlock.Text" xml:space="preserve">
-    <value>Téléphone</value>
-  </data>
-  <data name="DeferPaymentTextBlock.Text" xml:space="preserve">
-    <value>Reporter le paiement</value>
-  </data>
-  <data name="DeferredTextBlock.Text" xml:space="preserve">
-    <value>Reporté</value>
-  </data>
-  <data name="DeliveryButtonTextBlock1.Text" xml:space="preserve">
-    <value>Livraison</value>
-  </data>
-  <data name="DeliveryInfoTextBlock.Text" xml:space="preserve">
-    <value>Informations de livraison</value>
-  </data>
-  <data name="EditOrderTextBlock.Text" xml:space="preserve">
-    <value>Modifier la commande</value>
-  </data>
-  <data name="MenuItemTextBlock.Text" xml:space="preserve">
-    <value>Article</value>
-  </data>
-  <data name="NewOrderTextBlock.Text" xml:space="preserve">
-    <value>Nouvelle commande</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>Non</value>
-  </data>
-  <data name="NotesTextBlock.Text" xml:space="preserve">
-    <value>Remarques</value>
-  </data>
-  <data name="PaymentTextBlock.Text" xml:space="preserve">
-    <value>Paiement :</value>
-  </data>
-  <data name="StatusTextBlock.Text" xml:space="preserve">
-    <value>Etat de la commande : </value>
-  </data>
-  <data name="TableButtonTextBlock1.Text" xml:space="preserve">
-    <value>Table</value>
-  </data>
+
+
+	<data name="BulkDeleteButton.Content" xml:space="preserve">
+  <value>Supprimer tout pour la période sélectionnée !</value>
+</data>
+	<data name="Cancelled" xml:space="preserve">
+  <value>Annulée</value>
+</data>
+	<data name="Completed" xml:space="preserve">
+  <value>Terminée</value>
+</data>
+	<data name="DeleteOrderButton.ToolTipService.ToolTip" xml:space="preserve">
+  <value>Supprimer la commande</value>
+</data>
+	<data name="Delete_All_Orders_From" xml:space="preserve">
+  <value>Supprimer toutes les commandes du :</value>
+</data>
+	<data name="Delete_Order" xml:space="preserve">
+  <value>Supprimer cette commande de l’historique ?</value>
+</data>
+	<data name="Deletings_All_Orders_For_DateRage" xml:space="preserve">
+  <value>Suppression de toutes les commandes pour la période sélectionnée</value>
+</data>
+	<data name="Deleting_Order" xml:space="preserve">
+  <value>Suppression de la commande :</value>
+</data>
+	<data name="No_3" xml:space="preserve">
+  <value>Non</value>
+</data>
+	<data name="OrderItemsTextBlock2.Text" xml:space="preserve">
+  <value>Articles</value>
+</data>
+	<data name="OrderLocationTextBlock2.Text" xml:space="preserve">
+  <value>Emplacement</value>
+</data>
+	<data name="OrderPaymentTextBlock2.Text" xml:space="preserve">
+  <value>Paiement</value>
+</data>
+	<data name="OrdersHistory_SortByDateLabel.Text" xml:space="preserve">
+  <value>Date</value>
+</data>
+	<data name="OrdersHistory_SortByPriceLabel.Text" xml:space="preserve">
+  <value>Prix total</value>
+</data>
+	<data name="OrdersListActionsTextBlock2.Text" xml:space="preserve">
+  <value>Actions</value>
+</data>
+	<data name="OrderStatusTextBlock.Text" xml:space="preserve">
+  <value>Statut</value>
+</data>
+	<data name="OrderTextBlock2.Text" xml:space="preserve">
+  <value>Commande</value>
+</data>
+	<data name="OrderUserTextBlock.Text" xml:space="preserve">
+  <value>Caissier</value>
+</data>
+	<data name="ShowOrderButton2.ToolTipService.ToolTip" xml:space="preserve">
+  <value>Afficher la commande</value>
+</data>
+	<data name="TotalForSelectedDateRange.Text" xml:space="preserve">
+  <value>Total pour la période sélectionnée :</value>
+</data>
+	<data name="To_3" xml:space="preserve">
+  <value>Jusqu’au :</value>
+</data>
+	<data name="Unpaid" xml:space="preserve">
+  <value>Non payée</value>
+</data>
+	<data name="Yes_3" xml:space="preserve">
+  <value>Oui</value>
+</data>
 </root>
