@@ -126,6 +126,9 @@
   <data name="Canceling_Order1" xml:space="preserve">
     <value>Canceling Order : </value>
   </data>
+  <data name="Cancelled2" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
   <data name="CancelOrderTextBlock.Text" xml:space="preserve">
     <value>Cancel Order</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="ChangePaymentTextBlock.Text" xml:space="preserve">
     <value>Change</value>
+  </data>
+  <data name="Completed2" xml:space="preserve">
+    <value>Completed</value>
   </data>
   <data name="CompleteOrderTextBlock.Text" xml:space="preserve">
     <value>Complete Order</value>
@@ -200,6 +206,9 @@
   </data>
   <data name="PaymentTextBlock.Text" xml:space="preserve">
     <value>Payment :</value>
+  </data>
+  <data name="StatusTextBlock.Text" xml:space="preserve">
+    <value>Status : </value>
   </data>
   <data name="TableButtonTextBlock1.Text" xml:space="preserve">
     <value>Table</value>

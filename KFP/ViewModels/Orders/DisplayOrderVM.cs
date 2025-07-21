@@ -25,7 +25,7 @@ namespace KFP.ViewModels
             get => _order;
             set => SetProperty(ref _order, value);
         }
-        
+
         public ShowConfirmCancelOrderDialog showConfirmCancelOrderDialog { get; set; } = null!;
         public ShowConfirmCashPaymentDialog showConfirmCashPaymentDialog { get; set; } = null!;
         public ShowConfirmCardPaymentDialog showConfirmCardPaymentDialog { get; set; } = null!;
@@ -48,16 +48,18 @@ namespace KFP.ViewModels
         public bool isPaidCard { get; set; }
         public bool PaymentDeferred { get; set; }
         public bool PaymentSet { get => isPaidCard || isPaidCash || PaymentDeferred; }
-        public bool PaymentPending { 
-            get {
-                    return !PaymentSet;
-                } 
+        public bool PaymentPending
+        {
+            get
+            {
+                return !PaymentSet && !isOrderFinalized;
+            }
         }
         public bool CanEditOrder
         {
             get
             {
-                return !isPaidCard && !isPaidCash;
+                return !isPaidCard && !isPaidCash && !isOrderFinalized;
             }
         }
 
@@ -87,7 +89,7 @@ namespace KFP.ViewModels
             {
                 throw new Exception("Order not found");
             }
-            if(order.paymentMethod == PaymentMethod.Cash)
+            if (order.paymentMethod == PaymentMethod.Cash)
             {
                 isPaidCash = true;
                 isPaidCard = false;
@@ -111,7 +113,7 @@ namespace KFP.ViewModels
         [RelayCommand(CanExecute = nameof(CanEditOrder))]
         public async Task CancelOrder()
         {
-            bool confirmation = await  showConfirmCancelOrderDialog(order.Id);
+            bool confirmation = await showConfirmCancelOrderDialog(order.Id);
             if (!confirmation)
             {
                 return;
@@ -130,7 +132,7 @@ namespace KFP.ViewModels
         }
 
         [RelayCommand]
-        public async Task ConfirmCashPayment ()
+        public async Task ConfirmCashPayment()
         {
             bool confirmation = await showConfirmCashPaymentDialog(order.TotalPrice, Currency.ToString());
             if (!confirmation)
@@ -148,6 +150,8 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(isPaidCard));
             OnPropertyChanged(nameof(PaymentDeferred));
             OnPropertyChanged(nameof(CanEditOrder));
+            OnPropertyChanged(nameof(canSetOrderCompleted));
+            setOrderCompletedCommand.NotifyCanExecuteChanged();
             ChangePaymentMethodeCommand.NotifyCanExecuteChanged();
             if (receipt != null)
             {
@@ -174,6 +178,8 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(isPaidCash));
             OnPropertyChanged(nameof(PaymentDeferred));
             OnPropertyChanged(nameof(CanEditOrder));
+            OnPropertyChanged(nameof(canSetOrderCompleted));
+            setOrderCompletedCommand.NotifyCanExecuteChanged();
             ChangePaymentMethodeCommand.NotifyCanExecuteChanged();
             if (receipt != null)
             {
@@ -193,7 +199,8 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(PaymentDeferred));
             OnPropertyChanged(nameof(isPaidCard));
             OnPropertyChanged(nameof(isPaidCash));
-
+            OnPropertyChanged(nameof(canSetOrderCompleted));
+            setOrderCompletedCommand.NotifyCanExecuteChanged();
             ChangePaymentMethodeCommand.NotifyCanExecuteChanged();
         }
 
@@ -201,17 +208,18 @@ namespace KFP.ViewModels
         public void ChangePaymentMethode()
         {
 
-                isPaidCard = false;
-                isPaidCash = false;
-                PaymentDeferred = false;
+            isPaidCard = false;
+            isPaidCash = false;
+            PaymentDeferred = false;
 
-                OnPropertyChanged(nameof(PaymentSet));
-                OnPropertyChanged(nameof(PaymentPending));
+            OnPropertyChanged(nameof(PaymentSet));
+            OnPropertyChanged(nameof(PaymentPending));
+            OnPropertyChanged(nameof(canSetOrderCompleted));
         }
 
-        public bool canChangePaymentMethode()
+        public bool canChangePaymentMethode
         {
-            return !isPaidCard && !isPaidCash;
+            get => !isPaidCard && !isPaidCash;
         }
         public PaymentReceipt CreateReceipt(PaymentMethod paymentMethod)
         {
@@ -227,9 +235,9 @@ namespace KFP.ViewModels
                 Session = _sessionManager.CurrentSession,
             };
 
-            foreach(var oi in order.OrderItems)
+            foreach (var oi in order.OrderItems)
             {
-                receipt.Sales.Add (new Sale()
+                receipt.Sales.Add(new Sale()
                 {
                     ItemName = oi.MenuItemName,
                     UnitPrice = oi.UnitPrice,
@@ -262,8 +270,8 @@ namespace KFP.ViewModels
         {
             _navigationService.navigateTo(KioberFoodPage.POS);
         }
-        [RelayCommand]
-        public async Task OrderCompletedCommand()
+        [RelayCommand(CanExecute = nameof(canSetOrderCompleted))]
+        public async Task SetOrderCompleted()
         {
             bool confirmation = await showSetOrderCompletedDialog(order.Id);
             if (!confirmation)
@@ -275,6 +283,30 @@ namespace KFP.ViewModels
             dbContext.Update(order);
             dbContext.SaveChanges();
             _navigationService.navigateTo(KioberFoodPage.POS);
+        }
+        public bool canSetOrderCompleted
+        {
+            get => !isOrderFinalized && PaymentSet;
+        }
+
+        public bool isOrderFinalized
+        {
+            get
+            {
+                return order.Status == OrderStatus.Completed || order.Status == OrderStatus.Cancelled;
+            }
+        }
+        public string Status
+        {
+            get
+            {
+                if (order.Status == OrderStatus.Completed)
+                    return StringLocalisationService.getStringWithKey("Completed2");
+                else if (order.Status == OrderStatus.Cancelled)
+                    return StringLocalisationService.getStringWithKey("Cancelled2");
+                else
+                    return "";
+            }
         }
     }
 }

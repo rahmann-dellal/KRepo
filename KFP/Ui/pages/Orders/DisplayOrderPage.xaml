@@ -167,10 +167,15 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" Visibility="{x:Bind ViewModel.isOrderFinalized, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock x:Uid="StatusTextBlock" HorizontalAlignment="Center" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind ViewModel.Status}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
                     <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" 
                         Visibility="{x:Bind ViewModel.PaymentSet, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                         <Button Width="250" Height="90"  Margin="0,0,30,0" Background="Honeydew" BorderThickness="2" 
-                                Command="{x:Bind ViewModel.OrderCompletedCommandCommand}">
+                                Visibility="{x:Bind ViewModel.canSetOrderCompleted, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.SetOrderCompletedCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Uid="CompleteOrderTextBlock" FontSize="16" Margin="0,0,30,0" FontWeight="SemiBold" HorizontalAlignment="Left" TextWrapping="Wrap"/>
                                 <FontIcon Glyph="&#xE930;" FontSize="22"  FontWeight="ExtraBold"  HorizontalAlignment="Right" Foreground="Green"/>
