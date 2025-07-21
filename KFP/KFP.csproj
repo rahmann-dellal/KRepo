@@ -172,9 +172,6 @@
     <Page Update="Ui\pages\History\SessionHistoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Ui\pages\History\SalesHistoryPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Update="Ui\pages\History\OrdersHistoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

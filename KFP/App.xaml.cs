@@ -67,7 +67,6 @@ namespace KFP
             services.AddTransient<OrdersListVM>();
             services.AddTransient<TablesVM>();
             services.AddTransient<OrdersHistoryVM>();
-            services.AddTransient<SalesHistoryVM>();
             services.AddTransient<SessionHistoryVM>();
             services.AddTransient<DisplayUserVM>(); 
             services.AddTransient<EditUserVM>();

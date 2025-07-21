@@ -27,7 +27,6 @@ namespace KFP.Services
         AddUser,
         UserList,
         OrdersHistoryPage,
-        SalesHistoryPage,
         SessionHistoryPage,
         About,
         Settings,

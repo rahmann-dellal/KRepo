@@ -65,10 +65,6 @@ namespace KFP.Services
             {
                 navigateTo(typeof(OrdersHistoryPage), parameters);
             }
-            else if (pageType == KioberFoodPage.SalesHistoryPage)
-            {
-                navigateTo(typeof(SalesHistoryPage), parameters);
-            }
             else if (pageType == KioberFoodPage.SessionHistoryPage)
             {
                 navigateTo(typeof(SessionHistoryPage), parameters);

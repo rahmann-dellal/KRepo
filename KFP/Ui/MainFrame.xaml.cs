@@ -105,12 +105,6 @@ namespace KFP.Ui
                     ContentFrame.Navigate(typeof(OrdersHistoryPage));
                     NavView.Header = StringLocalisationService.getStringWithKey("Orders_History");
                 }
-                else if (InvokedNVI == SalesHistoryNVI && UserHasPrivelegesOf(UserRole.Manager))
-                {
-                    selectedNVI = SalesHistoryNVI;
-                    ContentFrame.Navigate(typeof(SalesHistoryPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Sales_History");
-                }
                 else if (InvokedNVI == SessionHistoryNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = SessionHistoryNVI;
