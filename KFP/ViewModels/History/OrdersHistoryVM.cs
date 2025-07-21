@@ -73,7 +73,6 @@ namespace KFP.ViewModels
             ApplyDateRangeCommand = new RelayCommand(() => {
                 CurrentPage = 1; // Reset to first page when applying a new date range
                 SetRange(startDate, endDate);
-                LoadOrders();
                 });
 
             SelectPageCommand = new RelayCommand<int>(page =>
@@ -100,9 +99,9 @@ namespace KFP.ViewModels
         
         private void SetRange(DateTimeOffset start, DateTimeOffset end)
         {
-            StartDate = start;
-            EndDate = end;
-            LoadOrders();
+                StartDate = start;
+                EndDate = end;
+                LoadOrders();
         }
 
         private void ApplySorting(string sortBy)

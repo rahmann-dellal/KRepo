@@ -67,7 +67,7 @@ namespace KFP.Ui.Components
 
             AllTimeFilter = new SelectableCommand(() =>
             {
-                StartDate = DateTimeOffset.MinValue;
+                StartDate = new DateTimeOffset(2025,3,1,0,0,0,0,new TimeSpan(0));
                 EndDate = DateTimeOffset.Now;
                 ApplyRangeCommand?.Execute((StartDate, EndDate));
             }, filters);
@@ -100,7 +100,9 @@ namespace KFP.Ui.Components
 
         private void OnCustomDateChanged(object sender, DatePickerValueChangedEventArgs e)
         {
-            // Deselect all quick filters
+            bool DateChanged = false; // to Ensure that date change is not done programmatically
+
+            // Unselect all quick filters
             AllTimeFilter.IsSelected = false;
             TwoDaysFilter.IsSelected = false;
             LastWeekFilter.IsSelected = false;
@@ -109,14 +111,25 @@ namespace KFP.Ui.Components
             { // Update StartDate or EndDate because the methode might execute before the values are updated
                 if (datePicker.Name == nameof(StartDateDatePicker))
                 {
-                    StartDate = e.NewDate;
+                    if (e.NewDate != StartDate)
+                    {
+                        StartDate = e.NewDate;
+                        DateChanged = true;
+                    }
                 }
                 else if (datePicker.Name == nameof(EndDateDatePicker))
                 {
-                    EndDate = e.NewDate;
+                    if (e.NewDate != EndDate)
+                    {
+                        EndDate = e.NewDate;
+                        DateChanged = true;
+                    }
                 }
             }
-            ApplyRangeCommand?.Execute((StartDate, EndDate));
+            // If either date changed, execute the command
+            if (DateChanged) { 
+                ApplyRangeCommand?.Execute((StartDate, EndDate));
+            }
         }
     }
 }
