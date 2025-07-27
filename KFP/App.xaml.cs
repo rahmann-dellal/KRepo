@@ -3,7 +3,6 @@ using KFP.DATA_Access;
 using KFP.Helpers;
 using KFP.Services;
 using KFP.ViewModels;
-using KFP.ViewModels.History;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;

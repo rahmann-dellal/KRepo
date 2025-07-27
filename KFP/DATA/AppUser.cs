@@ -28,6 +28,8 @@ namespace KFP.DATA
         }
         public List<PaymentReceipt> Receipts { get; set; } = new();
         public List<Order> Orders { get; set; } = new();
+
+        public List<Session> Sessions { get; set; } = new();
     }
 
     public enum UserRole {  Cashier, Manager, Admin }

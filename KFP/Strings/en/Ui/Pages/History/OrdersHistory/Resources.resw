@@ -130,7 +130,7 @@
     <value>Delete Order</value>
   </data>
   <data name="Delete_All_Orders_From" xml:space="preserve">
-    <value>Delete All Orders From :</value>
+    <value>Delete All Order Records From :</value>
   </data>
   <data name="Delete_Order" xml:space="preserve">
     <value>Delete order from history ?</value>

@@ -131,7 +131,7 @@ namespace KFP.ViewModels
             };
             TotalPages = query.Count() / PageSize + (query.Count() % PageSize > 0 ? 1 : 0);
             CurrentPage = Math.Min(CurrentPage, TotalPages);
-            TotalForSelectedDateRange = (double) (query.Sum(o => (o.TotalPrice != null) ? o.TotalPrice : 0.0 ) ?? 0.0); // making sure that we don't get null values
+            TotalForSelectedDateRange = (double) (query.Where(o => o.Status != OrderStatus.Cancelled && (o.paymentMethod == PaymentMethod.Card || o.paymentMethod == PaymentMethod.Cash)).Sum(o => (o.TotalPrice != null) ? o.TotalPrice : 0.0 ) ?? 0.0); // making sure that we don't get null values
             List<Order> ResultList = query.Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();
@@ -144,6 +144,7 @@ namespace KFP.ViewModels
             OnPropertyChanged(nameof(isDisplayedOrdersEmpty));
             OnPropertyChanged(nameof(DisplayedOrdersNotEmpty));
             OnPropertyChanged(nameof(TotalForSelectedDateRange));
+            DeleteAllSelectedOrdersCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(DisplayedOrdersNotEmpty))]

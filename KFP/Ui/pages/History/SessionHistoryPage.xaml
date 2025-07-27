@@ -6,10 +6,109 @@
     xmlns:local="using:KFP.Ui.pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:components="using:KFP.Ui.Components"
+    xmlns:vm="using:KFP.ViewModels" xmlns:models="using:KFP.DATA"
+    mc:Ignorable="d">
 
-    <Grid>
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <components:DateRangePicker Grid.Row="0" x:Name="dateRangePicker" HorizontalAlignment="Center"
+                          StartDate="{x:Bind viewModel.StartDate, Mode=TwoWay}"
+                          EndDate="{x:Bind viewModel.EndDate, Mode=TwoWay}"
+                          ApplyRangeCommand="{x:Bind viewModel.ApplyDateRangeCommand}"/>
+        <Border Grid.Row="1" Background="{StaticResource SecondBackgroud}" Margin="0,20,0,10" Padding="20" CornerRadius="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Uid="SessionIdTextBlock3" FontWeight="SemiBold" FontSize="16" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <!-- Sort by Date -->
+                <Button Command="{x:Bind viewModel.SortByDateCommand.Command}"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock x:Uid="SessionsHistory_StartedAtLabel" FontWeight="SemiBold"/>
+                        <FontIcon Glyph="{x:Bind viewModel.SortByDateCommand.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" FontSize="13"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Uid="EndedAtTextBlock3" FontWeight="SemiBold" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OppeningCashTextBlock3" FontWeight="SemiBold" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="ClosingCashTextBlock3" FontWeight="SemiBold" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="TotalCardPaymentsTextBlock3" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="TotalTextBlock3" FontWeight="SemiBold" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="UserTextBlock3" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="NothingToDisplayTxtBlk" Grid.Row="1" Grid.ColumnSpan="9" Visibility="{x:Bind viewModel.isDisplayedSessionsEmpty, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                            FontSize="16" Foreground="DimGray" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ScrollViewer  Grid.Row="1" Grid.ColumnSpan="9" Margin="0,20,0,0">
+                    <ItemsControl ItemsSource="{x:Bind viewModel.DisplayList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:SessionHistoryListElement">
+                                <Grid BorderThickness="1" BorderBrush="#FFCCDDCC" Background="White" Padding="13,10,3,10" CornerRadius="5" Margin="0,10,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Grid.Column="0" Text="{x:Bind session.SessionId}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="1" Text="{x:Bind SessionStart}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="2" Text="{x:Bind SessionEnd}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="3" Text="{x:Bind OpeningCash}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="4" Text="{x:Bind ClosingCash}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="5" Text="{x:Bind TotalCardPayments}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="6" Text="{x:Bind TotalPayments}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="7" Text="{x:Bind session.appUser.UserName}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <Button Grid.Column="8" x:Uid="DeleteSessionButton" Width="50" Height="50"  Command="{x:Bind DeleteSessionCommand}">
+                                        <FontIcon Glyph="&#xE74D;"  Foreground="OrangeRed"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid> 
+        </Border>
+        <!-- PAGINATION -->
+        <components:Pager Grid.Row="2" TotalPages="{x:Bind viewModel.TotalPages, Mode=OneWay}" HorizontalAlignment="Center"
+                        SelectedPage="{x:Bind viewModel.CurrentPage, Mode=TwoWay}"
+                        SelectPageCommand="{x:Bind viewModel.SelectPageCommand}"  />
+
+        <Grid Grid.Row="3" Margin="0,10,20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Uid="BulkSessionDeleteButton" Foreground="OrangeRed" BorderBrush="OrangeRed" Margin="20,0,10,0" Command="{x:Bind viewModel.DeleteAllSelectedSessionsCommand}"/>
+            <TextBlock Grid.Column="1">
+        <Run x:Uid="TotalForSelectedDateRange2" />
+        <Run Text="{x:Bind viewModel.TotalForSelectedDateRange, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}}" FontSize="18" FontWeight="SemiBold"/>
+        <Run Text="{x:Bind viewModel.currency, Mode=OneWay}" FontSize="18" FontWeight="SemiBold"/>
+            </TextBlock>
+        </Grid>
     </Grid>
 </Page>

@@ -35,8 +35,9 @@ namespace KFP.DATA
                 return End == null || End <= DateTime.Now;
             }
         }
-        public AppUser appUser { get; set; }
+        public AppUser? appUser { get; set; }
         public List<Order> Orders { get; set; } = new();
+        public List<PaymentReceipt> Receipts { get; set; } = null!;
         public Session() {
             
         }

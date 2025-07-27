@@ -10,7 +10,7 @@ namespace KFP.ViewModels.Helpers.ObjectSelector
 {
     public class SwitchCommand : ObservableObject
     {
-        public List<SwitchCommand> ContainerList { get; set; }
+        public List<SwitchCommand>? ContainerList { get; set; }
         public RelayCommand Command { get; private set; }
         private bool? _isSwitched = false;
         public bool? IsSwitched
@@ -30,7 +30,7 @@ namespace KFP.ViewModels.Helpers.ObjectSelector
                 }
             }
         }
-        public SwitchCommand(Action action, List<SwitchCommand> containerList)
+        public SwitchCommand(Action action, List<SwitchCommand>? containerList)
         {
             Command = new RelayCommand(() =>
                 {

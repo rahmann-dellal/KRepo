@@ -53,6 +53,16 @@ namespace KFP.DATA_Access
                 .HasForeignKey(o => o.SessionId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<PaymentReceipt>().HasMany(r => r.Sales)
+                .WithOne(s => s.Receipt)
+                .HasForeignKey(s => s.ReceiptId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Session>().HasMany(s => s.Receipts)
+                .WithOne(r => r.Session)
+                .HasForeignKey(r => r.SessionId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             // Receipt → Order (Set null on delete)
             modelBuilder.Entity<PaymentReceipt>()
                 .HasOne(i => i.Order)
@@ -106,7 +116,12 @@ namespace KFP.DATA_Access
                 .HasOne(oi => oi.ParentOrderItem)
                 .WithMany(oi => oi.AddOns)
                 .HasForeignKey(oi => oi.ParentOrderItemId)
-                .OnDelete(DeleteBehavior.Cascade); 
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<AppUser>()
+                .HasMany(u => u.Sessions)
+                .WithOne(s => s.appUser)
+                .OnDelete(DeleteBehavior.SetNull); // Keep Session even if user is removed
 
         }
     }
