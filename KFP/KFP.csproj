@@ -65,13 +65,14 @@
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-150.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-400.png" />
+    <None Remove="MainFrame.xaml" />
+    <None Remove="SubscriptionFrame.xaml" />
     <None Remove="Ui\ClockInFrame.xaml" />
     <None Remove="Ui\Components\DateRangePicker.xaml" />
     <None Remove="Ui\Components\KioberNumberBox.xaml" />
     <None Remove="Ui\Components\NumberPad.xaml" />
     <None Remove="Ui\Components\Pager.xaml" />
     <None Remove="Ui\Components\PINInput.xaml" />
-    <None Remove="Ui\MainFrame.xaml" />
     <None Remove="Ui\pages\AboutPage.xaml" />
     <None Remove="Ui\pages\AccountPage.xaml" />
     <None Remove="Ui\pages\DisplayMenuItemPage.xaml" />
@@ -163,6 +164,12 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="SubscriptionFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="MainFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Ui\Components\DateRangePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -252,7 +259,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Ui\MainFrame.xaml">
+    <Page Update="Ui\OperationFrame.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

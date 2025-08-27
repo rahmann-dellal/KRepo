@@ -29,15 +29,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Uid="SessionIdTextBlock3" FontWeight="SemiBold" FontSize="16" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <!-- Sort by Date -->
@@ -48,9 +48,9 @@
                     </StackPanel>
                 </Button>
                 <TextBlock x:Uid="EndedAtTextBlock3" FontWeight="SemiBold" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock x:Uid="OppeningCashTextBlock3" FontWeight="SemiBold" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock x:Uid="ClosingCashTextBlock3" FontWeight="SemiBold" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock x:Uid="TotalCardPaymentsTextBlock3" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OppeningCashTextBlock3" TextWrapping="Wrap" FontWeight="SemiBold" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="ClosingCashTextBlock3" TextWrapping="Wrap" FontWeight="SemiBold" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="TotalCardPaymentsTextBlock3" TextWrapping="Wrap" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock x:Uid="TotalTextBlock3" FontWeight="SemiBold" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock x:Uid="UserTextBlock3" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock x:Uid="NothingToDisplayTxtBlk" Grid.Row="1" Grid.ColumnSpan="9" Visibility="{x:Bind viewModel.isDisplayedSessionsEmpty, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
@@ -65,19 +65,19 @@
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="8*"/>
                                         <ColumnDefinition Width="4*"/>
-                                        <ColumnDefinition Width="7*"/>
-                                        <ColumnDefinition Width="7*"/>
                                         <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock  Grid.Column="0" Text="{x:Bind session.SessionId}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock   Grid.Column="1" Text="{x:Bind SessionStart}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock   Grid.Column="2" Text="{x:Bind SessionEnd}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="1" TextWrapping="Wrap" Text="{x:Bind SessionStart}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock   Grid.Column="2" TextWrapping="Wrap" Text="{x:Bind SessionEnd}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <TextBlock   Grid.Column="3" Text="{x:Bind OpeningCash}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <TextBlock   Grid.Column="4" Text="{x:Bind ClosingCash}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <TextBlock   Grid.Column="5" Text="{x:Bind TotalCardPayments}" VerticalAlignment="Center" HorizontalAlignment="Center"/>

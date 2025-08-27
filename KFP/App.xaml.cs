@@ -5,6 +5,7 @@ using KFP.Services;
 using KFP.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using System.Linq;
 using Windows.Globalization;
@@ -73,12 +74,13 @@ namespace KFP
             services.AddTransient<AddMenuItemVM>();
             services.AddTransient<MenuItemListVM>();
             services.AddTransient<SettingsVM>();
-
             services.AddTransient<ImageConverter>();
             services.AddTransient<FileSystemAccess>();
 
             //Services
             services.AddSingleton<AppDataService>();
+            services.AddSingleton<HttpService>();
+            services.AddSingleton<SubscriptionService>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<AppState>();
             services.AddSingleton<NavigationService>();

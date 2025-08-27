@@ -11,7 +11,63 @@ namespace KFP.Services
     {
         Windows.Storage.ApplicationDataContainer Settings =
         Windows.Storage.ApplicationData.Current.RoamingSettings;
+        
+        public DateTimeOffset? ExpiryDate
+        {
+            get
+            {
+                if (Settings.Values["ExpiryDate"] != null) { 
+                    if (Settings.Values["ExpiryDate"] is string s && DateTimeOffset.TryParse(s, out var result))
+                        return result;
+                    return null;
+                }
+                else
+                    return null;
+            }
+            set
+            {
+                if(value == null)
+                    Settings.Values.Remove("ExpiryDate");
+                else
+                    Settings.Values["ExpiryDate"] = ((DateTimeOffset)value).ToString("o");
+            }
+        }
 
+        public SubscriptionType? SubscriptionType
+        {
+            get
+            {
+                if (Settings.Values["SubscriptionType"] is int i)
+                    return (SubscriptionType)i;
+                else
+                    return null;
+            }
+            set
+            {
+                if (value == null)
+                    Settings.Values.Remove("SubscriptionType");
+                else
+                    Settings.Values["SubscriptionType"] = (int)value;
+            }
+        }
+
+        public string? ProductId
+        {
+            get
+            {
+                if (Settings.Values["ProductId"] != null)
+                    return Settings.Values["ProductId"].ToString();
+                else
+                    return null;
+            }
+            set
+            {
+                if (value == null)
+                    Settings.Values.Remove("ProductId");
+                else
+                    Settings.Values["ProductId"] = value;
+            }
+        }
         public bool DefaultUserLogin
         {
             get

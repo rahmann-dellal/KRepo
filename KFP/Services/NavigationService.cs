@@ -10,17 +10,17 @@ namespace KFP.Services
 {
     public class NavigationService : INavigationService
     {
-        public MainFrame MainFrame {get; set;}
+        public OperationFrame OperationFrame {get; set;}
         public NavigationService() {
         }
         public void navigateTo(Type pageType, List<Object> parameters = null){
-            MainFrame.ContentFrame.Navigate(pageType, parameters);
-            MainFrame.selectedNVI = null;
+            OperationFrame.ContentFrame.Navigate(pageType, parameters);
+            OperationFrame.selectedNVI = null;
         }
 
         public void SetNewHeader(string newHeader)
         {
-            MainFrame.NavView.Header = newHeader;
+            OperationFrame.NavView.Header = newHeader;
         }
 
         public void navigateTo(KioberFoodPage pageType, List<object> parameters = null)

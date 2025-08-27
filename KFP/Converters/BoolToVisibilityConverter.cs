@@ -13,8 +13,15 @@ namespace KFP.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             bool boolValue = KioberConverter.ToBool(value);
+            if (parameter is string strParam)
+            {
+                if (strParam.Equals("invert", StringComparison.OrdinalIgnoreCase))
+                {
+                    boolValue = !boolValue;
+                }
+            }
 
-                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            return boolValue ? Visibility.Visible : Visibility.Collapsed;
 
         }
 

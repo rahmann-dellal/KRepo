@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace KFP.Ui
 {
-    public sealed partial class MainFrame : UserControl
+    public sealed partial class OperationFrame : UserControl
     {
         private NavigationViewItem? _selectedNVI;
         private SessionManager _sessionManager;
@@ -30,7 +30,7 @@ namespace KFP.Ui
                 NavView.SelectedItem = _selectedNVI;
             }
         }
-        public MainFrame()
+        public OperationFrame()
         {
             this.InitializeComponent();
             StrongReferenceMessenger.Default.Register<UserAddedMessage>(this, (r, m) => OnUserAdded(m.UserId));
@@ -52,7 +52,7 @@ namespace KFP.Ui
             ContentFrame.Navigate(typeof(PointOfSalesPage));
             NavView.Header = null;//StringLocalisationService.getStringWithKey("POS");
         }
-        ~MainFrame()
+        ~OperationFrame()
         {
             StrongReferenceMessenger.Default.Unregister<UserAddedMessage>(this);
         }
