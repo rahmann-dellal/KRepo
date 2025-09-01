@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KFP.Services
@@ -32,11 +33,21 @@ namespace KFP.Services
             return false; // If no expiry date is set, consider it inactive
         }
     }
+    public class CheckoutRequest
+    {
+        public string ProductId { get; set; } = string.Empty;
+    }
+    public class GetCheckoutLinkResponse
+    {
+        public string CheckoutUrl { get; set; } = string.Empty;
+    }
     public class SubscriptionService
     {
         private AppDataService _appDataService;
         private readonly HttpService _httpService;
         private const string SubscriptionCheckEndpoint = "https://app.kiober.com/api/subscription/check";
+        private const string CheckoutEndpoint = "https://app.kiober.com/api/subscription/getcheckoutlink";
+
 
         public SubscriptionService(AppDataService appDataService, HttpService httpService)
         {
@@ -83,17 +94,36 @@ namespace KFP.Services
             return _appDataService.ProductId;
         }
 
-        //public void StartFreeTrial()
-        //{
-        //    if (!FreeTrialExpired())
-        //    {
-        //        if(!OnFreeTrial())
-        //        {
-        //            // Set the free trial end date to 14 days from now
-        //            _appDataService.FreeTrialEndDate = DateTime.Now.AddDays(14);
-        //        }
-        //    }
-        //}
+        /// <summary>
+    /// Asks the backend for a Stripe Checkout link.
+    /// </summary>
+    public async Task<string?> GetCheckoutLinkAsync(CheckoutRequest request)
+    {
+        try
+        {
+            GetCheckoutLinkResponse? checkoutResponse = await _httpService.PostAsync<GetCheckoutLinkResponse>(CheckoutEndpoint, request);
+
+            if (checkoutResponse == null || string.IsNullOrEmpty(checkoutResponse.CheckoutUrl))
+            {
+                // You can log or handle the HTTP error here
+                return null;
+            }
+
+            // Optional: validate it's a valid URL
+            if (Uri.IsWellFormedUriString(checkoutResponse.CheckoutUrl, UriKind.Absolute))
+            {
+                return checkoutResponse.CheckoutUrl;
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            // Handle network errors, timeouts, etc.
+            Console.WriteLine($"Error getting checkout link: {ex.Message}");
+            return null;
+        }
+    }
         public SubscriptionRecord? GetLocalSupscriptionRecord()
         {
             if(_appDataService.SubscriptionType != null)

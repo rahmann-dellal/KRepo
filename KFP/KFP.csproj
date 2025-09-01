@@ -65,6 +65,7 @@
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-150.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Images\Logo\Wide310x150Logo.scale-400.png" />
+    <None Remove="BuySubscriptionFrame.xaml" />
     <None Remove="MainFrame.xaml" />
     <None Remove="SubscriptionFrame.xaml" />
     <None Remove="Ui\ClockInFrame.xaml" />
@@ -164,6 +165,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="BuySubscriptionFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="SubscriptionFrame.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
