@@ -13,7 +13,7 @@
     <Grid x:Name="RootGrid" Background="White" Padding="20">
         <Grid x:Name="ChoiceGrid">
             <!-- LOADING GRID -->
-            <Grid x:Name="LoadingGrid" Visibility="Collapsed"
+            <Grid x:Name="LoadingGrid" Visibility="Visible"
               VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12">
                     <TextBlock x:Name="LoadingText"
@@ -48,14 +48,14 @@
 
                     <!-- Buttons -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
-                        <Button x:Name="RetryButton" Content="Retry" Width="120" Height="40"/>
-                        <Button x:Name="CancelExitButton1" Content="Cancel and Exit" Width="160" Height="40"/>
+                        <Button x:Name="RetryButton" Click="RetryButton_Click" Content="Retry" Width="120" Height="40"/>
+                        <Button x:Name="CancelExitButton1" Click="CancelExitButton1_Click" Content="Cancel and Exit" Width="160" Height="40"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
 
             <!-- SUBSCRIPTION GRID -->
-            <Grid x:Name="SubscriptionGrid" Visibility="Visible">
+            <Grid x:Name="SubscriptionGrid" Visibility="Collapsed">
                 <ScrollViewer>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
 
@@ -75,7 +75,7 @@
 
                         <!-- Main actions -->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="30">
-                            <Button x:Name="StartTrialButton" BorderBrush="Green" VerticalContentAlignment="Top"
+                            <Button x:Name="StartTrialButton" BorderBrush="Green" VerticalContentAlignment="Top" Click="StartTrialButton_Click"
                             Width="400" Height="180">
                                 <StackPanel HorizontalAlignment="Center">
                                     <TextBlock FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,30,0,20" >Start Free Trial</TextBlock>

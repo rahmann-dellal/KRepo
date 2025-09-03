@@ -37,7 +37,6 @@ namespace KFP
             {
                 presenter.Maximize();
             }
-
             _appState.PropertyChanged += AppState_PropertyChanged;
             _appState.OnSubscriptionStatusChanged += (s,e) =>
             {

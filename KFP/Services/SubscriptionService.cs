@@ -33,6 +33,10 @@ namespace KFP.Services
             return false; // If no expiry date is set, consider it inactive
         }
     }
+    public class StartFreeTrialRequest
+    {
+        public string ProductId { get; set; } = string.Empty;
+    }
     public class CheckoutRequest
     {
         public string ProductId { get; set; } = string.Empty;
@@ -47,6 +51,7 @@ namespace KFP.Services
         private readonly HttpService _httpService;
         private const string SubscriptionCheckEndpoint = "https://app.kiober.com/api/subscription/check";
         private const string CheckoutEndpoint = "https://app.kiober.com/api/subscription/getcheckoutlink";
+        private const string startFreeTrialEndpoint = "https://app.kiober.com/api/subscription/startfreetrial";
 
 
         public SubscriptionService(AppDataService appDataService, HttpService httpService)
@@ -54,23 +59,53 @@ namespace KFP.Services
             _appDataService = appDataService;
             _httpService = httpService;
         }
+        public async Task<SubscriptionRecord?> StartFreeTrialAsync(string productId)
+        {
+            var request = new StartFreeTrialRequest
+            {
+                ProductId = productId
+            };
+
+            // Calls your existing PostAsync<T>
+            var record = await _httpService.PostAsync<SubscriptionRecord?>(
+                startFreeTrialEndpoint,
+                request
+            );
+            saveSubscriptionRecord(record);
+            return record;
+        }
+        private void saveSubscriptionRecord(SubscriptionRecord? record)
+        {
+            if (record != null)
+            {
+                if (_appDataService.SubscriptionType != null)
+                {
+                    if (_appDataService.SubscriptionType == SubscriptionType.Basic && _appDataService.ExpiryDate > record.ExpiryDate)
+                    {
+                        // do nothing as the basic subscription is longer than the free trial
+                        return ;
+                    }
+                    //OR
+                    if (record.Type == SubscriptionType.FreeTrial && _appDataService.ExpiryDate > record.ExpiryDate)
+                    {
+                        // do nothing as the existing free trial is longer than the new one
+                        return ;
+                    }
+                }
+                _appDataService.SubscriptionType = record.Type;
+                _appDataService.ExpiryDate = record.ExpiryDate;
+            }
+        }
         public async Task<SubscriptionRecord?> CheckSubscriptionAsync(string productId, bool fakeResultTrue = false)
         {
-            try
-            {
-                var requestData = new { ProductId = productId, fakeTrue = fakeResultTrue };
+                var requestData = new { ProductId = productId };
 
                 var subscription =  await _httpService.PostAsync<SubscriptionRecord>(
                     SubscriptionCheckEndpoint,
                     requestData
                 );
+                saveSubscriptionRecord(subscription);
                 return subscription;
-            }
-            catch (Exception ex)
-            {
-                // log or handle error
-                return null;
-            }
         }
         public string GetProductId()
         {

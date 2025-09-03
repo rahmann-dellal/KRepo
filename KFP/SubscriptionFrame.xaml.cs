@@ -22,20 +22,55 @@ namespace KFP
             _subscriptionService = Ioc.Default.GetService<SubscriptionService>()!;
             this.InitializeComponent();
             dispatcher = this.DispatcherQueue;
-            _subscriptionService.CheckSubscriptionAsync("abc-123", false).ContinueWith( async (action) =>
+            CheckServerForSubscription();
+        }
+
+        private void CheckServerForSubscription()
+        {
+            _subscriptionService.CheckSubscriptionAsync(_subscriptionService.GetProductId(), false).ContinueWith(async (action) =>
             {
-                var result = await action;
-                if (result != null && result.isActive())
+                SubscriptionRecord? result = null;
+                try
+                {
+                    result = await action;
+                    if (result != null && result.isActive())
+                    {
+                        dispatcher.TryEnqueue(() =>
+                        {
+                            _appstate.RaiseSubscriptionStatusChanged();
+                        });
+                    }
+                    else
+                    {
+                        dispatcher.TryEnqueue(() =>
+                        {
+                            SubscriptionGrid.Visibility = Visibility.Visible;
+                            LoadingGrid.Visibility = Visibility.Collapsed;
+                        });
+                    }
+                }
+                catch (Exception ex)
                 {
                     dispatcher.TryEnqueue(() =>
                     {
-                        //_appstate.RaiseSubscriptionStatusChanged();
+                        SubscriptionGrid.Visibility = Visibility.Collapsed;
+                        LoadingGrid.Visibility = Visibility.Collapsed;
+                        ErrorGrid.Visibility = Visibility.Visible;
+                        if (ex is NetworkException)
+                        {
+                            NoNetworkErrorText.Visibility = Visibility.Visible;
+                            CantReachServerErrorText.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            NoNetworkErrorText.Visibility = Visibility.Collapsed;
+                            CantReachServerErrorText.Visibility = Visibility.Visible;
+                        }
                     });
                 }
+
             });
         }
-
-
         //links
         private async void TermsLink_Click(object sender, RoutedEventArgs e)
         {
@@ -98,6 +133,49 @@ namespace KFP
                 ChoiceGrid.Visibility = Visibility.Visible;
             };
             BuySubscriptionBorder.Child = buySubscriptionFrame;
+        }
+
+        private async void StartTrialButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChoiceGrid.Visibility = Visibility.Collapsed;
+            BuySubscriptionBorder.Visibility = Visibility.Collapsed;
+            LoadingGrid.Visibility = Visibility.Visible;
+
+            try
+            {
+                var trial = await _subscriptionService.StartFreeTrialAsync(_subscriptionService.GetProductId());
+            }
+            catch (Exception ex)
+            {
+                var dialog = new ContentDialog
+                {
+                    Title = "Error Starting Trial",
+                    Content = $"An error occurred while starting the free trial: {ex.Message}",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.Content.XamlRoot // ensure dialog attaches to window
+                };
+                await dialog.ShowAsync();
+                ChoiceGrid.Visibility = Visibility.Visible;
+                LoadingGrid.Visibility = Visibility.Collapsed;
+                return;
+            }
+            dispatcher.TryEnqueue(() =>
+            {
+                _appstate.RaiseSubscriptionStatusChanged();
+            });
+        }
+
+        private void RetryButton_Click(object sender, RoutedEventArgs e)
+        {
+            SubscriptionGrid.Visibility = Visibility.Collapsed;
+            LoadingGrid.Visibility = Visibility.Visible;
+            ErrorGrid.Visibility = Visibility.Collapsed;
+            CheckServerForSubscription();
+        }
+
+        private void CancelExitButton1_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }

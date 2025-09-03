@@ -109,7 +109,10 @@ namespace KFP.Services
 
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
+                if(string.IsNullOrWhiteSpace(responseContent))
+                {
+                    return default;
+                }
                 return JsonSerializer.Deserialize<T>(responseContent, options);
             }
             catch (HttpRequestException ex) when (ex.StatusCode == null)
