@@ -30,26 +30,28 @@
             <!-- ERROR GRID -->
             <Grid x:Name="ErrorGrid" Visibility="Collapsed"
               VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="36">
 
                     <!-- Error messages -->
                     <TextBlock x:Name="NoNetworkErrorText"
                            Text="No network connection. Please check your connection."
-                           Foreground="Red"
-                           FontSize="18"
+                           Foreground="OrangeRed"
+                           FontSize="16"
                            TextAlignment="Center"
                            Visibility="Collapsed"/>
                     <TextBlock x:Name="CantReachServerErrorText"
                            Text="Unable to reach the server. Please try again later."
-                           Foreground="Red"
-                           FontSize="18"
+                           Foreground="OrangeRed"
+                           FontSize="16"
                            TextAlignment="Center"
                            Visibility="Visible"/>
 
                     <!-- Buttons -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
-                        <Button x:Name="RetryButton" Click="RetryButton_Click" Content="Retry" Width="120" Height="40"/>
-                        <Button x:Name="CancelExitButton1" Click="CancelExitButton1_Click" Content="Cancel and Exit" Width="160" Height="40"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="40">
+                        <Button x:Name="RetryButton" Click="RetryButton_Click" Content="Retry" Width="160" Height="40"
+                                FontWeight="SemiBold" BorderBrush="ForestGreen"/>
+                        <Button x:Name="CancelExitButton1" Click="CancelExitButton1_Click" Content="Cancel and Exit" Width="160" Height="40"
+                                FontWeight="SemiBold" BorderBrush="ForestGreen"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
