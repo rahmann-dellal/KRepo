@@ -35,7 +35,8 @@ namespace KFP
         {
             var checkoutUrl = await _subscriptionService.GetCheckoutLinkAsync(new CheckoutRequest
             {
-                ProductId = "3344"
+                ProductId = "prod_SoWJbOr8nWCbu2", // not needed
+                PriceId = "price_1S3hdCDBFVvesOnPfJ3H5c31"
             });
             if (!string.IsNullOrEmpty(checkoutUrl))
             {

@@ -39,7 +39,8 @@ namespace KFP.Services
     }
     public class CheckoutRequest
     {
-        public string ProductId { get; set; } = string.Empty;
+        public string? ProductId { get; set; } = string.Empty;
+        public string PriceId { get; set; } = string.Empty;
     }
     public class GetCheckoutLinkResponse
     {
@@ -50,7 +51,7 @@ namespace KFP.Services
         private AppDataService _appDataService;
         private readonly HttpService _httpService;
         private const string SubscriptionCheckEndpoint = "https://app.kiober.com/api/subscription/check";
-        private const string CheckoutEndpoint = "https://app.kiober.com/api/subscription/getcheckoutlink";
+        private const string CheckoutEndpoint = "https://app.kiober.com/api/checkout/getcheckoutlink";
         private const string startFreeTrialEndpoint = "https://app.kiober.com/api/subscription/startfreetrial";
 
 

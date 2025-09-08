@@ -20,13 +20,13 @@ namespace KFP
         private SessionManager _sessionManager;
         private AppState _appState;
         private SubscriptionService _subscriptionService;
-        //private AppDataService _appDataService;
+        private AppDataService _appDataService;
         public MainWindow()
         {
             _sessionManager = Ioc.Default.GetService<SessionManager>()!;
             _appState = Ioc.Default.GetService<AppState>()!;
             _subscriptionService = Ioc.Default.GetService<SubscriptionService>()!;
-            //_appDataService = Ioc.Default.GetService<AppDataService>()!;
+            _appDataService = Ioc.Default.GetService<AppDataService>()!;
 
             this.InitializeComponent();
 
@@ -39,8 +39,8 @@ namespace KFP
             {
                 presenter.Maximize();
             }
-            //_appDataService.SubscriptionType = null;
-            //_appDataService.ExpiryDate = null;
+            _appDataService.SubscriptionType = null;
+            _appDataService.ExpiryDate = null;
             _appState.PropertyChanged += AppState_PropertyChanged;
             _appState.OnSubscriptionStatusChanged += (s,e) =>
             {
