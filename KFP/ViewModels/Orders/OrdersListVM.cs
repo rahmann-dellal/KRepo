@@ -179,7 +179,7 @@ namespace KFP.ViewModels
                 if (numberOfItems == 0)
                     return StringLocalisationService.getStringWithKey("NoItems");
                 else if (numberOfItems == 1)
-                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Item_se4");
+                    return numberOfItems + " " + StringLocalisationService.getStringWithKey("Item_4");
                 else
                     return numberOfItems + " " + StringLocalisationService.getStringWithKey("Items");
             }
