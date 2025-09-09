@@ -102,12 +102,12 @@ namespace KFP.Services
                 var grayPen = new Pen(Color.LightGray) { DashPattern = new float[] { 2, 2 } };
 
                 // Localized labels
-                string qtyLabel = StringLocalisationService.getStringWithKey("Qty");
-                string itemLabel = StringLocalisationService.getStringWithKey("Item1");
-                string unitPriceLabel = StringLocalisationService.getStringWithKey("ReceiptUnitPrice");
-                string totalLabel = StringLocalisationService.getStringWithKey("Total");
-                string receiptLabel = StringLocalisationService.getStringWithKey("Receipt");
-                string paymentMethodLabel = StringLocalisationService.getStringWithKey("PaymentMethod");
+                string qtyLabel = StringLocalisationService.getStringWithKey("Receipt_Qty");
+                string itemLabel = StringLocalisationService.getStringWithKey("Receipt_Item");
+                string unitPriceLabel = StringLocalisationService.getStringWithKey("Receipt_UnitPrice");
+                string totalLabel = StringLocalisationService.getStringWithKey("Receipt_Total");
+                string receiptLabel = StringLocalisationService.getStringWithKey("Receipt_Receipt");
+                string paymentMethodLabel = StringLocalisationService.getStringWithKey("Receipt_PaymentMethod");
 
                 // Establishment info
                 if (PrintEstablishmentNameWithReceipt && !string.IsNullOrWhiteSpace(EstablishmentName))
@@ -215,12 +215,12 @@ namespace KFP.Services
                 var grayPen = new Pen(Color.LightGray) { DashPattern = new float[] { 2, 2 } };
 
                 // Localized labels
-                string itemLabel = StringLocalisationService.getStringWithKey("Item2");
-                string qtyLabel = StringLocalisationService.getStringWithKey("Qty_1");
-                string unitPriceLabel = StringLocalisationService.getStringWithKey("PreBillPrice");
+                string itemLabel = StringLocalisationService.getStringWithKey("PreBill_Item");
+                string qtyLabel = StringLocalisationService.getStringWithKey("PreBill_Qty");
+                string unitPriceLabel = StringLocalisationService.getStringWithKey("PreBill_Price");
                 string qtyxunitpricelable = qtyLabel + " * " +  unitPriceLabel;
-                string notesLabel = StringLocalisationService.getStringWithKey("Notes");
-                string totalLabel = StringLocalisationService.getStringWithKey("Total1");
+                string notesLabel = StringLocalisationService.getStringWithKey("PreBill_Notes");
+                string totalLabel = StringLocalisationService.getStringWithKey("PreBill_Total");
 
                 // Establishment info
                 if (PrintEstablishmentNameWithPreBill && !string.IsNullOrWhiteSpace(EstablishmentName))
@@ -253,7 +253,7 @@ namespace KFP.Services
                 y += 20;
 
                 // Centered Order number
-                string OrderString = StringLocalisationService.getStringWithKey("Order") + " #" + order.Id;
+                string OrderString = StringLocalisationService.getStringWithKey("PreBill_Order") + " #" + order.Id;
                 SizeF OrderStringSize = g.MeasureString(OrderString, boldFont);
                 xCentered = (pageWidth - OrderStringSize.Width) / 2;
                 g.DrawString(OrderString, boldFont, Brushes.Black, xCentered, y);
@@ -263,8 +263,8 @@ namespace KFP.Services
                 string locationLabel = order.orderLocation switch
                 {
                     OrderLocation.Table => $"{StringLocalisationService.getStringWithKey("Table")} #{order.TableNumber}",
-                    OrderLocation.Counter => StringLocalisationService.getStringWithKey("Counter_2"),
-                    OrderLocation.Delivery => StringLocalisationService.getStringWithKey("Delivery2"),
+                    OrderLocation.Counter => StringLocalisationService.getStringWithKey("PreBill_Counter"),
+                    OrderLocation.Delivery => StringLocalisationService.getStringWithKey("PreBill_Delivery"),
                     _ => string.Empty
                 };
                 DrawWrappedCenteredText(g, locationLabel, boldFont, Brushes.Black, pageWidth, ref y);
@@ -274,15 +274,15 @@ namespace KFP.Services
                 if (order.orderLocation == OrderLocation.Delivery && order.DeliveryInfo is DeliveryInfo info)
                 {
                     if (!string.IsNullOrWhiteSpace(info.CustomerName)) {
-                        string customerNameString = StringLocalisationService.getStringWithKey("CustomerName");
+                        string customerNameString = StringLocalisationService.getStringWithKey("PreBill_CustomerName");
                         DrawWrappedText(g, customerNameString +" : " + info.CustomerName, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
                     }
                     if (!string.IsNullOrWhiteSpace(info.PhoneNumber)) {
-                        string phoneString = StringLocalisationService.getStringWithKey("Phone");
+                        string phoneString = StringLocalisationService.getStringWithKey("PreBill_Phone");
                         DrawWrappedText(g, phoneString + " : " + info.PhoneNumber, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
                     }
                     if (!string.IsNullOrWhiteSpace(info.Address)) {
-                        string addressString = StringLocalisationService.getStringWithKey("Address");
+                        string addressString = StringLocalisationService.getStringWithKey("PreBill_Address");
                         DrawWrappedText(g, addressString + " : " + info.Address, regularFont, Brushes.Black, margin, pageWidth - 2 * margin, ref y);
                     }
             }
@@ -378,9 +378,9 @@ namespace KFP.Services
             PrintDocument printDoc = new PrintDocument();
             printDoc.PrinterSettings.PrinterName = kitchenPrinterName;
 
-            string qtyLabel = StringLocalisationService.getStringWithKey("Qty");
-            string ItemLabel = StringLocalisationService.getStringWithKey("Item3");
-            string NotesLabel = StringLocalisationService.getStringWithKey("Notes_2");
+            string qtyLabel = StringLocalisationService.getStringWithKey("KitchenTicket_Qty");
+            string ItemLabel = StringLocalisationService.getStringWithKey("KitchenTicket_Item");
+            string NotesLabel = StringLocalisationService.getStringWithKey("kitchenTicket_Notes");
 
             printDoc.PrintPage += (sender, e) =>
             {
@@ -404,7 +404,7 @@ namespace KFP.Services
                 y += lineHeight * 1.5f;
 
                 // Centered Order number
-                string OrderString = StringLocalisationService.getStringWithKey("Order_2") + " #" + order.Id; 
+                string OrderString = StringLocalisationService.getStringWithKey("kitchenTicket_Order") + " #" + order.Id; 
                 SizeF OrderStringSize = g.MeasureString(OrderString, boldFont);
                 xCentered = (pageWidth - OrderStringSize.Width) / 2;
                 g.DrawString(OrderString, boldFont, Brushes.Black, xCentered, y);

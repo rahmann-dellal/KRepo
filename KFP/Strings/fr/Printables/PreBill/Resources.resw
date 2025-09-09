@@ -117,37 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="Address" xml:space="preserve">
+	<data name="PreBill_Address" xml:space="preserve">
   <value>Adresse</value>
 </data>
-	<data name="Counter_2" xml:space="preserve">
+	<data name="PreBill_Counter" xml:space="preserve">
   <value>Comptoir</value>
 </data>
-	<data name="CustomerName" xml:space="preserve">
+	<data name="PreBill_CustomerName" xml:space="preserve">
   <value>Nom du client</value>
 </data>
-	<data name="Delivery2" xml:space="preserve">
+	<data name="PreBill_Delivery" xml:space="preserve">
   <value>Livraison</value>
 </data>
-	<data name="Item2" xml:space="preserve">
+	<data name="PreBill_Item" xml:space="preserve">
   <value>Article</value>
 </data>
-	<data name="Notes" xml:space="preserve">
+	<data name="PreBill_Notes" xml:space="preserve">
   <value>Remarques</value>
 </data>
-	<data name="Order" xml:space="preserve">
+	<data name="PreBill_Order" xml:space="preserve">
   <value>Commande</value>
 </data>
-	<data name="Phone" xml:space="preserve">
+	<data name="PreBill_Phone" xml:space="preserve">
   <value>Téléphone</value>
 </data>
-	<data name="Qty_1" xml:space="preserve">
+	<data name="PreBill_Qty" xml:space="preserve">
   <value>Qté</value>
 </data>
-	<data name="PreBillPrice" xml:space="preserve">
+	<data name="PreBill_Price" xml:space="preserve">
   <value>P.U</value>
 </data>
-	<data name="Total1" xml:space="preserve">
+	<data name="PreBill_Total" xml:space="preserve">
   <value>Total</value>
 </data>
 </root>

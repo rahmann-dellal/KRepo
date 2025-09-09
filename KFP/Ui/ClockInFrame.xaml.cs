@@ -95,8 +95,8 @@ namespace KFP.Ui
             }
             numberBox.Value = OpeningCash;
 
-            cancelAndExitButton.Content = StringLocalisationService.getStringWithKey("cancelAndExit");
-            pinInput.PromptText = StringLocalisationService.getStringWithKey("please_enter_pin");
+            cancelAndExitButton.Content = StringLocalisationService.getStringWithKey("ClockInFrame_cancelAndExit");
+            pinInput.PromptText = StringLocalisationService.getStringWithKey("ClockInFrame_please_enter_pin");
             pinInput.PinIsValidText = StringLocalisationService.getStringWithKey("WaitingForLoggin");
             pinInput.PinChanged += onPinChange;
         }
@@ -109,7 +109,7 @@ namespace KFP.Ui
                 Logintask.Wait();
                 if (Logintask.Result == false)
                 {
-                    pinInput.PromptText = StringLocalisationService.getStringWithKey("Wrong_PIN_Try_again");
+                    pinInput.PromptText = StringLocalisationService.getStringWithKey("ClockInFrame_Wrong_PIN_Try_again");
                     pinInput.resetPin();
                 }
             }

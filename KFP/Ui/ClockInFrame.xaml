@@ -43,13 +43,13 @@
                 <Image Source="ms-appx:///Assets/Images/Logo/StoreLogo.png" HorizontalAlignment="Center" Stretch="UniformToFill" Height="60" Width="60" Margin="0,0,30,0"/>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <TextBlock FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"> Kiober</TextBlock>
-                    <TextBlock FontSize="18" FontWeight="Normal" HorizontalAlignment="Center" x:Uid="LoginTextBlock"/>
+                    <TextBlock FontSize="18" FontWeight="Normal" HorizontalAlignment="Center" x:Uid="ClockInFrame_LoginTxtBlk"/>
                 </StackPanel>
             </StackPanel>
 
 
             <StackPanel  Margin="0,20,0,0"  Orientation="Vertical" x:Name="selectUserPanel">
-                <TextBlock Margin="0,0,0,10" x:Uid="select_user" FontSize="20"  HorizontalAlignment="Center"/>
+                <TextBlock Margin="0,0,0,10" x:Uid="ClockInFrame_select_user" FontSize="20"  HorizontalAlignment="Center"/>
                 <ListView x:Name="UsersListView" ItemsSource="{x:Bind Path=AppUsers}" SelectedItem="{x:Bind Path=selectedUser, Mode=TwoWay}"
                           HorizontalContentAlignment="Center"
                           ItemTemplate="{StaticResource userTemplate}">
@@ -76,12 +76,12 @@
                         <SymbolIcon Symbol="Clear" Foreground="Gray"/>
                     </Button>
                 </StackPanel>
-                <TextBlock FontSize="13" HorizontalAlignment="Center" x:Uid="DefaultLoginTextBlock" x:Name="defaultLoginTextBlock" Visibility="Collapsed" Margin="0,20,0,0" />
+                <TextBlock FontSize="13" HorizontalAlignment="Center" x:Uid="ClockInFrame_DefaultLoginTxtBlk" x:Name="defaultLoginTextBlock" Visibility="Collapsed" Margin="0,20,0,0" />
                 <custom:PINInput x:Name="pinInput" ShowPin="False" Margin="0,20,0,0"
                                  Visibility="{x:Bind OpeningCashSet, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                 <StackPanel x:Name="openingCashInput" Margin="0,25,0,0" Visibility="{x:Bind showOpeningCashInput, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock x:Uid="OpeningCashTextBlock_2" VerticalAlignment="Center"/>
+                        <TextBlock x:Uid="ClockInFrame_OpeningCashTxtBlk" VerticalAlignment="Center"/>
                         <custom:KioberNumberBox Value="{x:Bind OpeningCash, Mode=TwoWay}" x:Name="numberBox" Height="50" AllowOnlyPositiveValues="True" Margin="0,0,20,0"/>
                         <Button x:Name="numberBoxButton" Click="numberBoxButton_Click"
                                 Height="100" Width="100"

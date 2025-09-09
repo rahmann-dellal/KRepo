@@ -117,26 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cancelAndExit" xml:space="preserve">
+  <data name="ClockInFrame_cancelAndExit" xml:space="preserve">
     <value>Annuler et quitter</value>
   </data>
-  <data name="DefaultLoginTextBlock.Text" xml:space="preserve">
+  <data name="ClockInFrame_DefaultLoginTxtBlk.Text" xml:space="preserve">
     <value>Code PIN par défaut : 000000 (veuillez le modifier après connexion)</value>
   </data>
-  <data name="LoginTextBlock.Text" xml:space="preserve">
+  <data name="ClockInFrame_LoginTxtBlk.Text" xml:space="preserve">
     <value>Connexion</value>
   </data>
-  <data name="OpeningCashTextBlock_2.Text" xml:space="preserve">
+  <data name="ClockInFrame_OpeningCashTxtBlk.Text" xml:space="preserve">
     <value>Fond de caisse initial</value>
   </data>
-  <data name="please_enter_pin" xml:space="preserve">
+  <data name="ClockInFrame_please_enter_pin" xml:space="preserve">
     <value>Entrez le code PIN</value>
   </data>
-  <data name="select_user.Text" xml:space="preserve">
+  <data name="ClockInFrame_select_user.Text" xml:space="preserve">
     <value>Sélectionnez un utilisateur</value>
     <comment>Clock In Frame</comment>
   </data>
-  <data name="Wrong_PIN_Try_again" xml:space="preserve">
+  <data name="ClockInFrame_Wrong_PIN_Try_again" xml:space="preserve">
     <value>Code PIN incorrect, veuillez réessayer</value>
   </data>
 </root>
