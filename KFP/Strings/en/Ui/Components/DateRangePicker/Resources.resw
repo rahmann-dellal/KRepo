@@ -129,13 +129,13 @@
   <data name="DateRangePicker_LastWeek.Content" xml:space="preserve">
     <value>Last Week</value>
   </data>
-  <data name="OrdersHistory_EndDateLabel.Text" xml:space="preserve">
+  <data name="DateRangePicker_EndDateLabel.Text" xml:space="preserve">
     <value>To :</value>
   </data>
-  <data name="OrdersHistory_StartDateLabel.Text" xml:space="preserve">
+  <data name="DateRangePicker_StartDateLabel.Text" xml:space="preserve">
     <value>From :</value>
   </data>
-  <data name="QuickFiltersTextBlock.Text" xml:space="preserve">
+  <data name="DateRangePicker_QuickFiltersTxtBlk.Text" xml:space="preserve">
     <value>Quick Filters :</value>
   </data>
 </root>

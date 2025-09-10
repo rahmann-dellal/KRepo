@@ -39,7 +39,7 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="upload_from_files_link.Text" xml:space="preserve">
+	<data name="InteractiveImageDisplay_upload_from_files_link.Text" xml:space="preserve">
 		<value>Click here to upload</value>
 		<comment>Used in InteractiveImageDisplay</comment>
 	</data>

@@ -14,7 +14,7 @@
 
         <!-- Quick Filter Buttons -->
         <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-            <TextBlock x:Uid="QuickFiltersTextBlock" Margin="0,0,30,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <TextBlock x:Uid="DateRangePicker_QuickFiltersTxtBlk" Margin="0,0,30,0" FontWeight="SemiBold" VerticalAlignment="Center"/>
 
             <!-- All Time -->
             <Border BorderBrush="{x:Bind AllTimeFilter.IsSelected, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
@@ -64,11 +64,11 @@
         <!-- Manual Date Range -->
         <StackPanel Orientation="Horizontal" Spacing="10">
 
-            <TextBlock x:Uid="OrdersHistory_StartDateLabel" FontWeight="SemiBold"/>
+            <TextBlock x:Uid="DateRangePicker_StartDateLabel" FontWeight="SemiBold"/>
             <DatePicker Date="{x:Bind StartDate, Mode=TwoWay}" x:Name="StartDateDatePicker"
                         DateChanged="OnCustomDateChanged" Margin="0,0,30,0"/>
 
-            <TextBlock x:Uid="OrdersHistory_EndDateLabel" FontWeight="SemiBold"/>
+            <TextBlock x:Uid="DateRangePicker_EndDateLabel" FontWeight="SemiBold"/>
             <DatePicker Date="{x:Bind EndDate, Mode=TwoWay}" x:Name="EndDateDatePicker"
                         DateChanged="OnCustomDateChanged" />
         </StackPanel>

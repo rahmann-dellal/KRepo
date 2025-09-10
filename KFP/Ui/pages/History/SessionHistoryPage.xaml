@@ -75,7 +75,10 @@
                                         <ColumnDefinition Width="5*"/>
                                         <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock  Grid.Column="0" Text="{x:Bind session.SessionId}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold">
+                                        <Run Text="#"/>
+                                        <Run Text="{x:Bind session.SessionId}"/>
+                                    </TextBlock>
                                     <TextBlock   Grid.Column="1" TextWrapping="Wrap" Text="{x:Bind SessionStart}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <TextBlock   Grid.Column="2" TextWrapping="Wrap" Text="{x:Bind SessionEnd}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <TextBlock   Grid.Column="3" Text="{x:Bind OpeningCash}" VerticalAlignment="Center" HorizontalAlignment="Center"/>

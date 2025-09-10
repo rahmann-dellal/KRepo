@@ -68,7 +68,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <PathIcon Data="{StaticResource CounterIconData}" Margin="0,0,20,0"
                                                 Foreground="LightGreen"/>
-                                    <TextBlock  x:Uid="CounterButtonTextBlock1"  Margin="0,0,20,0" Foreground="Black"/>
+                                    <TextBlock  x:Uid="CounterButtonTextBlock1"  Margin="0,0,20,0" VerticalAlignment="Center" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
                         </Border>
@@ -80,8 +80,8 @@
                                 <StackPanel Orientation="Horizontal">
                                     <PathIcon Data="{StaticResource TableIconData}" Margin="0,0,20,0" 
                                                 Foreground="LightGreen"/>
-                                    <TextBlock x:Uid="TableButtonTextBlock1" Margin="0,0,10,0" Foreground="Black"/>
-                                    <TextBlock Text="{x:Bind ViewModel.SelectedTableNumber, Mode=OneWay}" FontWeight="Bold" Foreground="Black"/>
+                                    <TextBlock x:Uid="TableButtonTextBlock1" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="Black"/>
+                                    <TextBlock Text="{x:Bind ViewModel.SelectedTableNumber, Mode=OneWay}" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
                         </Border>
@@ -93,7 +93,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <PathIcon Data="{StaticResource DeliveryIconData}" Margin="0,0,20,0"
                                                 Foreground="LightGreen"/>
-                                    <TextBlock x:Uid="DeliveryButtonTextBlock1" Margin="0,0,10,0" Foreground="Black"/>
+                                    <TextBlock x:Uid="DeliveryButtonTextBlock1" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
                         </Border>
@@ -101,16 +101,16 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0" 
                             Visibility="{x:Bind ViewModel.CanEditOrder, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
-                    <Button Command="{x:Bind ViewModel.EditOrderCommand}"  Width="200"  Margin="0,0,20,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Uid="EditOrderTextBlock" Margin="0,0,30,0"  />
-                            <FontIcon Glyph="&#xE70F;"  FontWeight="ExtraBold"  />
+                    <Button Command="{x:Bind ViewModel.EditOrderCommand}"  Width="220"  Margin="0,0,20,0" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Uid="EditOrderTextBlock" Margin="0,0,13,0" HorizontalAlignment="Center" />
+                            <FontIcon Glyph="&#xE70F;"  FontWeight="ExtraBold" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Command="{x:Bind ViewModel.CancelOrderCommand}"  Width="200"  Margin="0,0,0,0" BorderBrush="OrangeRed">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Uid="CancelOrderTextBlock" Margin="0,0,30,0"  />
-                            <FontIcon Glyph="&#xE711;"  FontWeight="ExtraBold" Foreground="OrangeRed" />
+                    <Button Command="{x:Bind ViewModel.CancelOrderCommand}"  Width="220"  Margin="0,0,0,0" BorderBrush="OrangeRed">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Uid="CancelOrderTextBlock" Margin="0,0,13,0" HorizontalAlignment="Center" />
+                            <FontIcon Glyph="&#xE711;"  FontWeight="ExtraBold" Foreground="OrangeRed" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
