@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AssignedCategories1.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_AssignedCategories.Text" xml:space="preserve">
     <value>Assigned Categories :</value>
   </data>
-  <data name="Delete_Menu_Item_Button.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_Delete_Menu_Item_Btn.Text" xml:space="preserve">
     <value>Delete Menu Item</value>
   </data>
-  <data name="Edit_Menu_Item_Button.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_Edit_Menu_Item_Btn.Text" xml:space="preserve">
     <value>Edit Menu Item</value>
   </data>
-  <data name="Empty.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_Empty.Text" xml:space="preserve">
     <value>Empty !</value>
   </data>
-  <data name="Items_name1.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_Items_name.Text" xml:space="preserve">
     <value>Item's name</value>
   </data>
-  <data name="Items_price1.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_Items_price.Text" xml:space="preserve">
     <value>Item's price</value>
   </data>
-  <data name="Item_Type_text_block1.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_Item_Type_txtblk.Text" xml:space="preserve">
     <value>Item's type</value>
   </data>
-  <data name="picture_text_block.Text" xml:space="preserve">
+  <data name="DisplayMenuItemPage_picture_txtblk.Text" xml:space="preserve">
     <value>Picture</value>
   </data>
 </root>

@@ -117,37 +117,37 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="AddButton.Label" xml:space="preserve">
+	<data name="CategoriesPage_AddButton.Label" xml:space="preserve">
   <value>Ajouter</value>
 </data>
-	<data name="CancelButton.Label" xml:space="preserve">
+	<data name="CategoriesPage_CancelButton.Label" xml:space="preserve">
   <value>Annuler</value>
 </data>
-	<data name="category_with_same_name_exists" xml:space="preserve">
+	<data name="CategoriesPage_category_with_same_name_exists" xml:space="preserve">
   <value>Une catégorie avec le même nom existe déjà</value>
 </data>
-	<data name="DeleteButton.Label" xml:space="preserve">
+	<data name="CategoriesPage_DeleteButton.Label" xml:space="preserve">
   <value>Supprimer</value>
 </data>
-	<data name="EditButton.Label" xml:space="preserve">
+	<data name="CategoriesPage_EditButton.Label" xml:space="preserve">
   <value>Modifier le nom</value>
 </data>
-	<data name="Name" xml:space="preserve">
+	<data name="CategoriesPage_Name" xml:space="preserve">
   <value>Nom</value>
 </data>
-	<data name="NewName" xml:space="preserve">
+	<data name="CategoriesPage_NewName" xml:space="preserve">
   <value>Nouveau nom</value>
 </data>
-	<data name="New_Category" xml:space="preserve">
+	<data name="CategoriesPage_New_Category" xml:space="preserve">
   <value>Nouvelle catégorie</value>
 </data>
-	<data name="new_name.Header" xml:space="preserve">
+	<data name="CategoriesPage_new_name.Header" xml:space="preserve">
   <value>Nouveau nom</value>
 </data>
-	<data name="Please_provide_new_name" xml:space="preserve">
+	<data name="CategoriesPage_Please_provide_new_name" xml:space="preserve">
   <value>Veuillez fournir un nouveau nom</value>
 </data>
-	<data name="SaveButton.Label" xml:space="preserve">
+	<data name="CategoriesPage_SaveButton.Label" xml:space="preserve">
   <value>Enregistrer</value>
 </data>
 

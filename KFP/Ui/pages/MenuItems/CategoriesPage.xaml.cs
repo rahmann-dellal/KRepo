@@ -105,7 +105,7 @@ namespace KFP.Ui.pages
             EditingExistingCategory = true;
             CategoriesListView.IsEnabled = false;
             EditingPanel.Visibility = Visibility.Visible;
-            name_textbox.Header = StringLocalisationService.getStringWithKey("NewName");
+            name_textbox.Header = StringLocalisationService.getStringWithKey("CategoriesPage_NewName");
             new_categoty_text_block.Text = StringLocalisationService.getStringWithKey("Editing") + selectedCategory.CategoryName;
             name_textbox.Text = selectedCategory.CategoryName;
             _oldName = selectedCategory.CategoryName;
@@ -120,8 +120,8 @@ namespace KFP.Ui.pages
             CategoriesListView.SelectedItem = null;
             CategoriesListView.IsEnabled = false;
             EditingPanel.Visibility = Visibility.Visible;
-            name_textbox.Header = StringLocalisationService.getStringWithKey("Name");
-            new_categoty_text_block.Text = StringLocalisationService.getStringWithKey("New_Category");
+            name_textbox.Header = StringLocalisationService.getStringWithKey("CategoriesPage_Name");
+            new_categoty_text_block.Text = StringLocalisationService.getStringWithKey("CategoriesPage_New_Category");
             name_textbox.Text = "";
         }
         [RelayCommand]
@@ -217,12 +217,12 @@ namespace KFP.Ui.pages
         {
             if (EditingExistingCategory && (name_textbox.Text.Length == 0 || name_textbox.Text == _oldName))
             {
-                nameErrorBlock.Text = StringLocalisationService.getStringWithKey("Please_provide_new_name");
+                nameErrorBlock.Text = StringLocalisationService.getStringWithKey("CategoriesPage_Please_provide_new_name");
                 nameErrorBlock.Visibility = Visibility.Visible;
             }
             else if (_dbContext.Categories.Where(c => c.CategoryName == name_textbox.Text).Any())
             {
-                nameErrorBlock.Text = StringLocalisationService.getStringWithKey("category_with_same_name_exists");
+                nameErrorBlock.Text = StringLocalisationService.getStringWithKey("CategoriesPage_category_with_same_name_exists");
                 nameErrorBlock.Visibility = Visibility.Visible;
             }
             else

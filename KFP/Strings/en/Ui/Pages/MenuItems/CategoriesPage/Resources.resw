@@ -117,37 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddButton.Label" xml:space="preserve">
+  <data name="CategoriesPage_AddButton.Label" xml:space="preserve">
     <value>Add New</value>
   </data>
-  <data name="CancelButton.Label" xml:space="preserve">
+  <data name="CategoriesPage_CancelButton.Label" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="category_with_same_name_exists" xml:space="preserve">
+  <data name="CategoriesPage_category_with_same_name_exists" xml:space="preserve">
     <value>A category with the same name already exists</value>
   </data>
-  <data name="DeleteButton.Label" xml:space="preserve">
+  <data name="CategoriesPage_DeleteButton.Label" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="EditButton.Label" xml:space="preserve">
+  <data name="CategoriesPage_EditButton.Label" xml:space="preserve">
     <value>Edit Name</value>
   </data>
-  <data name="Name" xml:space="preserve">
+  <data name="CategoriesPage_Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="NewName" xml:space="preserve">
+  <data name="CategoriesPage_NewName" xml:space="preserve">
     <value>New Name</value>
   </data>
-  <data name="New_Category" xml:space="preserve">
+  <data name="CategoriesPage_New_Category" xml:space="preserve">
     <value>New Category</value>
   </data>
-  <data name="new_name.Header" xml:space="preserve">
+  <data name="CategoriesPage_new_name.Header" xml:space="preserve">
     <value>New Name</value>
   </data>
-  <data name="Please_provide_new_name" xml:space="preserve">
+  <data name="CategoriesPage_Please_provide_new_name" xml:space="preserve">
     <value>Please provide a new name</value>
   </data>
-  <data name="SaveButton.Label" xml:space="preserve">
+  <data name="CategoriesPage_SaveButton.Label" xml:space="preserve">
     <value>Save</value>
   </data>
 </root>

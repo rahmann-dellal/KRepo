@@ -20,18 +20,18 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <CommandBar Margin="0,20,0,30" DefaultLabelPosition="Right"  HorizontalAlignment="Center" Grid.Row="0">
-            <AppBarButton Icon="Add" x:Uid="AddButton" x:Name="addButton" Command="{x:Bind ShowAddCategoryPanelCommand}"/>
-            <AppBarButton Icon="Edit" x:Uid="EditButton" x:Name="editButton" Command="{x:Bind ShowEditiCategoryPanelCommand}"/>
-            <AppBarButton Icon="Delete" x:Uid="DeleteButton" x:Name="deleteButton" Command="{x:Bind DeleteCategoryCommand}" Background="LightCoral"/>
+            <AppBarButton Icon="Add" x:Uid="CategoriesPage_AddButton" x:Name="addButton" Command="{x:Bind ShowAddCategoryPanelCommand}"/>
+            <AppBarButton Icon="Edit" x:Uid="CategoriesPage_EditButton" x:Name="editButton" Command="{x:Bind ShowEditiCategoryPanelCommand}"/>
+            <AppBarButton Icon="Delete" x:Uid="CategoriesPage_DeleteButton" x:Name="deleteButton" Command="{x:Bind DeleteCategoryCommand}" Background="LightCoral"/>
         </CommandBar>
 
         <StackPanel x:Name="EditingPanel" Orientation="Vertical" Margin="0,0,0,20" HorizontalAlignment="Center" Grid.Row="1">
             <TextBlock FontWeight="Bold" FontSize="18" x:Name="new_categoty_text_block" HorizontalAlignment="Left" Margin="0,0,0,10"/>
             <RelativePanel>
-                <TextBox x:Uid="new_name" x:Name="name_textbox" Width="200" TextChanged="name_textbox_TextChanged"/>
+                <TextBox x:Uid="CategoriesPage_new_name" x:Name="name_textbox" Width="200" TextChanged="name_textbox_TextChanged"/>
                 <CommandBar DefaultLabelPosition="Right" RelativePanel.RightOf="name_textbox" Margin="0,15,0,0">
-                    <AppBarButton Icon="Save" x:Uid="SaveButton" Command="{x:Bind SaveCommand}" Background="LightGreen"/>
-                    <AppBarButton Icon="Cancel" x:Uid="CancelButton" Command="{x:Bind CancelCommand}"/>
+                    <AppBarButton Icon="Save" x:Uid="CategoriesPage_SaveButton" Command="{x:Bind SaveCommand}" Background="LightGreen"/>
+                    <AppBarButton Icon="Cancel" x:Uid="CategoriesPage_CancelButton" Command="{x:Bind CancelCommand}"/>
                 </CommandBar>
                 <TextBlock x:Name="nameErrorBlock" Foreground="OrangeRed" FontSize="12" RelativePanel.Below="name_textbox" Margin="10,6,0,0"/>
             </RelativePanel>
