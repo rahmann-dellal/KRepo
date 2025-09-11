@@ -117,58 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BulkSessionDeleteButton.Content" xml:space="preserve">
+  <data name="SessionsHistoryPage_BulkDeleteButton.Content" xml:space="preserve">
     <value>Delete Everything For The Selected Date Range !</value>
   </data>
-  <data name="DeleteSessionButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="SessionsHistoryPage_DeleteSessionBtn.ToolTipService.ToolTip" xml:space="preserve">
     <value>Delete Session Record</value>
   </data>
-  <data name="Delete_All_Sessions_From" xml:space="preserve">
+  <data name="SessionsHistoryPage_Delete_All_Sessions_From" xml:space="preserve">
     <value>Delete All Session Records From :</value>
   </data>
-  <data name="Delete_Session" xml:space="preserve">
+  <data name="SessionsHistoryPage_Delete_Session" xml:space="preserve">
     <value>Delete session record from history ?</value>
   </data>
-  <data name="Deletings_All_Sessions_For_DateRage" xml:space="preserve">
+  <data name="SessionsHistoryPage_Deletings_All_Sessions_For_DateRage" xml:space="preserve">
     <value>Deleting All Session Records For The Selected Date Range</value>
   </data>
-  <data name="Deleting_Session" xml:space="preserve">
+  <data name="SessionsHistoryPage_Deleting_Session" xml:space="preserve">
     <value>Deleting Order :</value>
   </data>
-  <data name="No_4" xml:space="preserve">
+  <data name="SessionsHistoryPage_No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="SessionsHistory_StartedAtLabel.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_StartedAtLabel.Text" xml:space="preserve">
     <value>Started</value>
   </data>
-  <data name="TotalForSelectedDateRange2.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_TotalForSelectedDateRange.Text" xml:space="preserve">
     <value>Total For The Selected Date Range : </value>
   </data>
-  <data name="To_4" xml:space="preserve">
+  <data name="SessionsHistoryPage_To" xml:space="preserve">
     <value>To : </value>
   </data>
-  <data name="Yes_4" xml:space="preserve">
+  <data name="SessionsHistoryPage_Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="SessionIdTextBlock3" xml:space="preserve">
+  <data name="SessionsHistoryPage_SessionIdTxtBlk" xml:space="preserve">
     <value>Session #</value>
   </data>
-  <data name="EndedAtTextBlock3.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_EndedAtTxtBlk.Text" xml:space="preserve">
     <value>Ended</value>
   </data>
-  <data name="OppeningCashTextBlock3.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_OppeningCashTxtBlk.Text" xml:space="preserve">
     <value>Oppening Cash</value>
   </data>
-  <data name="ClosingCashTextBlock3.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_ClosingCashTxtBlk.Text" xml:space="preserve">
     <value>Closing Cash</value>
   </data>
-  <data name="TotalCardPaymentsTextBlock3.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_TotalCardPaymentsTxtBlk.Text" xml:space="preserve">
     <value>Total Card Payments</value>
   </data>
-  <data name="TotalTextBlock3.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_TotalTxtBlk.Text" xml:space="preserve">
     <value>Total</value>
   </data>
-  <data name="UserTextBlock3.Text" xml:space="preserve">
+  <data name="SessionsHistoryPage_UserTxtBlk.Text" xml:space="preserve">
     <value>User</value>
   </data>
 </root>

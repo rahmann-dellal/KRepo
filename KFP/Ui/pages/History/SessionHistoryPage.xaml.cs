@@ -54,13 +54,13 @@ namespace KFP.Ui.pages
         public async Task<bool> ShowConfirmDeleteOrderDialog(int OrderId)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Delete_Session");
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Deleting_Session") + OrderId;
-            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes_4");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("SessionsHistoryPage_Delete_Session");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("SessionsHistoryPage_Deleting_Session") + OrderId;
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("SessionsHistoryPage_Yes");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.ForegroundProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.BorderBrushProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
-            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("No_4");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("SessionsHistoryPage_No");
             confirmDialog.CloseButtonStyle = dialogButtonStyle;
             confirmDialog.XamlRoot = this.XamlRoot;
             ContentDialogResult result = await confirmDialog.ShowAsync();
@@ -80,14 +80,14 @@ namespace KFP.Ui.pages
             string end = endDate.DateTime.ToString(new CultureInfo(viewModel.appDataService.AppLanguage)) ?? "";
 
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Delete_All_Sessions_From") + " " + start + " " +
-                StringLocalisationService.getStringWithKey("To_4") + " " + end;
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Deletings_All_Sessions_For_DateRage");
-            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes_4");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("SessionsHistoryPage_Delete_All_Sessions_From") + " " + start + " " +
+                StringLocalisationService.getStringWithKey("SessionsHistoryPage_To") + " " + end;
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("SessionsHistoryPage_Deletings_All_Sessions_For_DateRage");
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("SessionsHistoryPage_Yes");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.ForegroundProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.BorderBrushProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
-            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("No_4");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("SessionsHistoryPage_No");
             confirmDialog.CloseButtonStyle = dialogButtonStyle;
             confirmDialog.XamlRoot = this.XamlRoot;
             ContentDialogResult result = await confirmDialog.ShowAsync();

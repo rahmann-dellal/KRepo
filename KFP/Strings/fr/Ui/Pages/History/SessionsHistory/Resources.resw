@@ -117,58 +117,58 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="BulkSessionDeleteButton.Content" xml:space="preserve">
+	<data name="SessionsHistoryPage_BulkDeleteButton.Content" xml:space="preserve">
   <value>Supprimer tout pour la période sélectionnée !</value>
 </data>
-	<data name="ClosingCashTextBlock3.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_ClosingCashTxtBlk.Text" xml:space="preserve">
   <value>Fermeture de caisse</value>
 </data>
-	<data name="DeleteSessionButton.ToolTipService.ToolTip" xml:space="preserve">
+	<data name="SessionsHistoryPage_DeleteSessionBtn.ToolTipService.ToolTip" xml:space="preserve">
   <value>Supprimer l’enregistrement de session</value>
 </data>
-	<data name="Delete_All_Sessions_From" xml:space="preserve">
+	<data name="SessionsHistoryPage_Delete_All_Sessions_From" xml:space="preserve">
   <value>Supprimer tous les enregistrements de session depuis :</value>
 </data>
-	<data name="Delete_Session" xml:space="preserve">
+	<data name="SessionsHistoryPage_Delete_Session" xml:space="preserve">
   <value>Supprimer l’enregistrement de cette session de l’historique ?</value>
 </data>
-	<data name="Deletings_All_Sessions_For_DateRage" xml:space="preserve">
+	<data name="SessionsHistoryPage_Deletings_All_Sessions_For_DateRage" xml:space="preserve">
   <value>Suppression de tous les enregistrements de session pour la période sélectionnée</value>
 </data>
-	<data name="Deleting_Session" xml:space="preserve">
+	<data name="SessionsHistoryPage_Deleting_Session" xml:space="preserve">
   <value>Suppression de la session :</value>
 </data>
-	<data name="EndedAtTextBlock3.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_EndedAtTxtBlk.Text" xml:space="preserve">
   <value>Fin</value>
 </data>
-	<data name="No_4" xml:space="preserve">
+	<data name="SessionsHistoryPage_No" xml:space="preserve">
   <value>Non</value>
 </data>
-	<data name="OppeningCashTextBlock3.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_OppeningCashTxtBlk.Text" xml:space="preserve">
   <value>Ouverture de caisse</value>
 </data>
-	<data name="SessionIdTextBlock3" xml:space="preserve">
+	<data name="SessionsHistoryPage_SessionIdTxtBlk" xml:space="preserve">
   <value>Session n°</value>
 </data>
-	<data name="SessionsHistory_StartedAtLabel.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_StartedAtLabel.Text" xml:space="preserve">
   <value>Début</value>
 </data>
-	<data name="TotalCardPaymentsTextBlock3.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_TotalCardPaymentsTxtBlk.Text" xml:space="preserve">
   <value>Total paiements par carte</value>
 </data>
-	<data name="TotalForSelectedDateRange2.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_TotalForSelectedDateRange.Text" xml:space="preserve">
   <value>Total pour la période sélectionnée :</value>
 </data>
-	<data name="TotalTextBlock3.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_TotalTxtBlk.Text" xml:space="preserve">
   <value>Total</value>
 </data>
-	<data name="To_4" xml:space="preserve">
+	<data name="SessionsHistoryPage_To" xml:space="preserve">
   <value>Jusqu’à :</value>
 </data>
-	<data name="UserTextBlock3.Text" xml:space="preserve">
+	<data name="SessionsHistoryPage_UserTxtBlk.Text" xml:space="preserve">
   <value>Utilisateur</value>
 </data>
-	<data name="Yes_4" xml:space="preserve">
+	<data name="SessionsHistoryPage_Yes" xml:space="preserve">
   <value>Oui</value>
 </data>
 
