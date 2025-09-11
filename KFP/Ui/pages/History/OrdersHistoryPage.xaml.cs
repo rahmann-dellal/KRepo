@@ -55,13 +55,13 @@ namespace KFP.Ui.pages
         public async Task<bool> ShowConfirmDeleteOrderDialog(int OrderId)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Delete_Order");
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Deleting_Order") + OrderId;
-            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes_3");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("OrdersHistoryPage_Delete_Order");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("OrdersHistoryPage_Deleting_Order") + OrderId;
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("OrdersHistoryPage_Yes");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.ForegroundProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.BorderBrushProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
-            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("No_3");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("OrdersHistoryPage_No");
             confirmDialog.CloseButtonStyle = dialogButtonStyle;
             confirmDialog.XamlRoot = this.XamlRoot;
             ContentDialogResult result = await confirmDialog.ShowAsync();
@@ -81,14 +81,14 @@ namespace KFP.Ui.pages
             string end = endDate.DateTime.ToString(new CultureInfo(viewModel.appDataService.AppLanguage)) ?? "";
 
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Delete_All_Orders_From") + " " + start + " " +
-                StringLocalisationService.getStringWithKey("To_3") + " " + end;
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Deletings_All_Orders_For_DateRage");
-            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes_3");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("OrdersHistoryPage_Delete_All_Orders_From") + " " + start + " " +
+                StringLocalisationService.getStringWithKey("OrdersHistoryPage_To") + " " + end;
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("OrdersHistoryPage_Deletings_All_Orders_For_DateRage");
+            confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("OrdersHistoryPage_Yes");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.ForegroundProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
             confirmDialog.PrimaryButtonStyle.Setters.Add(new Setter(Button.BorderBrushProperty, new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.OrangeRed)));
-            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("No_3");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("OrdersHistoryPage_No");
             confirmDialog.CloseButtonStyle = dialogButtonStyle;
             confirmDialog.XamlRoot = this.XamlRoot;
             ContentDialogResult result = await confirmDialog.ShowAsync();

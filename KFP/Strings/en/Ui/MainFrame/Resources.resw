@@ -117,85 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutHeader" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="AboutTextBlock.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="AccountHeader" xml:space="preserve">
-    <value>Kiober Account</value>
-  </data>
-  <data name="AccountTextBlock.Text" xml:space="preserve">
-    <value>Kiober Account</value>
-  </data>
-  <data name="AddMenuItemTextBlock1.Text" xml:space="preserve">
-    <value>Add a Menu Item</value>
-  </data>
-  <data name="AddUserTextBlock.Text" xml:space="preserve">
-    <value>Add a User</value>
-  </data>
-  <data name="Add_menu_item" xml:space="preserve">
-    <value>Add Menu Item</value>
-  </data>
-  <data name="Add_User" xml:space="preserve">
-    <value>Add User</value>
-  </data>
-  <data name="CategoriesTextBlock.Text" xml:space="preserve">
-    <value>Categories</value>
-  </data>
-  <data name="HistoryTextBlock.Text" xml:space="preserve">
-    <value>History</value>
-  </data>
-  <data name="ListMenuItemsTextBlock.Text" xml:space="preserve">
-    <value>List Menu Items</value>
-  </data>
-  <data name="ListUsersTextBlock.Text" xml:space="preserve">
-    <value>List Users</value>
-  </data>
-  <data name="Menu" xml:space="preserve">
-    <value>Menu</value>
-  </data>
-  <data name="MenuItemsTextBlock.Text" xml:space="preserve">
-    <value>Menu Items</value>
-  </data>
-  <data name="Menu_items_list" xml:space="preserve">
-    <value>Menu Items</value>
-  </data>
-  <data name="Menu_Item_Categories" xml:space="preserve">
-    <value>Menu Item Categories</value>
-  </data>
-  <data name="OrdersHistoryTextBlock.Text" xml:space="preserve">
-    <value>Order History</value>
-  </data>
-  <data name="Orders_History" xml:space="preserve">
-    <value>Order History</value>
-  </data>
-  <data name="SalesHistoryTextBlock.Text" xml:space="preserve">
-    <value>Sales History</value>
-  </data>
-  <data name="Sales_History" xml:space="preserve">
-    <value>Sales History</value>
-  </data>
-  <data name="Session" xml:space="preserve">
+  <data name="OperationFrame_Session" xml:space="preserve">
     <value>Session</value>
   </data>
-  <data name="SessionHistoryTextBlock.Text" xml:space="preserve">
+  <data name="OperationFrame_SessionHistoryTxtBlk.Text" xml:space="preserve">
     <value>Session History</value>
   </data>
-  <data name="SessionTextBlock.Text" xml:space="preserve">
+  <data name="OperationFrame_SessionTxtBlk.Text" xml:space="preserve">
     <value>Session</value>
   </data>
-  <data name="Session_History" xml:space="preserve">
+  <data name="OperationFrame_Session_History" xml:space="preserve">
     <value>Session History</value>
   </data>
-  <data name="Settings" xml:space="preserve">
+  <data name="OperationFrame_Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="UsersTextBlock.Text" xml:space="preserve">
+  <data name="OperationFrame_UsersTxtBlk.Text" xml:space="preserve">
     <value>Users</value>
   </data>
-  <data name="User_List" xml:space="preserve">
+  <data name="OperationFrame_User_List" xml:space="preserve">
     <value>User List</value>
+  </data>
+  <data name="OperationFrame_AboutHeader" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="OperationFrame_AboutTxtBlk.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="OperationFrame_AccountHeader" xml:space="preserve">
+    <value>Kiober Account</value>
+  </data>
+  <data name="OperationFrame_AccountTxtBlk.Text" xml:space="preserve">
+    <value>Kiober Account</value>
+  </data>
+  <data name="OperationFrame_Add_menu_item" xml:space="preserve">
+    <value>Add Menu Item</value>
+  </data>
+  <data name="OperationFrame_Add_User" xml:space="preserve">
+    <value>Add User</value>
+  </data>
+  <data name="OperationFrame_AddMenuItemTxtBlk.Text" xml:space="preserve">
+    <value>Add a Menu Item</value>
+  </data>
+  <data name="OperationFrame_AddUserTxtBlk.Text" xml:space="preserve">
+    <value>Add a User</value>
+  </data>
+  <data name="OperationFrame_CategoriesTxtBlk.Text" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="OperationFrame_HistoryTxtBlk.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="OperationFrame_ListMenuItemsTxtBlk.Text" xml:space="preserve">
+    <value>List Menu Items</value>
+  </data>
+  <data name="OperationFrame_ListUsersTxtBlk.Text" xml:space="preserve">
+    <value>List Users</value>
+  </data>
+  <data name="OperationFrame_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="OperationFrame_Menu_Item_Categories" xml:space="preserve">
+    <value>Menu Item Categories</value>
+  </data>
+  <data name="OperationFrame_Menu_items_list" xml:space="preserve">
+    <value>Menu Items</value>
+  </data>
+  <data name="OperationFrame_MenuItemsTxtBlk.Text" xml:space="preserve">
+    <value>Menu Items</value>
+  </data>
+  <data name="OperationFrame_Orders_History" xml:space="preserve">
+    <value>Order History</value>
+  </data>
+  <data name="OperationFrame_OrdersHistoryTxtBlk.Text" xml:space="preserve">
+    <value>Order History</value>
   </data>
 </root>

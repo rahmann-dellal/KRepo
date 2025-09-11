@@ -150,7 +150,7 @@
   <data name="NotesTextBox.PlaceholderText" xml:space="preserve">
     <value>Add Something ...</value>
   </data>
-  <data name="OrderLocationTextBlock2.Text" xml:space="preserve">
+  <data name="PointOfSalesPage_OrderLocationTxtBlk.Text" xml:space="preserve">
     <value>Location</value>
   </data>
   <data name="TableButtonTextBlock.Text" xml:space="preserve">

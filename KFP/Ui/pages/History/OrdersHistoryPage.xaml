@@ -43,29 +43,29 @@
                     <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Uid="OrderTextBlock2" FontWeight="SemiBold" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock x:Uid="OrderItemsTextBlock2" FontWeight="SemiBold" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersHistoryPage_OrderTextBlk" FontWeight="SemiBold" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersHistoryPage_OrderItemsTxtBlk" FontWeight="SemiBold" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <!-- Sort by Price -->
                 <Button Command="{x:Bind viewModel.SortByPriceCommand.Command}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock x:Uid="OrdersHistory_SortByPriceLabel" FontWeight="SemiBold"/>
+                        <TextBlock x:Uid="OrdersHistoryPage_SortByPriceLabel" FontWeight="SemiBold"/>
                         <FontIcon Glyph="{x:Bind viewModel.SortByPriceCommand.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" FontSize="13"/>
                     </StackPanel>
                 </Button>
 
-                <TextBlock x:Uid="OrderPaymentTextBlock2" FontWeight="SemiBold" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersHistoryPage_PaymentTxtBlk" FontWeight="SemiBold" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <!-- Sort by Date -->
                 <Button Command="{x:Bind viewModel.SortByDateCommand.Command}"  Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock x:Uid="OrdersHistory_SortByDateLabel" FontWeight="SemiBold"/>
+                        <TextBlock x:Uid="OrdersHistoryPage_SortByDateLabel" FontWeight="SemiBold"/>
                         <FontIcon Glyph="{x:Bind viewModel.SortByDateCommand.IsSwitched, Converter={StaticResource AscDescBoolToArrowConverter}, Mode=OneWay}" FontSize="13"/>
                     </StackPanel>
                 </Button>
 
-                <TextBlock x:Uid="OrderUserTextBlock" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock x:Uid="OrderLocationTextBlock2" FontWeight="SemiBold" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock x:Uid="OrderStatusTextBlock" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock x:Uid="OrdersListActionsTextBlock2" FontWeight="SemiBold" Grid.Column="8" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersHistoryPage_UserTxtBlk" FontWeight="SemiBold" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersHistoryPage_LocationTxtBlk" FontWeight="SemiBold" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersHistoryPage_StatusTxtBlk" FontWeight="SemiBold" Grid.Column="7" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="OrdersHistoryPage_ActionsTxtBlk" FontWeight="SemiBold" Grid.Column="8" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock x:Uid="NothingToDisplayTxtBlk" Grid.Row="1" Grid.ColumnSpan="9" Visibility="{x:Bind viewModel.isDisplayedOrdersEmpty, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
             FontSize="16" Foreground="DimGray" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ScrollViewer  Grid.Row="1" Grid.ColumnSpan="9" Margin="0,20,0,0">
@@ -110,10 +110,10 @@
                                     <TextBlock  Grid.Row="0" Grid.Column="6" Text="{x:Bind orderLocation}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <TextBlock  Grid.Row="0" Grid.Column="7" Text="{x:Bind Status}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <communityControls:WrapPanel  Grid.Row="0" Grid.Column="8" Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button x:Uid="ShowOrderButton2" Margin="0,0,10,0" Width="50" Height="50" Command="{x:Bind showOrderDetailsCommand}">
+                                        <Button x:Uid="OrdersHistoryPage_ShowOrderBtn" Margin="0,0,10,0" Width="50" Height="50" Command="{x:Bind showOrderDetailsCommand}">
                                             <FontIcon Glyph="&#xE721;" Foreground="DarkBlue"/>
                                         </Button>
-                                        <Button x:Uid="DeleteOrderButton" Width="50" Height="50"  Command="{x:Bind DeleteOrderCommand}">
+                                        <Button x:Uid="OrdersHistoryPage_DeleteOrderButton" Width="50" Height="50"  Command="{x:Bind DeleteOrderCommand}">
                                             <FontIcon Glyph="&#xE74D;"  Foreground="OrangeRed"/>
                                         </Button>
                                     </communityControls:WrapPanel>
@@ -138,9 +138,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Button x:Uid="BulkDeleteButton" Foreground="OrangeRed" BorderBrush="OrangeRed" Margin="20,0,10,0" Command="{x:Bind viewModel.DeleteAllSelectedOrdersCommand}"/>
+            <Button x:Uid="OrdersHistoryPage_BulkDeleteBtn" Foreground="OrangeRed" BorderBrush="OrangeRed" Margin="20,0,10,0" Command="{x:Bind viewModel.DeleteAllSelectedOrdersCommand}"/>
             <TextBlock Grid.Column="1">
-                <Run x:Uid="TotalForSelectedDateRange" />
+                <Run x:Uid="OrdersHistoryPage_TotalForSelectedDateRange" />
                 <Run Text="{x:Bind viewModel.TotalForSelectedDateRange, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}}" FontSize="18" FontWeight="SemiBold"/>
                 <Run Text="{x:Bind viewModel.currency, Mode=OneWay}" FontSize="18" FontWeight="SemiBold"/>
             </TextBlock>

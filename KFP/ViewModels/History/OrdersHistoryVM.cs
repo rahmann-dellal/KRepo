@@ -191,7 +191,7 @@ namespace KFP.ViewModels
                 else if (order.paymentMethod == PaymentMethod.Card)
                     return StringLocalisationService.getStringWithKey("Card");
                 else
-                    return StringLocalisationService.getStringWithKey("Unpaid");
+                    return StringLocalisationService.getStringWithKey("OrdersHistoryPage_Unpaid");
             }
         }
         public string Status
@@ -199,9 +199,9 @@ namespace KFP.ViewModels
             get
             {
                 if (order.Status == OrderStatus.Completed)
-                    return StringLocalisationService.getStringWithKey("Completed");
+                    return StringLocalisationService.getStringWithKey("OrdersHistoryPage_Completed");
                 else if (order.Status == OrderStatus.Cancelled)
-                    return StringLocalisationService.getStringWithKey("Cancelled");
+                    return StringLocalisationService.getStringWithKey("OrdersHistoryPage_Cancelled");
                 else
                     return "";
             }

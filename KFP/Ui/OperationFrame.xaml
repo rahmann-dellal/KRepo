@@ -64,7 +64,7 @@
 
             <NavigationViewItem x:Name="MenuItemsNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                 <NavigationViewItem.Content>
-                    <TextBlock x:Uid="MenuItemsTextBlock"/>
+                    <TextBlock x:Uid="OperationFrame_MenuItemsTxtBlk"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xED56;"/>
@@ -72,7 +72,7 @@
                 <NavigationViewItem.MenuItems>
                     <NavigationViewItem x:Name="ListMenuItemsNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="ListMenuItemsTextBlock"/>
+                            <TextBlock x:Uid="OperationFrame_ListMenuItemsTxtBlk"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <PathIcon Data="{StaticResource ListMenuItemsIcon}"/>
@@ -80,7 +80,7 @@
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="AddMenuItemNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="AddMenuItemTextBlock1"/>
+                            <TextBlock x:Uid="OperationFrame_AddMenuItemTxtBlk"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <PathIcon Data="{StaticResource AddMenuItemsIcon}"/>
@@ -88,7 +88,7 @@
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="CategoriesNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="CategoriesTextBlock"/>
+                            <TextBlock x:Uid="OperationFrame_CategoriesTxtBlk"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <FontIcon Glyph="&#xF0E2;"/>
@@ -98,7 +98,7 @@
             </NavigationViewItem>
             <NavigationViewItem x:Name="HistoryNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                 <NavigationViewItem.Content>
-                    <TextBlock x:Uid="HistoryTextBlock"/>
+                    <TextBlock x:Uid="OperationFrame_HistoryTxtBlk"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE81C;"/>
@@ -106,7 +106,7 @@
                 <NavigationViewItem.MenuItems>
                     <NavigationViewItem x:Name="OrdersHistoryNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="OrdersHistoryTextBlock"/>
+                            <TextBlock x:Uid="OperationFrame_OrdersHistoryTxtBlk"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <PathIcon Data="{StaticResource OrdersIconData}"/>
@@ -114,7 +114,7 @@
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="SessionHistoryNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="SessionHistoryTextBlock"/>
+                            <TextBlock x:Uid="OperationFrame_SessionHistoryTxtBlk"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <FontIcon Glyph="&#xF182;"/>
@@ -124,7 +124,7 @@
             </NavigationViewItem>
             <NavigationViewItem x:Name="UsersNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                 <NavigationViewItem.Content>
-                    <TextBlock x:Uid="UsersTextBlock"/>
+                    <TextBlock x:Uid="OperationFrame_UsersTxtBlk"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE716;"/>
@@ -132,7 +132,7 @@
                 <NavigationViewItem.MenuItems>
                     <NavigationViewItem x:Name="ListUsersNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="ListUsersTextBlock"/>
+                            <TextBlock x:Uid="OperationFrame_ListUsersTxtBlk"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <FontIcon Glyph="&#xEA4A;"/>
@@ -140,7 +140,7 @@
                     </NavigationViewItem>
                     <NavigationViewItem x:Name="AddUserNVI" Visibility="{x:Bind isVisibleForRole(data:UserRole.Manager)}">
                         <NavigationViewItem.Content>
-                            <TextBlock x:Uid="AddUserTextBlock"/>
+                            <TextBlock x:Uid="OperationFrame_AddUserTxtBlk"/>
                         </NavigationViewItem.Content>
                         <NavigationViewItem.Icon>
                             <FontIcon Glyph="&#xE8FA;"/>
@@ -154,7 +154,7 @@
         <NavigationView.FooterMenuItems>
             <NavigationViewItem x:Name="SessionNVI">
                 <NavigationViewItem.Content>
-                    <TextBlock x:Uid="SessionTextBlock"/>
+                    <TextBlock x:Uid="OperationFrame_SessionTxtBlk"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xF182;"/>
@@ -162,7 +162,7 @@
             </NavigationViewItem>
             <NavigationViewItem x:Name="AccountNVI">
                 <NavigationViewItem.Content>
-                    <TextBlock x:Uid="AccountTextBlock"/>
+                    <TextBlock x:Uid="OperationFrame_AccountTxtBlk"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE910;"/>
@@ -170,7 +170,7 @@
             </NavigationViewItem>
             <NavigationViewItem x:Name="AboutNVI">
                 <NavigationViewItem.Content>
-                    <TextBlock x:Uid="AboutTextBlock"/>
+                    <TextBlock x:Uid="OperationFrame_AboutTxtBlk"/>
                 </NavigationViewItem.Content>
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE946;"/>

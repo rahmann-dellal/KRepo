@@ -85,67 +85,67 @@ namespace KFP.Ui
                 {
                     selectedNVI = ListMenuItemsNVI;
                     ContentFrame.Navigate(typeof(MenuItemListPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Menu_items_list");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Menu_items_list");
                 }
                 else if (InvokedNVI == AddMenuItemNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = AddMenuItemNVI;
                     ContentFrame.Navigate(typeof(EditMenuItemPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Add_menu_item");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Add_menu_item");
                 }
                 else if (InvokedNVI == CategoriesNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = CategoriesNVI;
                     ContentFrame.Navigate(typeof(CategoriesPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Menu_Item_Categories");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Menu_Item_Categories");
                 }
                 else if(InvokedNVI == OrdersHistoryNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = OrdersHistoryNVI;
                     ContentFrame.Navigate(typeof(OrdersHistoryPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Orders_History");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Orders_History");
                 }
                 else if (InvokedNVI == SessionHistoryNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = SessionHistoryNVI;
                     ContentFrame.Navigate(typeof(SessionHistoryPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Session_History");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Session_History");
                 }
                 else if (InvokedNVI == ListUsersNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = ListUsersNVI;
                     ContentFrame.Navigate(typeof(UserListPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("User_List");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_User_List");
                 }
                 else if (InvokedNVI == AddUserNVI && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = AddUserNVI;
                     ContentFrame.Navigate(typeof(EditUserPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Add_User");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Add_User");
                 }
                 else if (InvokedNVI == SessionNVI)
                 {
                     selectedNVI = SessionNVI;
                     ContentFrame.Navigate(typeof(SessionPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Session");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Session");
                 }
                 else if (InvokedNVI == AccountNVI)
                 {
                     selectedNVI = AccountNVI;
                     ContentFrame.Navigate(typeof(AccountPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("AccountHeader");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_AccountHeader");
                 }
                 else if (InvokedNVI == AboutNVI)
                 {
                     selectedNVI = AboutNVI;
                     ContentFrame.Navigate(typeof(AboutPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("AboutHeader");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_AboutHeader");
                 }
                 else if(args.IsSettingsInvoked && UserHasPrivelegesOf(UserRole.Manager))
                 {
                     selectedNVI = null;
                     ContentFrame.Navigate(typeof(SettingsPage));
-                    NavView.Header = StringLocalisationService.getStringWithKey("Settings");
+                    NavView.Header = StringLocalisationService.getStringWithKey("OperationFrame_Settings");
                 }
             }
         }
@@ -178,7 +178,7 @@ namespace KFP.Ui
         }
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            NavView.PaneTitle = StringLocalisationService.getStringWithKey("Menu");
+            NavView.PaneTitle = StringLocalisationService.getStringWithKey("OperationFrame_Menu");
         }
     }
 }
