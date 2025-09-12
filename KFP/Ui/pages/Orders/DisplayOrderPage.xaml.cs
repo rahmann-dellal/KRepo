@@ -59,11 +59,11 @@ namespace KFP.Ui.pages
         public async Task<bool> ShowConfirmCancelOrderDialog(int OrderId)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Cancel_Order1");
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Canceling_Order1") + OrderId;
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("DisplayOrderPage_Cancel_Order");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("DisplayOrderPage_Canceling_Order") + OrderId;
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Yes");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
-            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("No");
+            confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("DisplayOrderPage_No");
             confirmDialog.CloseButtonStyle = dialogButtonStyle;
             confirmDialog.XamlRoot = this.XamlRoot;
             ContentDialogResult result = await confirmDialog.ShowAsync();
@@ -81,7 +81,7 @@ namespace KFP.Ui.pages
         {
             ContentDialog confirmDialog = new ContentDialog();
             confirmDialog.Title = $"{total?.ToString("F2")} {currency}";
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confirm_Cash_Payment");
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("DisplayOrderPage_Confirm_Cash_Payment");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
             confirmDialog.CloseButtonStyle = dialogButtonStyle;
@@ -103,7 +103,7 @@ namespace KFP.Ui.pages
         {
             ContentDialog confirmDialog = new ContentDialog();
             confirmDialog.Title = $"{total?.ToString("F2")} {currency}";
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confirm_Card_Payment") ;
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("DisplayOrderPage_Confirm_Card_Payment") ;
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");
@@ -123,8 +123,8 @@ namespace KFP.Ui.pages
         public async Task<bool> ShowSetOrderCompletedDialog(int orderId)
         {
             ContentDialog confirmDialog = new ContentDialog();
-            confirmDialog.Title = StringLocalisationService.getStringWithKey("Complete_Order1") + "  #" + orderId ;
-            confirmDialog.Content = StringLocalisationService.getStringWithKey("Confrim_Order_Completed1");
+            confirmDialog.Title = StringLocalisationService.getStringWithKey("DisplayOrderPage_Complete_Order") + "  #" + orderId ;
+            confirmDialog.Content = StringLocalisationService.getStringWithKey("DisplayOrderPage_Confrim_Order_Completed");
             confirmDialog.PrimaryButtonText = StringLocalisationService.getStringWithKey("Confirm");
             confirmDialog.PrimaryButtonStyle = dialogButtonStyle;
             confirmDialog.CloseButtonText = StringLocalisationService.getStringWithKey("Cancel");

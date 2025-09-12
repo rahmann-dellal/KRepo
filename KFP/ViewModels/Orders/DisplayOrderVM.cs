@@ -301,9 +301,9 @@ namespace KFP.ViewModels
             get
             {
                 if (order.Status == OrderStatus.Completed)
-                    return StringLocalisationService.getStringWithKey("Completed2");
+                    return StringLocalisationService.getStringWithKey("DisplayOrderPage_Completed");
                 else if (order.Status == OrderStatus.Cancelled)
-                    return StringLocalisationService.getStringWithKey("Cancelled2");
+                    return StringLocalisationService.getStringWithKey("DisplayOrderPage_Cancelled");
                 else
                     return "";
             }

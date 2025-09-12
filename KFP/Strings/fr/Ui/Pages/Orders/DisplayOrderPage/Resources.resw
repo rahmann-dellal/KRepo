@@ -117,100 +117,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdressTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_AddressTxtBlk.Text" xml:space="preserve">
     <value>Adresse</value>
   </data>
-  <data name="ByCardTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_ByCardTxtBlk.Text" xml:space="preserve">
     <value>Par carte</value>
   </data>
-  <data name="Canceling_Order1" xml:space="preserve">
+  <data name="DisplayOrderPage_Canceling_Order" xml:space="preserve">
     <value>Annulation de la commande : </value>
   </data>
-  <data name="Cancelled2" xml:space="preserve">
+  <data name="DisplayOrderPage_Cancelled" xml:space="preserve">
     <value>Annulée</value>
   </data>
-  <data name="CancelOrderTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_CancelOrderTxtBlk.Text" xml:space="preserve">
     <value>Annuler la commande</value>
   </data>
-  <data name="Cancel_Order1" xml:space="preserve">
+  <data name="DisplayOrderPage_Cancel_Order" xml:space="preserve">
     <value>Annuler la commande ?</value>
   </data>
-  <data name="CardPaymentTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_CardPaymentTxtBlk.Text" xml:space="preserve">
     <value>Paiement par carte</value>
   </data>
-  <data name="CashPaymentTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_CashPaymentTxtBlk.Text" xml:space="preserve">
     <value>Paiement en espèces</value>
   </data>
-  <data name="CashTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_CashTxtBlk.Text" xml:space="preserve">
     <value>Espèces</value>
   </data>
-  <data name="ChangePaymentTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_ChangePaymentTxtBlk.Text" xml:space="preserve">
     <value>Rendu</value>
   </data>
-  <data name="Completed2" xml:space="preserve">
+  <data name="DisplayOrderPage_Completed" xml:space="preserve">
     <value>Complétée</value>
   </data>
-  <data name="CompleteOrderTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_CompleteOrderTxtBlk.Text" xml:space="preserve">
     <value>Finaliser la commande</value>
   </data>
-  <data name="Complete_Order1" xml:space="preserve">
+  <data name="DisplayOrderPage_Complete_Order" xml:space="preserve">
     <value>Finaliser la commande</value>
   </data>
-  <data name="ConfirmPaymentTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_ConfirmPaymentTxtBlk.Text" xml:space="preserve">
     <value>Confirmer le paiement</value>
   </data>
-  <data name="Confirm_Card_Payment" xml:space="preserve">
+  <data name="DisplayOrderPage_Confirm_Card_Payment" xml:space="preserve">
     <value>Confirmer le paiement par carte ?</value>
   </data>
-  <data name="Confirm_Cash_Payment" xml:space="preserve">
+  <data name="DisplayOrderPage_Confirm_Cash_Payment" xml:space="preserve">
     <value>Confirmer le paiement en espèces ?</value>
   </data>
-  <data name="Confrim_Order_Completed1" xml:space="preserve">
+  <data name="DisplayOrderPage_Confrim_Order_Completed" xml:space="preserve">
     <value>Marquer la commande comme terminée ?</value>
   </data>
-  <data name="CounterButtonTextBlock1.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_CounterButtonTxtBlk.Text" xml:space="preserve">
     <value>Comptoir</value>
   </data>
-  <data name="customerNameTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_customerNameTxtBlk.Text" xml:space="preserve">
     <value>Nom</value>
   </data>
-  <data name="customerPhoneTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_customerPhoneTxtBlk.Text" xml:space="preserve">
     <value>Téléphone</value>
   </data>
-  <data name="DeferPaymentTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_DeferPaymentTxtBlk.Text" xml:space="preserve">
     <value>Reporter le paiement</value>
   </data>
-  <data name="DeferredTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_DeferredTxtBlk.Text" xml:space="preserve">
     <value>Reporté</value>
   </data>
-  <data name="DeliveryButtonTextBlock1.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_DeliveryButtonTxtBlk.Text" xml:space="preserve">
     <value>Livraison</value>
   </data>
-  <data name="DeliveryInfoTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_DeliveryInfoTxtBlk.Text" xml:space="preserve">
     <value>Informations de livraison</value>
   </data>
-  <data name="EditOrderTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_EditOrderTxtBlk.Text" xml:space="preserve">
     <value>Modifier la commande</value>
   </data>
-  <data name="MenuItemTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_MenuItemTxtBlk.Text" xml:space="preserve">
     <value>Article</value>
   </data>
-  <data name="NewOrderTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_NewOrderTxtBlk.Text" xml:space="preserve">
     <value>Nouvelle commande</value>
   </data>
-  <data name="No" xml:space="preserve">
+  <data name="DisplayOrderPage_No" xml:space="preserve">
     <value>Non</value>
   </data>
-  <data name="NotesTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_NotesTxtBlk.Text" xml:space="preserve">
     <value>Remarques</value>
   </data>
-  <data name="PaymentTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_PaymentTxtBlk.Text" xml:space="preserve">
     <value>Paiement :</value>
   </data>
-  <data name="StatusTextBlock.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_StatusTxtBlk.Text" xml:space="preserve">
     <value>Etat de la commande : </value>
   </data>
-  <data name="TableButtonTextBlock1.Text" xml:space="preserve">
+  <data name="DisplayOrderPage_TableButtonTxtBlk.Text" xml:space="preserve">
     <value>Table</value>
   </data>
 </root>
