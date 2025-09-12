@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddonsSelector.Text" xml:space="preserve">
+  <data name="MenuItemSelector_AddonsSelector.Text" xml:space="preserve">
     <value>Add-ons</value>
   </data>
-  <data name="AllSelector.Text" xml:space="preserve">
+  <data name="MenuItemSelector_AllSelector.Text" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="CategoryTextBlock.Text" xml:space="preserve">
+  <data name="MenuItemSelector_CategoryTxtBlk.Text" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="DrinksSelector.Text" xml:space="preserve">
+  <data name="MenuItemSelector_DrinksSelector.Text" xml:space="preserve">
     <value>Drinks</value>
   </data>
-  <data name="MainSelector.Text" xml:space="preserve">
+  <data name="MenuItemSelector_MainSelector.Text" xml:space="preserve">
     <value>Main</value>
   </data>
-  <data name="OtherSelector.Text" xml:space="preserve">
+  <data name="MenuItemSelector_OtherSelector.Text" xml:space="preserve">
     <value>Other</value>
   </data>
-  <data name="TypeTextBlock.Text" xml:space="preserve">
+  <data name="MenuItemSelector_TypeTxtBlk.Text" xml:space="preserve">
     <value>Type</value>
   </data>
 </root>

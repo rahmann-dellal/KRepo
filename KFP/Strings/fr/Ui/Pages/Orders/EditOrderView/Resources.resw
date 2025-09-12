@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="ClearOrderTextBlock.Text" xml:space="preserve">
+	<data name="EditOrderView_ClearOrderTxtBlk.Text" xml:space="preserve">
   <value>Réinitialiser la commande</value>
 </data>
-	<data name="MenuItemTextBlock1.Text" xml:space="preserve">
+	<data name="EditOrderView_MenuItemTxtBlk.Text" xml:space="preserve">
   <value>Article</value>
 </data>
-	<data name="QtTextBlock.Text" xml:space="preserve">
+	<data name="EditOrderView_QtTextBlock.Text" xml:space="preserve">
   <value>Qté</value>
 </data>
-	<data name="SelectAddOnsTxtBlock.Text" xml:space="preserve">
+	<data name="EditOrderView_SelectAddOnsTxtBlk.Text" xml:space="preserve">
   <value>Sélectionner les suppléments</value>
 </data>
-	<data name="SelectMenuItemTextBlock.Text" xml:space="preserve">
+	<data name="EditOrderView_SelectMenuItemTxtBlk.Text" xml:space="preserve">
   <value>Sélectionner un article du menu</value>
 </data>
 
