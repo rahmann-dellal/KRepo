@@ -18,8 +18,8 @@
     <ScrollViewer>
         <StackPanel x:Name="rootStackPanel" Orientation="Vertical">
             <CommandBar   IsOpen="False" DefaultLabelPosition="Right"  HorizontalAlignment="Center">
-                <AppBarButton Icon="Save" x:Uid="MenuItemSaveButton" x:Name="saveButton" Command="{x:Bind viewModel.SaveCommand}" Background="LightGreen" FontWeight="SemiBold"/>
-                <AppBarButton Icon="Refresh" x:Uid="MenuItemResetButton"  x:Name="resetButton" Command="{x:Bind viewModel.ResetCommand}" FontWeight="SemiBold" />
+                <AppBarButton Icon="Save" x:Uid="EditMenuItemPage_SaveBtn" x:Name="saveButton" Command="{x:Bind viewModel.SaveCommand}" Background="LightGreen" FontWeight="SemiBold"/>
+                <AppBarButton Icon="Refresh" x:Uid="EditMenuItemPage_ResetBtn"  x:Name="resetButton" Command="{x:Bind viewModel.ResetCommand}" FontWeight="SemiBold" />
             </CommandBar>
             <TextBlock x:Name="SaveErrorBlock" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"
        Foreground="OrangeRed" FontSize="12"/>
@@ -33,7 +33,7 @@
                          Width="330" HorizontalAlignment="Left" 
                          x:Name="itemNameTextBox" FontSize="20">
                         <TextBox.Header>
-                            <TextBlock x:Uid="Items_name_Mandatory" FontSize="14"/>
+                            <TextBlock x:Uid="EditMenuItemPage_Items_name_Mandatory" FontSize="14"/>
                         </TextBox.Header>
                     </TextBox>
                     <TextBlock x:Name="itemNameErrorBlock" Text="{x:Bind Path=viewModel.ItemNameErrorMessage, Mode=OneWay}" 
@@ -52,11 +52,11 @@
                         </RadioButtons.ItemTemplate>
                         <RadioButtons.Header>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Uid="Item_Type_text_block2" Margin="0,0,10,0"/>
+                                <TextBlock x:Uid="EditMenuItemPage_Item_Type_txtBlk" Margin="0,0,10,0"/>
                                 <InfoBadge Background="LightGreen" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Top"
                                        ToolTipService.Placement="Right">
                                     <ToolTipService.ToolTip>
-                                        <ToolTip x:Uid="MenuItemTypeToolTip"/>
+                                        <ToolTip x:Uid="EditMenuItemPage_TypeToolTip"/>
                                     </ToolTipService.ToolTip>
                                     <InfoBadge.IconSource>
                                         <FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF142;" />
@@ -66,7 +66,7 @@
                         </RadioButtons.Header>
                     </RadioButtons>
 
-                    <TextBlock x:Uid="Items_price_Mandatory" Margin="0,20,0,10" FontSize="14"/>
+                    <TextBlock x:Uid="EditMenuItemPage_Items_price_Mandatory" Margin="0,20,0,10" FontSize="14"/>
 
                     <RelativePanel Margin="0,0,0,0">
                         <custom:KioberNumberBox Value="{x:Bind viewModel.SalePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AllowOnlyPositiveValues="True"
@@ -78,13 +78,13 @@
                             Visibility="Collapsed"
                             Foreground="OrangeRed" FontSize="12"/>
 
-                    <TextBlock x:Uid="AssignedCategories2"  Margin="0,30,0,10"/>
+                    <TextBlock x:Uid="EditMenuItemPage_AssignedCategories"  Margin="0,30,0,10"/>
                     <RelativePanel>
-                        <ComboBox x:Name="allCategoriesCombo" x:Uid="allCategoriesCombo" ItemsSource="{x:Bind viewModel.choiseCategories, Mode=TwoWay}" DisplayMemberPath="CategoryName" Margin="10,8,10,0"
+                        <ComboBox x:Name="allCategoriesCombo" x:Uid="EditMenuItemPage_allCategoriesCombo" ItemsSource="{x:Bind viewModel.choiseCategories, Mode=TwoWay}" DisplayMemberPath="CategoryName" Margin="10,8,10,0"
                               HorizontalAlignment="Center" SelectedItem="{x:Bind viewModel.SelectedCategoryToAdd, Mode=TwoWay}">
                         </ComboBox>
                         <CommandBar DefaultLabelPosition="Right" RelativePanel.RightOf="allCategoriesCombo">
-                            <AppBarButton x:Uid="AddButton2" Icon="Add" Label="Add" LabelPosition="Default"  Background="LightGreen" Command="{x:Bind viewModel.AddCategoryCommand}"/>
+                            <AppBarButton x:Uid="EditMenuItemPage_AddBtn" Icon="Add" Label="Add" LabelPosition="Default"  Background="LightGreen" Command="{x:Bind viewModel.AddCategoryCommand}"/>
                         </CommandBar>
                     </RelativePanel>
                     <RelativePanel>
@@ -94,18 +94,18 @@
                                 <ListView x:Name="AssignedCotegoriesListView" ItemsSource="{x:Bind viewModel.assignedCategories, Mode=TwoWay}" SelectedItem="{x:Bind viewModel.SelectedCategoryToRemove, Mode=TwoWay}" DisplayMemberPath="CategoryName"/>
                             </StackPanel>
                         </Border>
-                        <AppBarButton x:Uid="RemoveButton" Icon="Remove"  LabelPosition="Default" RelativePanel.RightOf="categoriesBordrer" Margin="10,10,0,0"
+                        <AppBarButton x:Uid="EditMenuItemPage_RemoveBtn" Icon="Remove"  LabelPosition="Default" RelativePanel.RightOf="categoriesBordrer" Margin="10,10,0,0"
                                       Background="LightCoral" Command="{x:Bind viewModel.RemoveCategoryCommand}"/>
                     </RelativePanel>
 
                 </StackPanel>
 
                 <StackPanel  Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="picture_text_block1"/>
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" x:Uid="EditMenuItemPage_picture_TxtBlk"/>
                     <custom:InteractiveImageDisplay LoadedImageUri="{x:Bind viewModel.PictureUri, Mode=TwoWay}" Command="{x:Bind viewModel.SelectPictureCommand}"
               Height="auto" x:Name="imageGraber" Margin="0,20,0,0"/>
                     <StackPanel VerticalAlignment="Bottom" Orientation="Vertical" Margin="0,20,0,0">
-                        <AppBarButton x:Uid="Cancel_Picture_Button" x:Name="cancel_picture" Command="{x:Bind viewModel.RemovePictureCommand}" HorizontalAlignment="Center"
+                        <AppBarButton x:Uid="EditMenuItemPage_Cancel_Picture_Btn" x:Name="cancel_picture" Command="{x:Bind viewModel.RemovePictureCommand}" HorizontalAlignment="Center"
                           Icon="Cancel" LabelPosition="Default" />
                     </StackPanel>
                 </StackPanel>

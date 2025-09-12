@@ -117,49 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="AddButton2" xml:space="preserve">
+	<data name="EditMenuItemPage_AddBtn" xml:space="preserve">
   <value>Ajouter</value>
 </data>
-	<data name="allCategoriesCombo.PlaceholderText" xml:space="preserve">
+	<data name="EditMenuItemPage_allCategoriesCombo.PlaceholderText" xml:space="preserve">
   <value>Sélectionnez une catégorie</value>
 </data>
-	<data name="AssignedCategories2.Text" xml:space="preserve">
+	<data name="EditMenuItemPage_AssignedCategories.Text" xml:space="preserve">
   <value>Catégories assignées :</value>
 </data>
-	<data name="Cancel_Picture_Button.Label" xml:space="preserve">
+	<data name="EditMenuItemPage_Cancel_Picture_Btn.Label" xml:space="preserve">
   <value>Supprimer</value>
 </data>
-	<data name="Items_name_Mandatory.Text" xml:space="preserve">
+	<data name="EditMenuItemPage_Items_name_Mandatory.Text" xml:space="preserve">
   <value>Nom de l’article *</value>
 </data>
-	<data name="Items_price_Mandatory.Text" xml:space="preserve">
+	<data name="EditMenuItemPage_Items_price_Mandatory.Text" xml:space="preserve">
   <value>Prix de l’article *</value>
 </data>
-	<data name="Item_Type_text_block2.Text" xml:space="preserve">
+	<data name="EditMenuItemPage_Item_Type_txtBlk.Text" xml:space="preserve">
   <value>Type d’article</value>
 </data>
-	<data name="MenuItemTypeToolTip.Content" xml:space="preserve">
+	<data name="EditMenuItemPage_TypeToolTip.Content" xml:space="preserve">
   <value>Spécifiez le type d’article pour faciliter le filtrage dans la page Point de Vente</value>
 </data>
-	<data name="picture_text_block1.Text" xml:space="preserve">
+	<data name="EditMenuItemPage_picture_TxtBlk.Text" xml:space="preserve">
   <value>Image</value>
 </data>
-	<data name="please_provide_name_for_item" xml:space="preserve">
+	<data name="EditMenuItemPage_please_provide_name_for_item" xml:space="preserve">
   <value>Veuillez fournir un nom pour l’article du menu</value>
 </data>
-	<data name="RemoveButton.Label" xml:space="preserve">
+	<data name="EditMenuItemPage_RemoveBtn.Label" xml:space="preserve">
   <value>Supprimer</value>
 </data>
-	<data name="save_changes" xml:space="preserve">
+	<data name="EditMenuItemPage_save_changes" xml:space="preserve">
   <value>Enregistrer les modifications ?</value>
 </data>
-	<data name="MenuItemResetButton.Label" xml:space="preserve">
+	<data name="EditMenuItemPage_ResetBtn.Label" xml:space="preserve">
   <value>Réinitialiser</value>
 </data>
-	<data name="You_already_have_an_item_with_the_same_name" xml:space="preserve">
+	<data name="EditMenuItemPage_You_already_have_an_item_with_the_same_name" xml:space="preserve">
   <value>Un article avec le même nom existe déjà</value>
 </data>
-	<data name="MenuItemSaveButton.Label" xml:space="preserve">
+	<data name="EditMenuItemPage_SaveBtn.Label" xml:space="preserve">
   <value>Enregistrer</value>
 </data>
 

@@ -59,7 +59,7 @@ namespace KFP.ViewModels
 
                     if (existingItem != null)
                     {
-                        ItemNameErrorMessage = StringLocalisationService.getStringWithKey("You_already_have_an_item_with_the_same_name");
+                        ItemNameErrorMessage = StringLocalisationService.getStringWithKey("EditMenuItemPage_You_already_have_an_item_with_the_same_name");
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace KFP.ViewModels
                 }
                 else
                 {
-                    ItemNameErrorMessage = StringLocalisationService.getStringWithKey("please_provide_name_for_item");
+                    ItemNameErrorMessage = StringLocalisationService.getStringWithKey("EditMenuItemPage_please_provide_name_for_item");
                 }
                 SetProperty(ref _itemName, value);
             }
